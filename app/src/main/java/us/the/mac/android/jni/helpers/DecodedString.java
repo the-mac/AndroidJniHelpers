@@ -27,7 +27,11 @@ import com.spotify.jni.annotations.UsedByNativeCode;
 public class DecodedString extends NativeObject {
     String encodedString;
 
-    public DecodedString() {}
+    public native DecodedString getInstance();
+    public static DecodedString testingInstance() {
+        return new DecodedString();
+    }
+    private DecodedString() {}
 
     @SuppressWarnings("UnusedDeclaration")
     @UsedByNativeCode
@@ -44,4 +48,5 @@ public class DecodedString extends NativeObject {
     @Override
     public native void destroy();
     public native String decode();
+
 }

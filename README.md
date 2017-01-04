@@ -1,10 +1,9 @@
 # AndroidJniHelpers
-Tools for writing secure Android JNI code
+Tools for writing secure Android/JNI code, based upon Spotify's [Jni Helpers Library](https://github.com/spotify/JniHelpers.git).
 
 The Android Jni Helpers library you can hide important details of your app from
 basic apk decompilation, and harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
-from [proguard obfuscation](https://www.guardsquare.com/en/proguard). The project is based upon [Spotify's Jni Helpers](https://github.com/the-mac/JniHelpers.git)
-library. Here are some of our current features:
+from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are some of our current features:
 
 **Native String Decoding**
 ```java

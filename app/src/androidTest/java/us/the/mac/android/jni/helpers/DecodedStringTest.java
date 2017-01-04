@@ -47,7 +47,7 @@ public class DecodedStringTest {
         // Now create a new empty object, but copy the nPtr field to it. Note that
         // the i field is *not* copied; that value is stored natively and should
         // be retrieved in the call to getPersistedInstance.
-        DecodedString emptyInstance = new DecodedString();
+        DecodedString emptyInstance = DecodedString.testingInstance();
         emptyInstance.nPtr = object.nPtr;
 
         // The native test should be able to fetch the previous instance via nPtr,
