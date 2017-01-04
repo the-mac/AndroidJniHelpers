@@ -27,7 +27,7 @@ import com.spotify.jni.annotations.UsedByNativeCode;
 public class DecodedString extends NativeObject {
     String encodedString;
 
-    public native DecodedString getInstance();
+    public static native DecodedString getInstance();
     public static DecodedString testingInstance() {
         return new DecodedString();
     }
