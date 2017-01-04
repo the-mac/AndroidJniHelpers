@@ -24,12 +24,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
 
 extern "C"
 jstring
-Java_com_operators_nativity_decodedstring_MainActivity_stringFromJNI(
+Java_us_the_mac_android_jni_helpers_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject thIs) {
 
     DecodedString *theString = new DecodedString(env);
-    jstring decodedString = theString->decode(env, thIs);
+    theString->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
+    jstring decodedString = theString->decode(env, theString->toJavaObject(env));
     return decodedString;
 ;
 }

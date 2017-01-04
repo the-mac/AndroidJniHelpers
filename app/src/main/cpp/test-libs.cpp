@@ -8,7 +8,6 @@
 #include <DecodedStringTest.h>
 #include <DecodedString.h>
 
-
 using namespace spotify::jni;
 using namespace operators::nativity::decodedstring;
 ClassRegistry gClasses;
@@ -28,12 +27,4 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
 
     LOG_INFO("Initialization complete");
     return JAVA_VERSION;
-}
-
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_operators_nativity_hellolibs_MainActivity_stringFromJNI(JNIEnv *env, jobject thiz) {
-
-    JavaString javaString("hello, is it me you're looking for?");
-    return javaString.toJavaString(env).leak();
-
 }

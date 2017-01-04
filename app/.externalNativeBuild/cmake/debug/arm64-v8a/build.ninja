@@ -49,40 +49,40 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
   restat = 1
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
-# Object build statements for SHARED_LIBRARY target test-libs
+# Object build statements for SHARED_LIBRARY target native-lib
 
 
 #############################################
-# Order-only phony target for test-libs
+# Order-only phony target for native-lib
 
-build cmake_order_depends_target_test-libs: phony || libJniHelpers.a libJniHelpersTest.a
-build CMakeFiles/test-libs.dir/src/main/cpp/test-libs.cpp.o: CXX_COMPILER__test-libs ../../../../src/main/cpp/test-libs.cpp || cmake_order_depends_target_test-libs
-  DEFINES = -Dtest_libs_EXPORTS
-  DEP_FILE = CMakeFiles/test-libs.dir/src/main/cpp/test-libs.cpp.o.d
+build cmake_order_depends_target_native-lib: phony || libJniHelpers.a
+build CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o: CXX_COMPILER__native-lib ../../../../src/main/cpp/native-lib.cpp || cmake_order_depends_target_native-lib
+  DEFINES = -Dnative_lib_EXPORTS
+  DEP_FILE = CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o.d
   FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
-  IN_ABS = /Users/christopher/git/the-mac/AndroidJniHelpers/app/src/main/cpp/test-libs.cpp
-  OBJECT_DIR = CMakeFiles/test-libs.dir
-  OBJECT_FILE_DIR = CMakeFiles/test-libs.dir/src/main/cpp
+  IN_ABS = /Users/christopher/git/the-mac/AndroidJniHelpers/app/src/main/cpp/native-lib.cpp
+  OBJECT_DIR = CMakeFiles/native-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/native-lib.dir/src/main/cpp
 
 # =============================================================================
-# Link build statements for SHARED_LIBRARY target test-libs
+# Link build statements for SHARED_LIBRARY target native-lib
 
 
 #############################################
-# Link the shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so
+# Link the shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so
 
-build ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so: CXX_SHARED_LIBRARY_LINKER__test-libs CMakeFiles/test-libs.dir/src/main/cpp/test-libs.cpp.o | libJniHelpers.a libJniHelpersTest.a /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-arm64/usr/lib/liblog.so || libJniHelpers.a libJniHelpersTest.a
+build ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so: CXX_SHARED_LIBRARY_LINKER__native-lib CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o | libJniHelpers.a /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-arm64/usr/lib/liblog.so || libJniHelpers.a
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
-  LINK_LIBRARIES = libJniHelpers.a libJniHelpersTest.a -llog -lm "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/libgnustl_static.a"
-  OBJECT_DIR = CMakeFiles/test-libs.dir
+  LINK_LIBRARIES = libJniHelpers.a -llog -lm "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/libgnustl_static.a"
+  OBJECT_DIR = CMakeFiles/native-lib.dir
   POST_BUILD = :
   PRE_LINK = :
-  SONAME = libtest-libs.so
+  SONAME = libnative-lib.so
   SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so
-  TARGET_PDB = test-libs.so.dbg
+  TARGET_FILE = ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so
+  TARGET_PDB = native-lib.so.dbg
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target JniHelpersTest
 
@@ -383,8 +383,8 @@ build libJniHelpers.a: CXX_STATIC_LIBRARY_LINKER__JniHelpers CMakeFiles/JniHelpe
 
 build JniHelpers: phony libJniHelpers.a
 build JniHelpersTest: phony libJniHelpersTest.a
-build libtest-libs.so: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so
-build test-libs: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so
+build libnative-lib.so: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so
+build native-lib: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so
 # =============================================================================
 # Folder targets.
 
@@ -396,7 +396,7 @@ build test-libs: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a
 #############################################
 # The main all target.
 
-build all: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libtest-libs.so libJniHelpersTest.a libJniHelpers.a
+build all: phony ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so libJniHelpersTest.a libJniHelpers.a
 
 #############################################
 # Make the all target the default.

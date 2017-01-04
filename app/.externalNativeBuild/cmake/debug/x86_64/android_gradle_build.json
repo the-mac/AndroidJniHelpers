@@ -254,22 +254,22 @@
 			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/x86_64/libJniHelpersTest.a",
 			"toolchain" : "1711930561773060016"
 		},
-		"test-libs-Debug-x86_64" : 
+		"native-lib-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "test-libs",
-			"buildCommand" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/x86_64 --target test-libs",
+			"artifactName" : "native-lib",
+			"buildCommand" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/x86_64 --target native-lib",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  -target x86_64-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/x86_64-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-x86_64  -Dtest_libs_EXPORTS -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/src/main/cpp/test-libs.cpp",
+					"flags" : "  -target x86_64-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/x86_64-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-x86_64  -Dnative_lib_EXPORTS -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O0 -fno-limit-debug-info -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/src/main/cpp/native-lib.cpp",
 					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/x86_64"
 				}
 			],
-			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/build/intermediates/cmake/debug/obj/x86_64/libtest-libs.so",
+			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so",
 			"toolchain" : "1711930561773060016"
 		}
 	},

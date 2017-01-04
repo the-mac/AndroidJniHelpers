@@ -11,6 +11,6 @@ arguments :
 -DCMAKE_TOOLCHAIN_FILE=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/build/cmake/android.toolchain.cmake
 -DANDROID_NATIVE_API_LEVEL=21
 -DCMAKE_CXX_FLAGS=-std=c++11 -frtti -fexceptions
--DANDROID_TESTING=true
+-DANDROID_TESTING=false
 jvmArgs : 
 
