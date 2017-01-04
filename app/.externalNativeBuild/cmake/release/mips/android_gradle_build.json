@@ -1,0 +1,284 @@
+
+{
+	"buildFiles" : [ "/Users/christopher/git/the-mac/AndroidJniHelpers/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"JniHelpers-Release-mips" : 
+		{
+			"abi" : "mips",
+			"artifactName" : "JniHelpers",
+			"buildCommand" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips --target JniHelpers",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ByteArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ClassRegistry.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/DecodedString.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaClass.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaClassUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaExceptionUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaString.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaStringArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaThreadUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JniHelpers.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/NativeObject.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ShortArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				}
+			],
+			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/libJniHelpers.a",
+			"toolchain" : "1711930561773060016"
+		},
+		"JniHelpersTest-Release-mips" : 
+		{
+			"abi" : "mips",
+			"artifactName" : "JniHelpersTest",
+			"buildCommand" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips --target JniHelpersTest",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ByteArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ClassRegistry.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/DecodedString.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaClass.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaClassUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaExceptionUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaString.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaStringArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JavaThreadUtils.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/JniHelpers.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/NativeObject.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/main/cpp/ShortArray.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/ByteArrayTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/ClassRegistryTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/DecodedStringTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaClassTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaClassUtilsTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaExceptionUtilsTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaStringArrayTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaStringTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JavaThreadUtilsTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/JniHelpersTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/NativeObjectTest.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/PersistedObject.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				},
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips   -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/JniHelpers/src/test/cpp/TestObject.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				}
+			],
+			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/libJniHelpersTest.a",
+			"toolchain" : "1711930561773060016"
+		},
+		"test-libs-Release-mips" : 
+		{
+			"abi" : "mips",
+			"artifactName" : "test-libs",
+			"buildCommand" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/sdk/cmake/3.6.3155560/bin/cmake --build /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips --target test-libs",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  -target mipsel-none-linux-android -gcc-toolchain /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/mipsel-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-mips  -Dtest_libs_EXPORTS -I../../../../../JniHelpers/src/main/cpp -I../../../../../JniHelpers/src/test/cpp -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/include -isystem /Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mips32 -Wa,--noexecstack -Wformat -Werror=format-security -fno-exceptions -fno-rtti -std=c++11 -frtti -fexceptions -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/src/main/cpp/test-libs.cpp",
+					"workingDirectory" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips"
+				}
+			],
+			"output" : "/Users/christopher/git/the-mac/AndroidJniHelpers/app/build/intermediates/cmake/release/obj/mips/libtest-libs.so",
+			"toolchain" : "1711930561773060016"
+		}
+	},
+	"toolchains" : 
+	{
+		"1711930561773060016" : 
+		{
+			"cCompilerExecutable" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}
