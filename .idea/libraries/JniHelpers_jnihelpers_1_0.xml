@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JniHelpers.jnihelpers-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JniHelpers/build/libs/jnihelpers-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
