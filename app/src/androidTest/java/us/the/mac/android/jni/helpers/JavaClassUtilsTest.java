@@ -28,7 +28,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class JavaClassUtilsTest {
     static {
-        System.loadLibrary("JniHelpersTest");
+        System.loadLibrary("test-libs");
     }
 
     public native Class findObjectClass();

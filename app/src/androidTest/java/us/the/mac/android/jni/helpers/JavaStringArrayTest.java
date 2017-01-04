@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class JavaStringArrayTest {
 
     static {
-        System.loadLibrary("JniHelpersTest");
+        System.loadLibrary("test-libs");
     }
 
     private String[] getTestJavaStringArray() {

@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 
 public class JavaExceptionUtilsTest {
     static {
-        System.loadLibrary("JniHelpersTest");
+        System.loadLibrary("test-libs");
     }
 
     // TODO: Need to test checkException, not sure how

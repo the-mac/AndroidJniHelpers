@@ -25,7 +25,7 @@ import org.junit.Test;
 
 public class ClassRegistryTest {
     static {
-        System.loadLibrary("JniHelpersTest");
+        System.loadLibrary("test-libs");
     }
 
     @Test

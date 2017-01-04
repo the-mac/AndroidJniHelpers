@@ -23,6 +23,6 @@ package us.the.mac.android.jni.helpers;
 
 public class JavaThreadUtilsTest {
     static {
-        System.loadLibrary("JniHelpersTest");
+        System.loadLibrary("test-libs");
     }
 }
