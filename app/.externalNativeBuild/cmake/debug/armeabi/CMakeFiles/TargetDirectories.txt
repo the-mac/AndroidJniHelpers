@@ -1,5 +1,5 @@
 /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/edit_cache.dir
 /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/rebuild_cache.dir
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/test-libs.dir
+/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/native-lib.dir
 /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/JniHelpersTest.dir
 /Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/JniHelpers.dir

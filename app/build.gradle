@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+
 
 def paramsString = project.gradle.startParameter.taskNames.toString()
 println "android gradle params: " + paramsString.replace(",","\n") + "\n\n"
@@ -8,7 +10,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.1"
     defaultConfig {
-        applicationId "us.the.mac.android.jni.helpers"
+//        applicationId "us.the.mac.android.jni.helpers"
         minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
