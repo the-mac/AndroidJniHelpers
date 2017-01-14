@@ -19,7 +19,7 @@ if(${ANDROID_TESTING})
     set(library_NAME "test-libs")
     set(library_Entry_Point "src/androidTest/cpp")
 else()
-    set(library_NAME "native-lib")
+    set(library_NAME "jni-libs")
     set(library_Entry_Point "src/main/cpp")
 endif()
 

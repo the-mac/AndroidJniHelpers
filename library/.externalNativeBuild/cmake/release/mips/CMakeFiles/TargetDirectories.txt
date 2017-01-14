@@ -1,5 +1,0 @@
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/edit_cache.dir
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/rebuild_cache.dir
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/native-lib.dir
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/JniHelpersTest.dir
-/Users/christopher/git/the-mac/AndroidJniHelpers/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/JniHelpers.dir
