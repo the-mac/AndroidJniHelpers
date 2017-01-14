@@ -24,7 +24,7 @@ ANDROID_NATIVE_API_LEVEL:UNINITIALIZED=21
 ANDROID_NDK:UNINITIALIZED=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk
 
 //No help, variable specified on the command line.
-ANDROID_TESTING:UNINITIALIZED=false
+ANDROID_TESTING:UNINITIALIZED=true
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin/aarch64-linux-android-ar
@@ -196,7 +196,7 @@ Project_SOURCE_DIR:STATIC=/Users/christopher/git/the-mac/AndroidJniHelpers/app
 log-lib:FILEPATH=/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-arm64/usr/lib/liblog.so
 
 //Dependencies for the target
-native-lib_LIB_DEPENDS:STATIC=general;JniHelpers;general;/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-arm64/usr/lib/liblog.so;
+test-libs_LIB_DEPENDS:STATIC=general;JniHelpers;general;JniHelpersTest;general;/Users/christopher/Downloads/adt-bundle-mac-x86_64-20131030/ndk/platforms/android-21/arch-arm64/usr/lib/liblog.so;
 
 
 ########################

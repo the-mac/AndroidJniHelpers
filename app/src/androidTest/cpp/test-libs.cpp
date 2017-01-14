@@ -1,11 +1,11 @@
 #include <jni.h>
 #include <string>
 #include <JniHelpers.h>
-#include <JniHelpersTest.h>
-#include <JavaStringTest.h>
-#include <NativeObjectTest.h>
-#include <PersistedObject.h>
-#include <DecodedStringTest.h>
+#include "JniHelpersTest.h"
+#include "JavaStringTest.h"
+#include "NativeObjectTest.h"
+#include "PersistedObject.h"
+#include "DecodedStringTest.h"
 #include <DecodedString.h>
 
 using namespace spotify::jni;
