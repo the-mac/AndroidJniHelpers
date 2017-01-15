@@ -16,10 +16,10 @@ include_directories(${library_JniHelpers_DIR} ${library_JniHelpersTest_DIR})
 
 
 if(${ANDROID_TESTING})
-    set(library_NAME "test-libs")
+    set(library_NAME "test-helper-lib")
     set(library_Entry_Point "src/androidTest/cpp")
 else()
-    set(library_NAME "jni-libs")
+    set(library_NAME "jni-helper-lib")
     set(library_Entry_Point "src/main/cpp")
 endif()
 
