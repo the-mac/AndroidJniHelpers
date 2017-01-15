@@ -57,7 +57,7 @@ git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
 * Go to File > New > Import Module
 * Add AndroidJniHelpers to your project (you could name its module library)
-* Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](AndroidJni/AndroidJniHelpers/library/CMakeLists.txt)):
+* Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](library/CMakeLists.txt)):
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
 
@@ -116,4 +116,4 @@ using the test-lib reference above (inside your
 androidTest/cpp folder). Also the
 ANDROID_TESTING flag is passed in from the
 build.gradle script, check out an example of
-that [here](AndroidJni/AndroidJniHelpers/library/build.gradle)**
+that [here](library/build.gradle)**
