@@ -50,14 +50,14 @@ alert(s);
 
 ##Setting up your project
 * Open your command line
-* cd into your C++/Android project (you can add C++ support through the content menu)
+* cd into your C++/Android project (you can add C++ support through the Android Studio content menu)
 * Clone the repo into your project:
 ```bash
 git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
 * Go to File > New > Import Module
 * Add AndroidJniHelpers to your project (you could name its module library)
-* Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](AndroidJniHelpers/library/CMakeLists.txt)):
+* Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](AndroidJni/AndroidJniHelpers/library/CMakeLists.txt)):
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
 
@@ -112,8 +112,8 @@ endif()
 ```
 **Note: If you're creating JNI helper tests,
 you should run them on an Android device and
-using the test-lib reference above (inside
+using the test-lib reference above (inside your
 androidTest/cpp folder). Also the
 ANDROID_TESTING flag is passed in from the
 build.gradle script, check out an example of
-that [here](AndroidJniHelpers/library/build.gradle)**
+that [here](AndroidJni/AndroidJniHelpers/library/build.gradle)**
