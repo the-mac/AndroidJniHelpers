@@ -1,0 +1,6 @@
+jcharArray {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
+{
+    jcharArray result = (jcharArray) env->CallObjectMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
+    JavaExceptionUtils::checkException(env);
+    return result;
+}

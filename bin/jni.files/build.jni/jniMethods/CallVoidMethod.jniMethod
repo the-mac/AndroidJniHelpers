@@ -1,0 +1,5 @@
+void {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
+{
+    env->CallVoidMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
+    JavaExceptionUtils::checkException(env);
+}
