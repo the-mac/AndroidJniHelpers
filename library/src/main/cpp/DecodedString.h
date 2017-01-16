@@ -26,7 +26,7 @@
 #include "JniHelpers.h"
 #include "../../androidTest/cpp/JniHelpersTest.h"
 
-using namespace spotify::jni;
+//using namespace spotify::jni;
 
 /**
  * @brief Example of a natively persisted class
@@ -55,6 +55,7 @@ public:
 
     static jobject getInstance(JNIEnv *env, jobject javaThis);
     static jstring decode(JNIEnv *env, jobject java_this);
+    jstring encode(JNIEnv *env);
     static void nativeDestroy(JNIEnv *env, jobject java_this);
 
 

@@ -158,18 +158,6 @@ namespace spotify {
             virtual const char *getSimpleName() const;
 
             /**
-             * @brief Return the mapped signature for the passed in function name (ie, (Z)Ljava/lang/String; -> "String.valueOf(4)")
-             * @return Class signature (should not be NULL)
-             */
-            const char *getSignature(const char *functionName);
-
-            /**
-             * @brief Return the method id for the passed in function name
-             * @return Class methohd id (should not be NULL)
-             */
-            jmethodID getMethod(JNIEnv *env, const char *functionName);
-
-            /**
              * @brief Copy cached class info data from the global instance
              *
              * If correctly configured, the ClassRegistry map should contains bare instances
@@ -248,6 +236,18 @@ namespace spotify {
              * @return JNI field ID, or NULL if no such field was cached
              */
             virtual jfieldID getField(const char *field_name) const;
+
+            /**
+             * @brief Return the mapped signature for the passed in function name (ie, (Z)Ljava/lang/String; -> "String.valueOf(4)")
+             * @return Class signature (should not be NULL)
+             */
+            const char *getSignature(const char *functionName);
+
+            /**
+             * @brief Return the method id for the passed in Java function name
+             * @return Class methohd id (should not be NULL)
+             */
+            jmethodID getJavaMethod(JNIEnv *env, const char *functionName);
 
 // Internal helper calls ////////////////////////////////////////////////////////////
         protected:
@@ -333,6 +333,38 @@ namespace spotify {
             virtual void addNativeMethod(const char *method_name, void *function,
                                          const char *return_type, ...);
 
+            /**
+             *
+             * This method should be called in initialize() to register native methods to
+             * be called from Java. After adding the methods, you must call the
+             * registerNativeMethods() function at the end of initialize(), but only once!
+             *
+             * Note since JNI is fundamentally a C API, the function pointer must be static,
+             * therefore the intended usage is to call ClassRegistry::newInstance from
+             * within the static method in order to obtain a real object.
+             *
+             * @param method_name Method name
+             * @param function Function to be called when the method is invoked from Java.
+             * @param the signature of the function is passed here.
+             */
+            void addNativeSignature(const char *method_name, void *function,
+                                               const char *signature);
+
+            /**
+             *
+             * This method should be called in initialize() to register Java methods to
+             * be called from native. After adding the methods, you must call the
+             * registerNativeMethods() function at the end of initialize(), but only once!
+             *
+             * Note since JNI is fundamentally a C API, the function pointer must be static,
+             * therefore the intended usage is to call ClassRegistry::newInstance from
+             * within the static method in order to obtain a real object.
+             *
+             * @param method_name Method name
+             * @param function Function to be called when the method is invoked from Java.
+             * @param the signature of the function is passed here.
+             */
+            void addJavaSignature(const char *method_name, const char *signature);
             /**
              * @brief Register all native methods on the class
              *

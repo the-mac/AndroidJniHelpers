@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 
-
 def paramsString = project.gradle.startParameter.taskNames.toString()
 println "android gradle params: " + paramsString.replace(",","\n") + "\n\n"
 def currentlyRunningTest = paramsString.contains('assembleDebugAndroidTest')

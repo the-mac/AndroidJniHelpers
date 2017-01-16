@@ -37,6 +37,9 @@
 #include "ShortArray.h"
 #include "JavaStringArray.h"
 
+using namespace spotify::jni;
+extern ClassRegistry gClasses;
+
 EXPORT JNIEnv *jniHelpersInitialize(JavaVM *jvm);
 EXPORT JNIEnv *JniCurrentEnv(JavaVM *jvm);
 

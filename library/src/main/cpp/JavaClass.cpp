@@ -60,20 +60,6 @@ namespace spotify {
             return lastSlash != NULL ? lastSlash + 1 : getCanonicalName();
         }
 
-        const char *JavaClass::getSignature(const char *functionName) {
-            std::string signature = signatures[functionName];
-            return signature.c_str();
-        }
-
-//        jmethodID JavaClass::getMethod(JNIEnv *env, const char *functionName) {
-//            jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
-//            if (method == NULL) {
-//                JavaExceptionUtils::throwRuntimeException(env, "Could not find ", functionName);
-//                return NULL;
-//            }
-//            return method;
-//        }
-
         void JavaClass::merge(const JavaClass *globalInstance) {
             LOG_DEBUG("Merging instance of '%s' with global class info", getSimpleName());
             _clazz = globalInstance->_clazz_global.get();
@@ -239,6 +225,20 @@ namespace spotify {
             return mapFindIter->second;
         }
 
+        const char *JavaClass::getSignature(const char *functionName) {
+            std::string signature = signatures[functionName];
+            return signature.c_str();
+        }
+
+        jmethodID JavaClass::getJavaMethod(JNIEnv *env, const char *functionName) {
+            jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
+            if (method == NULL) {
+                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
+                return NULL;
+            }
+            return method;
+        }
+
         void JavaClass::setClass(JNIEnv *env) {
             LOG_INFO("Looking up corresponding Java class for '%s'", getCanonicalName());
             _clazz_global.set(env->FindClass(getCanonicalName()));
@@ -342,6 +342,27 @@ namespace spotify {
             va_end(arguments);
 
             _jni_methods.push_back(nativeMethod);
+        }
+
+        void JavaClass::addNativeSignature(const char *method_name, void *function,
+                                        const char *signature) {
+            LOG_DEBUG("Adding native method '%s' to class '%s'", method_name, getSimpleName());
+            JNINativeMethod nativeMethod;
+            nativeMethod.name = const_cast<char *>(method_name);
+            nativeMethod.fnPtr = function;
+            nativeMethod.signature = const_cast<char *>(strdup(signature));
+            LOG_DEBUG("Native signature is '%s'", nativeMethod.signature);
+
+            _jni_methods.push_back(nativeMethod);
+        }
+
+
+        void JavaClass::addJavaSignature(const char *method_name, const char *signature) {
+            LOG_DEBUG("Adding Java method '%s' to native class '%s'", method_name, getCanonicalName());
+
+            LOG_DEBUG("Java signature is '%s'", signature);
+
+            signatures[method_name] = signature;
         }
 
         bool JavaClass::registerNativeMethods(JNIEnv *env) {

@@ -21,7 +21,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are s
     DecodedString *object = new DecodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    jstring decodedString = object->decode(env);
+    jstring decodedString = object->decode(env, decodedString.toJavaObject(env));
     const char * theString = env->GetStringUTFChars(env, string, 0);
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", theString);
 

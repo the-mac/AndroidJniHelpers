@@ -76,9 +76,9 @@ jobject DecodedString::getInstance(JNIEnv *env, jobject javaThis) {
   return decodedString->toJavaObject(env);
 }
 jstring DecodedString::decode(JNIEnv *env, jobject java_this) {
-  DecodedString *object = gClasses.getNativeInstance<DecodedString>(env, java_this);
+    DecodedString *object = gClasses.getNativeInstance<DecodedString>(env, java_this);
 
-  if (object != NULL) {
+    if (object != NULL) {
 
     string conversion = rot(object->encodedString.get(), -1);
     jstring decodedString = env->NewStringUTF(conversion.c_str());
@@ -88,6 +88,12 @@ jstring DecodedString::decode(JNIEnv *env, jobject java_this) {
   }
 
   return NULL;
+}
+jstring DecodedString::encode(JNIEnv *env) {
+    string conversion = rot(encodedString.get(), -1);
+    jstring decodedString = env->NewStringUTF(conversion.c_str());
+
+    return decodedString;
 }
 void DecodedString::nativeDestroy(JNIEnv *env, jobject java_this) {
   DecodedString *object = gClasses.getNativeInstance<DecodedString>(env, java_this);
