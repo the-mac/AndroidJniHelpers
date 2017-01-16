@@ -40,4 +40,4 @@ captures/
 
 # Native Build Artifacts
 */.externalNativeBuild
-*/build.jni
+bin/jni.files/build.jni
