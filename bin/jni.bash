@@ -7,9 +7,9 @@ echo ""
 set -xe
 	fi
 
-# Generates .jni file for class that was passed in (set -xe)
-# cd .../AndroidJni/AndroidJniHepers/helper
-# clear && printf '\e[3J' && ./jni.bash java.lang.CharSequence
+# Generates .jni file for class that was passed in
+# className="" && filePath="" && clear && printf '\e[3J' && bin/jni.bash $className $filePath && cat $className.jni
+
 
 androidVersion=android-24
 

@@ -1,3 +1,0 @@
-    static jclass getClass(JNIEnv *env) {
-      return env->FindClass(MAKE_CANONICAL_NAME({PACKAGE_NAME}, {CLASS_NAME}));
-    }

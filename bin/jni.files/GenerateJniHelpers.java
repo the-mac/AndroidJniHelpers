@@ -255,7 +255,16 @@ public class GenerateJniHelpers {
 				String staticInitializer = "    {CLASS_NAME} *object = gClasses.getNativeInstance<{CLASS_NAME}>(env, java_this);";
 				staticInitializer = staticInitializer.replace("{CLASS_NAME}", className);
 
-				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
+
+//				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
+
+				String callNative = getHelperTemplate("callNative");
+				callNative = callNative.replace("{CLASS_NAME}", className);
+				callNative = callNative.replace("{METHOD_NAME}", methodName);
+				callNative = callNative.replace("{PARAMETERS}", parameters);
+				callNative = callNative.replace("{PARAMETER_NAMES}", parameterNames);
+				String embed = String.format("\n    if (object != NULL)\n%s", callNative);
+
 				method = String.format("%s{\n%s\n    %s\n%s}\n", method.substring(0, firstBrace).replace("env)", "env, jobject java_this)"), staticInitializer, embed, defaultReturnedValue);
 				method = method.replace("getMethod(", "object->getMethod(");
 				method = method.replace("thisObj", "java_this");
@@ -340,6 +349,8 @@ public class GenerateJniHelpers {
 			fileName = "jniMethods/constructor.jniMethod";
 		} else if("mapFields".equals(returnType)) {
 			fileName = "jniMethods/mapFields.jniMethod";
+		} else if("callNative".equals(returnType)) {
+			fileName = "jniMethods/callNative.jniMethod";
 		} else if("static_signatures".equals(returnType)) {
 			fileName = "jniMethods/getStaticSignature.jniMethod";
 		} else if("getClass".equals(returnType)) {
