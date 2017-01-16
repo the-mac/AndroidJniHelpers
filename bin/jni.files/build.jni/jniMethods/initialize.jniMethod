@@ -4,6 +4,5 @@ void {CLASS_NAME}::initialize(JNIEnv *env)
     cacheConstructor(env);
 
 {CLASS_SIGNATURES}
-    // addNativeMethod("destroy", (void*)&{CLASS_NAME}::nativeDestroy, kTypeVoid, NULL);
     registerNativeMethods(env);
 }

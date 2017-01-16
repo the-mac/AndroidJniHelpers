@@ -3,7 +3,7 @@
     initialize(env);
 
     thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
-    
+
     // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
     // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
 

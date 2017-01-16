@@ -57,7 +57,7 @@ EncodedString::EncodedString(JNIEnv *env) : NativeObject(env)
     initialize(env);
 
     thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
-    
+
     // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
     // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
 
@@ -77,7 +77,6 @@ void EncodedString::initialize(JNIEnv *env)
     addNativeSignature("destroy", (void*)&EncodedString::destroy, "()V");
     addNativeSignature("decode", (void*)&EncodedString::decode, "()Ljava/lang/String;");
 
-    // addNativeMethod("destroy", (void*)&EncodedString::nativeDestroy, kTypeVoid, NULL);
     registerNativeMethods(env);
 }
 
