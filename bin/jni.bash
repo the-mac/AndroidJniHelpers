@@ -2,7 +2,7 @@
 debug=0
 
 # Generates .jni file for class that was passed in
-# className="" && filePath="" && clear && printf '\e[3J' && bin/jni.bash $className $filePath && cat $className.jni
+# className="" && filePath="" && clear && printf '\e[3J' && bin/jni.bash $className $filePath && cat bin/jni.files/generated/$className.jni
 
 androidVersion=android-24
 

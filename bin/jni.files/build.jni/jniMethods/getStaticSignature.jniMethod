@@ -1,4 +1,0 @@
-    static const char *getStaticSignature(const char *functionName) {
-      std::string signature = static_signatures[functionName];
-      return signature.c_str();
-    }

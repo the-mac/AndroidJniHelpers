@@ -1,6 +1,0 @@
-jchar {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
-{
-    jchar result = env->CallCharMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
-    JavaExceptionUtils::checkException(env);
-    return result;
-}

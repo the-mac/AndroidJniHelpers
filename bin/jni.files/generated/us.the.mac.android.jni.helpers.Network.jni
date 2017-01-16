@@ -7,7 +7,7 @@ us.the.mac.android.jni.helpers.Network.jni was generated as a helper for Network
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: getInstance, testingDefault, saveToPrefs, getFromPrefs, removeFromPrefs, setKey, setService, setReel, setReelId, setStatus, setVersion, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
+- Java methods: getInstance, testingDefault, setKey, setService, setReel, setReelId, setStatus, setVersion, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
 
 The source code can be copied into the respective Network.h and
 Network.cpp files in a location of your choice. Finally, the last segment
@@ -17,9 +17,9 @@ contains an example of what these method calls would look like in your code.
 
 class Network : public NativeObject {
     static std::map<std::string, std::string> static_signatures = {
-        { "getInstance", "()Lcom/operators/nativity/requests/Network;" },
-        { "testingDefault", "()Lcom/operators/nativity/requests/Network;" },
-        { "access$000", "(Lcom/operators/nativity/requests/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
+        { "getInstance", "()Lus/the/mac/android/jni/helpers/Network;" },
+        { "testingDefault", "()Lus/the/mac/android/jni/helpers/Network;" },
+        { "access$000", "(Lus/the/mac/android/jni/helpers/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
     };
   jobject thisObj;
   public:
@@ -28,14 +28,14 @@ class Network : public NativeObject {
     * the Jni Helper's relationship to the Network class defined in Java.
     */
     const char *getCanonicalName() const {
-        return MAKE_CANONICAL_NAME("com/operators/nativity/requests", Network);
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network);
     }
     /**
     * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
     * the Jni Helper's static relationship to the Network class defined in Java.
     */
     static jclass getClass(JNIEnv *env) {
-      return env->FindClass(MAKE_CANONICAL_NAME("com/operators/nativity/requests", Network));
+      return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
     }
     /**
     * The getStaticSignature method is used to get the Jni Helper's
@@ -56,12 +56,6 @@ class Network : public NativeObject {
     static jobject getInstance(JNIEnv *env);
 
     static jobject testingDefault(JNIEnv *env);
-
-    void saveToPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
-
-    jstring getFromPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
-
-    void removeFromPrefs(JNIEnv *env, jstring jstringValue1);
 
     jobject setKey(JNIEnv *env, jstring jstringValue1);
 
@@ -126,15 +120,12 @@ void Network::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addJavaSignature("saveToPrefs", "(Ljava/lang/String;Ljava/lang/String;)V");
-    addJavaSignature("getFromPrefs", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
-    addJavaSignature("removeFromPrefs", "(Ljava/lang/String;)V");
-    addJavaSignature("setKey", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
-    addJavaSignature("setService", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
-    addJavaSignature("setReel", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
-    addJavaSignature("setReelId", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
-    addJavaSignature("setStatus", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
-    addJavaSignature("setVersion", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setKey", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setService", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setReel", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setReelId", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setStatus", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setVersion", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
     addJavaSignature("getResultString", "()Ljava/lang/String;");
     addJavaSignature("setResultString", "(Ljava/lang/String;)V");
     addNativeSignature("destroy", (void*)&Network::destroy, "()V");
@@ -167,25 +158,6 @@ jobject Network::testingDefault(JNIEnv *env)
     jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __func__));
     JavaExceptionUtils::checkException(env);
     return result;
-}
-
-void Network::saveToPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
-{
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
-    JavaExceptionUtils::checkException(env);
-}
-
-jstring Network::getFromPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
-    JavaExceptionUtils::checkException(env);
-    return (jstring) result;
-}
-
-void Network::removeFromPrefs(JNIEnv *env, jstring jstringValue1)
-{
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
 }
 
 jobject Network::setKey(JNIEnv *env, jstring jstringValue1)
@@ -390,12 +362,6 @@ jobject Network::access$000(JNIEnv *env, jobject jobjectValue1)
 jobject jobjectReturnValue = Network::getInstance(env);
 
 jobject jobjectReturnValue = Network::testingDefault(env);
-
-instance.saveToPrefs(env, jstringValue1, jstringValue2);
-
-jstring jstringReturnValue = instance.getFromPrefs(env, jstringValue1, jstringValue2);
-
-instance.removeFromPrefs(env, jstringValue1);
 
 jobject jobjectReturnValue = instance.setKey(env, jstringValue1);
 

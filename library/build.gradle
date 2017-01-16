@@ -7,6 +7,8 @@ def currentlyRunningTest = paramsString.contains('assembleDebugAndroidTest')
 android {
     compileSdkVersion 24
     buildToolsVersion "25.0.1"
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 24
