@@ -21,7 +21,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are s
     DecodedString *object = new DecodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    jstring decodedString = object->decode(env, decodedString.toJavaObject(env));
+    jstring decodedString = object->nativeDecode(env);
     const char * theString = env->GetStringUTFChars(env, string, 0);
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", theString);
 
@@ -50,7 +50,7 @@ alert(s);
 
 ##Setting up your project
 * Open your command line
-* cd into your C++/Android project (you can add C++ support through the Android Studio content menu)
+* cd into your C++/Android project (you can add C++ support through the Android Studio context menu)
 * Clone the repo into your project:
 ```bash
 git clone https://github.com/the-mac/AndroidJniHelpers.git
@@ -61,8 +61,8 @@ git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
 
-set(library_JniHelpers_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroiJniHrelpers/library/src/main/cpp)
-set(library_JniHelpersTest_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroiJniHrelpers/library/src/androidTest/cpp)
+set(library_JniHelpers_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/main/cpp)
+set(library_JniHelpersTest_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/androidTest/cpp)
 
 file(GLOB libJniHelpers_SOURCES ${library_JniHelpers_DIR}/*.cpp)
 file(GLOB libJniHelpers_HEADERS ${library_JniHelpers_DIR}/*.h)

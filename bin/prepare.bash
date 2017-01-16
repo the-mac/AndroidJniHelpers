@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
-# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/prepare.bash no
 # TO CHANGE DIRECTORY QUICKLY: cd the-mac/AndroidJni/AndroidJniHelpers/bin/prepare.bash
+# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/prepare.bash no
 
 # Define a timestamp function
 createTimestamp() {
@@ -61,7 +61,7 @@ function accept_commit_message {
 	if [[ $commit ]]; then
 		git add -A && git commit -m "$commit" && git push origin master
 	elif [[ $size == 0 ]]; then
-		git add -A && git commit -m "Default commit message, probably testing Server." && git push origin master --force
+		git add -A && git commit -m "Default commit message using bin/prepare.bash script." && git push origin master --force
 	fi
 }
 

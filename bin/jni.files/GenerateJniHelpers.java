@@ -83,7 +83,7 @@ public class GenerateJniHelpers {
 		output.append(String.format("\n%s%s\n", thePackage, className).replace(' ', '*'));
 		String dividingLine = String.format("\n%80s\n\n", "").replace(' ', '*');
 		output.append(dividingLine);
-		output.append(String.format("%s%s.jni was generated as a helper for %s.java using the\njni.bash script. ", thePackage, className, className));
+		output.append(String.format("%s%s.jni was generated as a helper for %s.java using the\nbin/jni.bash script. ", thePackage, className, className));
 		output.append(String.format("The following code segments are C++ header and source code containing:\n\n", thePackage, className));
 		output.append(String.format("- getCanonicalName: The method that enables the relationship between C++ and Java.\n"));
 		
