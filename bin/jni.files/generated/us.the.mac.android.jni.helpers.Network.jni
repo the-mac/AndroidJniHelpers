@@ -73,19 +73,19 @@ class Network : public NativeObject {
 
     void setResultString(JNIEnv *env, jstring jstringValue1);
 
-    static void destroy(JNIEnv *env, jobject java_this);
+    static void destroy(JNIEnv *env, jobject java_this) {;
 
-    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this) {;
 
-    static jobject getHttpPost(JNIEnv *env, jobject java_this);
+    static jobject getHttpPost(JNIEnv *env, jobject java_this) {;
 
-    static void put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+    static void put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) {;
 
-    static jstring get(JNIEnv *env, jstring jstringValue1);
+    static jstring get(JNIEnv *env, jstring jstringValue1) {;
 
-    static jstring toJSONString(JNIEnv *env, jobject java_this);
+    static jstring toJSONString(JNIEnv *env, jobject java_this) {;
 
-    static void setRequestType(JNIEnv *env, jint jintValue1);
+    static void setRequestType(JNIEnv *env, jint jintValue1) {;
 
     jstring request(JNIEnv *env, jint jintValue1);
 
@@ -106,8 +106,10 @@ Network::Network(JNIEnv *env) : NativeObject(env)
 {
     initialize(env);
 
-    thisObj = toJavaObject(env); // THIS IS WHERE YOU INITIALIZE YOUR JAVA OBJECT, YOU MIGHT WANT TO ADD A FEW PARAMETERS BELOW
-    //thisObj = env->NewObject(_clazz, getMethod(getCanonicalName())); // CALLS DEFAULT CONSTRUCTOR
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -137,7 +139,6 @@ void Network::initialize(JNIEnv *env)
     addNativeSignature("setRequestType", (void*)&Network::setRequestType, "(I)V");
     addJavaSignature("request", "(I)Ljava/lang/String;");
 
-    // addNativeMethod("destroy", (void*)&Network::nativeDestroy, kTypeVoid, NULL);
     registerNativeMethods(env);
 }
 
@@ -215,130 +216,98 @@ void Network::setResultString(JNIEnv *env, jstring jstringValue1)
     JavaExceptionUtils::checkException(env);
 }
 
-void Network::destroy(JNIEnv *env)
-{
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__));
-    JavaExceptionUtils::checkException(env);
-}
+void Network::destroy(JNIEnv *env) { Network::destroy(env); }
 
-void Network::destroy(JNIEnv *env, jobject java_this)
-{
+void Network::destroy(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::destroy(env);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
 }
 
 
-jbyteArray Network::getBytes(JNIEnv *env)
-{
-    jbyteArray result = (jbyteArray) env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
+jbyteArray Network::getBytes(JNIEnv *env) { Network::getBytes(env); }
 
-jbyteArray Network::getBytes(JNIEnv *env, jobject java_this)
-{
+jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::getBytes(env);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
     return NULL;
 }
 
 
-jobject Network::getHttpPost(JNIEnv *env)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
+jobject Network::getHttpPost(JNIEnv *env) { Network::getHttpPost(env); }
 
-jobject Network::getHttpPost(JNIEnv *env, jobject java_this)
-{
+jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::getHttpPost(env);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
     return null;
 }
 
 
-void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
-{
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
-    JavaExceptionUtils::checkException(env);
-}
+void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) { Network::put(env, jstringValue1, jstringValue2); }
 
-void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
-{
+void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::put(env, jstringValue1, jstringValue2);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
 }
 
 
-jstring Network::get(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return (jstring) result;
-}
+jstring Network::get(JNIEnv *env, jstring jstringValue1) { Network::get(env, jstringValue1); }
 
-jstring Network::get(JNIEnv *env, jstring jstringValue1)
-{
+jstring Network::get(JNIEnv *env, jstring jstringValue1) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::get(env, jstringValue1);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
     return NULL;
 }
 
 
-jstring Network::toJSONString(JNIEnv *env)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
-    JavaExceptionUtils::checkException(env);
-    return (jstring) result;
-}
+jstring Network::toJSONString(JNIEnv *env) { Network::toJSONString(env); }
 
-jstring Network::toJSONString(JNIEnv *env, jobject java_this)
-{
+jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::toJSONString(env);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
     return NULL;
 }
 
 
-void Network::setRequestType(JNIEnv *env, jint jintValue1)
-{
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jintValue1);
-    JavaExceptionUtils::checkException(env);
-}
+void Network::setRequestType(JNIEnv *env, jint jintValue1) { Network::setRequestType(env, jintValue1); }
 
-void Network::setRequestType(JNIEnv *env, jint jintValue1)
-{
+void Network::setRequestType(JNIEnv *env, jint jintValue1) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
     
     if (object != NULL)
     {
-        Network::setRequestType(env, jintValue1);
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
     }
+
 }
 
 
