@@ -1,0 +1,441 @@
+
+com.operators.nativity.requests.Network
+
+********************************************************************************
+
+com.operators.nativity.requests.Network.jni was generated as a helper for Network.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: getInstance, testingDefault, saveToPrefs, getFromPrefs, removeFromPrefs, setKey, setService, setReel, setReelId, setStatus, setVersion, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
+
+The source code can be copied into the respective Network.h and
+Network.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class Network : public NativeObject {
+    static std::map<std::string, std::string> static_signatures = {
+        { "getInstance", "()Lcom/operators/nativity/requests/Network;" },
+        { "testingDefault", "()Lcom/operators/nativity/requests/Network;" },
+        { "access$000", "(Lcom/operators/nativity/requests/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
+    };
+  jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the Network class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("com/operators/nativity/requests", Network);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the Network class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("com/operators/nativity/requests", Network));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the Network class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    Network(JNIEnv *env) {};
+
+    Network(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    static jobject getInstance(JNIEnv *env);
+
+    static jobject testingDefault(JNIEnv *env);
+
+    void saveToPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    jstring getFromPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    void removeFromPrefs(JNIEnv *env, jstring jstringValue1);
+
+    jobject setKey(JNIEnv *env, jstring jstringValue1);
+
+    jobject setService(JNIEnv *env, jstring jstringValue1);
+
+    jobject setReel(JNIEnv *env, jstring jstringValue1);
+
+    jobject setReelId(JNIEnv *env, jstring jstringValue1);
+
+    jobject setStatus(JNIEnv *env, jstring jstringValue1);
+
+    jobject setVersion(JNIEnv *env, jstring jstringValue1);
+
+    jstring getResultString(JNIEnv *env);
+
+    void setResultString(JNIEnv *env, jstring jstringValue1);
+
+    static void destroy(JNIEnv *env, jobject java_this);
+
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+
+    static jobject getHttpPost(JNIEnv *env, jobject java_this);
+
+    static void put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    static jstring get(JNIEnv *env, jstring jstringValue1);
+
+    static jstring toJSONString(JNIEnv *env, jobject java_this);
+
+    static void setRequestType(JNIEnv *env, jint jintValue1);
+
+    jstring request(JNIEnv *env, jint jintValue1);
+
+    static jobject access$000(JNIEnv *env, jobject jobjectValue1);
+
+};
+
+********************************************************************************
+
+
+Network::Network(JNIEnv *env) : NativeObject(env) {}
+
+/**
+* Here you can construct the Network object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+Network::Network(JNIEnv *env) : NativeObject(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE YOU INITIALIZE YOUR JAVA OBJECT, YOU MIGHT WANT TO ADD A FEW PARAMETERS BELOW
+    //thisObj = env->NewObject(_clazz, getMethod(getCanonicalName())); // CALLS DEFAULT CONSTRUCTOR
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "Network's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void Network::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("saveToPrefs", "(Ljava/lang/String;Ljava/lang/String;)V");
+    addJavaSignature("getFromPrefs", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
+    addJavaSignature("removeFromPrefs", "(Ljava/lang/String;)V");
+    addJavaSignature("setKey", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setService", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setReel", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setReelId", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setStatus", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("setVersion", "(Ljava/lang/String;)Lcom/operators/nativity/requests/Network;");
+    addJavaSignature("getResultString", "()Ljava/lang/String;");
+    addJavaSignature("setResultString", "(Ljava/lang/String;)V");
+    addNativeSignature("destroy", (void*)&Network::destroy, "()V");
+    addNativeSignature("getBytes", (void*)&Network::getBytes, "()[B");
+    addNativeSignature("getHttpPost", (void*)&Network::getHttpPost, "()Ljava/lang/Object;");
+    addNativeSignature("put", (void*)&Network::put, "(Ljava/lang/String;Ljava/lang/String;)V");
+    addNativeSignature("get", (void*)&Network::get, "(Ljava/lang/String;)Ljava/lang/String;");
+    addNativeSignature("toJSONString", (void*)&Network::toJSONString, "()Ljava/lang/String;");
+    addNativeSignature("setRequestType", (void*)&Network::setRequestType, "(I)V");
+    addJavaSignature("request", "(I)Ljava/lang/String;");
+
+    // addNativeMethod("destroy", (void*)&Network::nativeDestroy, kTypeVoid, NULL);
+    registerNativeMethods(env);
+}
+
+void Network::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject Network::getInstance(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::testingDefault(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+void Network::saveToPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
+    JavaExceptionUtils::checkException(env);
+}
+
+jstring Network::getFromPrefs(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+void Network::removeFromPrefs(JNIEnv *env, jstring jstringValue1)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+jobject Network::setKey(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setService(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setReel(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setReelId(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setStatus(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setVersion(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Network::getResultString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+void Network::setResultString(JNIEnv *env, jstring jstringValue1)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void Network::destroy(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+}
+
+void Network::destroy(JNIEnv *env, jobject java_this)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+}
+
+
+jbyteArray Network::getBytes(JNIEnv *env)
+{
+    jbyteArray result = (jbyteArray) env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Network::getBytes(JNIEnv *env, jobject java_this)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+    return NULL;
+}
+
+
+jobject Network::getHttpPost(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::getHttpPost(JNIEnv *env, jobject java_this)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+    return null;
+}
+
+
+void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jstringValue1, jstringValue2);
+    JavaExceptionUtils::checkException(env);
+}
+
+void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+}
+
+
+jstring Network::get(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Network::get(JNIEnv *env, jstring jstringValue1)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+    return NULL;
+}
+
+
+jstring Network::toJSONString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Network::toJSONString(JNIEnv *env, jobject java_this)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+    return NULL;
+}
+
+
+void Network::setRequestType(JNIEnv *env, jint jintValue1)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__), jintValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void Network::setRequestType(JNIEnv *env, jint jintValue1)
+{
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+}
+
+
+jstring Network::request(JNIEnv *env, jint jintValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__), jintValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject Network::access$000(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __func__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = Network::getInstance(env);
+
+jobject jobjectReturnValue = Network::testingDefault(env);
+
+instance.saveToPrefs(env, jstringValue1, jstringValue2);
+
+jstring jstringReturnValue = instance.getFromPrefs(env, jstringValue1, jstringValue2);
+
+instance.removeFromPrefs(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setKey(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setService(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setReel(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setReelId(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setStatus(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setVersion(env, jstringValue1);
+
+jstring jstringReturnValue = instance.getResultString(env);
+
+instance.setResultString(env, jstringValue1);
+
+instance.destroy(env);
+
+jbyteArray jbyteArrayReturnValue = instance.getBytes(env);
+
+jobject jobjectReturnValue = instance.getHttpPost(env);
+
+instance.put(env, jstringValue1, jstringValue2);
+
+jstring jstringReturnValue = instance.get(env, jstringValue1);
+
+jstring jstringReturnValue = instance.toJSONString(env);
+
+instance.setRequestType(env, jintValue1);
+
+jstring jstringReturnValue = instance.request(env, jintValue1);
+
+jobject jobjectReturnValue = Network::access$000(env, jobjectValue1);
+
+

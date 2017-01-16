@@ -1,0 +1,89 @@
+  public static final int HTTP_BIN;
+    descriptor: I
+--
+  public static final int JSON_TEST;
+    descriptor: I
+--
+  public static final int POSTER;
+    descriptor: I
+--
+  public static final int SERVICE;
+    descriptor: I
+--
+  public static final int SAVE;
+    descriptor: I
+--
+  public static final int SETUP;
+    descriptor: I
+--
+  java.lang.String resultString;
+    descriptor: Ljava/lang/String;
+--
+  public static native com.operators.nativity.requests.Network getInstance();
+    descriptor: ()Lcom/operators/nativity/requests/Network;
+--
+  static com.operators.nativity.requests.Network testingDefault();
+    descriptor: ()Lcom/operators/nativity/requests/Network;
+--
+  public void saveToPrefs(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+--
+  public java.lang.String getFromPrefs(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+--
+  public void removeFromPrefs(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+--
+  public com.operators.nativity.requests.Network setKey(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public com.operators.nativity.requests.Network setService(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public com.operators.nativity.requests.Network setReel(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public com.operators.nativity.requests.Network setReelId(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public com.operators.nativity.requests.Network setStatus(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public com.operators.nativity.requests.Network setVersion(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/operators/nativity/requests/Network;
+--
+  public java.lang.String getResultString();
+    descriptor: ()Ljava/lang/String;
+--
+  public void setResultString(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+--
+  public native void destroy();
+    descriptor: ()V
+--
+  public native byte[] getBytes();
+    descriptor: ()[B
+--
+  public native java.lang.Object getHttpPost();
+    descriptor: ()Ljava/lang/Object;
+--
+  public native void put(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+--
+  public native java.lang.String get(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+--
+  public native java.lang.String toJSONString();
+    descriptor: ()Ljava/lang/String;
+--
+  public native void setRequestType(int);
+    descriptor: (I)V
+--
+  public java.lang.String request(int);
+    descriptor: (I)Ljava/lang/String;
+--
+  public java.lang.String getResult() throws java.lang.InterruptedException, java.util.concurrent.ExecutionException;
+    descriptor: ()Ljava/lang/String;
+--
+  static org.apache.http.impl.client.DefaultHttpClient access$000(com.operators.nativity.requests.Network);
+    descriptor: (Lcom/operators/nativity/requests/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;

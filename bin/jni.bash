@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Generates .jni file for class that was passed in (set -xe)
+# cd .../AndroidJni/AndroidJniHepers/helper
+# clear && printf '\e[3J' && ./jni.bash java.lang.CharSequence
+
 debug=0
 
 	if [[ -z !$debug ]] ; then
@@ -7,9 +11,6 @@ echo ""
 set -xe
 	fi
 
-# Generates .jni file for class that was passed in (set -xe)
-# cd .../AndroidJni/AndroidJniHepers/helper
-# clear && printf '\e[3J' && ./jni.bash java.lang.CharSequence
 
 androidVersion=android-24
 
@@ -23,10 +24,11 @@ echo ""
 	exit;
 	fi
 
-jarFile=$sdkPath/platforms/$androidVersion/android.jar
+androidJarFile=$sdkPath/platforms/$androidVersion/android.jar
+apacheJarFile=$sdkPath/platforms/$androidVersion/optional/org.apache.http.legacy.jar
 
-	if [ ! -f $jarFile ] ; then
-echo "Result: Android version $androidVerison was not found in the android sdk: $jarFile"
+	if [ ! -f $androidJarFile ] ; then
+echo "Result: Android version $androidVerison was not found in the android sdk: $androidJarFile"
 echo "Try: " $(grep $sdkPath/platforms)
 echo ""
 	exit;
@@ -46,7 +48,7 @@ if [[ $2 == *.java* ]] ; then
     libraryJavaFolder=$projectFolder/AndroidJniHelpers/library/src/main/java
 
 	mkdir -p $filePath && cp $2 $filePath$className.java
-	javac $filePath$className.java -classpath $jarFile -sourcepath $appJavaFolder:$libraryJavaFolder
+	javac $filePath$className.java -classpath $androidJarFile:$apacheJarFile -sourcepath $appJavaFolder:$libraryJavaFolder
 	javap -v $packageName$className | grep -B 1 "descriptor" > "$1.jniBlueprint"
 	
 elif [[ $1 == *.* ]] ; then
@@ -57,7 +59,7 @@ elif [[ $1 == *.* ]] ; then
 	filePath=${packageName//.//} #java/lang
 	
 	mkdir -p $filePath
-	classFilePath=$(jar -tf $jarFile | grep -m 1 $className.class)
+	classFilePath=$(jar -tf $androidJarFile | grep -m 1 $className.class)
 	
 	
 	if [[ -z $classFilePath ]] ; then
@@ -68,7 +70,7 @@ echo ""
 	exit;
 	fi
 	
-	unzip -p $jarFile $classFilePath > $filePath$className.class	
+	unzip -p $androidJarFile $classFilePath > $filePath$className.class
 	
 	javap -v $packageName$className | grep -B 1 "descriptor" > "$1.jniBlueprint"
 else
