@@ -1,0 +1,150 @@
+
+us.the.mac.android.jni.helpers.EncodedString
+
+********************************************************************************
+
+us.the.mac.android.jni.helpers.EncodedString.jni was generated as a helper for EncodedString.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: us.the.mac.android.jni.helpers.EncodedString, equals, toString, destroy, decode
+
+The source code can be copied into the respective EncodedString.h and
+EncodedString.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class EncodedString : public NativeObject {
+  jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the EncodedString class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", EncodedString);
+    }
+    EncodedString(JNIEnv *env) {};
+
+    EncodedString(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jboolean equals(JNIEnv *env, jobject jobjectValue1);
+
+    jstring toString(JNIEnv *env);
+
+    static void destroy(JNIEnv *env, jobject java_this);
+
+    static jstring decode(JNIEnv *env, jobject java_this);
+
+};
+
+********************************************************************************
+
+
+EncodedString::EncodedString(JNIEnv *env) : NativeObject(env) {}
+
+/**
+* Here you can construct the EncodedString object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+EncodedString::EncodedString(JNIEnv *env) : NativeObject(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE YOU INITIALIZE YOUR JAVA OBJECT, YOU MIGHT WANT TO ADD A FEW PARAMETERS BELOW
+    //thisObj = env->NewObject(_clazz, getMethod(getCanonicalName())); // CALLS DEFAULT CONSTRUCTOR
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "EncodedString's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void EncodedString::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("equals", "(Ljava/lang/Object;)Z");
+    addJavaSignature("toString", "()Ljava/lang/String;");
+    addNativeSignature("destroy", (void*)&EncodedString::destroy, "()V");
+    addNativeSignature("decode", (void*)&EncodedString::decode, "()Ljava/lang/String;");
+
+    // addNativeMethod("destroy", (void*)&EncodedString::nativeDestroy, kTypeVoid, NULL);
+    registerNativeMethods(env);
+}
+
+void EncodedString::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jboolean EncodedString::equals(JNIEnv *env, jobject jobjectValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __func__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring EncodedString::toString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+void EncodedString::destroy(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+}
+
+void EncodedString::destroy(JNIEnv *env, jobject java_this)
+{
+    EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+}
+
+
+jstring EncodedString::decode(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring EncodedString::decode(JNIEnv *env, jobject java_this)
+{
+    EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())
+    }
+
+    return NULL;
+}
+
+
+
+********************************************************************************
+
+jboolean jbooleanReturnValue = instance.equals(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.toString(env);
+
+instance.destroy(env);
+
+jstring jstringReturnValue = instance.decode(env);
+
+

@@ -1,0 +1,558 @@
+
+java.lang.reflect.Method
+
+********************************************************************************
+
+java.lang.reflect.Method.jni was generated as a helper for Method.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: getGenericInfo, java.lang.reflect.Method, copy, getRoot, hasGenericInformation, getAnnotationBytes, getDeclaringClass, getName, getModifiers, getTypeParameters, getReturnType, getGenericReturnType, getParameterTypes, getParameterCount, getGenericParameterTypes, getExceptionTypes, getGenericExceptionTypes, equals, hashCode, toString, specificToStringHeader, toGenericString, specificToGenericStringHeader, isBridge, isVarArgs, isSynthetic, isDefault, getMethodAccessor, setMethodAccessor, getDefaultValue, getAnnotation, getDeclaredAnnotations, getParameterAnnotations, getAnnotatedReturnType, handleParameterNumberMismatch, getGenericInfo
+
+The source code can be copied into the respective Method.h and
+Method.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class Method : public JavaClass {
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the Method class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/lang/reflect", Method);
+    }
+    jobject getGenericInfo(JNIEnv *env, jobject java_this);
+
+    jobject java.lang.reflect.Method(JNIEnv *env, jobject java_this, jobject jobjectValue1, jstring jstringValue2, jobject jobjectValue3, jobject jobjectValue4, jobject jobjectValue5, jint jintValue6, jint jintValue7, jstring jstringValue8, jbyteArray jbyteArrayValue9, jbyteArray jbyteArrayValue10, jbyteArray jbyteArrayValue11);
+
+    jobject copy(JNIEnv *env, jobject java_this);
+
+    jobject getRoot(JNIEnv *env, jobject java_this);
+
+    jboolean hasGenericInformation(JNIEnv *env, jobject java_this);
+
+    jbyteArray getAnnotationBytes(JNIEnv *env, jobject java_this);
+
+    jobject getDeclaringClass(JNIEnv *env, jobject java_this);
+
+    jstring getName(JNIEnv *env, jobject java_this);
+
+    jint getModifiers(JNIEnv *env, jobject java_this);
+
+    jobject getTypeParameters(JNIEnv *env, jobject java_this);
+
+    jobject getReturnType(JNIEnv *env, jobject java_this);
+
+    jobject getGenericReturnType(JNIEnv *env, jobject java_this);
+
+    jobject getParameterTypes(JNIEnv *env, jobject java_this);
+
+    jint getParameterCount(JNIEnv *env, jobject java_this);
+
+    jobject getGenericParameterTypes(JNIEnv *env, jobject java_this);
+
+    jobject getExceptionTypes(JNIEnv *env, jobject java_this);
+
+    jobject getGenericExceptionTypes(JNIEnv *env, jobject java_this);
+
+    jboolean equals(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jint hashCode(JNIEnv *env, jobject java_this);
+
+    jstring toString(JNIEnv *env, jobject java_this);
+
+    void specificToStringHeader(JNIEnv *env, jobject java_this, jstringBuilder jstringBuilderValue1);
+
+    jstring toGenericString(JNIEnv *env, jobject java_this);
+
+    void specificToGenericStringHeader(JNIEnv *env, jobject java_this, jstringBuilder jstringBuilderValue1);
+
+    jboolean isBridge(JNIEnv *env, jobject java_this);
+
+    jboolean isVarArgs(JNIEnv *env, jobject java_this);
+
+    jboolean isSynthetic(JNIEnv *env, jobject java_this);
+
+    jboolean isDefault(JNIEnv *env, jobject java_this);
+
+    jobject getMethodAccessor(JNIEnv *env, jobject java_this);
+
+    void setMethodAccessor(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jobject getDefaultValue(JNIEnv *env, jobject java_this);
+
+    // T getAnnotation;
+
+    jobject getDeclaredAnnotations(JNIEnv *env, jobject java_this);
+
+    jobject getParameterAnnotations(JNIEnv *env, jobject java_this);
+
+    jobject getAnnotatedReturnType(JNIEnv *env, jobject java_this);
+
+    void handleParameterNumberMismatch(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2);
+
+    jobject getGenericInfo(JNIEnv *env, jobject java_this);
+
+};
+
+********************************************************************************
+
+jobject Method::getGenericInfo(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::java.lang.reflect.Method(JNIEnv *env, jobject java_this, jobject jobjectValue1, jstring jstringValue2, jobject jobjectValue3, jobject jobjectValue4, jobject jobjectValue5, jint jintValue6, jint jintValue7, jstring jstringValue8, jbyteArray jbyteArrayValue9, jbyteArray jbyteArrayValue10, jbyteArray jbyteArrayValue11)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1, jstringValue2, jobjectValue3, jobjectValue4, jobjectValue5, jintValue6, jintValue7, jstringValue8, jbyteArrayValue9, jbyteArrayValue10, jbyteArrayValue11);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::copy(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getRoot(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jboolean Method::hasGenericInformation(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jbyteArray Method::getAnnotationBytes(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jbyteArray result = (jbyteArray) env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return -1;
+}
+
+jobject Method::getDeclaringClass(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jstring Method::getName(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jint Method::getModifiers(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jobject Method::getTypeParameters(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getReturnType(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getGenericReturnType(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getParameterTypes(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jint Method::getParameterCount(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jobject Method::getGenericParameterTypes(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getExceptionTypes(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getGenericExceptionTypes(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jboolean Method::equals(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jint Method::hashCode(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jstring Method::toString(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+void Method::specificToStringHeader(JNIEnv *env, jobject java_this, jstringBuilder jstringBuilderValue1)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jstringBuilderValue1);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+jstring Method::toGenericString(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+void Method::specificToGenericStringHeader(JNIEnv *env, jobject java_this, jstringBuilder jstringBuilderValue1)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jstringBuilderValue1);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+jboolean Method::isBridge(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean Method::isVarArgs(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean Method::isSynthetic(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean Method::isDefault(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jobject Method::getMethodAccessor(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+void Method::setMethodAccessor(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+jobject Method::getDefaultValue(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+// T getAnnotation
+
+
+jobject Method::getDeclaredAnnotations(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getParameterAnnotations(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject Method::getAnnotatedReturnType(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+void Method::handleParameterNumberMismatch(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+jobject Method::getGenericInfo(JNIEnv *env, jobject java_this)
+{
+    Method *object = gClasses.getNativeInstance<Method>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = instance.getGenericInfo(env);
+
+jobject jobjectReturnValue = instance.java.lang.reflect.Method(env, jobjectValue1, jstringValue2, jobjectValue3, jobjectValue4, jobjectValue5, jintValue6, jintValue7, jstringValue8, jbyteArrayValue9, jbyteArrayValue10, jbyteArrayValue11);
+
+jobject jobjectReturnValue = instance.copy(env);
+
+jobject jobjectReturnValue = instance.getRoot(env);
+
+jboolean jbooleanReturnValue = instance.hasGenericInformation(env);
+
+jbyteArray jbyteArrayReturnValue = instance.getAnnotationBytes(env);
+
+jobject jobjectReturnValue = instance.getDeclaringClass(env);
+
+jstring jstringReturnValue = instance.getName(env);
+
+jint jintReturnValue = instance.getModifiers(env);
+
+jobject jobjectReturnValue = instance.getTypeParameters(env);
+
+jobject jobjectReturnValue = instance.getReturnType(env);
+
+jobject jobjectReturnValue = instance.getGenericReturnType(env);
+
+jobject jobjectReturnValue = instance.getParameterTypes(env);
+
+jint jintReturnValue = instance.getParameterCount(env);
+
+jobject jobjectReturnValue = instance.getGenericParameterTypes(env);
+
+jobject jobjectReturnValue = instance.getExceptionTypes(env);
+
+jobject jobjectReturnValue = instance.getGenericExceptionTypes(env);
+
+jboolean jbooleanReturnValue = instance.equals(env, jobjectValue1);
+
+jint jintReturnValue = instance.hashCode(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+instance.specificToStringHeader(env, jstringBuilderValue1);
+
+jstring jstringReturnValue = instance.toGenericString(env);
+
+instance.specificToGenericStringHeader(env, jstringBuilderValue1);
+
+jboolean jbooleanReturnValue = instance.isBridge(env);
+
+jboolean jbooleanReturnValue = instance.isVarArgs(env);
+
+jboolean jbooleanReturnValue = instance.isSynthetic(env);
+
+jboolean jbooleanReturnValue = instance.isDefault(env);
+
+jobject jobjectReturnValue = instance.getMethodAccessor(env);
+
+instance.setMethodAccessor(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.getDefaultValue(env);
+
+T TReturnValue = instance.getAnnotation(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.getDeclaredAnnotations(env);
+
+jobject jobjectReturnValue = instance.getParameterAnnotations(env);
+
+jobject jobjectReturnValue = instance.getAnnotatedReturnType(env);
+
+instance.handleParameterNumberMismatch(env, jintValue1, jintValue2);
+
+jobject jobjectReturnValue = instance.getGenericInfo(env);
+
+

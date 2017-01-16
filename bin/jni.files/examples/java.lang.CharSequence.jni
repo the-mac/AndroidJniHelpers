@@ -1,0 +1,124 @@
+
+java.lang.CharSequence
+
+********************************************************************************
+
+java.lang.CharSequence.jni was generated as a helper for CharSequence.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: length, charAt, subSequence, toString, chars, codePoints
+
+The source code can be copied into the respective CharSequence.h and
+CharSequence.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class CharSequence : public JavaClass {
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the CharSequence class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/lang", CharSequence);
+    }
+    jint length(JNIEnv *env, jobject java_this);
+
+    jchar charAt(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jobject subSequence(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2);
+
+    jstring toString(JNIEnv *env, jobject java_this);
+
+    jobject chars(JNIEnv *env, jobject java_this);
+
+    jobject codePoints(JNIEnv *env, jobject java_this);
+
+};
+
+********************************************************************************
+
+jint CharSequence::length(JNIEnv *env, jobject java_this)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jchar CharSequence::charAt(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jchar result = env->CallCharMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return '\0';
+}
+
+jobject CharSequence::subSequence(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jstring CharSequence::toString(JNIEnv *env, jobject java_this)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject CharSequence::chars(JNIEnv *env, jobject java_this)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject CharSequence::codePoints(JNIEnv *env, jobject java_this)
+{
+    CharSequence *object = gClasses.getNativeInstance<CharSequence>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+
+********************************************************************************
+
+jint jintReturnValue = instance.length(env);
+
+jchar jcharReturnValue = instance.charAt(env, jintValue1);
+
+jobject jobjectReturnValue = instance.subSequence(env, jintValue1, jintValue2);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jobject jobjectReturnValue = instance.chars(env);
+
+jobject jobjectReturnValue = instance.codePoints(env);
+
+

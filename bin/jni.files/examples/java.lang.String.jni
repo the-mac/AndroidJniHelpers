@@ -1,0 +1,2412 @@
+
+java.lang.String
+
+********************************************************************************
+
+java.lang.String.jni was generated as a helper for String.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, length, isEmpty, charAt, codePointAt, codePointBefore, codePointCount, offsetByCodePoints, getChars, getChars, getBytes, getBytes, getBytes, equals, contentEquals, contentEquals, equalsIgnoreCase, compareTo, compareToIgnoreCase, regionMatches, regionMatches, startsWith, startsWith, endsWith, hashCode, indexOf, indexOf, lastIndexOf, lastIndexOf, indexOf, indexOf, indexOf, indexOf, lastIndexOf, lastIndexOf, lastIndexOf, lastIndexOf, substring, substring, subSequence, concat, replace, matches, contains, replaceFirst, replaceAll, replace, split, split, join, join, toLowerCase, toLowerCase, toUpperCase, toUpperCase, trim, toString, toCharArray, format, format, valueOf, valueOf, valueOf, copyValueOf, copyValueOf, valueOf, valueOf, valueOf, valueOf, valueOf, valueOf, intern, compareTo
+
+The source code can be copied into the respective String.h and
+String.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class String : public JavaClass {
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the String class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/lang", String);
+    }
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    String(JNIEnv *env) : JavaClass(env);
+
+    jint length(JNIEnv *env, jobject java_this);
+
+    jboolean isEmpty(JNIEnv *env, jobject java_this);
+
+    jchar charAt(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint codePointAt(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint codePointBefore(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint codePointCount(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2);
+
+    jint offsetByCodePoints(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2);
+
+    void getChars(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2);
+
+    void getChars(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2);
+
+    void getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4);
+
+    void getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4);
+
+    void getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4);
+
+    jboolean equals(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jboolean contentEquals(JNIEnv *env, jobject java_this, jstringBuffer jstringBufferValue1);
+
+    jboolean contentEquals(JNIEnv *env, jobject java_this, jstringBuffer jstringBufferValue1);
+
+    jboolean equalsIgnoreCase(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jint compareTo(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jint compareToIgnoreCase(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jboolean regionMatches(JNIEnv *env, jobject java_this, jint jintValue1, jstring jstringValue2, jint jintValue3, jint jintValue4);
+
+    jboolean regionMatches(JNIEnv *env, jobject java_this, jint jintValue1, jstring jstringValue2, jint jintValue3, jint jintValue4);
+
+    jboolean startsWith(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2);
+
+    jboolean startsWith(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2);
+
+    jboolean endsWith(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jint hashCode(JNIEnv *env, jobject java_this);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint indexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jint lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jstring substring(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jstring substring(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jobject subSequence(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2);
+
+    jstring concat(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jstring replace(JNIEnv *env, jobject java_this, jchar jcharValue1, jchar jcharValue2);
+
+    jboolean matches(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jboolean contains(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring replaceFirst(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2);
+
+    jstring replaceAll(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2);
+
+    jstring replace(JNIEnv *env, jobject java_this, jchar jcharValue1, jchar jcharValue2);
+
+    jobject split(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2);
+
+    jobject split(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2);
+
+    jstring join(JNIEnv *env, jobject java_this, jobject jobjectValue1, jobject jobjectValue2);
+
+    jstring join(JNIEnv *env, jobject java_this, jobject jobjectValue1, jobject jobjectValue2);
+
+    jstring toLowerCase(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring toLowerCase(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring toUpperCase(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring toUpperCase(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring trim(JNIEnv *env, jobject java_this);
+
+    jstring toString(JNIEnv *env, jobject java_this);
+
+    // char[] toCharArray;
+
+    jstring format(JNIEnv *env, jobject java_this, jstring jstringValue1, jobject jobjectValue2);
+
+    jstring format(JNIEnv *env, jobject java_this, jstring jstringValue1, jobject jobjectValue2);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring copyValueOf(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2, jint jintValue3);
+
+    jstring copyValueOf(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2, jint jintValue3);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1);
+
+    jstring intern(JNIEnv *env, jobject java_this);
+
+    jint compareTo(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+};
+
+********************************************************************************
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+String::String(JNIEnv *env) : JavaClass(env)
+{
+    signatures["java.lang.String"] = "()V";
+    signatures["java.lang.String"] = "(Ljava/lang/String;)V";
+    signatures["java.lang.String"] = "([C)V";
+    signatures["java.lang.String"] = "([CII)V";
+    signatures["java.lang.String"] = "([III)V";
+    signatures["java.lang.String"] = "([BIII)V";
+    signatures["java.lang.String"] = "([BI)V";
+    signatures["java.lang.String"] = "([BIILjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BLjava/nio/charset/Charset;)V";
+    signatures["java.lang.String"] = "([BII)V";
+    signatures["java.lang.String"] = "([B)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuffer;)V";
+    signatures["java.lang.String"] = "(Ljava/lang/StringBuilder;)V";
+    signatures["java.lang.String"] = "([CZ)V";
+    signatures["length"] = "()I";
+    signatures["isEmpty"] = "()Z";
+    signatures["charAt"] = "(I)C";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["getChars"] = "([CI)V";
+    signatures["getChars"] = "(II[CI)V";
+    signatures["getBytes"] = "(II[BI)V";
+    signatures["getBytes"] = "(Ljava/nio/charset/Charset;)[B";
+    signatures["getBytes"] = "()[B";
+    signatures["equals"] = "(Ljava/lang/Object;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/StringBuffer;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["regionMatches"] = "(ILjava/lang/String;II)Z";
+    signatures["regionMatches"] = "(ZILjava/lang/String;II)Z";
+    signatures["startsWith"] = "(Ljava/lang/String;I)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["length"] = "()I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["codePointAt"] = "(I)I";
+    signatures["codePointCount"] = "(II)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["compareTo"] = "(Ljava/lang/String;)I";
+    signatures["indexOf"] = "(Ljava/lang/String;I)I";
+    signatures["indexOf"] = "([CIILjava/lang/String;I)I";
+    signatures["indexOf"] = "([CII[CIII)I";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["substring"] = "(II)Ljava/lang/String;";
+    signatures["subSequence"] = "(II)Ljava/lang/CharSequence;";
+    signatures["concat"] = "(Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(CC)Ljava/lang/String;";
+    signatures["equalsIgnoreCase"] = "(Ljava/lang/String;)Z";
+    signatures["contentEquals"] = "(Ljava/lang/CharSequence;)Z";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replaceFirst"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["replace"] = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;I)[Ljava/lang/String;";
+    signatures["split"] = "(Ljava/lang/String;)[Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;";
+    signatures["join"] = "(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "(Ljava/util/Locale;)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["toCharArray"] = "()[C";
+    signatures["format"] = "(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["format"] = "(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "(Ljava/lang/Object;)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([CII)Ljava/lang/String;";
+    signatures["valueOf"] = "([C)Ljava/lang/String;";
+    signatures["valueOf"] = "(Z)Ljava/lang/String;";
+    signatures["valueOf"] = "(C)Ljava/lang/String;";
+    signatures["substring"] = "(I)Ljava/lang/String;";
+    signatures["valueOf"] = "(J)Ljava/lang/String;";
+    signatures["valueOf"] = "(F)Ljava/lang/String;";
+    signatures["valueOf"] = "(D)Ljava/lang/String;";
+    signatures["toLowerCase"] = "()Ljava/lang/String;";
+    signatures["compareTo"] = "(Ljava/lang/Object;)I";
+}
+
+jint String::length(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jboolean String::isEmpty(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jchar String::charAt(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jchar result = env->CallCharMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return '\0';
+}
+
+jint String::codePointAt(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::codePointBefore(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::codePointCount(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::offsetByCodePoints(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+void String::getChars(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jcharArrayValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+void String::getChars(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jcharArrayValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+void String::getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+void String::getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+void String::getBytes(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2, jbyteArray jbyteArrayValue3, jint jintValue4)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        env->CallVoidMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+jboolean String::equals(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::contentEquals(JNIEnv *env, jobject java_this, jstringBuffer jstringBufferValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringBufferValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::contentEquals(JNIEnv *env, jobject java_this, jstringBuffer jstringBufferValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringBufferValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::equalsIgnoreCase(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jint String::compareTo(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::compareToIgnoreCase(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jboolean String::regionMatches(JNIEnv *env, jobject java_this, jint jintValue1, jstring jstringValue2, jint jintValue3, jint jintValue4)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jintValue1, jstringValue2, jintValue3, jintValue4);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::regionMatches(JNIEnv *env, jobject java_this, jint jintValue1, jstring jstringValue2, jint jintValue3, jint jintValue4)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jintValue1, jstringValue2, jintValue3, jintValue4);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::startsWith(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::startsWith(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::endsWith(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jint String::hashCode(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::indexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jint String::lastIndexOf(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+jstring String::substring(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::substring(JNIEnv *env, jobject java_this, jint jintValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jintValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject String::subSequence(JNIEnv *env, jobject java_this, jint jintValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jintValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jstring String::concat(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::replace(JNIEnv *env, jobject java_this, jchar jcharValue1, jchar jcharValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jcharValue1, jcharValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jboolean String::matches(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean String::contains(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jstring String::replaceFirst(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jstringValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::replaceAll(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jstringValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::replace(JNIEnv *env, jobject java_this, jchar jcharValue1, jchar jcharValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jcharValue1, jcharValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject String::split(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject String::split(JNIEnv *env, jobject java_this, jstring jstringValue1, jint jintValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jstring String::join(JNIEnv *env, jobject java_this, jobject jobjectValue1, jobject jobjectValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1, jobjectValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::join(JNIEnv *env, jobject java_this, jobject jobjectValue1, jobject jobjectValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1, jobjectValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::toLowerCase(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::toLowerCase(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::toUpperCase(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::toUpperCase(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::trim(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::toString(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+// char[] toCharArray
+
+
+jstring String::format(JNIEnv *env, jobject java_this, jstring jstringValue1, jobject jobjectValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jobjectValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::format(JNIEnv *env, jobject java_this, jstring jstringValue1, jobject jobjectValue2)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jstringValue1, jobjectValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::copyValueOf(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2, jint jintValue3)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jcharArrayValue1, jintValue2, jintValue3);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::copyValueOf(JNIEnv *env, jobject java_this, jcharArray jcharArrayValue1, jint jintValue2, jint jintValue3)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jcharArrayValue1, jintValue2, jintValue3);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::valueOf(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring String::intern(JNIEnv *env, jobject java_this)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jint String::compareTo(JNIEnv *env, jobject java_this, jstring jstringValue1)
+{
+    String *object = gClasses.getNativeInstance<String>(env, java_this);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(java_this, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+
+********************************************************************************
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+String instance(env);
+
+jint jintReturnValue = instance.length(env);
+
+jboolean jbooleanReturnValue = instance.isEmpty(env);
+
+jchar jcharReturnValue = instance.charAt(env, jintValue1);
+
+jint jintReturnValue = instance.codePointAt(env, jintValue1);
+
+jint jintReturnValue = instance.codePointBefore(env, jintValue1);
+
+jint jintReturnValue = instance.codePointCount(env, jintValue1, jintValue2);
+
+jint jintReturnValue = instance.offsetByCodePoints(env, jintValue1, jintValue2);
+
+instance.getChars(env, jcharArrayValue1, jintValue2);
+
+instance.getChars(env, jcharArrayValue1, jintValue2);
+
+instance.getBytes(env, jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+
+instance.getBytes(env, jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+
+instance.getBytes(env, jintValue1, jintValue2, jbyteArrayValue3, jintValue4);
+
+jboolean jbooleanReturnValue = instance.equals(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.contentEquals(env, jstringBufferValue1);
+
+jboolean jbooleanReturnValue = instance.contentEquals(env, jstringBufferValue1);
+
+jboolean jbooleanReturnValue = instance.equalsIgnoreCase(env, jstringValue1);
+
+jint jintReturnValue = instance.compareTo(env, jstringValue1);
+
+jint jintReturnValue = instance.compareToIgnoreCase(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.regionMatches(env, jintValue1, jstringValue2, jintValue3, jintValue4);
+
+jboolean jbooleanReturnValue = instance.regionMatches(env, jintValue1, jstringValue2, jintValue3, jintValue4);
+
+jboolean jbooleanReturnValue = instance.startsWith(env, jstringValue1, jintValue2);
+
+jboolean jbooleanReturnValue = instance.startsWith(env, jstringValue1, jintValue2);
+
+jboolean jbooleanReturnValue = instance.endsWith(env, jstringValue1);
+
+jint jintReturnValue = instance.hashCode(env);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.indexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jint jintReturnValue = instance.lastIndexOf(env, jintValue1);
+
+jstring jstringReturnValue = instance.substring(env, jintValue1);
+
+jstring jstringReturnValue = instance.substring(env, jintValue1);
+
+jobject jobjectReturnValue = instance.subSequence(env, jintValue1, jintValue2);
+
+jstring jstringReturnValue = instance.concat(env, jstringValue1);
+
+jstring jstringReturnValue = instance.replace(env, jcharValue1, jcharValue2);
+
+jboolean jbooleanReturnValue = instance.matches(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.contains(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.replaceFirst(env, jstringValue1, jstringValue2);
+
+jstring jstringReturnValue = instance.replaceAll(env, jstringValue1, jstringValue2);
+
+jstring jstringReturnValue = instance.replace(env, jcharValue1, jcharValue2);
+
+jstringArray jstringArrayReturnValue = instance.split(env, jstringValue1, jintValue2);
+
+jstringArray jstringArrayReturnValue = instance.split(env, jstringValue1, jintValue2);
+
+jstring jstringReturnValue = instance.join(env, jobjectValue1, jobjectValue2);
+
+jstring jstringReturnValue = instance.join(env, jobjectValue1, jobjectValue2);
+
+jstring jstringReturnValue = instance.toLowerCase(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.toLowerCase(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.toUpperCase(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.toUpperCase(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.trim(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jcharArray jcharArrayReturnValue = instance.toCharArray(env);
+
+jstring jstringReturnValue = instance.format(env, jstringValue1, jobjectValue2);
+
+jstring jstringReturnValue = instance.format(env, jstringValue1, jobjectValue2);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.copyValueOf(env, jcharArrayValue1, jintValue2, jintValue3);
+
+jstring jstringReturnValue = instance.copyValueOf(env, jcharArrayValue1, jintValue2, jintValue3);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.valueOf(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.intern(env);
+
+jint jintReturnValue = instance.compareTo(env, jstringValue1);
+
+

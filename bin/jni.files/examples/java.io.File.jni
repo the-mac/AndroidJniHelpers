@@ -1,0 +1,550 @@
+class File : public JavaClass {
+  public:
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/io", File);
+    }
+};
+
+****************************************
+
+jboolean File::isInvalid(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+
+
+// This is a placeholder for the constructor
+
+// This is a placeholder for the constructor
+
+// This is a placeholder for the constructor
+
+// This is a placeholder for the constructor
+
+jstring File::getName(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jstring File::getParent(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject File::getParentFile(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jstring File::getPath(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jboolean File::isAbsolute(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jstring File::getAbsolutePath(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject File::getAbsoluteFile(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject File::toURI(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jboolean File::canRead(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::canWrite(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::exists(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::isDirectory(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::isFile(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::isHidden(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+
+
+
+
+jboolean File::delete(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+
+
+jobject File::list(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject File::list(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject File::listFiles(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject File::listFiles(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jobject File::listFiles(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jboolean File::mkdir(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::mkdirs(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::renameTo(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setLastModified(JNIEnv *env, jobject java_this, jlong jlongValue1)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jlongValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setReadOnly(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setWritable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setWritable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setReadable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setReadable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setExecutable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::setExecutable(JNIEnv *env, jobject java_this, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jbooleanValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean File::canExecute(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jobject File::listRoots(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+
+
+
+
+
+
+
+
+jboolean File::equals(JNIEnv *env, jobject java_this, jobject jobjectValue1)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(java_this, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+
+
+jstring File::toString(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject File::toPath(JNIEnv *env, jobject java_this)
+{
+    File *object = gClasses.getNativeInstance<File>(env, java_this);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(java_this, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+
+
+
+****************************************
+
+jboolean jbooleanReturnValue = instance.isInvalid(env);
+
+jint jintReturnValue = instance.getPrefixLength(env);
+
+File instance(env);
+
+File instance(env);
+
+File instance(env);
+
+File instance(env);
+
+jstring jstringReturnValue = instance.getName(env);
+
+jstring jstringReturnValue = instance.getParent(env);
+
+jobject jobjectReturnValue = instance.getParentFile(env);
+
+jstring jstringReturnValue = instance.getPath(env);
+
+jboolean jbooleanReturnValue = instance.isAbsolute(env);
+
+jstring jstringReturnValue = instance.getAbsolutePath(env);
+
+jobject jobjectReturnValue = instance.getAbsoluteFile(env);
+
+jobject jobjectReturnValue = instance.toURI(env);
+
+jboolean jbooleanReturnValue = instance.canRead(env);
+
+jboolean jbooleanReturnValue = instance.canWrite(env);
+
+jboolean jbooleanReturnValue = instance.exists(env);
+
+jboolean jbooleanReturnValue = instance.isDirectory(env);
+
+jboolean jbooleanReturnValue = instance.isFile(env);
+
+jboolean jbooleanReturnValue = instance.isHidden(env);
+
+jlong jlongReturnValue = instance.lastModified(env);
+
+jlong jlongReturnValue = instance.length(env);
+
+jboolean jbooleanReturnValue = instance.delete(env);
+
+instance.deleteOnExit(env);
+
+jstring[] jstring[]ReturnValue = instance.list(env);
+
+jstring[] jstring[]ReturnValue = instance.list(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jboolean jbooleanReturnValue = instance.mkdir(env);
+
+jboolean jbooleanReturnValue = instance.mkdirs(env);
+
+jboolean jbooleanReturnValue = instance.renameTo(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.setLastModified(env, jlongValue1);
+
+jboolean jbooleanReturnValue = instance.setReadOnly(env);
+
+jboolean jbooleanReturnValue = instance.setWritable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setWritable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setReadable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setReadable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setExecutable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setExecutable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.canExecute(env);
+
+jobject jobjectReturnValue = instance.listRoots(env);
+
+jlong jlongReturnValue = instance.getTotalSpace(env);
+
+jlong jlongReturnValue = instance.getFreeSpace(env);
+
+jlong jlongReturnValue = instance.getUsableSpace(env);
+
+jint jintReturnValue = instance.compareTo(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.equals(env, jobjectValue1);
+
+jint jintReturnValue = instance.hashCode(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jobject jobjectReturnValue = instance.toPath(env);
+
+jint jintReturnValue = instance.compareTo(env, jobjectValue1);
+
+

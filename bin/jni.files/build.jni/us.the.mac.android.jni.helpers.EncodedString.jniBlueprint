@@ -1,0 +1,17 @@
+  public java.lang.String encodedString;
+    descriptor: Ljava/lang/String;
+--
+  public us.the.mac.android.jni.helpers.EncodedString();
+    descriptor: ()V
+--
+  public boolean equals(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+--
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+--
+  public native void destroy();
+    descriptor: ()V
+--
+  public native java.lang.String decode();
+    descriptor: ()Ljava/lang/String;

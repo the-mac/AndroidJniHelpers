@@ -1,0 +1,6 @@
+jbyteArray {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
+{
+    jbyteArray result = (jbyteArray) env->CallObjectMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
+    JavaExceptionUtils::checkException(env);
+    return result;
+}

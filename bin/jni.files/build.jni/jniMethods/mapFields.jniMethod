@@ -1,0 +1,4 @@
+void {CLASS_NAME}::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}

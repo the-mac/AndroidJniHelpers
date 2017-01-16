@@ -1,0 +1,198 @@
+
+android.content.SharedPreferences
+
+********************************************************************************
+
+android.content.SharedPreferences.jni was generated as a helper for SharedPreferences.java using the
+jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: getAll, getString, getStringSet, getInt, getLong, getFloat, getBoolean, contains, edit, registerOnSharedPreferenceChangeListener, unregisterOnSharedPreferenceChangeListener
+
+The source code can be copied into the respective SharedPreferences.h and
+SharedPreferences.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class SharedPreferences : public JavaClass {
+  public:
+    /**
+    * This constructor is the loader for the Java instance used to call all of its methods.
+    * You can construct the SharedPreferences object how ever you need to here.
+    */
+SharedPreferences::SharedPreferences(JNIEnv *env) : JavaClass(env)
+{
+    signatures["getAll"] = "()Ljava/util/Map;";
+    signatures["getString"] = "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;";
+    signatures["getStringSet"] = "(Ljava/lang/String;Ljava/util/Set;)Ljava/util/Set;";
+    signatures["getInt"] = "(Ljava/lang/String;I)I";
+    signatures["getLong"] = "(Ljava/lang/String;J)J";
+    signatures["getFloat"] = "(Ljava/lang/String;F)F";
+    signatures["getBoolean"] = "(Ljava/lang/String;Z)Z";
+    signatures["contains"] = "(Ljava/lang/String;)Z";
+    signatures["edit"] = "()Landroid/content/SharedPreferences$Editor;";
+    signatures["registerOnSharedPreferenceChangeListener"] = "(Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;)V";
+    signatures["registerOnSharedPreferenceChangeListener"] = "(Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;)V";
+
+	
+	//thisObj = env->NewObject(env, getClass(__func__), getMethod(__func__)) // CALLS DEFAULT CONSTRUCTOR
+	thisObj = NULL; // THIS IS WHERE YOU INITIALIZE YOUR JAVA OBJECT, YOU MIGHT WANT TO ADD A FEW PARAMETERS
+		
+	if (thisObj == NULL) {
+		JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+		     "thisObj variable not intialized, all methods of this class need an the thisObj Java instance.");
+    }
+}
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the SharedPreferences class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("android/content", SharedPreferences);
+    }
+    // ?> getAll;
+
+    jstring getString(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    jobject getStringSet(JNIEnv *env, jstring jstringValue1, java.util.Set<jstring> java.util.Set<jstring>Value2);
+
+    jint getInt(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    // long getLong;
+
+    // float getFloat;
+
+    jboolean getBoolean(JNIEnv *env, jstring jstringValue1, jboolean jbooleanValue2);
+
+    jboolean contains(JNIEnv *env, jstring jstringValue1);
+
+    jobject edit(JNIEnv *env);
+
+    void registerOnSharedPreferenceChangeListener(JNIEnv *env, jobject jobjectValue1);
+
+    void unregisterOnSharedPreferenceChangeListener(JNIEnv *env, jobject jobjectValue1);
+
+};
+
+********************************************************************************
+
+// ?> getAll
+
+
+jstring SharedPreferences::getString(JNIEnv *env, jstring jstringValue1, jstring jstringValue2)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(thisObj, object->getMethod(__func__), jstringValue1, jstringValue2);
+        JavaExceptionUtils::checkException(env);
+        return (jstring) result;   
+    }
+    return NULL;
+}
+
+jobject SharedPreferences::getStringSet(JNIEnv *env, jstring jstringValue1, java.util.Set<jstring> java.util.Set<jstring>Value2)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(thisObj, object->getMethod(__func__), jstringValue1, java.util.Set<jstring>Value2);
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+jint SharedPreferences::getInt(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jint result = env->CallIntMethod(thisObj, object->getMethod(__func__), jstringValue1, jintValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return 0;
+}
+
+// long getLong
+
+
+// float getFloat
+
+
+jboolean SharedPreferences::getBoolean(JNIEnv *env, jstring jstringValue1, jboolean jbooleanValue2)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(thisObj, object->getMethod(__func__), jstringValue1, jbooleanValue2);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jboolean SharedPreferences::contains(JNIEnv *env, jstring jstringValue1)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jboolean result = env->CallBooleanMethod(thisObj, object->getMethod(__func__), jstringValue1);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+    return false;
+}
+
+jobject SharedPreferences::edit(JNIEnv *env)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        jobject result = env->CallObjectMethod(thisObj, object->getMethod(__func__));
+        JavaExceptionUtils::checkException(env);
+        return result;   
+    }
+    return NULL;
+}
+
+void SharedPreferences::registerOnSharedPreferenceChangeListener(JNIEnv *env, jobject jobjectValue1)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        env->CallVoidMethod(thisObj, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+void SharedPreferences::unregisterOnSharedPreferenceChangeListener(JNIEnv *env, jobject jobjectValue1)
+{
+    SharedPreferences *object = gClasses.getNativeInstance<SharedPreferences>(env, thisObj);
+    if (object != NULL) {
+        env->CallVoidMethod(thisObj, object->getMethod(__func__), jobjectValue1);
+        JavaExceptionUtils::checkException(env);
+    }
+}
+
+
+********************************************************************************
+
+?> ?>ReturnValue = instance.getAll(env);
+
+jstring jstringReturnValue = instance.getString(env, jstringValue1, jstringValue2);
+
+java.util.Set<jstring> java.util.Set<jstring>ReturnValue = instance.getStringSet(env, jstringValue1, java.util.Set<jstring>Value2);
+
+jint jintReturnValue = instance.getInt(env, jstringValue1, jintValue2);
+
+jlong jlongReturnValue = instance.getLong(env, jstringValue1, jlongValue2);
+
+jfloat jfloatReturnValue = instance.getFloat(env, jstringValue1, jfloatValue2);
+
+jboolean jbooleanReturnValue = instance.getBoolean(env, jstringValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.contains(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.edit(env);
+
+instance.registerOnSharedPreferenceChangeListener(env, jobjectValue1);
+
+instance.unregisterOnSharedPreferenceChangeListener(env, jobjectValue1);
+
+
