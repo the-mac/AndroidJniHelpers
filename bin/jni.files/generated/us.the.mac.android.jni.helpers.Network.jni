@@ -216,7 +216,7 @@ void Network::setResultString(JNIEnv *env, jstring jstringValue1)
     JavaExceptionUtils::checkException(env);
 }
 
-void Network::destroy(JNIEnv *env) { Network::destroy(env); }
+void Network::destroy(JNIEnv *env) { Network::destroy(env, thisObj); }
 
 void Network::destroy(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -229,7 +229,7 @@ void Network::destroy(JNIEnv *env, jobject java_this) {
 }
 
 
-jbyteArray Network::getBytes(JNIEnv *env) { Network::getBytes(env); }
+jbyteArray Network::getBytes(JNIEnv *env) { return Network::getBytes(env, thisObj); }
 
 jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -243,7 +243,7 @@ jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
 }
 
 
-jobject Network::getHttpPost(JNIEnv *env) { Network::getHttpPost(env); }
+jobject Network::getHttpPost(JNIEnv *env) { return Network::getHttpPost(env, thisObj); }
 
 jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -257,7 +257,7 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
 }
 
 
-void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) { Network::put(env, jstringValue1, jstringValue2); }
+void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) { Network::put(env, thisObj, jstringValue1, jstringValue2); }
 
 void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -270,7 +270,7 @@ void Network::put(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) {
 }
 
 
-jstring Network::get(JNIEnv *env, jstring jstringValue1) { Network::get(env, jstringValue1); }
+jstring Network::get(JNIEnv *env, jstring jstringValue1) { return Network::get(env, thisObj, jstringValue1); }
 
 jstring Network::get(JNIEnv *env, jstring jstringValue1) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -284,7 +284,7 @@ jstring Network::get(JNIEnv *env, jstring jstringValue1) {
 }
 
 
-jstring Network::toJSONString(JNIEnv *env) { Network::toJSONString(env); }
+jstring Network::toJSONString(JNIEnv *env) { return Network::toJSONString(env, thisObj); }
 
 jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
@@ -298,7 +298,7 @@ jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
 }
 
 
-void Network::setRequestType(JNIEnv *env, jint jintValue1) { Network::setRequestType(env, jintValue1); }
+void Network::setRequestType(JNIEnv *env, jint jintValue1) { Network::setRequestType(env, thisObj, jintValue1); }
 
 void Network::setRequestType(JNIEnv *env, jint jintValue1) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
