@@ -1,6 +1,6 @@
 jintArray {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
 {
-    jintArray result = (jintArray) env->CallObjectMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
+    jintArray result = (jintArray) env->CallObjectMethod(thisObj, getMethod(__FUNCTION__){PARAMETER_NAMES});
     JavaExceptionUtils::checkException(env);
     return result;
 }

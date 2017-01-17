@@ -1,6 +1,6 @@
 jobject {CLASS_NAME}::{METHOD_NAME}(JNIEnv *env{PARAMETERS})
 {
-    jobject result = env->CallObjectMethod(thisObj, getMethod(__func__){PARAMETER_NAMES});
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__){PARAMETER_NAMES});
     JavaExceptionUtils::checkException(env);
     return result;
 }
