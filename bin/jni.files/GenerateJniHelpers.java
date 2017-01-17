@@ -258,11 +258,9 @@ public class GenerateJniHelpers {
 				callNative = callNative.replace("{PARAMETERS}", parameters);
 				callNative = callNative.replace("{PARAMETER_NAMES}", parameterNames);
 
-//				String embed = String.format("\n    if (object != NULL)\n%s", callNative);
-//				source.append(String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").split("\n")[0]));
-
+//				method = method.replace(methodName+"(JNI", methodName+"Native");
 				method = String.format("%s %s", method.substring(0, firstBrace).trim(), callNative);
-				source.append(method + "\n\n");
+				source.append(method.replace(methodName+"(JNI", methodName+"Native(JNI") + "\n\n");
 
 				String defaultReturnedValue = hasNoReturnValue ? "" : String.format("    return %s;\n", mReturnValues.getProperty(returnType));
 				String staticInitializer = "    {CLASS_NAME} *object = gClasses.getNativeInstance<{CLASS_NAME}>(env, java_this);";
