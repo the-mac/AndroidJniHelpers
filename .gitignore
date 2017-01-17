@@ -41,3 +41,4 @@ captures/
 # Native Build Artifacts
 */.externalNativeBuild
 bin/jni.files/build.jni
+timestamp
