@@ -112,7 +112,7 @@ void EncodedString::destroy(JNIEnv *env, jobject java_this) {
 }
 
 
-jstring EncodedString::decode(JNIEnv *env) { EncodedString::decode(env); }
+jstring EncodedString::decode(JNIEnv *env) { return EncodedString::decode(env); }
 
 jstring EncodedString::decode(JNIEnv *env, jobject java_this) {
     EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);

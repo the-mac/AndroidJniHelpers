@@ -249,18 +249,21 @@ public class GenerateJniHelpers {
 				int firstBrace = method.indexOf("{");
 				int lastBrace = method.indexOf("}");
 
+				boolean hasNoReturnValue = "".equals(returnType) || "void".equals(returnType);
+				String returnPrefix = hasNoReturnValue ? "" : "return ";
+
 				String callNative = getHelperTemplate("callNative");
-				callNative = callNative.replace("{CLASS_NAME}", className);
+				callNative = callNative.replace("{CLASS_NAME}", returnPrefix+className);
 				callNative = callNative.replace("{METHOD_NAME}", methodName);
 				callNative = callNative.replace("{PARAMETERS}", parameters);
 				callNative = callNative.replace("{PARAMETER_NAMES}", parameterNames);
 
 //				String embed = String.format("\n    if (object != NULL)\n%s", callNative);
-				method = String.format("%s %s", method.substring(0, firstBrace).trim(), callNative);
 //				source.append(String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").split("\n")[0]));
+
+				method = String.format("%s %s", method.substring(0, firstBrace).trim(), callNative);
 				source.append(method + "\n\n");
 
-				boolean hasNoReturnValue = "".equals(returnType) || "void".equals(returnType);
 				String defaultReturnedValue = hasNoReturnValue ? "" : String.format("    return %s;\n", mReturnValues.getProperty(returnType));
 				String staticInitializer = "    {CLASS_NAME} *object = gClasses.getNativeInstance<{CLASS_NAME}>(env, java_this);";
 				staticInitializer = staticInitializer.replace("{CLASS_NAME}", className);
