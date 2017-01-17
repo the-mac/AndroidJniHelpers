@@ -59,9 +59,9 @@ function accept_commit_message {
 	fi
 	
 	if [[ $commit ]]; then
-		git add -A && git commit -m "$commit" && git push origin master
+		git add -A && git commit -m "$commit" && git pull origin master && git push origin master
 	elif [[ $size == 0 ]]; then
-		git add -A && git commit -m "Default commit message using bin/prepare.bash script." && git push origin master --force
+		git add -A && git commit -m "Default commit message using bin/prepare.bash script." && git pull origin master&& git push origin master --force
 	fi
 }
 
