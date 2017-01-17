@@ -99,7 +99,7 @@ jstring EncodedString::toString(JNIEnv *env)
     return (jstring) result;
 }
 
-void EncodedString::destroy(JNIEnv *env) { EncodedString::destroy(env); }
+void EncodedString::destroy(JNIEnv *env) { EncodedString::destroy(env, thisObj); }
 
 void EncodedString::destroy(JNIEnv *env, jobject java_this) {
     EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);
@@ -112,7 +112,7 @@ void EncodedString::destroy(JNIEnv *env, jobject java_this) {
 }
 
 
-jstring EncodedString::decode(JNIEnv *env) { return EncodedString::decode(env); }
+jstring EncodedString::decode(JNIEnv *env) { return EncodedString::decode(env, thisObj); }
 
 jstring EncodedString::decode(JNIEnv *env, jobject java_this) {
     EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);
