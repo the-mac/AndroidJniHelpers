@@ -272,9 +272,7 @@ public class GenerateJniHelpers {
 				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
 
 
-				method = method..replace("env, ", "env, jobject java_this, ");
-				method = method..replace("env)", "env, jobject java_this)");
-				method = String.format("%s{\n%s\n    %s\n%s}\n", method.substring(0, firstBrace), staticInitializer, embed, defaultReturnedValue);
+				method = String.format("%s{\n%s\n    %s\n%s}\n", method.substring(0, firstBrace).replace("env, ", "env, jobject java_this, ").replace("env)", "env, jobject java_this)"), staticInitializer, embed, defaultReturnedValue);
 				method = method.replace("getMethod(", "object->getMethod(");
 				method = method.replace("thisObj", "java_this");
 			}
