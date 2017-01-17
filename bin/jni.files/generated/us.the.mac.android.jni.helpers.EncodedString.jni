@@ -87,14 +87,14 @@ void EncodedString::mapFields()
 
 jboolean EncodedString::equals(JNIEnv *env, jobject jobjectValue1)
 {
-    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __func__), jobjectValue1);
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jstring EncodedString::toString(JNIEnv *env)
 {
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __func__));
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
 }
