@@ -242,7 +242,7 @@ public class GenerateJniHelpers {
 				variableName = className + "::";
 				method = method.replace("thisObj", "getClass(env)");
 				method = method.replace("->Call", "->CallStatic");
-				method = method.replace("getMethod(", "getStaticMethod(env, ");
+				method = method.replace("getMethod(", "getStaticMethod(env, getClass(env), ");
 			} else if(isNativeMethod) {
 				prefix = "static ";
 
@@ -267,15 +267,19 @@ public class GenerateJniHelpers {
 				staticInitializer = staticInitializer.replace("{CLASS_NAME}", className);
 
 
-				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->encodedString.get())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
+				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->callToSomeFunction())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
 
 
 				method = String.format("%s{\n%s\n    %s\n%s}\n", method.substring(0, firstBrace).replace("env, ", "env, jobject java_this, ").replace("env)", "env, jobject java_this)"), staticInitializer, embed, defaultReturnedValue);
 				method = method.replace("getMethod(", "object->getMethod(");
 				method = method.replace("thisObj", "java_this");
+
+				String prototype = String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").replace(" {\n", "\n").split("\n")[0]);
+				header.append(prototype.replace("static ", "").replace(", jobject java_this", "").replace(methodName+"(JNI", methodName+"Native(JNI"));
 			}
 
-			header.append(String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").split("\n")[0]));
+			header.append(String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").replace(" {\n", "\n").split("\n")[0]));
+
 			source.append(method + "\n\n");
 
 			if("".equals(returnType)) {

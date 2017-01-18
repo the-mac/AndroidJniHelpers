@@ -61,8 +61,12 @@ git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
 
+set(local_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp)
 set(library_JniHelpers_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/main/cpp)
 set(library_JniHelpersTest_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/androidTest/cpp)
+
+file(GLOB libLocal_SOURCES ${local_DIR}/*.cpp)
+file(GLOB libLocal_HEADERS ${local_DIR}/*.h)
 
 file(GLOB libJniHelpers_SOURCES ${library_JniHelpers_DIR}/*.cpp)
 file(GLOB libJniHelpers_HEADERS ${library_JniHelpers_DIR}/*.h)
@@ -71,9 +75,9 @@ file(GLOB libJniHelpersTest_SOURCES ${library_JniHelpersTest_DIR}/*.cpp)
 file(GLOB libJniHelpersTest_HEADERS ${library_JniHelpersTest_DIR}/*.h)
 
 link_directories(${JNI_LIBRARIES})
-add_library(JniHelpers STATIC ${libJniHelpers_SOURCES})
-add_library(JniHelpersTest STATIC ${libJniHelpers_SOURCES} ${libJniHelpersTest_SOURCES})
-include_directories(${library_JniHelpers_DIR} ${library_JniHelpersTest_DIR})
+add_library(JniHelpers STATIC ${libLocal_SOURCES} ${libJniHelpers_SOURCES})
+add_library(JniHelpersTest STATIC ${libLocal_SOURCES} ${libJniHelpers_SOURCES} ${libJniHelpersTest_SOURCES})
+include_directories(${local_DIR} ${library_JniHelpers_DIR} ${library_JniHelpersTest_DIR})
 
 
 if(${ANDROID_TESTING})

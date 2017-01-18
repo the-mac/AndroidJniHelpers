@@ -5,10 +5,96 @@
 #ifndef APPLICATIONRESOURCES_NETWORK_H
 #define APPLICATIONRESOURCES_NETWORK_H
 
+#include "JniHelpers.h"
+using namespace std;
 
-class Network {
+class Network : public NativeObject {
+    static std::map<std::string, std::string> static_signatures = {
+            { "getInstance", "()Lus/the/mac/android/jni/helpers/Network;" },
+            { "testingDefault", "()Lus/the/mac/android/jni/helpers/Network;" },
+            { "access$000", "(Lus/the/mac/android/jni/helpers/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
+    };
+    jobject thisObj;
+    std::map<std::string,std::string> mappingObject;
+    std::string requestUrl;
 
+public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
+    * the Jni Helper's relationship to the Network class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
+    * the Jni Helper's static relationship to the Network class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+        return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the Network class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+        std::string signature = static_signatures[functionName];
+        return signature.c_str();
+    }
+    Network();
+
+    Network(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    std::string toJSON();
+
+    static jobject getInstance(JNIEnv *env, jobject java_this);
+
+    static jobject testingDefault(JNIEnv *env);
+
+    jstring getResultString(JNIEnv *env);
+
+    void setResultString(JNIEnv *env, jstring jstringValue1);
+
+    void destroyNative(JNIEnv *env);
+
+    static void destroy(JNIEnv *env, jobject java_this);
+
+    jbyteArray getBytesNative(JNIEnv *env);
+
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+
+    jobject getHttpPostNative(JNIEnv *env);
+
+    static jobject getHttpPost(JNIEnv *env, jobject java_this);
+
+    void putNative(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    static void put(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2);
+
+    jstring getNative(JNIEnv *env, jstring jstringValue1);
+
+    static jstring get(JNIEnv *env, jobject java_this, jstring jstringValue1);
+
+    jstring toJSONStringNative(JNIEnv *env);
+
+    static jstring toJSONString(JNIEnv *env, jobject java_this);
+
+    void setRequestTypeNative(JNIEnv *env, jint jintValue1);
+
+    static void setRequestType(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    jstring request(JNIEnv *env, jint jintValue1);
+
+    static const int BASE = 0;
+    static const int INCREMENT = 1;
+    static const int HTTP_BIN = BASE + INCREMENT;
+    static const int JSON_TEST = HTTP_BIN + INCREMENT;
 };
+
 
 
 #endif //APPLICATIONRESOURCES_NETWORK_H

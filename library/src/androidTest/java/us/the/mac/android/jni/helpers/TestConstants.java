@@ -5,6 +5,11 @@ package us.the.mac.android.jni.helpers;
  * NB: This file is GENERATED. DO NOT EDIT.
  */
 public class TestConstants {
+    public static final String TEST_URL = "https://httpbin.org/post";
+    public static final String TEST_REQUEST = "{ \"parameter\": \"parameterValue\" }";
+    public static final String TEST_PARAMETER = "parameterValue";
+    public static final String TEST_RESULT = "{ \"args\": {}, \"data\": \"\", \"files\": {}, \"form\": {}, \"headers\": { \"Accept\": \": application/json\", \"Content-Length\": \"0\", \"Content-Type\": \"application/json\", \"Host\": \"httpbin.org\", \"User-Agent\": \"Apache-HttpClient/UNAVAILABLE (java 1.4)\" }, \"json\": null, \"origin\": \"172.58.153.6\", \"url\": \"https://httpbin.org/post\" } ";
+    public static final String TEST_HEADERS = "application/json";
     public static final String TEST_ENCODE = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
     public static final String TEST_DECODE = "To be or not to be, That is the question";
     public static final String TEST_STRING = "hello, is it me you're looking for?";

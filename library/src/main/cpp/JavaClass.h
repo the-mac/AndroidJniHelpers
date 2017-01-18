@@ -244,10 +244,22 @@ namespace spotify {
             const char *getSignature(const char *functionName);
 
             /**
+            * @brief Return the mapped signature for the passed in function name (ie, (Z)Ljava/lang/String; -> "String.valueOf(4)")
+            * @return Class signature (should not be NULL)
+            */
+            static const char *getStaticSignature(const char *functionName);
+
+            /**
              * @brief Return the method id for the passed in Java function name
              * @return Class methohd id (should not be NULL)
              */
             jmethodID getJavaMethod(JNIEnv *env, const char *functionName);
+
+            /**
+             * @brief Return the static method id for the passed in Java function name
+             * @return Class methohd id (should not be NULL)
+             */
+            static jmethodID getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName);
 
 // Internal helper calls ////////////////////////////////////////////////////////////
         protected:

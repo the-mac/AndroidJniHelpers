@@ -229,9 +229,18 @@ namespace spotify {
             std::string signature = signatures[functionName];
             return signature.c_str();
         }
+        const char *JavaClass::getStaticSignature(const char *functionName) { return NULL; }
 
         jmethodID JavaClass::getJavaMethod(JNIEnv *env, const char *functionName) {
             jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
+            if (method == NULL) {
+                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
+                return NULL;
+            }
+            return method;
+        }
+        jmethodID JavaClass::getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName) {
+            jmethodID method = env->GetStaticMethodID(thisClass, functionName, getStaticSignature(functionName));
             if (method == NULL) {
                 JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
                 return NULL;
