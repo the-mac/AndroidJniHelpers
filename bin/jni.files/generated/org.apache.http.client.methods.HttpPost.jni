@@ -1,0 +1,91 @@
+
+org.apache.http.client.methods.HttpPost
+
+********************************************************************************
+
+org.apache.http.client.methods.HttpPost.jni was generated as a helper for HttpPost.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: org.apache.http.client.methods.HttpPost, org.apache.http.client.methods.HttpPost, org.apache.http.client.methods.HttpPost, getMethod
+
+The source code can be copied into the respective HttpPost.h and
+HttpPost.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class HttpPost : public JavaClass {
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the HttpPost class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("org/apache/http/client/methods", HttpPost);
+    }
+    HttpPost();
+
+    HttpPost(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jstring getMethod(JNIEnv *env);
+
+};
+
+********************************************************************************
+
+
+HttpPost::HttpPost() : JavaClass() {}
+
+/**
+* Here you can construct the HttpPost object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+HttpPost::HttpPost(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "HttpPost's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void HttpPost::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("getMethod", "()Ljava/lang/String;");
+
+    registerNativeMethods(env);
+}
+
+void HttpPost::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jstring HttpPost::getMethod(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+
+********************************************************************************
+
+jstring jstringReturnValue = instance.getMethod(env);
+
+

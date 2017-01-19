@@ -7,7 +7,7 @@ us.the.mac.android.jni.helpers.Network.jni was generated as a helper for Network
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: getInstance, testingDefault, setKey, setService, setReel, setReelId, setStatus, setVersion, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
+- Java methods: getInstance, testingDefault, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
 
 The source code can be copied into the respective Network.h and
 Network.cpp files in a location of your choice. Finally, the last segment
@@ -16,12 +16,8 @@ contains an example of what these method calls would look like in your code.
 ********************************************************************************
 
 class Network : public NativeObject {
-    static std::map<std::string, std::string> static_signatures = {
-        { "getInstance", "()Lus/the/mac/android/jni/helpers/Network;" },
-        { "testingDefault", "()Lus/the/mac/android/jni/helpers/Network;" },
-        { "access$000", "(Lus/the/mac/android/jni/helpers/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
-    };
-  jobject thisObj;
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -45,7 +41,11 @@ class Network : public NativeObject {
       std::string signature = static_signatures[functionName];
       return signature.c_str();
     }
-    Network() : NativeObject() {};
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    Network();
 
     Network(JNIEnv *env);
 
@@ -56,18 +56,6 @@ class Network : public NativeObject {
     static jobject getInstance(JNIEnv *env);
 
     static jobject testingDefault(JNIEnv *env);
-
-    jobject setKey(JNIEnv *env, jstring jstringValue1);
-
-    jobject setService(JNIEnv *env, jstring jstringValue1);
-
-    jobject setReel(JNIEnv *env, jstring jstringValue1);
-
-    jobject setReelId(JNIEnv *env, jstring jstringValue1);
-
-    jobject setStatus(JNIEnv *env, jstring jstringValue1);
-
-    jobject setVersion(JNIEnv *env, jstring jstringValue1);
 
     jstring getResultString(JNIEnv *env);
 
@@ -136,12 +124,8 @@ void Network::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addJavaSignature("setKey", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("setService", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("setReel", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("setReelId", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("setStatus", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("setVersion", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addStaticSignature("getInstance", "()Lus/the/mac/android/jni/helpers/Network;");
+    addStaticSignature("testingDefault", "()Lus/the/mac/android/jni/helpers/Network;");
     addJavaSignature("getResultString", "()Ljava/lang/String;");
     addJavaSignature("setResultString", "(Ljava/lang/String;)V");
     addNativeSignature("destroy", (void*)&Network::destroy, "()V");
@@ -152,6 +136,7 @@ void Network::initialize(JNIEnv *env)
     addNativeSignature("toJSONString", (void*)&Network::toJSONString, "()Ljava/lang/String;");
     addNativeSignature("setRequestType", (void*)&Network::setRequestType, "(I)V");
     addJavaSignature("request", "(I)Ljava/lang/String;");
+    addStaticSignature("access$000", "(Lus/the/mac/android/jni/helpers/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;");
 
     registerNativeMethods(env);
 }
@@ -163,56 +148,14 @@ void Network::mapFields()
 
 jobject Network::getInstance(JNIEnv *env)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __FUNCTION__));
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jobject Network::testingDefault(JNIEnv *env)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __FUNCTION__));
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setKey(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setService(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setReel(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setReelId(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setStatus(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
-jobject Network::setVersion(JNIEnv *env, jstring jstringValue1)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return result;
 }
@@ -334,7 +277,7 @@ jstring Network::request(JNIEnv *env, jint jintValue1)
 
 jobject Network::access$000(JNIEnv *env, jobject jobjectValue1)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1);
     JavaExceptionUtils::checkException(env);
     return result;
 }
@@ -345,18 +288,6 @@ jobject Network::access$000(JNIEnv *env, jobject jobjectValue1)
 jobject jobjectReturnValue = Network::getInstance(env);
 
 jobject jobjectReturnValue = Network::testingDefault(env);
-
-jobject jobjectReturnValue = instance.setKey(env, jstringValue1);
-
-jobject jobjectReturnValue = instance.setService(env, jstringValue1);
-
-jobject jobjectReturnValue = instance.setReel(env, jstringValue1);
-
-jobject jobjectReturnValue = instance.setReelId(env, jstringValue1);
-
-jobject jobjectReturnValue = instance.setStatus(env, jstringValue1);
-
-jobject jobjectReturnValue = instance.setVersion(env, jstringValue1);
 
 jstring jstringReturnValue = instance.getResultString(env);
 

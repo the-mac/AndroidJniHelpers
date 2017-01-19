@@ -3,6 +3,8 @@
 //
 
 #include "Network.h"
+#include "HttpPost.h"
+#include "ByteArrayEntity.h"
 #include <cstring>
 
 Network::Network() : NativeObject() {}
@@ -76,19 +78,6 @@ void Network::setResultString(JNIEnv *env, jstring jstringValue1)
     JavaExceptionUtils::checkException(env);
 }
 
-void Network::destroyNative(JNIEnv *env) { Network::destroy(env, thisObj); }
-
-void Network::destroy(JNIEnv *env, jobject java_this) {
-    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
-
-    if (object != NULL)
-    {
-        // TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->callToSomeFunction())
-    }
-
-}
-
-
 jbyteArray Network::getBytesNative(JNIEnv *env) { return Network::getBytes(env, thisObj); }
 
 jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
@@ -120,25 +109,25 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
 
     if (object != NULL)
     {
-//        //url with the post data
-//        HttpPost httpost(env, object->requestUrl);
-//
-//        //gets the json post request as bytes
-//        std::string jsonString = object->toJSON();
-//        const char *json = jsonString.c_str();
-//        jbyte *data = (jbyte *) json;
-//
-//        int size = std::strlen(json);
-//        jbyteArray outputData = env->NewByteArray(size);
-//        env->SetByteArrayRegion(outputData, 0, size, data);
-//        httpost.setEntity(ByteArrayEntity(outputData));
-//
-//        //sets a request header so the page receving the request
-//        //will know what to do with it
-//        httpost.setHeader("Accept", "application/json");
-//        httpost.setHeader("Content-type", "application/json");
-//
-//        return httpost.thisObj;
+        //url with the post data
+        HttpPost httpost(env, object->requestUrl);
+
+        //gets the json post request as bytes
+        std::string jsonString = object->toJSON();
+        const char *json = jsonString.c_str();
+        jbyte *data = (jbyte *) json;
+
+        int size = std::strlen(json);
+        jbyteArray outputData = env->NewByteArray(size);
+        env->SetByteArrayRegion(outputData, 0, size, data);
+        httpost.setEntity(env, ByteArrayEntity(env, outputData));
+
+        //sets a request header so the page receving the request
+        //will know what to do with it
+        httpost.setHeader(env, "Accept", "application/json");
+        httpost.setHeader(env, "Content-type", "application/json");
+
+        return httpost.thisObj;
     }
 
     return NULL;

@@ -114,30 +114,30 @@ public class Network extends NativeObject {
     private static final String STATUS = "status";
     private static final String VERSION = "version";
 
-    public Network setKey(String key) {
-        put(API_KEY, key);
-        return this;
-    }
-    public Network setService(String service) {
-        put(SERVICE_KEY, service);
-        return this;
-    }
-    public Network setReel(String reel) {
-        put(REEL, reel);
-        return this;
-    }
-    public Network setReelId(String reel) {
-        put(REEL_ID, reel);
-        return this;
-    }
-    public Network setStatus(String status) {
-        put(STATUS, status);
-        return this;
-    }
-    public Network setVersion(String version) {
-        put(VERSION, version);
-        return this;
-    }
+//    public Network setKey(String key) {
+//        put(API_KEY, key);
+//        return this;
+//    }
+//    public Network setService(String service) {
+//        put(SERVICE_KEY, service);
+//        return this;
+//    }
+//    public Network setReel(String reel) {
+//        put(REEL, reel);
+//        return this;
+//    }
+//    public Network setReelId(String reel) {
+//        put(REEL_ID, reel);
+//        return this;
+//    }
+//    public Network setStatus(String status) {
+//        put(STATUS, status);
+//        return this;
+//    }
+//    public Network setVersion(String version) {
+//        put(VERSION, version);
+//        return this;
+//    }
 
     @SuppressWarnings("UnusedDeclaration")
     @UsedByNativeCode

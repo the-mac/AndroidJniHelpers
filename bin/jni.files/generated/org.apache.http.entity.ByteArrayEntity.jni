@@ -1,0 +1,123 @@
+
+org.apache.http.entity.ByteArrayEntity
+
+********************************************************************************
+
+org.apache.http.entity.ByteArrayEntity.jni was generated as a helper for ByteArrayEntity.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: org.apache.http.entity.ByteArrayEntity, isRepeatable, getContentLength, getContent, isStreaming
+
+The source code can be copied into the respective ByteArrayEntity.h and
+ByteArrayEntity.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+class ByteArrayEntity : public JavaClass {
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the ByteArrayEntity class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("org/apache/http/entity", ByteArrayEntity);
+    }
+    ByteArrayEntity();
+
+    ByteArrayEntity(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jboolean isRepeatable(JNIEnv *env);
+
+    // long getContentLength;
+
+    jobject getContent(JNIEnv *env);
+
+    jboolean isStreaming(JNIEnv *env);
+
+};
+
+********************************************************************************
+
+
+ByteArrayEntity::ByteArrayEntity() : JavaClass() {}
+
+/**
+* Here you can construct the ByteArrayEntity object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+ByteArrayEntity::ByteArrayEntity(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "ByteArrayEntity's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void ByteArrayEntity::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("isRepeatable", "()Z");
+    addJavaSignature("getContentLength", "()J");
+    addJavaSignature("getContent", "()Ljava/io/InputStream;");
+    addJavaSignature("isStreaming", "()Z");
+
+    registerNativeMethods(env);
+}
+
+void ByteArrayEntity::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jboolean ByteArrayEntity::isRepeatable(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// long getContentLength
+
+
+jobject ByteArrayEntity::getContent(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean ByteArrayEntity::isStreaming(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jboolean jbooleanReturnValue = instance.isRepeatable(env);
+
+jlong jlongReturnValue = instance.getContentLength(env);
+
+jobject jobjectReturnValue = instance.getContent(env);
+
+jboolean jbooleanReturnValue = instance.isStreaming(env);
+
+

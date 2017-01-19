@@ -1,0 +1,3 @@
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
