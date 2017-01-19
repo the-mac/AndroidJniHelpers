@@ -52,6 +52,25 @@ public:
 
     std::string toJSON();
 
+
+    /**
+    * The getBytes method is used to get the Server's Certificate
+    * @return SSL (Secure Sockets Layer) certificate bytes for a secure network connection.
+    */
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+
+    /**
+    * The setRequestType method is used to set the request type
+    * Can set any variables needed for a specific session (url, session key, etc.)
+    */
+    static void setRequestType(JNIEnv *env, jobject java_this, jint jintValue1);
+
+
+    jbyteArray getBytesNative(JNIEnv *env);
+
+    void setRequestTypeNative(JNIEnv *env, jint jintValue1);
+
+
     static jobject getInstance(JNIEnv *env, jobject java_this);
 
     static jobject testingDefault(JNIEnv *env);
@@ -63,10 +82,6 @@ public:
     void destroyNative(JNIEnv *env);
 
     static void destroy(JNIEnv *env, jobject java_this);
-
-    jbyteArray getBytesNative(JNIEnv *env);
-
-    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
 
     jobject getHttpPostNative(JNIEnv *env);
 
@@ -83,10 +98,6 @@ public:
     jstring toJSONStringNative(JNIEnv *env);
 
     static jstring toJSONString(JNIEnv *env, jobject java_this);
-
-    void setRequestTypeNative(JNIEnv *env, jint jintValue1);
-
-    static void setRequestType(JNIEnv *env, jobject java_this, jint jintValue1);
 
     jstring request(JNIEnv *env, jint jintValue1);
 
