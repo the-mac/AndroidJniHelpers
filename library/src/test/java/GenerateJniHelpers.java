@@ -116,6 +116,9 @@ public class GenerateJniHelpers {
 				signatures.append(String.format("    addJavaSignature(\"%s\", \"%s\");\n", methodName, signature));
 			}
 		}
+
+		header.append("#include \"JniHelpers.h\"\n\n");
+
 		if(HAS_NATIVE_MEMBERS) {
 			header.append("class "+ className +" : public NativeObject {\n");
 		}
