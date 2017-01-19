@@ -120,7 +120,7 @@ public class NetworkTest {
         Network object = Network.getInstance();
         assertNotEquals(0, object.nPtr);
 
-        object.setReel("1234");
+        object.put("key", "1234");
         object.request(Network.HTTP_BIN);
 
         JSONObject jsonObject = new JSONObject(object.resultString);

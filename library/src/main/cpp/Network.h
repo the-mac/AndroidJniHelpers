@@ -19,6 +19,7 @@ class Network : public NativeObject {
     std::string requestUrl;
 
 public:
+    JavaString resultString;
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
     * the Jni Helper's relationship to the Network class defined in Java.
