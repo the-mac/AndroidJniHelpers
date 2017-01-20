@@ -45,10 +45,6 @@ public class Network extends NativeObject {
 
     public static final int HTTP_BIN = BASE + INCREMENT;
     public static final int JSON_TEST = HTTP_BIN + INCREMENT;
-    public static final int POSTER = JSON_TEST + INCREMENT;
-    public static final int SERVICE = POSTER + INCREMENT;
-    public static final int SAVE = SERVICE + INCREMENT;
-    public static final int SETUP = SAVE + INCREMENT;
 
     private static final String A = "\\A";
     private static final String X_509 = "X.509";
