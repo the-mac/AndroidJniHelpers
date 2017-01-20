@@ -122,8 +122,8 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
         env->SetByteArrayRegion(outputData, 0, size, data);
         httpost.setEntity(env, ByteArrayEntity(env, outputData));
 
-        //sets a request header so the page receving the request
-        //will know what to do with it
+        //sets a request header so the page receving
+        //the request will know what to do with it
         httpost.setHeader(env, "Accept", "application/json");
         httpost.setHeader(env, "Content-type", "application/json");
 
@@ -173,6 +173,7 @@ std::string Network::toJSON() {
     ss << "{ ";
 
     while (pair != mappingObject.end()) {
+        if(pair != mappingObject.begin()) ss << ", ";
         ss << "\"" << pair->first << "\": \"" << pair->second << "\"";
         ++pair;
     }
