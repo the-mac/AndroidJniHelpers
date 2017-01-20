@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ByteArrayTest {
     static {
-        System.loadLibrary("test-libs");
+        System.loadLibrary("test-helper-lib");
     }
 
     private byte[] getTestByteArray() {

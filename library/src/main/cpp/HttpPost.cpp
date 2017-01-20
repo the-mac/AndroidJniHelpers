@@ -41,21 +41,23 @@ void HttpPost::mapFields()
     //mapField("encodedString", kTypeString, &encodedString);
 }
 
-jstring HttpPost::getMethod(JNIEnv *env)
-{
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
-    JavaExceptionUtils::checkException(env);
-    return (jstring) result;
-}
+//jstring HttpPost::getMethod(JNIEnv *env)
+//{
+//    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+//    JavaExceptionUtils::checkException(env);
+//    return (jstring) result;
+//}
 
 void HttpPost::setEntity(JNIEnv *env, ByteArrayEntity entity)
 {
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), entity.thisObj);
     JavaExceptionUtils::checkException(env);
 }
 
-void HttpPost::setHeader(JNIEnv *env, string key, string value)
+void HttpPost::setHeader(JNIEnv *env, string stringKey, string stringValue)
 {
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    jstring key = env->NewStringUTF(stringKey.c_str());
+    jstring value = env->NewStringUTF(stringValue.c_str());
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), key, value);
     JavaExceptionUtils::checkException(env);
 }

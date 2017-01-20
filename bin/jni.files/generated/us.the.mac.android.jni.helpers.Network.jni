@@ -7,13 +7,15 @@ us.the.mac.android.jni.helpers.Network.jni was generated as a helper for Network
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: getInstance, testingDefault, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
+- Java methods: getInstance, testingDefault, setKey, setService, setReel, setReelId, setStatus, setVersion, getResultString, setResultString, destroy, getBytes, getHttpPost, put, get, toJSONString, setRequestType, request, access$000
 
 The source code can be copied into the respective Network.h and
 Network.cpp files in a location of your choice. Finally, the last segment
 contains an example of what these method calls would look like in your code.
 
 ********************************************************************************
+
+#include "JniHelpers.h"
 
 class Network : public NativeObject {
     static std::map<std::string, std::string> static_signatures;
@@ -56,6 +58,18 @@ class Network : public NativeObject {
     static jobject getInstance(JNIEnv *env);
 
     static jobject testingDefault(JNIEnv *env);
+
+    jobject setKey(JNIEnv *env, jstring jstringValue1);
+
+    jobject setService(JNIEnv *env, jstring jstringValue1);
+
+    jobject setReel(JNIEnv *env, jstring jstringValue1);
+
+    jobject setReelId(JNIEnv *env, jstring jstringValue1);
+
+    jobject setStatus(JNIEnv *env, jstring jstringValue1);
+
+    jobject setVersion(JNIEnv *env, jstring jstringValue1);
 
     jstring getResultString(JNIEnv *env);
 
@@ -110,7 +124,7 @@ Network::Network(JNIEnv *env) : NativeObject(env)
 
     thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
 
-    // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
     // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
 
     if (thisObj == NULL) {
@@ -126,6 +140,12 @@ void Network::initialize(JNIEnv *env)
 
     addStaticSignature("getInstance", "()Lus/the/mac/android/jni/helpers/Network;");
     addStaticSignature("testingDefault", "()Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setKey", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setService", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setReel", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setReelId", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setStatus", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("setVersion", "(Ljava/lang/String;)Lus/the/mac/android/jni/helpers/Network;");
     addJavaSignature("getResultString", "()Ljava/lang/String;");
     addJavaSignature("setResultString", "(Ljava/lang/String;)V");
     addNativeSignature("destroy", (void*)&Network::destroy, "()V");
@@ -156,6 +176,48 @@ jobject Network::getInstance(JNIEnv *env)
 jobject Network::testingDefault(JNIEnv *env)
 {
     jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setKey(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setService(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setReel(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setReelId(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setStatus(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Network::setVersion(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
     JavaExceptionUtils::checkException(env);
     return result;
 }
@@ -288,6 +350,18 @@ jobject Network::access$000(JNIEnv *env, jobject jobjectValue1)
 jobject jobjectReturnValue = Network::getInstance(env);
 
 jobject jobjectReturnValue = Network::testingDefault(env);
+
+jobject jobjectReturnValue = instance.setKey(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setService(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setReel(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setReelId(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setStatus(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.setVersion(env, jstringValue1);
 
 jstring jstringReturnValue = instance.getResultString(env);
 

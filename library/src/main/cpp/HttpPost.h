@@ -28,9 +28,9 @@ public:
 
     void mapFields();
 
-    jstring getMethod(JNIEnv *env);
-
-    jmethodID getMethod(const char *method_name) const;
+//    jstring getMethod(JNIEnv *env);
+//
+//    jmethodID getMethod(const char *method_name) const;
 
     void setEntity(JNIEnv *env, ByteArrayEntity entity);
 

@@ -9,11 +9,7 @@
 using namespace std;
 
 class Network : public NativeObject {
-    static std::map<std::string, std::string> static_signatures = {
-            { "getInstance", "()Lus/the/mac/android/jni/helpers/Network;" },
-            { "testingDefault", "()Lus/the/mac/android/jni/helpers/Network;" },
-            { "access$000", "(Lus/the/mac/android/jni/helpers/Network;)Lorg/apache/http/impl/client/DefaultHttpClient;" }
-    };
+    static std::map<std::string, std::string> static_signatures;
     jobject thisObj;
     std::map<std::string,std::string> mappingObject;
     std::string requestUrl;
@@ -79,9 +75,9 @@ public:
 
     void setResultString(JNIEnv *env, jstring jstringValue1);
 
-    void destroyNative(JNIEnv *env);
-
-    static void destroy(JNIEnv *env, jobject java_this);
+//    void destroyNative(JNIEnv *env);
+//
+//    static void destroy(JNIEnv *env, jobject java_this);
 
     jobject getHttpPostNative(JNIEnv *env);
 

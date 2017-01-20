@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNotEquals;
 
 public class NativeObjectTest {
     static {
-        System.loadLibrary("test-libs");
+        System.loadLibrary("test-helper-lib");
     }
 
     native public PersistedObject createPersistedObject();

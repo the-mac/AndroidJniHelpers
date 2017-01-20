@@ -141,15 +141,15 @@ void NetworkTest::nativeNetworkRequest(JNIEnv *env, jobject javaThis) {
     JUNIT_ASSERT_TRUE(length > 0);
 
     JSONObject jsonObject(env, resultString.get());
-    JavaString requestUrl = jsonObject.getString(env, "url");
+    JavaString requestUrl(env, jsonObject.getString(env, "url"));
     JUNIT_ASSERT_EQUALS_STRING(TEST_URL, requestUrl.get());
 
-    JSONObject headers = jsonObject.getJSONObject(env, "headers");
+    JSONObject headers(env, jsonObject.getJSONObject(env, "headers"));
 
-    JavaString acceptString = headers.getString(env, "Accept");
+    JavaString acceptString(env, headers.getString(env, "Accept"));
     JUNIT_ASSERT_EQUALS_STRING(TEST_HEADERS, acceptString.get());
 
-    JavaString contentString = headers.getString(env, "Content-Type");
+    JavaString contentString(env, headers.getString(env, "Content-Type"));
     JUNIT_ASSERT_EQUALS_STRING(TEST_HEADERS, contentString.get());
 
 }

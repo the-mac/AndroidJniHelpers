@@ -35,9 +35,9 @@ void Network::initialize(JNIEnv *env)
 
     addJavaSignature("getResultString", "()Ljava/lang/String;");
     addJavaSignature("setResultString", "(Ljava/lang/String;)V");
-    addNativeSignature("destroy", (void*)&Network::destroy, "()V");
+//    addNativeSignature("destroy", (void*)&Network::destroy, "()V");
     addNativeSignature("getBytes", (void*)&Network::getBytes, "()[B");
-    addNativeSignature("getHttpPost", (void*)&Network::getHttpPost, "()Ljava/lang/Object;");
+    addNativeSignature("getHttpPost", (void*)&Network::getHttpPost, "()Lorg/apache/http/client/methods/HttpPost;");
     addNativeSignature("put", (void*)&Network::put, "(Ljava/lang/String;Ljava/lang/String;)V");
     addNativeSignature("get", (void*)&Network::get, "(Ljava/lang/String;)Ljava/lang/String;");
     addNativeSignature("toJSONString", (void*)&Network::toJSONString, "()Ljava/lang/String;");
@@ -49,7 +49,7 @@ void Network::initialize(JNIEnv *env)
 
 void Network::mapFields()
 {
-    //mapField("encodedString", kTypeString, &encodedString);
+//    mapField("requestUrl", kTypeString, &requestUrl);
 }
 
 jobject Network::getInstance(JNIEnv *env, jobject java_this)

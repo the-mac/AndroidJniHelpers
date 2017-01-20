@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 
 public class JavaClassTest {
     static {
-        System.loadLibrary("test-libs");
+        System.loadLibrary("test-helper-lib");
     }
 
     @Test

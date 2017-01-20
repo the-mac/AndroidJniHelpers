@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 
 public class JavaStringTest {
     static {
-        System.loadLibrary("test-libs");
+        System.loadLibrary("test-helper-lib");
     }
 
     native static public boolean supportsRawStringLiterals();

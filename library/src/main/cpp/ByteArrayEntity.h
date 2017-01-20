@@ -9,7 +9,6 @@
 #include "JniHelpers.h"
 
 class ByteArrayEntity : public JavaClass {
-    jobject thisObj;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
@@ -34,6 +33,7 @@ public:
 
     jboolean isStreaming(JNIEnv *env);
 
+    jobject thisObj;
 };
 
 

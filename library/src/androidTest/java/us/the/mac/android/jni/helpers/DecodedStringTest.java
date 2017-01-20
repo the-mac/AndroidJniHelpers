@@ -28,7 +28,7 @@ import static org.junit.Assert.assertNotEquals;
 
 public class DecodedStringTest {
     static {
-        System.loadLibrary("test-libs");
+        System.loadLibrary("test-helper-lib");
     }
 
     native public DecodedString createDecodedString();

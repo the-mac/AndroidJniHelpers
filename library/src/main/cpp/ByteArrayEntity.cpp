@@ -32,3 +32,8 @@ void ByteArrayEntity::initialize(JNIEnv *env)
 
     registerNativeMethods(env);
 }
+
+void ByteArrayEntity::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}

@@ -1,0 +1,349 @@
+
+org.json.JSONObject
+
+********************************************************************************
+
+org.json.JSONObject.jni was generated as a helper for JSONObject.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: org.json.JSONObject, org.json.JSONObject, length, remove, isNull, has, opt, optBoolean, optBoolean, optDouble, optDouble, optInt, optInt, optLong, optLong, optString, optString, optJSONArray, optJSONObject, keys, names, toString, quote, wrap
+
+The source code can be copied into the respective JSONObject.h and
+JSONObject.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class JSONObject : public JavaClass {
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the JSONObject class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("org/json", JSONObject);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the JSONObject class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("org/json", JSONObject));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the JSONObject class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    JSONObject();
+
+    JSONObject(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jint length(JNIEnv *env);
+
+    jobject remove(JNIEnv *env, jstring jstringValue1);
+
+    jboolean isNull(JNIEnv *env, jstring jstringValue1);
+
+    jboolean has(JNIEnv *env, jstring jstringValue1);
+
+    jobject opt(JNIEnv *env, jstring jstringValue1);
+
+    jboolean optBoolean(JNIEnv *env, jstring jstringValue1);
+
+    jboolean optBoolean(JNIEnv *env, jstring jstringValue1);
+
+    // double optDouble;
+
+    // double optDouble;
+
+    jint optInt(JNIEnv *env, jstring jstringValue1);
+
+    jint optInt(JNIEnv *env, jstring jstringValue1);
+
+    // long optLong;
+
+    // long optLong;
+
+    jstring optString(JNIEnv *env, jstring jstringValue1);
+
+    jstring optString(JNIEnv *env, jstring jstringValue1);
+
+    jobject optJSONArray(JNIEnv *env, jstring jstringValue1);
+
+    jobject optJSONObject(JNIEnv *env, jstring jstringValue1);
+
+    jobject keys(JNIEnv *env);
+
+    jobject names(JNIEnv *env);
+
+    jstring toString(JNIEnv *env);
+
+    static jstring quote(JNIEnv *env, jstring jstringValue1);
+
+    static jobject wrap(JNIEnv *env, jobject jobjectValue1);
+
+};
+
+********************************************************************************
+
+
+JSONObject::JSONObject() : JavaClass() {}
+
+/**
+* Here you can construct the JSONObject object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+JSONObject::JSONObject(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "JSONObject's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void JSONObject::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("length", "()I");
+    addJavaSignature("remove", "(Ljava/lang/String;)Ljava/lang/Object;");
+    addJavaSignature("isNull", "(Ljava/lang/String;)Z");
+    addJavaSignature("has", "(Ljava/lang/String;)Z");
+    addJavaSignature("opt", "(Ljava/lang/String;)Ljava/lang/Object;");
+    addJavaSignature("optBoolean", "(Ljava/lang/String;)Z");
+    addJavaSignature("optBoolean", "(Ljava/lang/String;Z)Z");
+    addJavaSignature("optDouble", "(Ljava/lang/String;)D");
+    addJavaSignature("optDouble", "(Ljava/lang/String;D)D");
+    addJavaSignature("optInt", "(Ljava/lang/String;)I");
+    addJavaSignature("optInt", "(Ljava/lang/String;I)I");
+    addJavaSignature("optLong", "(Ljava/lang/String;)J");
+    addJavaSignature("optLong", "(Ljava/lang/String;J)J");
+    addJavaSignature("optString", "(Ljava/lang/String;)Ljava/lang/String;");
+    addJavaSignature("optString", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
+    addJavaSignature("optJSONArray", "(Ljava/lang/String;)Lorg/json/JSONArray;");
+    addJavaSignature("optJSONObject", "(Ljava/lang/String;)Lorg/json/JSONObject;");
+    addJavaSignature("keys", "()Ljava/util/Iterator;");
+    addJavaSignature("names", "()Lorg/json/JSONArray;");
+    addJavaSignature("toString", "()Ljava/lang/String;");
+    addStaticSignature("quote", "(Ljava/lang/String;)Ljava/lang/String;");
+    addStaticSignature("wrap", "(Ljava/lang/Object;)Ljava/lang/Object;");
+
+    registerNativeMethods(env);
+}
+
+void JSONObject::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jint JSONObject::length(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject JSONObject::remove(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean JSONObject::isNull(JNIEnv *env, jstring jstringValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean JSONObject::has(JNIEnv *env, jstring jstringValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject JSONObject::opt(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean JSONObject::optBoolean(JNIEnv *env, jstring jstringValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean JSONObject::optBoolean(JNIEnv *env, jstring jstringValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// double optDouble
+
+
+// double optDouble
+
+
+jint JSONObject::optInt(JNIEnv *env, jstring jstringValue1)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint JSONObject::optInt(JNIEnv *env, jstring jstringValue1)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// long optLong
+
+
+// long optLong
+
+
+jstring JSONObject::optString(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring JSONObject::optString(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject JSONObject::optJSONArray(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject JSONObject::optJSONObject(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject JSONObject::keys(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject JSONObject::names(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring JSONObject::toString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring JSONObject::quote(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject JSONObject::wrap(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jint jintReturnValue = instance.length(env);
+
+jobject jobjectReturnValue = instance.remove(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.isNull(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.has(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.opt(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.optBoolean(env, jstringValue1);
+
+jboolean jbooleanReturnValue = instance.optBoolean(env, jstringValue1);
+
+jdouble jdoubleReturnValue = instance.optDouble(env, jstringValue1);
+
+jdouble jdoubleReturnValue = instance.optDouble(env, jstringValue1);
+
+jint jintReturnValue = instance.optInt(env, jstringValue1);
+
+jint jintReturnValue = instance.optInt(env, jstringValue1);
+
+jlong jlongReturnValue = instance.optLong(env, jstringValue1);
+
+jlong jlongReturnValue = instance.optLong(env, jstringValue1);
+
+jstring jstringReturnValue = instance.optString(env, jstringValue1);
+
+jstring jstringReturnValue = instance.optString(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.optJSONArray(env, jstringValue1);
+
+jobject jobjectReturnValue = instance.optJSONObject(env, jstringValue1);
+
+java.util.Iterator<jstring> java.util.Iterator<jstring>ReturnValue = instance.keys(env);
+
+jobject jobjectReturnValue = instance.names(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jstring jstringReturnValue = JSONObject::quote(env, jstringValue1);
+
+jobject jobjectReturnValue = JSONObject::wrap(env, jobjectValue1);
+
+

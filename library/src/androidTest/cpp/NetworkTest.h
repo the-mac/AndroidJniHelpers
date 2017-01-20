@@ -38,7 +38,7 @@ public:
   ~NetworkTest() {}
 
   const char* getCanonicalName() const {
-    return MAKE_CANONICAL_NAME("com/operators/nativity/requests", NetworkTest);
+    return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", NetworkTest);
   }
   void initialize(JNIEnv *env);
   void mapFields() {}
