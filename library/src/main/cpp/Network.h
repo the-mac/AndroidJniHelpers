@@ -9,7 +9,6 @@
 using namespace std;
 
 class Network : public NativeObject {
-    static std::map<std::string, std::string> static_signatures;
     jobject thisObj;
     std::map<std::string,std::string> mappingObject;
     std::string requestUrl;
@@ -23,6 +22,9 @@ public:
     const char *getCanonicalName() const {
         return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network);
     }
+    static const char *getCanonicalName(const char *method_name) {
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers/Network", method_name);
+    }
     /**
     * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
     * the Jni Helper's static relationship to the Network class defined in Java.
@@ -30,14 +32,7 @@ public:
     static jclass getClass(JNIEnv *env) {
         return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
     }
-    /**
-    * The getStaticSignature method is used to get the Jni Helper's
-    * static signature for the Network class defined in Java.
-    */
-    static const char *getStaticSignature(const char *functionName) {
-        std::string signature = static_signatures[functionName];
-        return signature.c_str();
-    }
+
     Network();
 
     Network(JNIEnv *env);

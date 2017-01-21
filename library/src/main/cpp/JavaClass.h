@@ -32,6 +32,10 @@
 #include <vector>
 #include <stdarg.h>
 
+#define MAKE_CANONICAL_NAME(_PACKAGE, _CLASS) _PACKAGE "/" _CLASS
+
+static std::map<std::string, std::string> static_signatures;
+
 namespace spotify {
     namespace jni {
 
@@ -61,6 +65,15 @@ namespace spotify {
  * distributed with JniHelpers.
  */
         class EXPORT JavaClass {
+
+//            class StaticClass : public JavaClass {
+//            public:
+//                StaticClass() : JavaClass() {}
+//                void initialize(JNIEnv *env) {}
+//                void mapFields() {}
+//            };
+//
+//            static StaticClass * staticInstance = new StaticClass();
 
         protected:
             std::map<std::string, std::string> signatures;
@@ -137,6 +150,13 @@ namespace spotify {
              * @return Canonincal name (may NOT be NULL, or other problems will result!)
              */
             virtual const char *getCanonicalName() const = 0;
+
+            static const char *getCanonicalName(const char *method_name);
+
+
+//            static const char *getStaticCanonicalName(const char *method_name) const {
+//                return staticInstance->getCanonicalName(method_name);
+//            }
 
 // Public methods ///////////////////////////////////////////////////////////////////
         public:
@@ -244,8 +264,8 @@ namespace spotify {
             const char *getSignature(const char *functionName);
 
             /**
-            * @brief Return the mapped signature for the passed in function name (ie, (Z)Ljava/lang/String; -> "String.valueOf(4)")
-            * @return Class signature (should not be NULL)
+            * The getStaticSignature method is used to get the Jni Helper's
+            * static signature for the Network class defined in Java.
             */
             static const char *getStaticSignature(const char *functionName);
 
@@ -377,6 +397,11 @@ namespace spotify {
              * @param the signature of the function is passed here.
              */
             void addJavaSignature(const char *method_name, const char *signature);
+
+            void addStaticSignature(const char *functionName, const char *signature) {
+                static_signatures[functionName] = signature;
+            }
+
             /**
              * @brief Register all native methods on the class
              *

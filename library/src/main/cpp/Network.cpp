@@ -17,10 +17,7 @@ Network::Network(JNIEnv *env) : NativeObject(env)
 {
     initialize(env);
 
-    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
-
-    // thisObj = env->NewObject(_clazz, getMethod(getCanonicalName()));
-    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+    thisObj = Network::testingDefault(env);
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -33,6 +30,8 @@ void Network::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
+    addStaticSignature(getCanonicalName("testingDefault"), "()Lus/the/mac/android/jni/helpers/Network;");
+    addJavaSignature("getInstance", "()Lus/the/mac/android/jni/helpers/Network;");
     addJavaSignature("getResultString", "()Ljava/lang/String;");
     addJavaSignature("setResultString", "(Ljava/lang/String;)V");
 //    addNativeSignature("destroy", (void*)&Network::destroy, "()V");
@@ -60,7 +59,7 @@ jobject Network::getInstance(JNIEnv *env, jobject java_this)
 
 jobject Network::testingDefault(JNIEnv *env)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), getCanonicalName(__FUNCTION__)));
     JavaExceptionUtils::checkException(env);
     return result;
 }

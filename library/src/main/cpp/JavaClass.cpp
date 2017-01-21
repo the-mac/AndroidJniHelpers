@@ -229,8 +229,14 @@ namespace spotify {
             std::string signature = signatures[functionName];
             return signature.c_str();
         }
-        const char *JavaClass::getStaticSignature(const char *functionName) { return NULL; }
-
+        /**
+        * The getStaticSignature method is used to get the Jni Helper's
+        * static signature for the Network class defined in Java.
+        */
+        const char *JavaClass::getStaticSignature(const char *functionName) {
+            std::string signature = static_signatures[functionName];
+            return signature.c_str();
+        }
         jmethodID JavaClass::getJavaMethod(JNIEnv *env, const char *functionName) {
             jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
             if (method == NULL) {
