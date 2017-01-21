@@ -1,0 +1,644 @@
+
+java.io.File
+
+********************************************************************************
+
+java.io.File.jni was generated as a helper for File.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: isInvalid, getPrefixLength, java.io.File, java.io.File, java.io.File, java.io.File, getName, getParent, getParentFile, getPath, isAbsolute, getAbsolutePath, getAbsoluteFile, toURI, canRead, canWrite, exists, isDirectory, isFile, isHidden, lastModified, length, delete, deleteOnExit, list, list, listFiles, listFiles, listFiles, mkdir, mkdirs, renameTo, setLastModified, setReadOnly, setWritable, setWritable, setReadable, setReadable, setExecutable, setExecutable, canExecute, listRoots, getTotalSpace, getFreeSpace, getUsableSpace, compareTo, equals, hashCode, toString, toPath, compareTo
+
+The source code can be copied into the respective File.h and
+File.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class File : public JavaClass {
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the File class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/io", File);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the File class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("java/io", File));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the File class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    File();
+
+    File(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jboolean isInvalid(JNIEnv *env);
+
+    jint getPrefixLength(JNIEnv *env);
+
+    jstring getName(JNIEnv *env);
+
+    jstring getParent(JNIEnv *env);
+
+    jobject getParentFile(JNIEnv *env);
+
+    jstring getPath(JNIEnv *env);
+
+    jboolean isAbsolute(JNIEnv *env);
+
+    jstring getAbsolutePath(JNIEnv *env);
+
+    jobject getAbsoluteFile(JNIEnv *env);
+
+    jobject toURI(JNIEnv *env);
+
+    jboolean canRead(JNIEnv *env);
+
+    jboolean canWrite(JNIEnv *env);
+
+    jboolean exists(JNIEnv *env);
+
+    jboolean isDirectory(JNIEnv *env);
+
+    jboolean isFile(JNIEnv *env);
+
+    jboolean isHidden(JNIEnv *env);
+
+    // long lastModified;
+
+    // long length;
+
+    jboolean delete(JNIEnv *env);
+
+    void deleteOnExit(JNIEnv *env);
+
+    jobject list(JNIEnv *env);
+
+    jobject list(JNIEnv *env);
+
+    jobject listFiles(JNIEnv *env);
+
+    jobject listFiles(JNIEnv *env);
+
+    jobject listFiles(JNIEnv *env);
+
+    jboolean mkdir(JNIEnv *env);
+
+    jboolean mkdirs(JNIEnv *env);
+
+    jboolean renameTo(JNIEnv *env, jobject jobjectValue1);
+
+    jboolean setLastModified(JNIEnv *env, jlong jlongValue1);
+
+    jboolean setReadOnly(JNIEnv *env);
+
+    jboolean setWritable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean setWritable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean setReadable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean setReadable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean setExecutable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean setExecutable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2);
+
+    jboolean canExecute(JNIEnv *env);
+
+    static jobject listRoots(JNIEnv *env);
+
+    // long getTotalSpace;
+
+    // long getFreeSpace;
+
+    // long getUsableSpace;
+
+    jint compareTo(JNIEnv *env, jobject jobjectValue1);
+
+    jboolean equals(JNIEnv *env, jobject jobjectValue1);
+
+    jint hashCode(JNIEnv *env);
+
+    jstring toString(JNIEnv *env);
+
+    jobject toPath(JNIEnv *env);
+
+    jint compareTo(JNIEnv *env, jobject jobjectValue1);
+
+};
+
+********************************************************************************
+
+
+File::File() : JavaClass() {}
+
+/**
+* Here you can construct the File object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+File::File(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "File's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void File::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("isInvalid", "()Z");
+    addJavaSignature("getPrefixLength", "()I");
+    addJavaSignature("getName", "()Ljava/lang/String;");
+    addJavaSignature("getParent", "()Ljava/lang/String;");
+    addJavaSignature("getParentFile", "()Ljava/io/File;");
+    addJavaSignature("getPath", "()Ljava/lang/String;");
+    addJavaSignature("isAbsolute", "()Z");
+    addJavaSignature("getAbsolutePath", "()Ljava/lang/String;");
+    addJavaSignature("getAbsoluteFile", "()Ljava/io/File;");
+    addJavaSignature("toURI", "()Ljava/net/URI;");
+    addJavaSignature("canRead", "()Z");
+    addJavaSignature("canWrite", "()Z");
+    addJavaSignature("exists", "()Z");
+    addJavaSignature("isDirectory", "()Z");
+    addJavaSignature("isFile", "()Z");
+    addJavaSignature("isHidden", "()Z");
+    addJavaSignature("lastModified", "()J");
+    addJavaSignature("length", "()J");
+    addJavaSignature("delete", "()Z");
+    addJavaSignature("deleteOnExit", "()V");
+    addJavaSignature("list", "()[Ljava/lang/String;");
+    addJavaSignature("list", "(Ljava/io/FilenameFilter;)[Ljava/lang/String;");
+    addJavaSignature("listFiles", "()[Ljava/io/File;");
+    addJavaSignature("listFiles", "(Ljava/io/FilenameFilter;)[Ljava/io/File;");
+    addJavaSignature("listFiles", "(Ljava/io/FileFilter;)[Ljava/io/File;");
+    addJavaSignature("mkdir", "()Z");
+    addJavaSignature("mkdirs", "()Z");
+    addJavaSignature("renameTo", "(Ljava/io/File;)Z");
+    addJavaSignature("setLastModified", "(J)Z");
+    addJavaSignature("setReadOnly", "()Z");
+    addJavaSignature("setWritable", "(ZZ)Z");
+    addJavaSignature("setWritable", "(Z)Z");
+    addJavaSignature("setReadable", "(ZZ)Z");
+    addJavaSignature("setReadable", "(Z)Z");
+    addJavaSignature("setExecutable", "(ZZ)Z");
+    addJavaSignature("setExecutable", "(Z)Z");
+    addJavaSignature("canExecute", "()Z");
+    addStaticSignature("listRoots", "()[Ljava/io/File;");
+    addJavaSignature("getTotalSpace", "()J");
+    addJavaSignature("getFreeSpace", "()J");
+    addJavaSignature("getUsableSpace", "()J");
+    addJavaSignature("compareTo", "(Ljava/io/File;)I");
+    addJavaSignature("equals", "(Ljava/lang/Object;)Z");
+    addJavaSignature("hashCode", "()I");
+    addJavaSignature("toString", "()Ljava/lang/String;");
+    addJavaSignature("toPath", "()Ljava/nio/file/Path;");
+    addJavaSignature("compareTo", "(Ljava/lang/Object;)I");
+
+    registerNativeMethods(env);
+}
+
+void File::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jboolean File::isInvalid(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint File::getPrefixLength(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring File::getName(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring File::getParent(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject File::getParentFile(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring File::getPath(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jboolean File::isAbsolute(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring File::getAbsolutePath(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject File::getAbsoluteFile(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::toURI(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::canRead(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::canWrite(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::exists(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::isDirectory(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::isFile(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::isHidden(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// long lastModified
+
+
+// long length
+
+
+jboolean File::delete(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+void File::deleteOnExit(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+jobject File::list(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::list(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::listFiles(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::listFiles(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::listFiles(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::mkdir(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::mkdirs(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::renameTo(JNIEnv *env, jobject jobjectValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setLastModified(JNIEnv *env, jlong jlongValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jlongValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setReadOnly(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setWritable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setWritable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setReadable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setReadable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setExecutable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::setExecutable(JNIEnv *env, jboolean jbooleanValue1, jboolean jbooleanValue2)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jbooleanValue1, jbooleanValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::canExecute(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject File::listRoots(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// long getTotalSpace
+
+
+// long getFreeSpace
+
+
+// long getUsableSpace
+
+
+jint File::compareTo(JNIEnv *env, jobject jobjectValue1)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean File::equals(JNIEnv *env, jobject jobjectValue1)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint File::hashCode(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring File::toString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject File::toPath(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint File::compareTo(JNIEnv *env, jobject jobjectValue1)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jboolean jbooleanReturnValue = instance.isInvalid(env);
+
+jint jintReturnValue = instance.getPrefixLength(env);
+
+jstring jstringReturnValue = instance.getName(env);
+
+jstring jstringReturnValue = instance.getParent(env);
+
+jobject jobjectReturnValue = instance.getParentFile(env);
+
+jstring jstringReturnValue = instance.getPath(env);
+
+jboolean jbooleanReturnValue = instance.isAbsolute(env);
+
+jstring jstringReturnValue = instance.getAbsolutePath(env);
+
+jobject jobjectReturnValue = instance.getAbsoluteFile(env);
+
+jobject jobjectReturnValue = instance.toURI(env);
+
+jboolean jbooleanReturnValue = instance.canRead(env);
+
+jboolean jbooleanReturnValue = instance.canWrite(env);
+
+jboolean jbooleanReturnValue = instance.exists(env);
+
+jboolean jbooleanReturnValue = instance.isDirectory(env);
+
+jboolean jbooleanReturnValue = instance.isFile(env);
+
+jboolean jbooleanReturnValue = instance.isHidden(env);
+
+jlong jlongReturnValue = instance.lastModified(env);
+
+jlong jlongReturnValue = instance.length(env);
+
+jboolean jbooleanReturnValue = instance.delete(env);
+
+instance.deleteOnExit(env);
+
+jstringArray jstringArrayReturnValue = instance.list(env);
+
+jstringArray jstringArrayReturnValue = instance.list(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jobject jobjectReturnValue = instance.listFiles(env);
+
+jboolean jbooleanReturnValue = instance.mkdir(env);
+
+jboolean jbooleanReturnValue = instance.mkdirs(env);
+
+jboolean jbooleanReturnValue = instance.renameTo(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.setLastModified(env, jlongValue1);
+
+jboolean jbooleanReturnValue = instance.setReadOnly(env);
+
+jboolean jbooleanReturnValue = instance.setWritable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setWritable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setReadable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setReadable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setExecutable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.setExecutable(env, jbooleanValue1, jbooleanValue2);
+
+jboolean jbooleanReturnValue = instance.canExecute(env);
+
+jobject jobjectReturnValue = File::listRoots(env);
+
+jlong jlongReturnValue = instance.getTotalSpace(env);
+
+jlong jlongReturnValue = instance.getFreeSpace(env);
+
+jlong jlongReturnValue = instance.getUsableSpace(env);
+
+jint jintReturnValue = instance.compareTo(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.equals(env, jobjectValue1);
+
+jint jintReturnValue = instance.hashCode(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jobject jobjectReturnValue = instance.toPath(env);
+
+jint jintReturnValue = instance.compareTo(env, jobjectValue1);
+
+

@@ -1,0 +1,287 @@
+
+android.preference.PreferenceManager
+
+********************************************************************************
+
+android.preference.PreferenceManager.jni was generated as a helper for PreferenceManager.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: android.preference.PreferenceManager, createPreferenceScreen, getSharedPreferencesName, setSharedPreferencesName, getSharedPreferencesMode, setSharedPreferencesMode, setStorageDefault, setStorageDeviceProtected, isStorageDefault, isStorageDeviceProtected, getSharedPreferences, getDefaultSharedPreferences, getDefaultSharedPreferencesName, findPreference, setDefaultValues, setDefaultValues
+
+The source code can be copied into the respective PreferenceManager.h and
+PreferenceManager.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class PreferenceManager : public JavaClass {
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the PreferenceManager class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("android/preference", PreferenceManager);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the PreferenceManager class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("android/preference", PreferenceManager));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the PreferenceManager class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    PreferenceManager();
+
+    PreferenceManager(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jobject android.preference.PreferenceManager(JNIEnv *env);
+
+    jobject createPreferenceScreen(JNIEnv *env, jobject jobjectValue1);
+
+    jstring getSharedPreferencesName(JNIEnv *env);
+
+    void setSharedPreferencesName(JNIEnv *env, jstring jstringValue1);
+
+    jint getSharedPreferencesMode(JNIEnv *env);
+
+    void setSharedPreferencesMode(JNIEnv *env, jint jintValue1);
+
+    void setStorageDefault(JNIEnv *env);
+
+    void setStorageDeviceProtected(JNIEnv *env);
+
+    jboolean isStorageDefault(JNIEnv *env);
+
+    jboolean isStorageDeviceProtected(JNIEnv *env);
+
+    jobject getSharedPreferences(JNIEnv *env);
+
+    static jobject getDefaultSharedPreferences(JNIEnv *env, jobject jobjectValue1);
+
+    static jstring getDefaultSharedPreferencesName(JNIEnv *env, jobject jobjectValue1);
+
+    jobject findPreference(JNIEnv *env, jobject jobjectValue1);
+
+    static void setDefaultValues(JNIEnv *env, jobject jobjectValue1, jint jintValue2, jboolean jbooleanValue3);
+
+    static void setDefaultValues(JNIEnv *env, jobject jobjectValue1, jint jintValue2, jboolean jbooleanValue3);
+
+};
+
+********************************************************************************
+
+
+PreferenceManager::PreferenceManager() : JavaClass() {}
+
+/**
+* Here you can construct the PreferenceManager object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+PreferenceManager::PreferenceManager(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "PreferenceManager's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void PreferenceManager::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("android/preference/PreferenceManager", "()V");
+    addJavaSignature("createPreferenceScreen", "(Landroid/content/Context;)Landroid/preference/PreferenceScreen;");
+    addJavaSignature("getSharedPreferencesName", "()Ljava/lang/String;");
+    addJavaSignature("setSharedPreferencesName", "(Ljava/lang/String;)V");
+    addJavaSignature("getSharedPreferencesMode", "()I");
+    addJavaSignature("setSharedPreferencesMode", "(I)V");
+    addJavaSignature("setStorageDefault", "()V");
+    addJavaSignature("setStorageDeviceProtected", "()V");
+    addJavaSignature("isStorageDefault", "()Z");
+    addJavaSignature("isStorageDeviceProtected", "()Z");
+    addJavaSignature("getSharedPreferences", "()Landroid/content/SharedPreferences;");
+    addStaticSignature("getDefaultSharedPreferences", "(Landroid/content/Context;)Landroid/content/SharedPreferences;");
+    addStaticSignature("getDefaultSharedPreferencesName", "(Landroid/content/Context;)Ljava/lang/String;");
+    addJavaSignature("findPreference", "(Ljava/lang/CharSequence;)Landroid/preference/Preference;");
+    addStaticSignature("setDefaultValues", "(Landroid/content/Context;IZ)V");
+    addStaticSignature("setDefaultValues", "(Landroid/content/Context;Ljava/lang/String;IIZ)V");
+
+    registerNativeMethods(env);
+}
+
+void PreferenceManager::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject PreferenceManager::android.preference.PreferenceManager(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject PreferenceManager::createPreferenceScreen(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring PreferenceManager::getSharedPreferencesName(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+void PreferenceManager::setSharedPreferencesName(JNIEnv *env, jstring jstringValue1)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+jint PreferenceManager::getSharedPreferencesMode(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+void PreferenceManager::setSharedPreferencesMode(JNIEnv *env, jint jintValue1)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), jintValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void PreferenceManager::setStorageDefault(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+void PreferenceManager::setStorageDeviceProtected(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+jboolean PreferenceManager::isStorageDefault(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean PreferenceManager::isStorageDeviceProtected(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject PreferenceManager::getSharedPreferences(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject PreferenceManager::getDefaultSharedPreferences(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring PreferenceManager::getDefaultSharedPreferencesName(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject PreferenceManager::findPreference(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+void PreferenceManager::setDefaultValues(JNIEnv *env, jobject jobjectValue1, jint jintValue2, jboolean jbooleanValue3)
+{
+    env->CallStaticVoidMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1, jintValue2, jbooleanValue3);
+    JavaExceptionUtils::checkException(env);
+}
+
+void PreferenceManager::setDefaultValues(JNIEnv *env, jobject jobjectValue1, jint jintValue2, jboolean jbooleanValue3)
+{
+    env->CallStaticVoidMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jobjectValue1, jintValue2, jbooleanValue3);
+    JavaExceptionUtils::checkException(env);
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = instance.android.preference.PreferenceManager(env);
+
+jobject jobjectReturnValue = instance.createPreferenceScreen(env, jobjectValue1);
+
+jstring jstringReturnValue = instance.getSharedPreferencesName(env);
+
+instance.setSharedPreferencesName(env, jstringValue1);
+
+jint jintReturnValue = instance.getSharedPreferencesMode(env);
+
+instance.setSharedPreferencesMode(env, jintValue1);
+
+instance.setStorageDefault(env);
+
+instance.setStorageDeviceProtected(env);
+
+jboolean jbooleanReturnValue = instance.isStorageDefault(env);
+
+jboolean jbooleanReturnValue = instance.isStorageDeviceProtected(env);
+
+jobject jobjectReturnValue = instance.getSharedPreferences(env);
+
+jobject jobjectReturnValue = PreferenceManager::getDefaultSharedPreferences(env, jobjectValue1);
+
+jstring jstringReturnValue = PreferenceManager::getDefaultSharedPreferencesName(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.findPreference(env, jobjectValue1);
+
+PreferenceManager::setDefaultValues(env, jobjectValue1, jintValue2, jbooleanValue3);
+
+PreferenceManager::setDefaultValues(env, jobjectValue1, jintValue2, jbooleanValue3);
+
+

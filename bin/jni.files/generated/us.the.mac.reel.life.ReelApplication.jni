@@ -1,0 +1,113 @@
+
+us.the.mac.reel.life.ReelApplication
+
+********************************************************************************
+
+us.the.mac.reel.life.ReelApplication.jni was generated as a helper for ReelApplication.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: us.the.mac.reel.life.ReelApplication, Instance
+
+The source code can be copied into the respective ReelApplication.h and
+ReelApplication.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class ReelApplication : public JavaClass {
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the ReelApplication class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/reel/life", ReelApplication);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the ReelApplication class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/reel/life", ReelApplication));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the ReelApplication class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    ReelApplication();
+
+    ReelApplication(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    static jobject Instance(JNIEnv *env);
+
+};
+
+********************************************************************************
+
+
+ReelApplication::ReelApplication() : JavaClass() {}
+
+/**
+* Here you can construct the ReelApplication object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+ReelApplication::ReelApplication(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "ReelApplication's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void ReelApplication::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addStaticSignature("Instance", "()Lus/the/mac/reel/life/ReelApplication;");
+
+    registerNativeMethods(env);
+}
+
+void ReelApplication::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject ReelApplication::Instance(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = ReelApplication::Instance(env);
+
+
