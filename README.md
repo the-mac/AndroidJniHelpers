@@ -2,8 +2,8 @@
 Tools for writing secure Android/JNI code, based upon Spotify's [Jni Helpers Library](https://github.com/spotify/JniHelpers.git).
 
 The Android Jni Helpers library can hide important details of your app from
-basic apk decompilation, and harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
-from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are some of our current features:
+basic apk decompilation like [javadecompilers](http://www.javadecompilers.com/apk) here is a [demonstration of how its done](https://www.youtube.com/watch?v=TfLq9nsLWOc). To harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
+from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few of our current features:
 
 **Java String Decoding**
 ```java
@@ -58,13 +58,13 @@ Planned Features:
 **Easy Jni Replication of Android APIs**
 ```bash
 export className="org.json.JSONObject"
-bin/jni.bash $className
+AndroidJniHelpers/bin/jni.bash $className
 
-cat bin/jni.files/generated/$className.jni
+cat AndroidJniHelpers/bin/jni.files/generated/$className.jni
 
 ```
 
-Example of Generated Jni Helper Result
+Example of generated Jni Helper result
 ```c++
 org.json.JSONObject
 
@@ -100,13 +100,13 @@ class JSONObject : public JavaClass {
 ```bash
 export className="my.personal.Object"
 export filePath="file/path/to/my/personal/Object"
-bin/jni.bash $className $filePath
+AndroidJniHelpers/bin/jni.bash $className $filePath
 
-cat bin/jni.files/generated/$className.jni
+cat AndroidJniHelpers/bin/jni.files/generated/$className.jni
 
 ```
 
-##Setting up your project
+#Setting up your project
 * Open your command line
 * cd into your C++/Android project (you can add C++ support through the Android Studio context menu)
 * Clone the repo into your project:
