@@ -57,7 +57,7 @@ public class Network extends NativeObject {
 
     public static native Network getInstance();
     static Network testingDefault() { return new Network(); }
-    protected Network() {}
+    public Network() {}
 
 //
 //    /**
@@ -120,7 +120,7 @@ public class Network extends NativeObject {
     public native void destroy();
 
     public native byte[] getBytes();
-    public native Object getHttpPost();
+    public native HttpPost getHttpPost();
 
     public native void put(String key, String value);
     public native String get(String key);
@@ -144,7 +144,7 @@ public class Network extends NativeObject {
         return new AsyncTask<Void,Void,String>() {
             @Override protected String doInBackground(Void... params) {
                 try {
-                    HttpResponse response = getSSLClient().execute((HttpPost)getHttpPost());
+                    HttpResponse response = getSSLClient().execute(getHttpPost());
                     InputStream in = response.getEntity().getContent();
                     return new java.util.Scanner(in).useDelimiter(A).next();
                 }

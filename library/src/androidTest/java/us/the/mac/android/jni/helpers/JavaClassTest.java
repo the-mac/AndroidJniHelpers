@@ -92,6 +92,6 @@ public class JavaClassTest {
     @Test(expected = NoSuchFieldError.class)
     native public void cacheInvalidField() throws Exception;
 
-    @Test(expected = NoSuchMethodError.class)
+    @Test(expected = java.lang.NoSuchMethodError.class)
     native public void cacheInvalidMethod() throws Exception;
 }

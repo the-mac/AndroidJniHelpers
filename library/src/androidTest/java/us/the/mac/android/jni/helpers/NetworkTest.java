@@ -26,11 +26,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.json.JSONObject;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class NetworkTest {
     static {
@@ -48,7 +52,7 @@ public class NetworkTest {
         Network object = createNetwork();
         assertNotEquals(0, object.nPtr);
         // These properties should be set by the first native method in this case
-        assertEquals(TestConstants.TEST_RESULT, object.resultString);
+        assertEquals(null, object.resultString);
 
         // Now create a new empty object, but copy the nPtr field to it. Note that
         // the i field is *not* copied; that value is stored natively and should
@@ -59,7 +63,7 @@ public class NetworkTest {
         // The native test should be able to fetch the previous instance via nPtr,
         // and return to us the same instance data in a new object.
         Network result = getPersistedInstance(emptyInstance);
-        assertEquals(object.nPtr, result.nPtr);
+        org.junit.Assert.assertEquals(object.nPtr, result.nPtr);
         assertEquals(object.resultString, result.resultString);
 
         // Always clean up after yourself, kids!
@@ -92,25 +96,30 @@ public class NetworkTest {
         assertNotEquals(0, object.nPtr);
 
         HttpPost post = (HttpPost) object.getHttpPost();
-//        assertNotEquals(null, post);
+        assertNotEquals(null, post);
+
+        byte[] bytes = object.getBytes();
+        assertNotEquals(null, bytes);
+        String requestCertificate = new String(bytes);
+        assertTrue(requestCertificate.contains("-----END CERTIFICATE-----"));
 
 
-//        String requestUrl = post.getURI().toString();
-//        assertEquals(TestConstants.TEST_URL, requestUrl);
-//
-//        InputStream stream = post.getEntity().getContent();
-//        String content = new Scanner(stream).useDelimiter("\\A").next();
-//        assertNotEquals(null, content);
-//        JSONObject jsonObject = new JSONObject(content);
-//
-//        String parameter = jsonObject.getString("parameter");
-//        assertEquals(TestConstants.TEST_PARAMETER, parameter);
-//
-//        Header[] acceptHeaders = post.getHeaders("Accept");
-//        String acceptString = acceptHeaders[0].getValue();
-//
-//        Header[] contentHeaders = post.getHeaders("Content-Type");
-//        String contentString = contentHeaders[0].getValue();
+        String requestUrl = post.getURI().toString();
+        assertEquals(TestConstants.TEST_URL, requestUrl);
+
+        InputStream stream = post.getEntity().getContent();
+        String content = new Scanner(stream).useDelimiter("\\A").next();
+        assertNotEquals(null, content);
+        JSONObject jsonObject = new JSONObject(content);
+
+        String parameter = jsonObject.getString("parameter");
+        assertEquals(TestConstants.TEST_PARAMETER, parameter);
+
+        Header[] acceptHeaders = post.getHeaders("Accept");
+        String acceptString = acceptHeaders[0].getValue();
+
+        Header[] contentHeaders = post.getHeaders("Content-Type");
+        String contentString = contentHeaders[0].getValue();
 
     }
 
@@ -123,6 +132,7 @@ public class NetworkTest {
         object.put("key", "1234");
         object.request(Network.HTTP_BIN);
 
+        assertNotNull(object.resultString);
         JSONObject jsonObject = new JSONObject(object.resultString);
         String requestUrl = jsonObject.getString("url");
         assertEquals(TestConstants.TEST_URL, requestUrl);
@@ -142,13 +152,11 @@ public class NetworkTest {
     public void destroyNetwork() throws Exception {
         Network object = createNetwork();
         assertNotEquals(0, object.nPtr);
-        assertEquals(TestConstants.TEST_RESULT, object.resultString);
+        assertEquals(null, object.resultString);
 
         destroyNetwork(object);
 
-        assertEquals(0, object.nPtr);
-        // Destroy should only alter the nPtr field, this should remain untouched
-        assertEquals(TestConstants.TEST_RESULT, object.resultString);
+        org.junit.Assert.assertEquals(0, object.nPtr);
     }
 
     @Test

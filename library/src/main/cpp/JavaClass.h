@@ -32,7 +32,7 @@
 #include <vector>
 #include <stdarg.h>
 
-#define MAKE_CANONICAL_NAME(_PACKAGE, _CLASS) _PACKAGE "/" _CLASS
+//#define MAKE_CANONICAL_NAME(_PACKAGE, _CLASS) _PACKAGE "/" _CLASS
 
 static std::map<std::string, std::string> static_signatures;
 
@@ -76,7 +76,7 @@ namespace spotify {
 //            static StaticClass * staticInstance = new StaticClass();
 
         protected:
-            std::map<std::string, std::string> signatures;
+//            std::map<std::string, std::string> signatures;
 
 // Constructors /////////////////////////////////////////////////////////////////////
         public:
@@ -151,7 +151,7 @@ namespace spotify {
              */
             virtual const char *getCanonicalName() const = 0;
 
-            static const char *getCanonicalName(const char *method_name);
+//            static const char *getCanonicalName(const char *method_name);
 
 
 //            static const char *getStaticCanonicalName(const char *method_name) const {
@@ -261,25 +261,25 @@ namespace spotify {
              * @brief Return the mapped signature for the passed in function name (ie, (Z)Ljava/lang/String; -> "String.valueOf(4)")
              * @return Class signature (should not be NULL)
              */
-            const char *getSignature(const char *functionName);
+//            const char *getSignature(const char *functionName);
 
             /**
             * The getStaticSignature method is used to get the Jni Helper's
             * static signature for the Network class defined in Java.
             */
-            static const char *getStaticSignature(const char *functionName);
+//            static const char *getStaticSignature(const char *functionName);
 
             /**
              * @brief Return the method id for the passed in Java function name
              * @return Class methohd id (should not be NULL)
              */
-            jmethodID getJavaMethod(JNIEnv *env, const char *functionName);
+//            jmethodID getJavaMethod(JNIEnv *env, const char *functionName);
 
             /**
              * @brief Return the static method id for the passed in Java function name
              * @return Class methohd id (should not be NULL)
              */
-            static jmethodID getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName);
+//            static jmethodID getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName);
 
 // Internal helper calls ////////////////////////////////////////////////////////////
         protected:
@@ -310,6 +310,20 @@ namespace spotify {
             virtual void cacheConstructor(JNIEnv *env);
 
             /**
+             * @brief Cache a constructor with parameters
+             *
+             * This method should be called from within initialize() if you plan on using
+             * toJavaObject() with this class instance. If you do not need toJavaObject(),
+             * then it is not necessary to call this.
+             *
+             * Note that only no-argument constructors are supported at the moment. This is
+             * a known limitation and will be addressed in a future version of the library.
+             *
+             * @param env JNIEnv
+             */
+            virtual void cacheConstructor(JNIEnv *env, const char* signature);
+
+            /**
              * @brief Find a method and save it in the cache
              * @param env JNIEnv
              * @param method_name Method name, as it appears in the Java class
@@ -319,6 +333,22 @@ namespace spotify {
              */
             virtual void cacheMethod(JNIEnv *env, const char *method_name, const char *return_type,
                                      ...);
+
+            /**
+             * @brief Find a signature and save it in the cache
+             * @param env JNIEnv
+             * @param method_name Method name, as it appears in the Java class
+             * @param signature The Java API Signature
+             */
+            virtual void cacheSignature(JNIEnv *env, const char *method_name, const char *signature);
+
+            /**
+             * @brief Find a signature and save it in the cache
+             * @param env JNIEnv
+             * @param method_name Method name, as it appears in the Java class
+             * @param signature The Java API Signature
+             */
+            virtual void cacheStaticSignature(JNIEnv *env, const char *method_name, const char *signature);
 
             /**
              * @brief Find a field and save it in the cache
@@ -396,11 +426,11 @@ namespace spotify {
              * @param function Function to be called when the method is invoked from Java.
              * @param the signature of the function is passed here.
              */
-            void addJavaSignature(const char *method_name, const char *signature);
-
-            void addStaticSignature(const char *functionName, const char *signature) {
-                static_signatures[functionName] = signature;
-            }
+//            void addJavaSignature(const char *method_name, const char *signature);
+//
+//            void addStaticSignature(const char *functionName, const char *signature) {
+//                static_signatures[functionName] = signature;
+//            }
 
             /**
              * @brief Register all native methods on the class

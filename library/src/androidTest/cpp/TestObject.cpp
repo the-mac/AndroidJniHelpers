@@ -60,6 +60,7 @@ void TestObject::initialize(JNIEnv *env) {
   cacheMethod(env, "getString", kTypeString, NULL);
   cacheMethod(env, "setString", kTypeVoid, kTypeString, NULL);
   cacheMethod(env, "getI", kTypeInt, NULL);
+  cacheStaticSignature(env, "getStaticI", "()I");
   cacheMethod(env, "setI", kTypeVoid, kTypeInt, NULL);
   cacheMethod(env, "getS", kTypeShort, NULL);
   cacheMethod(env, "setS", kTypeVoid, kTypeShort, NULL);

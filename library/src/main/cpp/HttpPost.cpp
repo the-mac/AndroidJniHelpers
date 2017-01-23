@@ -15,7 +15,7 @@ HttpPost::HttpPost(JNIEnv *env, string url) : JavaClass(env)
 
     jstring jUrl = env->NewStringUTF(url.c_str());
     // WE HAVE ADDED A jstring url PARAMETER TO THE 'HttpPost' constructor
-    thisObj = env->NewObject(_clazz, getJavaMethod(env, "<init>"), jUrl);
+    thisObj = env->NewObject(_clazz, getMethod("<init>"), jUrl);
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -28,10 +28,10 @@ void HttpPost::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addJavaSignature("<init>", "(Ljava/lang/String;)V");
-    addJavaSignature("getMethod", "()Ljava/lang/String;");
-    addJavaSignature("setEntity", "(Ljava/lang/String;)V");
-    addJavaSignature("setHeader", "(Ljava/lang/String;Ljava/lang/String;)V");
+    cacheSignature(env, "<init>", "(Ljava/lang/String;)V");
+    cacheSignature(env, "getMethod", "()Ljava/lang/String;");
+    cacheSignature(env, "setEntity", "(Lorg/apache/http/HttpEntity;)V");
+    cacheSignature(env, "setHeader", "(Ljava/lang/String;Ljava/lang/String;)V");
 
     registerNativeMethods(env);
 }
@@ -50,7 +50,7 @@ void HttpPost::mapFields()
 
 void HttpPost::setEntity(JNIEnv *env, ByteArrayEntity entity)
 {
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), entity.thisObj);
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), entity.thisObj);
     JavaExceptionUtils::checkException(env);
 }
 
@@ -58,6 +58,6 @@ void HttpPost::setHeader(JNIEnv *env, string stringKey, string stringValue)
 {
     jstring key = env->NewStringUTF(stringKey.c_str());
     jstring value = env->NewStringUTF(stringValue.c_str());
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), key, value);
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), key, value);
     JavaExceptionUtils::checkException(env);
 }

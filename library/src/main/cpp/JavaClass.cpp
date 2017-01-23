@@ -225,34 +225,34 @@ namespace spotify {
             return mapFindIter->second;
         }
 
-        const char *JavaClass::getSignature(const char *functionName) {
-            std::string signature = signatures[functionName];
-            return signature.c_str();
-        }
+//        const char *JavaClass::getSignature(const char *functionName) {
+//            std::string signature = signatures[functionName];
+//            return signature.c_str();
+//        }
         /**
         * The getStaticSignature method is used to get the Jni Helper's
         * static signature for the Network class defined in Java.
         */
-        const char *JavaClass::getStaticSignature(const char *functionName) {
-            std::string signature = static_signatures[functionName];
-            return signature.c_str();
-        }
-        jmethodID JavaClass::getJavaMethod(JNIEnv *env, const char *functionName) {
-            jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
-            if (method == NULL) {
-                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
-                return NULL;
-            }
-            return method;
-        }
-        jmethodID JavaClass::getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName) {
-            jmethodID method = env->GetStaticMethodID(thisClass, functionName, getStaticSignature(functionName));
-            if (method == NULL) {
-                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
-                return NULL;
-            }
-            return method;
-        }
+//        const char *JavaClass::getStaticSignature(const char *functionName) {
+//            std::string signature = static_signatures[functionName];
+//            return signature.c_str();
+//        }
+//        jmethodID JavaClass::getJavaMethod(JNIEnv *env, const char *functionName) {
+//            jmethodID method = env->GetMethodID(_clazz, functionName, getSignature(functionName));
+//            if (method == NULL) {
+//                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
+//                return NULL;
+//            }
+//            return method;
+//        }
+//        jmethodID JavaClass::getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName) {
+//            jmethodID method = env->GetStaticMethodID(thisClass, functionName, getStaticSignature(functionName));
+//            if (method == NULL) {
+//                JavaExceptionUtils::throwRuntimeException(env, "Could not find %s", functionName);
+//                return NULL;
+//            }
+//            return method;
+//        }
 
         void JavaClass::setClass(JNIEnv *env) {
             LOG_INFO("Looking up corresponding Java class for '%s'", getCanonicalName());
@@ -273,6 +273,18 @@ namespace spotify {
             JavaClassUtils::makeSignature(signature, kTypeVoid, NULL);
             _default_constructor = env->GetMethodID(_clazz_global.get(), "<init>",
                                                     signature.c_str());
+            JavaExceptionUtils::checkException(env);
+        }
+
+        void JavaClass::cacheConstructor(JNIEnv *env, const char* signature) {
+            LOG_DEBUG("Caching constructor in class '%s'", getSimpleName());
+            if (!isInitialized()) {
+                JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                         "Attempt to call cacheMethod without having set class info");
+                return;
+            }
+            _default_constructor = env->GetMethodID(_clazz_global.get(), "<init>",
+                                                    signature);
             JavaExceptionUtils::checkException(env);
         }
 
@@ -300,6 +312,47 @@ namespace spotify {
                 JavaExceptionUtils::throwExceptionOfType(env, kTypeJavaClass(NoSuchMethodError),
                                                          "Method '%s' (signature: %s) not found on class '%s'",
                                                          method_name, signature.c_str(),
+                                                         getCanonicalName());
+            }
+        }
+
+        void JavaClass::cacheSignature(JNIEnv *env, const char *method_name, const char *signature) {
+            LOG_DEBUG("Caching method '%s' in class '%s'", method_name, getSimpleName());
+            if (!isInitialized()) {
+                JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                         "Attempt to call cacheMethod without having set class info");
+                return;
+            }
+
+            jmethodID method = env->GetMethodID(_clazz_global.get(), method_name, signature);
+            JavaExceptionUtils::checkException(env);
+            if (method != NULL) {
+                _methods_global[method_name] = method;
+            } else {
+                JavaExceptionUtils::throwExceptionOfType(env, kTypeJavaClass(NoSuchMethodError),
+                                                         "Method '%s' (signature: %s) not found on class '%s'",
+                                                         method_name, signature,
+                                                         getCanonicalName());
+            }
+        }
+
+
+        void JavaClass::cacheStaticSignature(JNIEnv *env, const char *method_name, const char *signature) {
+            LOG_DEBUG("Caching static method '%s' in class '%s'", method_name, getSimpleName());
+            if (!isInitialized()) {
+                JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                         "Attempt to call cacheMethod without having set class info");
+                return;
+            }
+
+            jmethodID method = env->GetStaticMethodID(_clazz_global.get(), method_name, signature);
+            JavaExceptionUtils::checkException(env);
+            if (method != NULL) {
+                _methods_global[method_name] = method;
+            } else {
+                JavaExceptionUtils::throwExceptionOfType(env, kTypeJavaClass(NoSuchMethodError),
+                                                         "Method '%s' (signature: %s) not found on class '%s'",
+                                                         method_name, signature,
                                                          getCanonicalName());
             }
         }
@@ -372,13 +425,17 @@ namespace spotify {
         }
 
 
-        void JavaClass::addJavaSignature(const char *method_name, const char *signature) {
-            LOG_DEBUG("Adding Java method '%s' to native class '%s'", method_name, getCanonicalName());
-
-            LOG_DEBUG("Java signature is '%s'", signature);
-
-            signatures[method_name] = signature;
-        }
+//        void JavaClass::addJavaSignature(const char *method_name, const char *signature) {
+//            LOG_DEBUG("Adding Java method '%s' to native class '%s'", method_name, getCanonicalName());
+//            JNIJavaMethod nativeMethod;
+//            nativeMethod.name = const_cast<char *>(method_name);
+//            nativeMethod.signature = const_cast<char *>(strdup(signature));
+//            LOG_DEBUG("Native signature is '%s'", nativeMethod.signature);
+//
+//            _java_methods.push_back(nativeMethod);
+//
+////            signatures[method_name] = signature;
+//        }
 
         bool JavaClass::registerNativeMethods(JNIEnv *env) {
             LOG_DEBUG("Registering native methods on class '%s'", getSimpleName());

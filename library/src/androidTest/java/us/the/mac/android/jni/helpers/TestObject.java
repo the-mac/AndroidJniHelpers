@@ -69,6 +69,9 @@ public class TestObject {
     public int getI() {
         return i;
     }
+    public static int getStaticI() {
+        return -100;
+    }
 
     public void setI(int i) {
         this.i = i;

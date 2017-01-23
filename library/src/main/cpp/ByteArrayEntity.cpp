@@ -12,10 +12,8 @@ ByteArrayEntity::ByteArrayEntity(JNIEnv *env, jbyteArray array) : JavaClass(env)
 {
     initialize(env);
 
-    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
-
     // WE HAVE ADDED A jbyteArray array PARAMETER TO THE 'ByteArrayEntity' constructor
-     thisObj = thisObj = env->NewObject(_clazz, getJavaMethod(env, "<init>"), array);
+    thisObj = env->NewObject(_clazz, getMethod("<init>"), array);
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -26,9 +24,8 @@ ByteArrayEntity::ByteArrayEntity(JNIEnv *env, jbyteArray array) : JavaClass(env)
 void ByteArrayEntity::initialize(JNIEnv *env)
 {
     setClass(env);
-    cacheConstructor(env);
 
-    addJavaSignature("<init>", "([B)V");
+    cacheSignature(env, "<init>", "([B)V");
 
     registerNativeMethods(env);
 }

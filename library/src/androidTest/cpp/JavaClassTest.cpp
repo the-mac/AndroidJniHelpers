@@ -71,6 +71,7 @@ void JavaClassTest::createJavaClass(JNIEnv *env, jobject javaThis) {
   JUNIT_ASSERT_TRUE(infoObject.isInitialized());
   JUNIT_ASSERT_NOT_NULL(infoObject.getField("i"));
   JUNIT_ASSERT_NOT_NULL(infoObject.getMethod("getI"));
+  JUNIT_ASSERT_NOT_NULL(infoObject.getMethod("getStaticI"));
 }
 
 void JavaClassTest::nativeIsInitialized(JNIEnv *env, jobject javaThis) {
@@ -87,7 +88,7 @@ void JavaClassTest::testGetCanonicalName(JNIEnv *env, jobject javaThis) {
   TestObject testObject;
   JUNIT_ASSERT_FALSE(testObject.isInitialized());
   JUNIT_ASSERT_NOT_NULL(testObject.getCanonicalName());
-  JUNIT_ASSERT_EQUALS_CSTRING("com/spotify/jni/TestObject", testObject.getCanonicalName());
+  JUNIT_ASSERT_EQUALS_CSTRING("us/the/mac/android/jni/helpers/TestObject", testObject.getCanonicalName());
 }
 
 void JavaClassTest::testGetSimpleName(JNIEnv *env, jobject javaThis) {

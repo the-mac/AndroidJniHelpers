@@ -105,14 +105,13 @@ void NetworkTest::nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: nativeGetPutAndToJSONString");
 
     Network *network = new Network(env);
-    jobject networkObj = network->toJavaObject(env);
 
     // "parameter", "parameterValue"
     jstring key = env->NewStringUTF("parameter");
     jstring value = env->NewStringUTF("parameterValue");
-    network->put(env, networkObj, key, value);
+    network->putNative(env, key, value);
 
-    jstring output = network->get(env, networkObj, key);
+    jstring output = network->getNative(env, key);
     std::string testString = env->GetStringUTFChars(output, 0);
     JUNIT_ASSERT_EQUALS_STRING(TEST_PARAMETER, testString);
 
@@ -124,14 +123,14 @@ void NetworkTest::nativeNetworkRequest(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: nativeNetworkRequest");
 
     Network *network = new Network(env);
-    jobject networkObj = network->toJavaObject(env);
     std::string value =  network->resultString.get();
     JUNIT_ASSERT_EQUALS_STRING("", value);
 
 
-    jstring response =  network->request(env, Network::HTTP_BIN);
-    JavaString resultString = JavaString(env->GetStringUTFChars(response, 0));
+    jstring response = network->request(env, Network::HTTP_BIN);
+    JUNIT_ASSERT_NOT_NULL(response);
 
+    JavaString resultString = JavaString(env->GetStringUTFChars(response, 0));
     std::string result =  resultString.get();
     JUNIT_ASSERT_NOT_EQUALS_STRING("", result);
     LOG_INFO(network->getCanonicalName(), "The result string is %s", resultString.get());

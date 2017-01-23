@@ -88,12 +88,27 @@ void JavaExceptionUtils::throwExceptionOfType(JNIEnv *env, const char *exception
 #endif
     return;
   }
+
   char exceptionMessage[kExceptionMaxLength];
   vsnprintf(exceptionMessage, kExceptionMaxLength, message, arguments);
-  LOG_ERROR("Throwing exception %s: %s", exception_class_name, exceptionMessage);
+
+  if(strcmp(kTypeJavaClass(AssertionError), exception_class_name) == 0) {
+
+    LOG_ERROR("Throwing Assertion Exception %s: %s", exception_class_name, exceptionMessage);
 #if ENABLE_EXCEPTIONS
-  env->ThrowNew(clazz, exceptionMessage);
+	jmethodID throwableMethod = env->GetMethodID(clazz, "<init>", "(Ljava/lang/Object;)V");
+    jthrowable throwable = (jthrowable) env->NewObject(clazz, throwableMethod, exceptionMessage);
+    env->Throw(throwable);
 #endif
+
+  } else {
+
+    LOG_ERROR("Throwing exception %s: %s", exception_class_name, exceptionMessage);
+#if ENABLE_EXCEPTIONS
+    env->ThrowNew(clazz, exceptionMessage);
+#endif
+
+  }
 }
 
 void JavaExceptionUtils::throwExceptionOfType(JNIEnv *env, const char *exception_class_name, const char *message, ...) {

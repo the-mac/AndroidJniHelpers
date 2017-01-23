@@ -32,9 +32,8 @@ void EncodedString::initialize(JNIEnv *env)
     cacheConstructor(env);
     cacheField(env, "encodedString", kTypeString);
 
-    addJavaSignature("equals", "(Ljava/lang/Object;)Z");
-    addJavaSignature("toString", "()Ljava/lang/String;");
-//    addNativeMethod("decode", (void*)&EncodedString::decode, kTypeString, NULL);
+    cacheSignature(env, "equals", "(Ljava/lang/Object;)Z");
+    cacheSignature(env, "toString", "()Ljava/lang/String;");
     addNativeSignature("decode", (void*)&EncodedString::decode, "()Ljava/lang/String;");
 
     // addNativeMethod("destroy", (void*)&EncodedString::nativeDestroy, kTypeVoid, NULL);
@@ -46,14 +45,14 @@ void EncodedString::mapFields()
 }
 jboolean EncodedString::equals(JNIEnv *env, jobject jobjectValue1)
 {
-    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jstring EncodedString::toString(JNIEnv *env)
 {
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
 }

@@ -7,6 +7,12 @@
 #include "ByteArrayEntity.h"
 #include <cstring>
 
+
+Network Instance(JNIEnv * env) {
+    if(!networkInstance.isInitialized()) networkInstance.initialize(env);
+    return networkInstance;
+}
+
 Network::Network() : NativeObject() {}
 
 /**
@@ -17,7 +23,7 @@ Network::Network(JNIEnv *env) : NativeObject(env)
 {
     initialize(env);
 
-    thisObj = Network::testingDefault(env);
+    thisObj = toJavaObject(env);
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -30,18 +36,18 @@ void Network::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addStaticSignature(getCanonicalName("testingDefault"), "()Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("getInstance", "()Lus/the/mac/android/jni/helpers/Network;");
-    addJavaSignature("getResultString", "()Ljava/lang/String;");
-    addJavaSignature("setResultString", "(Ljava/lang/String;)V");
-//    addNativeSignature("destroy", (void*)&Network::destroy, "()V");
+//    cacheStaticSignature(env, "testingDefault", "()Lus/the/mac/android/jni/helpers/Network;");
+    cacheSignature(env, "getResultString", "()Ljava/lang/String;");
+    addNativeMethod("destroy", (void*)&Network::nativeDestroy, kTypeVoid, NULL);
+    cacheSignature(env, "setResultString", "(Ljava/lang/String;)V");
+    addNativeSignature("getInstance", (void*)&Network::getInstance, "()Lus/the/mac/android/jni/helpers/Network;");
     addNativeSignature("getBytes", (void*)&Network::getBytes, "()[B");
     addNativeSignature("getHttpPost", (void*)&Network::getHttpPost, "()Lorg/apache/http/client/methods/HttpPost;");
     addNativeSignature("put", (void*)&Network::put, "(Ljava/lang/String;Ljava/lang/String;)V");
     addNativeSignature("get", (void*)&Network::get, "(Ljava/lang/String;)Ljava/lang/String;");
     addNativeSignature("toJSONString", (void*)&Network::toJSONString, "()Ljava/lang/String;");
     addNativeSignature("setRequestType", (void*)&Network::setRequestType, "(I)V");
-    addJavaSignature("request", "(I)Ljava/lang/String;");
+    cacheSignature(env, "request", "(I)Ljava/lang/String;");
 
     registerNativeMethods(env);
 }
@@ -59,21 +65,21 @@ jobject Network::getInstance(JNIEnv *env, jobject java_this)
 
 jobject Network::testingDefault(JNIEnv *env)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), getCanonicalName(__FUNCTION__)));
+    jobject result = env->CallStaticObjectMethod(Instance(env)._clazz, Instance(env).getMethod(__FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jstring Network::getResultString(JNIEnv *env)
 {
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
 }
 
 void Network::setResultString(JNIEnv *env, jstring jstringValue1)
 {
-    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jstringValue1);
     JavaExceptionUtils::checkException(env);
 }
 
@@ -84,10 +90,10 @@ jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
     const char certificate[] = {
 
         #include "httpbin_root_certificate" // THIS VALIDATES CONNECTION TO: https://httpbin.org/post
-        //FOUND W/ "true | openssl s_client -connect httpbin.org:443 2>/dev/null | openssl x509 -in /dev/stdin"
+        //FOUND W/: true | openssl s_client -connect httpbin.org:443 2>/dev/null | openssl x509 -in /dev/stdin
 
         // #include "github_root_certificate" // TRY THIS INSTEAD FOR VALIDATION OF httpbin_root_certificate
-        //FOUND W/ "true | openssl s_client -connect gist.githubusercontent.com:443 2>/dev/null | openssl x509 -in /dev/stdin"
+        //FOUND W/: true | openssl s_client -connect gist.githubusercontent.com:443 2>/dev/null | openssl x509 -in /dev/stdin
 
     };
 
@@ -215,7 +221,15 @@ void Network::setRequestType(JNIEnv *env, jobject java_this, jint requestType) {
 
 jstring Network::request(JNIEnv *env, jint jintValue1)
 {
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jintValue1);
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), jintValue1);
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
+}
+
+void Network::nativeDestroy(JNIEnv *env, jobject java_this) {
+    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
+    if (object != NULL) {
+        // NativeObject *native_object = dynamic_cast<NativeObject*>(object);
+        object->destroy(env, java_this);
+    }
 }

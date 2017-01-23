@@ -22,16 +22,16 @@ public:
     const char *getCanonicalName() const {
         return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network);
     }
-    static const char *getCanonicalName(const char *method_name) {
-        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers/Network", method_name);
-    }
-    /**
-    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
-    * the Jni Helper's static relationship to the Network class defined in Java.
-    */
-    static jclass getClass(JNIEnv *env) {
-        return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
-    }
+//    static const char *getCanonicalName(const char *method_name) {
+//        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers/Network", method_name);
+//    }
+//    /**
+//    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
+//    * the Jni Helper's static relationship to the Network class defined in Java.
+//    */
+//    static jclass getClass(JNIEnv *env) {
+//        return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
+//    }
 
     Network();
 
@@ -92,12 +92,14 @@ public:
 
     jstring request(JNIEnv *env, jint jintValue1);
 
+    static void nativeDestroy(JNIEnv *env, jobject java_this);
+
     static const int BASE = 0;
     static const int INCREMENT = 1;
     static const int HTTP_BIN = BASE + INCREMENT;
     static const int JSON_TEST = HTTP_BIN + INCREMENT;
 };
 
-
+static Network networkInstance;
 
 #endif //APPLICATIONRESOURCES_NETWORK_H
