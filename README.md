@@ -127,9 +127,9 @@ ANDROID_TESTING flag is passed in from the
 build.gradle script, check out an example of
 that [here](library/build.gradle)**
 
-## Contributing
+# Contributing
 
-### Installing locally
+## Installing locally
 
 You can download AndroidJniHelpers and install it locally by cloning this
 repository and running:
@@ -146,12 +146,12 @@ repository and running:
 <!-- 1. Go to the Bintray dashboard and click 'Publish'. -->
 <!-- 1. In Bintray click the 'Maven Central' tab and publish the release. -->
 
-### Tag a release on GitHub
+## Tag a release on GitHub
 
 * Ensure that all your changes are on master and that your local build is on master
 <!-- * Ensure that the correct version number is in `common/constants.gradle` -->
 
-### Contributor License Agreements
+## Contributor License Agreements
 
 We'd love to accept your sample apps and patches! Before we can take them, we
 have to jump a couple of legal hurdles.
@@ -170,7 +170,7 @@ Follow either of the two links above to access the appropriate CLA and
 instructions for how to sign and return it. Once we receive it, we'll be able to
 accept your pull requests.
 
-### Contribution Process
+## Contribution Process
 
 1. Submit an issue describing your proposed change to the repo in question.
 1. The repo owner will respond to your issue promptly.
