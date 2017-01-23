@@ -47,7 +47,24 @@ done
 }
 function accept_commit_message {
 	echo ""
-	
+
+	status=$(git status)
+	if [[ $status == *"On branch master"* ]]; then
+		# read -p "You are on the master branch, commit here? > " useMasterBranch
+		branchName="master"
+	else
+		branchName="testing"
+	fi
+
+#	if [[ $useMasterBranch == *"yes"* ]]; then
+#		branchName="master"
+#	elif [[ $useMasterBranch == *"no"* ]]; then
+#	    # git checkout testing
+#		branchName="testing"
+#	else
+#		branchName="testing"
+#	fi
+
 	if [[ -z "$@" ]]; then
 		read -p "Please type commit message > " commit
 		size=${#commit}
@@ -59,9 +76,9 @@ function accept_commit_message {
 	fi
 	
 	if [[ $commit ]]; then
-		git add -A && git commit -m "$commit" && git pull origin testing && git push origin testing
+		git add -A && git commit -m "$commit" && git pull origin $branchName && git push origin $branchName
 	elif [[ $size == 0 ]]; then
-		git add -A && git commit -m "Default commit message using bin/prepare.bash script." && git pull origin master&& git push origin testing --force
+		git add -A && git commit -m "Default commit message using bin/prepare.bash script." && git pull origin $branchName && git push origin $branchName --force
 	fi
 }
 

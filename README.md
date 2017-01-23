@@ -1,8 +1,7 @@
 # AndroidJniHelpers
 Tools for writing secure Android/JNI code, based upon Spotify's [Jni Helpers Library](https://github.com/spotify/JniHelpers.git).
 
-The Android Jni Helpers library can hide important details of your app from
-basic apk decompilation like [javadecompilers](http://www.javadecompilers.com/apk) here is a [demonstration of how its done](https://www.youtube.com/watch?v=TfLq9nsLWOc). To harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
+The Android Jni Helpers library can hide important details of your app from [basic apk decompilation](http://www.javadecompilers.com/apk). Here is a [demonstration of how easy its done using javadecompilers](https://www.youtube.com/watch?v=TfLq9nsLWOc). To harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
 from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few of our current features:
 
 **Java String Decoding**
@@ -18,7 +17,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 **Native String Decoding**
 ```c++
 
-    DecodedString *object = new DecodedString(env);
+    EncodedString *object = new EncodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
     jstring decodedString = object->nativeDecode(env);
@@ -54,6 +53,69 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 
 ```
 Planned Features:
+
+**Header Obfuscation (Inserted into main c/cpp file)**
+Before Obfuscation
+```c++
+
+//#include "obfuscate.h"
+...
+
+    Network *network = new Network(env);
+    jstring response = network->request(env, Network::HTTP_BIN);
+    std::string resultString = JavaString(env, response).get();
+
+```
+
+Generation of Obfuscation Header
+```c++
+
+#include "obfuscate.h"
+
+...
+#define Network ghjRkl
+#define network xrdtcf
+#define env afh
+#define response sdfgaL
+#define request trlsts
+#define HTTP_BIN ctfgbu
+#define resultString sdtcbuh
+#define JavaString xdctfin
+#define get las
+...
+
+
+```
+
+C++ Decompilation after obfuscation
+```bash
+
+#include "obfuscate.h"
+...
+
+    ghjRkl *xrdtcf = new ghjRkl(afh);
+    jstring sdfgaL = xrdtcf->trlsts(afh, ghjRkl::ctfgbu);
+    std::string sdtcbuh = xdctfin(afh, sdfgaL).las();
+
+```
+
+**Android Resources Decode**
+
+Encoded Android String Resources
+```xml
+<resources>
+    <string name="app_name">Android Jni Helpers</string>
+    <string name="api_security_token">dcfvhglasbiunpltsxrdtcfvygubhinjom</string>
+</resources>
+
+
+```
+
+Insertion of getDecodedString(int) method into Context Classes (Application, Activity, etc.)
+```java
+String decodedString = getDecodedString(R.string.api_security_token);
+
+```
 
 **Easy Jni Replication of Android APIs**
 ```bash
