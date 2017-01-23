@@ -20,9 +20,8 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     EncodedString *object = new EncodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    jstring decodedString = object->nativeDecode(env);
-    const char * theString = env->GetStringUTFChars(env, string, 0);
-    JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", theString);
+    JavaString decodedString(env, object->nativeDecode(env));
+    JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decodedString.get());
 
 ```
 **This allows you to encode your inline strings, and hide important details of your app. The decode has a hidden implementation, and can pretty much be any algorithm you choose**
