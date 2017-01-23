@@ -54,7 +54,8 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 ```
 Planned Features:
 
-**Header Obfuscation (Inserted into main c/cpp file)**
+##Header Obfuscation (Inserted into main c/cpp file)
+
 Before Obfuscation
 ```c++
 
@@ -99,7 +100,7 @@ C++ Decompilation after obfuscation
 
 ```
 
-**Android Resources Decode**
+##Android Resources Decode
 
 Encoded Android String Resources
 ```xml
@@ -117,7 +118,7 @@ String decodedString = getDecodedString(R.string.api_security_token);
 
 ```
 
-**Easy Jni Replication of Android APIs**
+##Easy Jni Replication of Android APIs
 ```bash
 export className="org.json.JSONObject"
 AndroidJniHelpers/bin/jni.bash $className
@@ -158,7 +159,7 @@ class JSONObject : public JavaClass {
     } ...
 ```
 
-**Easy Jni Replication of Personal APIs**
+##Easy Jni Replication of Personal APIs
 ```bash
 export className="my.personal.Object"
 export filePath="file/path/to/my/personal/Object"
