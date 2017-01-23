@@ -8,7 +8,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are s
 **Java String Decoding**
 ```java
 
-    DecodedString object = DecodedString.getInstance();
+    EncodedString object = EncodedString.getInstance();
     object.encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
     String decodedString = object.decode();
@@ -26,26 +26,84 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard). Here are s
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", theString);
 
 ```
-**The decode has a hidden implementation, and can pretty much be any algorithm you choose**
+**This allows you to encode your inline strings, and hide important details of your app. The decode has a hidden implementation, and can pretty much be any algorithm you choose**
 
+**Java Secure Network Calls**
+```java
+
+    Network object = Network.getInstance();
+    object.put("key", "1234");
+    object.request(Network.HTTP_BIN);
+
+    JSONObject jsonObject = new JSONObject(object.resultString);
+    String requestUrl = jsonObject.getString("url");
+    assertEquals("https://httpbin.org/post", requestUrl);
+
+
+```
+**Native Secure Network Calls**
+```c++
+
+    Network *network = new Network(env);
+    jstring response = network->request(env, Network::HTTP_BIN);
+    std::string resultString = JavaString(env, response).get();
+
+    JSONObject jsonObject(env, resultString);
+    JavaString requestUrl(env, jsonObject.getString(env, "url"));
+    JUNIT_ASSERT_EQUALS_STRING("https://httpbin.org/post", requestUrl.get());
+
+```
 Planned Features:
 
-**Native Secure Network Calls**
-```java
-var s = "JavaScript syntax highlighting";
-alert(s);
+**Easy Jni Replication of Android APIs**
+```bash
+export className="org.json.JSONObject"
+bin/jni.bash $className
+
+cat bin/jni.files/generated/$className.jni
+
 ```
 
-**Easy Replication of Java APIs**
-```java
-var s = "JavaScript syntax highlighting";
-alert(s);
+Example of Generated Jni Helper Result
+```c++
+org.json.JSONObject
+
+********************************************************************************
+
+org.json.JSONObject.jni was generated as a helper for JSONObject.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: org.json.JSONObject, org.json.JSONObject, length, remove, isNull, has, opt, optBoolean, optBoolean, optDouble, optDouble, optInt, optInt, optLong, optLong, optString, optString, optJSONArray, optJSONObject, keys, names, toString, quote, wrap
+
+The source code can be copied into the respective JSONObject.h and
+JSONObject.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class JSONObject : public JavaClass {
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
+    * the Jni Helper's relationship to the JSONObject class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("org/json", JSONObject);
+    } ...
 ```
 
-**Easy Replication of Java APIs**
-```java
-var s = "JavaScript syntax highlighting";
-alert(s);
+**Easy Jni Replication of Personal APIs**
+```bash
+export className="my.personal.Object"
+export filePath="file/path/to/my/personal/Object"
+bin/jni.bash $className $filePath
+
+cat bin/jni.files/generated/$className.jni
+
 ```
 
 ##Setting up your project

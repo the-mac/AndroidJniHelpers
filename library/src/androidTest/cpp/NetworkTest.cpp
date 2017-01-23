@@ -130,7 +130,7 @@ void NetworkTest::nativeNetworkRequest(JNIEnv *env, jobject javaThis) {
     jstring response = network->request(env, Network::HTTP_BIN);
     JUNIT_ASSERT_NOT_NULL(response);
 
-    JavaString resultString = JavaString(env->GetStringUTFChars(response, 0));
+    JavaString resultString(env, response);
     std::string result =  resultString.get();
     JUNIT_ASSERT_NOT_EQUALS_STRING("", result);
     LOG_INFO(network->getCanonicalName(), "The result string is %s", resultString.get());
