@@ -32,7 +32,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new DecodedString(env));
     gClasses.add(env, new JavaClassTest(env));
     gClasses.add(env, new TestObject(env));
-    gClasses.add(env, new NetworkTest(env));
+    gClasses.add(env, new ReelNetworkTest(env));
     gClasses.add(env, new Network(env));
 
     LOG_INFO("Initialization complete");
