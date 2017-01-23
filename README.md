@@ -57,7 +57,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 
 ##Header Obfuscation (Inserted into main c/cpp file)
 
-Before Obfuscation
+What File looks like before obfuscation:
 ```c++
 
 //#include "obfuscate.h"
@@ -69,7 +69,7 @@ Before Obfuscation
 
 ```
 
-Generation of Obfuscation Header (obfuscate.h)
+Example generation of Obfuscation Header (obfuscate.h)
 ```c++
 
 ...
@@ -87,7 +87,7 @@ Generation of Obfuscation Header (obfuscate.h)
 
 ```
 
-Resulting C/C++ Decompilation after obfuscation
+Resulting C/C++ decompilation after obfuscation
 ```c++
 ...
 
@@ -103,15 +103,13 @@ Encoded Android String Resources
 ```xml
 <resources>
     <string name="app_name">Android Jni Helpers</string>
-    <string name="api_security_token">dcfvhglasbiunpltsxrdtcfvygubhinjom</string>
+    <string name="website_passphrase">dcfvhglasbiunpltsxrdtcfvygubhinjom</string>
 </resources>
-
-
 ```
 
 Insertion of getDecodedString(int) method into Context Classes (Application, Activity, etc.)
 ```java
-String decodedString = getDecodedString(R.string.api_security_token);
+String decodedString = getDecodedString(R.string.website_passphrase);
 
 ```
 
@@ -153,7 +151,8 @@ class JSONObject : public JavaClass {
     */
     const char *getCanonicalName() const {
         return MAKE_CANONICAL_NAME("org/json", JSONObject);
-    } ...
+    }
+    ...
 ```
 
 ##Easy Jni Replication of Personal APIs
