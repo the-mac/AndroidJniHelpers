@@ -68,10 +68,8 @@ Before Obfuscation
 
 ```
 
-Generation of Obfuscation Header
+Generation of Obfuscation Header (obfuscate.h)
 ```c++
-
-#include "obfuscate.h"
 
 ...
 #define Network ghjRkl
@@ -88,10 +86,8 @@ Generation of Obfuscation Header
 
 ```
 
-C++ Decompilation after obfuscation
-```bash
-
-#include "obfuscate.h"
+Resulting C/C++ Decompilation after obfuscation
+```c++
 ...
 
     ghjRkl *xrdtcf = new ghjRkl(afh);
