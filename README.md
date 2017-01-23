@@ -52,7 +52,8 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     JUNIT_ASSERT_EQUALS_STRING("https://httpbin.org/post", requestUrl.get());
 
 ```
-Planned Features:
+
+#Planned Features:
 
 ##Header Obfuscation (Inserted into main c/cpp file)
 
