@@ -9,9 +9,11 @@
 using namespace std;
 
 class Network : public NativeObject {
+
+protected:
     jobject thisObj;
-    std::map<std::string,std::string> mappingObject;
     std::string requestUrl;
+    std::map<std::string,std::string> mappingObject;
 
 public:
     JavaString resultString;

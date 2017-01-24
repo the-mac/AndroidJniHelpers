@@ -53,7 +53,7 @@ public class Network extends NativeObject {
     private static final String HTTPS = "https";
 
     private int retryCount = 3;
-    String resultString;
+    public String resultString;
 
     public static native Network getInstance();
     static Network testingDefault() { return new Network(); }
