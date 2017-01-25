@@ -35,7 +35,7 @@ class NetworkTest : public JavaClass {
 public:
     NetworkTest() : JavaClass() {}
     NetworkTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
-  ~ReelNetworkTest() {}
+    ~NetworkTest() {}
 
   const char* getCanonicalName() const {
     return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", NetworkTest);
