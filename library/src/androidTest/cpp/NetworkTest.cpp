@@ -115,7 +115,7 @@ void NetworkTest::nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis) {
     std::string testString = env->GetStringUTFChars(output, 0);
     JUNIT_ASSERT_EQUALS_STRING(TEST_PARAMETER, testString);
 
-    std::string jsonOutput = network->toJSON();
+    std::string jsonOutput = network->requestJSON();
     JUNIT_ASSERT_EQUALS_STRING(TEST_REQUEST, jsonOutput);
 }
 

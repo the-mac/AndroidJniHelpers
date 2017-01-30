@@ -24,16 +24,6 @@ public:
     const char *getCanonicalName() const {
         return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network);
     }
-//    static const char *getCanonicalName(const char *method_name) {
-//        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers/Network", method_name);
-//    }
-//    /**
-//    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
-//    * the Jni Helper's static relationship to the Network class defined in Java.
-//    */
-//    static jclass getClass(JNIEnv *env) {
-//        return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", Network));
-//    }
 
     Network();
 
@@ -43,7 +33,7 @@ public:
 
     void mapFields();
 
-    std::string toJSON();
+    std::string requestJSON();
 
 
     /**
@@ -66,15 +56,9 @@ public:
 
     static jobject getInstance(JNIEnv *env, jobject java_this);
 
-    static jobject testingDefault(JNIEnv *env);
-
     jstring getResultString(JNIEnv *env);
 
     void setResultString(JNIEnv *env, jstring jstringValue1);
-
-//    void destroyNative(JNIEnv *env);
-//
-//    static void destroy(JNIEnv *env, jobject java_this);
 
     jobject getHttpPostNative(JNIEnv *env);
 

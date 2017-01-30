@@ -29,9 +29,30 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 **Java Secure Network Calls**
 ```java
 
-    Network object = Network.getInstance();
-    object.put("key", "1234");
-    object.request(Network.HTTP_BIN);
+public class MACRequests extends Network {
+
+    private static final int BASE = 0;
+    private static final int INCREMENT = 1;
+    
+    public static final int HTTP_BIN = BASE + INCREMENT;
+    public static final int JSON_TEST = HTTP_BIN + INCREMENT;
+
+    private static final String API_KEY = "apiKey";
+
+    public static native MACRequests getInstance();
+
+    public MACRequests setKey(String key) {
+        put(API_KEY, key);
+        return this;
+    }
+}
+
+```
+Using the MACRequests Java instance looks as follows:
+```java
+
+    MACRequests object = MACRequests.getInstance().setKey("1234");
+    object.request(MACRequests.HTTP_BIN);
 
     JSONObject jsonObject = new JSONObject(object.resultString);
     String requestUrl = jsonObject.getString("url");
@@ -42,8 +63,64 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 **Native Secure Network Calls**
 ```c++
 
-    Network *network = new Network(env);
-    jstring response = network->request(env, Network::HTTP_BIN);
+class MACRequests : public Network {
+
+protected:
+    std::string requestSession;
+
+public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
+    * the Jni Helper's relationship to the MACRequests class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/requests", MACRequests);
+    }
+
+    MACRequests();
+
+    MACRequests(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    /**
+    * The getBytes method is used to get the Server's Certificate
+    * @return SSL (Secure Sockets Layer) certificate bytes for a secure network connection.
+    */
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+
+    /**
+    * The setRequestType method is used to set the request data
+    * In here you can set any variables needed for a specific session (url, session key, etc.)
+    */
+    static void setRequestType(JNIEnv *env, jobject java_this, jint jintValue1);
+
+    /**
+    * The getHttpPost method is used to return the request's post data (JSON by default)
+    */
+    static jobject getHttpPost(JNIEnv *env, jobject java_this);
+
+
+    static jobject getInstance(JNIEnv *env, jobject java_this);
+
+
+    static const int BASE = 0;
+    static const int INCREMENT = 1;
+    static const int HTTP_BIN = BASE + INCREMENT;
+    static const int JSON_TEST = HTTP_BIN + INCREMENT;
+};
+```
+
+For example of MACRequests cpp file see [jni test folder](#)
+
+Using the MACRequests native instance looks as follows:
+```c++
+
+    MACRequests *network = new MACRequests(env);
+    network->putNative(env, env->NewStringUTF("apiKey"), env->NewStringUTF("d6f4"));
+    jstring response = network->request(env, MACRequests::HTTP_BIN);
     std::string resultString = JavaString(env, response).get();
 
     JSONObject jsonObject(env, resultString);

@@ -7,6 +7,9 @@
 #include "ByteArrayEntity.h"
 #include <cstring>
 
+static const std::string HEADER_ACCEPT_KEY = "Accept";
+static const std::string HEADER_CONTENT_KEY = "Content-type";
+static const std::string HEADER_VALUE = "application/json";
 
 Network Instance(JNIEnv * env) {
     if(!networkInstance.isInitialized()) networkInstance.initialize(env);
@@ -63,13 +66,6 @@ jobject Network::getInstance(JNIEnv *env, jobject java_this)
     return network->thisObj;
 }
 
-jobject Network::testingDefault(JNIEnv *env)
-{
-    jobject result = env->CallStaticObjectMethod(Instance(env)._clazz, Instance(env).getMethod(__FUNCTION__));
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
 jstring Network::getResultString(JNIEnv *env)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
@@ -114,23 +110,15 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
 
     if (object != NULL)
     {
-        //url with the post data
+        // Setting the url and the post data
         HttpPost httpost(env, object->requestUrl);
+        JavaString jsonString(object->requestJSON());
+        httpost.setEntity(env, ByteArrayEntity(env, jsonString.toByteArray(env)));
 
-        //gets the json post request as bytes
-        std::string jsonString = object->toJSON();
-        const char *json = jsonString.c_str();
-        jbyte *data = (jbyte *) json;
-
-        int size = std::strlen(json);
-        jbyteArray outputData = env->NewByteArray(size);
-        env->SetByteArrayRegion(outputData, 0, size, data);
-        httpost.setEntity(env, ByteArrayEntity(env, outputData));
-
-        //sets a request header so the page receving
-        //the request will know what to do with it
-        httpost.setHeader(env, "Accept", "application/json");
-        httpost.setHeader(env, "Content-type", "application/json");
+        // Setting a request header so the page receving
+        // the request will know what to do with it
+        httpost.setHeader(env, HEADER_ACCEPT_KEY, HEADER_VALUE);
+        httpost.setHeader(env, HEADER_CONTENT_KEY, HEADER_VALUE);
 
         return httpost.thisObj;
     }
@@ -171,7 +159,7 @@ jstring Network::get(JNIEnv *env, jobject java_this, jstring key) {
 }
 
 
-std::string Network::toJSON() {
+std::string Network::requestJSON() {
     stringstream ss;
     auto pair = mappingObject.begin();
 
@@ -195,7 +183,7 @@ jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
 
     if (object != NULL)
     {
-        std::string contents = object->toJSON();
+        std::string contents = object->requestJSON();
         return env->NewStringUTF(contents.c_str());
     }
 
