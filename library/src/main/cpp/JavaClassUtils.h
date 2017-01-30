@@ -43,6 +43,7 @@ namespace jni {
  * the string "com/example/stuff/Foo".
  */
 #define MAKE_CANONICAL_NAME(_PACKAGE, _CLASS) _PACKAGE "/" #_CLASS
+#define MAKE_CANONICAL_NAME_INNER_CLASS(_PACKAGE, _CLASS) _PACKAGE "$" #_CLASS
 
 class JavaClassUtils {
 private:

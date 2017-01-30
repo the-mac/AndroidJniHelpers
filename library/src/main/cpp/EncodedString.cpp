@@ -57,7 +57,7 @@ jstring EncodedString::toString(JNIEnv *env)
     return (jstring) result;
 }
 
-jstring EncodedString::nativeDecode(JNIEnv *env)
+jstring EncodedString::decodeNative(JNIEnv *env)
 {
     return EncodedString::decode(env, thisObj);
 }

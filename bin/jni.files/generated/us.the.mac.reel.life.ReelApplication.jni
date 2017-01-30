@@ -7,7 +7,7 @@ us.the.mac.reel.life.ReelApplication.jni was generated as a helper for ReelAppli
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: us.the.mac.reel.life.ReelApplication, Instance
+- Java methods: us.the.mac.reel.life.ReelApplication, Instance, getDecodedString
 
 The source code can be copied into the respective ReelApplication.h and
 ReelApplication.cpp files in a location of your choice. Finally, the last segment
@@ -17,7 +17,7 @@ contains an example of what these method calls would look like in your code.
 
 #include "JniHelpers.h"
 
-class ReelApplication : public JavaClass {
+class ReelApplication : public NativeObject {
     static std::map<std::string, std::string> static_signatures;
     jobject thisObj;
   public:
@@ -57,18 +57,22 @@ class ReelApplication : public JavaClass {
 
     static jobject Instance(JNIEnv *env);
 
+    jstring getDecodedStringNative(JNIEnv *env, jint jintValue1);
+
+    static jstring getDecodedString(JNIEnv *env, jobject java_this, jint jintValue1);
+
 };
 
 ********************************************************************************
 
 
-ReelApplication::ReelApplication() : JavaClass() {}
+ReelApplication::ReelApplication() : NativeObject() {}
 
 /**
 * Here you can construct the ReelApplication object how ever you need to, 
 * as well as load signatures for the Java instance method calls.
 */
-ReelApplication::ReelApplication(JNIEnv *env) : JavaClass(env)
+ReelApplication::ReelApplication(JNIEnv *env) : NativeObject(env)
 {
     initialize(env);
 
@@ -89,6 +93,7 @@ void ReelApplication::initialize(JNIEnv *env)
     cacheConstructor(env);
 
     addStaticSignature("Instance", "()Lus/the/mac/reel/life/ReelApplication;");
+    addNativeSignature("getDecodedString", (void*)&ReelApplication::getDecodedString, "(I)Ljava/lang/String;");
 
     registerNativeMethods(env);
 }
@@ -105,9 +110,25 @@ jobject ReelApplication::Instance(JNIEnv *env)
     return result;
 }
 
+jstring ReelApplication::getDecodedStringNative(JNIEnv *env, jint jintValue1) { return ReelApplication::getDecodedString(env, thisObj, jintValue1); }
+
+jstring ReelApplication::getDecodedString(JNIEnv *env, jobject java_this, jint jintValue1) {
+    ReelApplication *object = gClasses.getNativeInstance<ReelApplication>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->callToSomeFunction())
+    }
+
+    return NULL;
+}
+
+
 
 ********************************************************************************
 
 jobject jobjectReturnValue = ReelApplication::Instance(env);
+
+jstring jstringReturnValue = instance.getDecodedString(env, jintValue1);
 
 

@@ -31,7 +31,7 @@ public:
 
     jstring toString(JNIEnv *env);
 
-    jstring nativeDecode(JNIEnv *env);
+    jstring decodeNative(JNIEnv *env);
 
     static jstring decode(JNIEnv *env, jobject java_this);
 
