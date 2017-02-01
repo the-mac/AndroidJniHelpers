@@ -113,7 +113,7 @@ public:
 };
 ```
 
-For example of MACRequests cpp file see [jni library folder](library/src/main/cpp/MACRequests.cpp)
+For example of MACRequests cpp file see [jni test folder](library/src/androidTest/cpp/MACRequests.cpp)
 
 Using the MACRequests native instance looks as follows:
 ```c++
