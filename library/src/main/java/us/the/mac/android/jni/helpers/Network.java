@@ -43,9 +43,6 @@ public class Network extends NativeObject {
     private static final int BASE = 0;
     private static final int INCREMENT = 1;
 
-    public static final int HTTP_BIN = BASE + INCREMENT;
-    public static final int JSON_TEST = HTTP_BIN + INCREMENT;
-
     private static final String A = "\\A";
     private static final String X_509 = "X.509";
     private static final String CA2 = "ca";
@@ -56,7 +53,6 @@ public class Network extends NativeObject {
     public String resultString;
 
     public static native Network getInstance();
-    static Network testingDefault() { return new Network(); }
     public Network() {}
 
 //

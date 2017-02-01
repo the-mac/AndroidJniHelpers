@@ -41,15 +41,15 @@ public class NetworkTest {
         System.loadLibrary("test-helper-lib");
     }
 
-    native public Network createNetwork();
+    native public MACRequests createMACRequests();
 
-    native public Network getPersistedInstance(Network object);
+    native public MACRequests getPersistedInstance(MACRequests object);
 
-    native public void destroyNetwork(Network object);
+    native public void destroyMACRequests(MACRequests object);
 
     @Test
     public void persist() throws Exception {
-        Network object = createNetwork();
+        MACRequests object = createMACRequests();
         assertNotEquals(0, object.nPtr);
         // These properties should be set by the first native method in this case
         assertEquals(null, object.resultString);
@@ -57,17 +57,17 @@ public class NetworkTest {
         // Now create a new empty object, but copy the nPtr field to it. Note that
         // the i field is *not* copied; that value is stored natively and should
         // be retrieved in the call to getPersistedInstance.
-        Network emptyInstance = Network.testingDefault();
+        MACRequests emptyInstance = MACRequests.testingDefault();
         emptyInstance.nPtr = object.nPtr;
 
         // The native test should be able to fetch the previous instance via nPtr,
         // and return to us the same instance data in a new object.
-        Network result = getPersistedInstance(emptyInstance);
+        MACRequests result = getPersistedInstance(emptyInstance);
         org.junit.Assert.assertEquals(object.nPtr, result.nPtr);
         assertEquals(object.resultString, result.resultString);
 
         // Always clean up after yourself, kids!
-        destroyNetwork(object);
+        destroyMACRequests(object);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -79,7 +79,7 @@ public class NetworkTest {
     @Test
     public void getPutAndToJSONString() throws Exception {
 
-        Network object = createNetwork();
+        MACRequests object = createMACRequests();
         object.put("parameter", "parameterValue");
 
         assertNotEquals(0, object.nPtr);
@@ -89,10 +89,10 @@ public class NetworkTest {
 
     @Test
     public void networkHttpPost() throws Exception {
-        Network object = createNetwork();
+        MACRequests object = createMACRequests();
 
         object.put("parameter", "parameterValue");
-        object.setRequestType(Network.HTTP_BIN);
+        object.setRequestType(MACRequests.HTTP_BIN);
         assertNotEquals(0, object.nPtr);
 
         HttpPost post = (HttpPost) object.getHttpPost();
@@ -125,12 +125,12 @@ public class NetworkTest {
 
     @Test
     public void networkRequest() throws Exception {
-//        Network object = createNetwork();
-        Network object = Network.getInstance();
+//        MACRequests object = createMACRequests();
+        MACRequests object = MACRequests.getInstance();
         assertNotEquals(0, object.nPtr);
 
         object.put("key", "1234");
-        object.request(Network.HTTP_BIN);
+        object.request(MACRequests.HTTP_BIN);
 
         assertNotNull(object.resultString);
         JSONObject jsonObject = new JSONObject(object.resultString);
@@ -146,15 +146,15 @@ public class NetworkTest {
         assertEquals(TestConstants.TEST_HEADERS, contentString);
     }
     @Test
-    native public void nativeNetworkRequest() throws Exception;
+    native public void nativeMACRequestsRequest() throws Exception;
 
     @Test
-    public void destroyNetwork() throws Exception {
-        Network object = createNetwork();
+    public void destroyMACRequests() throws Exception {
+        MACRequests object = createMACRequests();
         assertNotEquals(0, object.nPtr);
         assertEquals(null, object.resultString);
 
-        destroyNetwork(object);
+        destroyMACRequests(object);
 
         org.junit.Assert.assertEquals(0, object.nPtr);
     }
@@ -173,7 +173,7 @@ public class NetworkTest {
 
     @Test
     public void destroyFromJava() throws Exception {
-        Network object = createNetwork();
+        MACRequests object = createMACRequests();
         assertNotEquals(0, object.nPtr);
         object.destroy();
     }

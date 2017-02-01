@@ -21,7 +21,7 @@
 
 #include "NetworkTest.h"
 #include "JUnitUtils.h"
-#include "Network.h"
+#include "MACRequests.h"
 #include "JSONObject.h"
 
 using namespace operators::nativity::requests;
@@ -29,21 +29,21 @@ using namespace operators::nativity::requests;
 void NetworkTest::initialize(JNIEnv *env) {
     setClass(env);
 
-    Network network;
+    MACRequests network;
     const char *networkName = network.getCanonicalName();
 
-    addNativeMethod("createNetwork", (void *) &createNetwork, networkName, NULL);
+    addNativeMethod("createMACRequests", (void *) &createMACRequests, networkName, NULL);
     addNativeMethod("getPersistedInstance", (void *) &getPersistedInstance, networkName,
                     networkName, NULL);
     addNativeMethod("nativeIsPersistenceEnabled", (void *) nativeIsPersistenceEnabled, kTypeVoid,
                     NULL);
     addNativeMethod("isPersistenceEnabledWithoutInit", (void *) isPersistenceEnabledWithoutInit,
                     kTypeVoid, NULL);
-    addNativeMethod("destroyNetwork", (void *) &destroyNetwork, kTypeVoid, networkName, NULL);
+    addNativeMethod("destroyMACRequests", (void *) &destroyMACRequests, kTypeVoid, networkName, NULL);
     addNativeMethod("persistNullObject", (void *) &persistNullObject, kTypeVoid, NULL);
     addNativeMethod("nativeGetPutAndToJSONString", (void *) nativeGetPutAndToJSONString, kTypeVoid,
                     NULL);
-    addNativeMethod("nativeNetworkRequest", (void *) nativeNetworkRequest, kTypeVoid, NULL);
+    addNativeMethod("nativeMACRequestsRequest", (void *) nativeMACRequestsRequest, kTypeVoid, NULL);
 
     addNativeMethod("destroyInvalidClass", (void *) &destroyInvalidClass, kTypeVoid, NULL);
     addNativeMethod("destroyNullObject", (void *) &destroyNullObject, kTypeVoid, NULL);
@@ -51,20 +51,20 @@ void NetworkTest::initialize(JNIEnv *env) {
     registerNativeMethods(env);
 }
 
-jobject NetworkTest::createNetwork(JNIEnv *env, jobject javaThis) {
-    LOG_INFO("Starting test: createNetwork");
-    Network *network = new Network(env);
+jobject NetworkTest::createMACRequests(JNIEnv *env, jobject javaThis) {
+    LOG_INFO("Starting test: createMACRequests");
+    MACRequests *network = new MACRequests(env);
     network->resultString = TEST_RESULT;
     // Persist should be called for us here. Note that the original object is leaked; it will
-    // be cleaned up in destroyNetwork().
+    // be cleaned up in destroyMACRequests().
     return network->toJavaObject(env);
 }
 
 jobject NetworkTest::getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object) {
     LOG_INFO("Starting test: getPersistedInstance");
     ClassRegistry registry;
-    registry.add(env, new Network(env));
-    Network *network = registry.getNativeInstance<Network>(env, object);
+    registry.add(env, new MACRequests(env));
+    MACRequests *network = registry.getNativeInstance<MACRequests>(env, object);
     JUNIT_ASSERT_EQUALS_STRING(TEST_RESULT, network->resultString.get());
     JUNIT_ASSERT_NOT_NULL(network->getCanonicalName());
     JUNIT_ASSERT_TRUE(network->isInitialized());
@@ -73,30 +73,30 @@ jobject NetworkTest::getPersistedInstance(JNIEnv *env, jobject javaThis, jobject
 
 void NetworkTest::nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: nativeIsPersistenceEnabled");
-    Network network(env);
+    MACRequests network(env);
     JUNIT_ASSERT_TRUE(network.isInitialized());
-    Network mergedObject;
+    MACRequests mergedObject;
     mergedObject.merge(&network);
     JUNIT_ASSERT_TRUE(mergedObject.isInitialized());
     jstring key = env->NewStringUTF("parameter");
 }
 
 void NetworkTest::isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis) {
-    Network network;
+    MACRequests network;
     JUNIT_ASSERT_FALSE(network.isInitialized());
 }
 
-void NetworkTest::destroyNetwork(JNIEnv *env, jobject javaThis, jobject object) {
-    LOG_INFO("Starting test: destroyNetwork");
+void NetworkTest::destroyMACRequests(JNIEnv *env, jobject javaThis, jobject object) {
+    LOG_INFO("Starting test: destroyMACRequests");
     ClassRegistry registry;
-    registry.add(env, new Network(env));
-    Network *network = registry.getNativeInstance<Network>(env, object);
+    registry.add(env, new MACRequests(env));
+    MACRequests *network = registry.getNativeInstance<MACRequests>(env, object);
     network->destroy(env, object);
 }
 
 void NetworkTest::persistNullObject(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: persistNullObject");
-    Network network(env);
+    MACRequests network(env);
     network.mapFields();
     JUNIT_ASSERT_FALSE(network.persist(env, NULL));
 }
@@ -104,7 +104,7 @@ void NetworkTest::persistNullObject(JNIEnv *env, jobject javaThis) {
 void NetworkTest::nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: nativeGetPutAndToJSONString");
 
-    Network *network = new Network(env);
+    MACRequests *network = new MACRequests(env);
 
     // "parameter", "parameterValue"
     jstring key = env->NewStringUTF("parameter");
@@ -115,19 +115,19 @@ void NetworkTest::nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis) {
     std::string testString = env->GetStringUTFChars(output, 0);
     JUNIT_ASSERT_EQUALS_STRING(TEST_PARAMETER, testString);
 
-    std::string jsonOutput = network->toJSON();
+    std::string jsonOutput = network->requestJSON();
     JUNIT_ASSERT_EQUALS_STRING(TEST_REQUEST, jsonOutput);
 }
 
-void NetworkTest::nativeNetworkRequest(JNIEnv *env, jobject javaThis) {
-    LOG_INFO("Starting test: nativeNetworkRequest");
+void NetworkTest::nativeMACRequestsRequest(JNIEnv *env, jobject javaThis) {
+    LOG_INFO("Starting test: nativeMACRequestsRequest");
 
-    Network *network = new Network(env);
+    MACRequests *network = new MACRequests(env);
     std::string value =  network->resultString.get();
     JUNIT_ASSERT_EQUALS_STRING("", value);
 
 
-    jstring response = network->request(env, Network::HTTP_BIN);
+    jstring response = network->request(env, MACRequests::HTTP_BIN);
     JUNIT_ASSERT_NOT_NULL(response);
 
     JavaString resultString(env, response);
@@ -162,7 +162,7 @@ void NetworkTest::destroyInvalidClass(JNIEnv *env, jobject javaThis) {
     // the JVM if enabled.
 #if 0
     LOG_INFO("Starting test: destroyInvalidClass");
-    Network network(env);
+    MACRequests network(env);
     network.mapFields();
     network.destroy(env, javaThis);
 #endif
@@ -170,7 +170,7 @@ void NetworkTest::destroyInvalidClass(JNIEnv *env, jobject javaThis) {
 
 void NetworkTest::destroyNullObject(JNIEnv *env, jobject javaThis) {
     LOG_INFO("Starting test: destroyNullObject");
-    Network network(env);
+    MACRequests network(env);
     network.mapFields();
     network.destroy(env, NULL);
 }

@@ -35,7 +35,7 @@ class NetworkTest : public JavaClass {
 public:
     NetworkTest() : JavaClass() {}
     NetworkTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
-  ~ReelNetworkTest() {}
+    ~NetworkTest() {}
 
   const char* getCanonicalName() const {
     return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", NetworkTest);
@@ -44,14 +44,14 @@ public:
   void mapFields() {}
 
 private:
-  static jobject createNetwork(JNIEnv *env, jobject javaThis);
+  static jobject createMACRequests(JNIEnv *env, jobject javaThis);
   static jobject getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object);
   static void nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis);
   static void isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis);
-  static void destroyNetwork(JNIEnv *env, jobject javaThis, jobject object);
+  static void destroyMACRequests(JNIEnv *env, jobject javaThis, jobject object);
   static void persistNullObject(JNIEnv *env, jobject javaThis);
   static void nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis);
-  static void nativeNetworkRequest(JNIEnv *env, jobject javaThis);
+  static void nativeMACRequestsRequest(JNIEnv *env, jobject javaThis);
   static void destroyInvalidClass(JNIEnv *env, jobject javaThis);
   static void destroyNullObject(JNIEnv *env, jobject javaThis);
 };

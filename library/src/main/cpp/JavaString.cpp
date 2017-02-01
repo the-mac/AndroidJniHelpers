@@ -19,56 +19,66 @@
  * under the License.
  */
 
+#include <cstring>
 #include "JavaString.h"
 #include "JavaExceptionUtils.h"
 
 namespace spotify {
-namespace jni {
+    namespace jni {
 
-JavaString::JavaString() {
-  _value = "";
-}
+        JavaString::JavaString() {
+          _value = "";
+        }
 
-JavaString::JavaString(const std::string &string) {
-  _value = string;
-}
+        JavaString::JavaString(const std::string &string) {
+          _value = string;
+        }
 
-JavaString::JavaString(JNIEnv *env, jstring javaString) {
-  set(env, javaString);
-}
+        JavaString::JavaString(JNIEnv *env, jstring javaString) {
+          set(env, javaString);
+        }
 
-const std::string& JavaString::get() const {
-  return _value;
-}
+        const std::string& JavaString::get() const {
+          return _value;
+        }
 
-JniLocalRef<jstring> JavaString::toJavaString(JNIEnv *env) const {
-  return env->NewStringUTF(_value.c_str());
-}
+        JniLocalRef<jstring> JavaString::toJavaString(JNIEnv *env) const {
+          return env->NewStringUTF(_value.c_str());
+        }
 
-void JavaString::set(const char *value) {
-  _value = value;
-}
+        JniLocalRef<jbyteArray> JavaString::toByteArray(JNIEnv *env) const {
 
-void JavaString::set(const std::string &value) {
-  _value = value;
-}
+          const char *content = _value.c_str();
+          jbyteArray array = env->NewByteArray(_value.length());
+          env->SetByteArrayRegion(array, 0, _value.length(), (jbyte *) content);
 
-void JavaString::set(JNIEnv *env, jstring javaString) {
-  if (javaString == NULL) {
-    return;
-  }
+          return array;
+        }
 
-  const char *string = env->GetStringUTFChars(javaString, 0);
-  JavaExceptionUtils::checkException(env);
-  if (string == NULL) {
-    return;
-  }
+        void JavaString::set(const char *value) {
+          _value = value;
+        }
 
-  _value = string;
-  env->ReleaseStringUTFChars(javaString, string);
-  JavaExceptionUtils::checkException(env);
-}
+        void JavaString::set(const std::string &value) {
+          _value = value;
+        }
+
+        void JavaString::set(JNIEnv *env, jstring javaString) {
+          if (javaString == NULL) {
+            return;
+          }
+
+          const char *string = env->GetStringUTFChars(javaString, 0);
+          JavaExceptionUtils::checkException(env);
+          if (string == NULL) {
+            return;
+          }
+
+          _value = string;
+          env->ReleaseStringUTFChars(javaString, string);
+          JavaExceptionUtils::checkException(env);
+        }
 
 
-} // namespace jni
+    } // namespace jni
 } // namespace spotify

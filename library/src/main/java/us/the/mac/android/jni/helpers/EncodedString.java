@@ -26,4 +26,7 @@ public class EncodedString extends NativeObject {
     public native void destroy();
 
     public native String decode();
+
+    public static EncodedString testingInstance() { return new EncodedString(); }
+
 }

@@ -7,6 +7,9 @@
 #include "ByteArrayEntity.h"
 #include <cstring>
 
+static const std::string HEADER_ACCEPT_KEY = "Accept";
+static const std::string HEADER_CONTENT_KEY = "Content-type";
+static const std::string HEADER_VALUE = "application/json";
 
 Network Instance(JNIEnv * env) {
     if(!networkInstance.isInitialized()) networkInstance.initialize(env);
@@ -63,13 +66,6 @@ jobject Network::getInstance(JNIEnv *env, jobject java_this)
     return network->thisObj;
 }
 
-jobject Network::testingDefault(JNIEnv *env)
-{
-    jobject result = env->CallStaticObjectMethod(Instance(env)._clazz, Instance(env).getMethod(__FUNCTION__));
-    JavaExceptionUtils::checkException(env);
-    return result;
-}
-
 jstring Network::getResultString(JNIEnv *env)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
@@ -85,26 +81,7 @@ void Network::setResultString(JNIEnv *env, jstring jstringValue1)
 
 jbyteArray Network::getBytesNative(JNIEnv *env) { return Network::getBytes(env, thisObj); }
 
-jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
-
-    const char certificate[] = {
-
-        #include "httpbin_root_certificate" // THIS VALIDATES CONNECTION TO: https://httpbin.org/post
-        //FOUND W/: true | openssl s_client -connect httpbin.org:443 2>/dev/null | openssl x509 -in /dev/stdin
-
-        // #include "github_root_certificate" // TRY THIS INSTEAD FOR VALIDATION OF httpbin_root_certificate
-        //FOUND W/: true | openssl s_client -connect gist.githubusercontent.com:443 2>/dev/null | openssl x509 -in /dev/stdin
-
-    };
-
-    int size = std::strlen(certificate);
-
-    jbyte *data = (jbyte *) certificate;
-    jbyteArray array = env->NewByteArray(size);
-    env->SetByteArrayRegion(array, 0, size, data);
-
-    return array;
-}
+jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) { return NULL; }
 
 
 jobject Network::getHttpPostNative(JNIEnv *env) { return Network::getHttpPost(env, thisObj); }
@@ -114,23 +91,15 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
 
     if (object != NULL)
     {
-        //url with the post data
+        // Setting the url and the post data
         HttpPost httpost(env, object->requestUrl);
+        JavaString jsonString(object->requestJSON());
+        httpost.setEntity(env, ByteArrayEntity(env, jsonString.toByteArray(env)));
 
-        //gets the json post request as bytes
-        std::string jsonString = object->toJSON();
-        const char *json = jsonString.c_str();
-        jbyte *data = (jbyte *) json;
-
-        int size = std::strlen(json);
-        jbyteArray outputData = env->NewByteArray(size);
-        env->SetByteArrayRegion(outputData, 0, size, data);
-        httpost.setEntity(env, ByteArrayEntity(env, outputData));
-
-        //sets a request header so the page receving
-        //the request will know what to do with it
-        httpost.setHeader(env, "Accept", "application/json");
-        httpost.setHeader(env, "Content-type", "application/json");
+        // Setting a request header so the page receving
+        // the request will know what to do with it
+        httpost.setHeader(env, HEADER_ACCEPT_KEY, HEADER_VALUE);
+        httpost.setHeader(env, HEADER_CONTENT_KEY, HEADER_VALUE);
 
         return httpost.thisObj;
     }
@@ -171,7 +140,7 @@ jstring Network::get(JNIEnv *env, jobject java_this, jstring key) {
 }
 
 
-std::string Network::toJSON() {
+std::string Network::requestJSON() {
     stringstream ss;
     auto pair = mappingObject.begin();
 
@@ -195,7 +164,7 @@ jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
 
     if (object != NULL)
     {
-        std::string contents = object->toJSON();
+        std::string contents = object->requestJSON();
         return env->NewStringUTF(contents.c_str());
     }
 
@@ -205,18 +174,7 @@ jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
 
 void Network::setRequestTypeNative(JNIEnv *env, jint jintValue1) { Network::setRequestType(env, thisObj, jintValue1); }
 
-void Network::setRequestType(JNIEnv *env, jobject java_this, jint requestType) {
-    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
-
-    if (object != NULL)
-    {
-        switch (requestType) {
-            case HTTP_BIN: object->requestUrl = "https://httpbin.org/post"; break;
-            case JSON_TEST: object->requestUrl = "http://ip.jsontest.com"; break;
-        }
-    }
-
-}
+void Network::setRequestType(JNIEnv *env, jobject java_this, jint requestType) {}
 
 
 jstring Network::request(JNIEnv *env, jint jintValue1)

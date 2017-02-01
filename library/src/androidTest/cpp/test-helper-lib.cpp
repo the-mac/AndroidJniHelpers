@@ -5,10 +5,11 @@
 #include "JavaStringTest.h"
 #include "NativeObjectTest.h"
 #include "PersistedObject.h"
-#include "DecodedStringTest.h"
+#include "EncodedStringTest.h"
 #include "JavaClassTest.h"
 #include "TestObject.h"
 #include <DecodedString.h>
+#include <MACRequests.h>
 #include "NetworkTest.h"
 #include "Network.h"
 
@@ -28,12 +29,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new JavaStringTest(env));
     gClasses.add(env, new NativeObjectTest(env));
     gClasses.add(env, new PersistedObject(env));
-    gClasses.add(env, new DecodedStringTest(env));
+    gClasses.add(env, new EncodedStringTest(env));
     gClasses.add(env, new DecodedString(env));
     gClasses.add(env, new JavaClassTest(env));
     gClasses.add(env, new TestObject(env));
     gClasses.add(env, new NetworkTest(env));
     gClasses.add(env, new Network(env));
+    gClasses.add(env, new MACRequests(env));
 
     LOG_INFO("Initialization complete");
     return JAVA_VERSION;
