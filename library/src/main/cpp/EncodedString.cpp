@@ -34,7 +34,7 @@ void EncodedString::initialize(JNIEnv *env)
 
     cacheSignature(env, "equals", "(Ljava/lang/Object;)Z");
     cacheSignature(env, "toString", "()Ljava/lang/String;");
-    addNativeSignature("decode", (void*)&EncodedString::decode, "()Ljava/lang/String;");
+    addNativeSignature("decrypt", (void*)&EncodedString::decrypt, "(I)Ljava/lang/String;");
 
     // addNativeMethod("destroy", (void*)&EncodedString::nativeDestroy, kTypeVoid, NULL);
     registerNativeMethods(env);
@@ -43,6 +43,7 @@ void EncodedString::mapFields()
 {
     mapField("encodedString", kTypeString, &encodedString);
 }
+
 jboolean EncodedString::equals(JNIEnv *env, jobject jobjectValue1)
 {
     jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
@@ -59,7 +60,7 @@ jstring EncodedString::toString(JNIEnv *env)
 
 jstring EncodedString::decryptNative(JNIEnv *env, jint algorithm)
 {
-    return EncodedString::decode(env, thisObj);
+    return EncodedString::decrypt(env, thisObj, algorithm);
 }
 
 string rot(string s, int r)

@@ -25,7 +25,7 @@ public class EncodedString extends NativeObject {
     @Override
     public native void destroy();
 
-    public native String decode();
+    public native String decrypt(int algorithm);
 
     public static EncodedString testingInstance() { return new EncodedString(); }
 
