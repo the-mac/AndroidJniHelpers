@@ -57,7 +57,7 @@ jstring EncodedString::toString(JNIEnv *env)
     return (jstring) result;
 }
 
-jstring EncodedString::nativeDecode(JNIEnv *env)
+jstring EncodedString::decryptNative(JNIEnv *env, jint algorithm)
 {
     return EncodedString::decode(env, thisObj);
 }
@@ -79,7 +79,7 @@ string rot(string s, int r)
     return ss.str();
 }
 
-jstring EncodedString::decode(JNIEnv *env, jobject java_this)
+jstring EncodedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
 {
     EncodedString *object = gClasses.getNativeInstance<EncodedString>(env, java_this);
     if (object != NULL) {

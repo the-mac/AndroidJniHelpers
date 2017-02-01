@@ -10,7 +10,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     EncodedString object = EncodedString.getInstance();
     object.encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    String decodedString = object.decode();
+    String decodedString = object.decrypt(EncodedString.INLINE_STRINGS_ALGORITHM);
     assertEquals("To be or not to be, That is the question", decodedString);
 
 ```
@@ -20,7 +20,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     EncodedString *object = new EncodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    JavaString decodedString(env, object->nativeDecode(env));
+    JavaString decryptedString(env, object->decryptNative(env, EncodedString::INLINE_STRINGS_ALGORITHM));
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decodedString.get());
 
 ```

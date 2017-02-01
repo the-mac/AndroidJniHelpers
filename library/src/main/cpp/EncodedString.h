@@ -31,12 +31,17 @@ public:
 
     jstring toString(JNIEnv *env);
 
-    jstring nativeDecode(JNIEnv *env);
+    jstring decryptNative(JNIEnv *env, jint algorithm);
 
-    static jstring decode(JNIEnv *env, jobject java_this);
+    static jstring decrypt(JNIEnv *env, jobject java_this, jint algorithm);
 
 public:
     JavaString encodedString;
+
+    static const int BASE = 0;
+    static const int INCREMENT = 1;
+    static const int INLINE_STRINGS_ALGORITHM = BASE + INCREMENT;
+    static const int RESOURCE_STRINGS_ALGORITHM = INLINE_STRINGS_ALGORITHM + INCREMENT;
 };
 
 #endif //ANDROIDJNI_ENCODEDSTRING_H
