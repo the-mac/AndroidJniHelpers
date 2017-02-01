@@ -81,26 +81,7 @@ void Network::setResultString(JNIEnv *env, jstring jstringValue1)
 
 jbyteArray Network::getBytesNative(JNIEnv *env) { return Network::getBytes(env, thisObj); }
 
-jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) {
-
-    const char certificate[] = {
-
-        #include "httpbin_root_certificate" // THIS VALIDATES CONNECTION TO: https://httpbin.org/post
-        //FOUND W/: true | openssl s_client -connect httpbin.org:443 2>/dev/null | openssl x509 -in /dev/stdin
-
-        // #include "github_root_certificate" // TRY THIS INSTEAD FOR VALIDATION OF httpbin_root_certificate
-        //FOUND W/: true | openssl s_client -connect gist.githubusercontent.com:443 2>/dev/null | openssl x509 -in /dev/stdin
-
-    };
-
-    int size = std::strlen(certificate);
-
-    jbyte *data = (jbyte *) certificate;
-    jbyteArray array = env->NewByteArray(size);
-    env->SetByteArrayRegion(array, 0, size, data);
-
-    return array;
-}
+jbyteArray Network::getBytes(JNIEnv *env, jobject java_this) { return NULL; }
 
 
 jobject Network::getHttpPostNative(JNIEnv *env) { return Network::getHttpPost(env, thisObj); }
@@ -193,18 +174,7 @@ jstring Network::toJSONString(JNIEnv *env, jobject java_this) {
 
 void Network::setRequestTypeNative(JNIEnv *env, jint jintValue1) { Network::setRequestType(env, thisObj, jintValue1); }
 
-void Network::setRequestType(JNIEnv *env, jobject java_this, jint requestType) {
-    Network *object = gClasses.getNativeInstance<Network>(env, java_this);
-
-    if (object != NULL)
-    {
-        switch (requestType) {
-            case HTTP_BIN: object->requestUrl = "https://httpbin.org/post"; break;
-            case JSON_TEST: object->requestUrl = "http://ip.jsontest.com"; break;
-        }
-    }
-
-}
+void Network::setRequestType(JNIEnv *env, jobject java_this, jint requestType) {}
 
 
 jstring Network::request(JNIEnv *env, jint jintValue1)

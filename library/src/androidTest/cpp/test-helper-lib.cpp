@@ -9,6 +9,7 @@
 #include "JavaClassTest.h"
 #include "TestObject.h"
 #include <DecodedString.h>
+#include <MACRequests.h>
 #include "NetworkTest.h"
 #include "Network.h"
 
@@ -34,6 +35,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new TestObject(env));
     gClasses.add(env, new NetworkTest(env));
     gClasses.add(env, new Network(env));
+    gClasses.add(env, new MACRequests(env));
 
     LOG_INFO("Initialization complete");
     return JAVA_VERSION;

@@ -74,7 +74,7 @@ public:
     * the Jni Helper's relationship to the MACRequests class defined in Java.
     */
     const char *getCanonicalName() const {
-        return MAKE_CANONICAL_NAME("us/the/mac/requests", MACRequests);
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", MACRequests);
     }
 
     MACRequests();
@@ -113,7 +113,7 @@ public:
 };
 ```
 
-For example of MACRequests cpp file see [jni test folder](#)
+For example of MACRequests cpp file see [jni library folder](library/src/main/cpp/MACRequests.cpp)
 
 Using the MACRequests native instance looks as follows:
 ```c++
