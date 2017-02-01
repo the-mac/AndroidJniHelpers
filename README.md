@@ -1,8 +1,13 @@
 # AndroidJniHelpers
 Tools for writing secure Android/JNI code, based upon Spotify's [Jni Helpers Library](https://github.com/spotify/JniHelpers.git).
 
-The Android Jni Helpers library can hide important details of your app from basic apk decompilation. Here is a [demonstration](https://www.youtube.com/watch?v=TfLq9nsLWOc)  of how easy its done using [javadecompilers](http://www.javadecompilers.com/apk). To harden your app beyond [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
-from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few of our current features:
+The Android Jni Helpers library can hide important details of your app from basic apk decompilation. Here is
+a [demonstration](https://www.youtube.com/watch?v=TfLq9nsLWOc)  of how easy apk decompilation truly is, using
+the online decompiler [javadecompilers](http://www.javadecompilers.com/apk).
+
+To harden your app's resources like inline (Java file) strings, resource (res) strings and network requests beyond
+[basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
+from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few examples of our solutions:
 
 **Java String Decoding**
 ```java
@@ -20,7 +25,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     EncodedString *object = new EncodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    JavaString decodedString(env, object->nativeDecode(env));
+    JavaString decodedString(env, object->decodeNative(env));
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decodedString.get());
 
 ```
@@ -48,7 +53,7 @@ public class MACRequests extends Network {
 }
 
 ```
-Using the MACRequests Java instance looks as follows:
+Using a MACRequests Java instance could look as follows:
 ```java
 
     MACRequests object = MACRequests.getInstance().setKey("1234");
@@ -113,9 +118,9 @@ public:
 };
 ```
 
-For example of MACRequests cpp file see [jni test folder](library/src/androidTest/cpp/MACRequests.cpp)
+For the MACRequests cpp file see [jni androidTest folder](library/src/androidTest/cpp/MACRequests.cpp)
 
-Using the MACRequests native instance looks as follows:
+Using a MACRequests native instance looks as follows:
 ```c++
 
     MACRequests *network = new MACRequests(env);
@@ -130,6 +135,7 @@ Using the MACRequests native instance looks as follows:
 ```
 
 #Setting up your project
+
 * Open your command line
 * cd into your C++/Android project (you can add C++ support through the Android Studio context menu)
 * Clone the repo into your project:
