@@ -118,7 +118,7 @@ public:
 };
 ```
 
-For the MACRequests cpp file see [jni androidTest folder](library/src/androidTest/cpp/MACRequests.cpp)
+For the MACRequests cpp file, see [AndroidJniHelper androidTest folder](library/src/androidTest/cpp/MACRequests.cpp)
 
 Using a MACRequests native instance looks as follows:
 ```c++
