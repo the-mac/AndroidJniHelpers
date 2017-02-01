@@ -19,8 +19,8 @@
  * under the License.
  */
 
-#ifndef __DecodedStringTest_h__
-#define __DecodedStringTest_h__
+#ifndef __EncodedStringTest_h__
+#define __EncodedStringTest_h__
 
 #include "JniHelpers.h"
 #include "JniHelpersTest.h"
@@ -31,24 +31,24 @@ namespace operators {
     namespace nativity {
         namespace decodedstring {
 
-class DecodedStringTest : public JavaClass {
+class EncodedStringTest : public JavaClass {
 public:
-  DecodedStringTest() : JavaClass() {}
-  DecodedStringTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
-  ~DecodedStringTest() {}
+  EncodedStringTest() : JavaClass() {}
+  EncodedStringTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
+  ~EncodedStringTest() {}
 
   const char* getCanonicalName() const {
-    return MAKE_CANONICAL_NAME(PACKAGE, DecodedStringTest);
+    return MAKE_CANONICAL_NAME(PACKAGE, EncodedStringTest);
   }
   void initialize(JNIEnv *env);
   void mapFields() {}
 
 private:
-  static jobject createDecodedString(JNIEnv *env, jobject javaThis);
+  static jobject createEncodedString(JNIEnv *env, jobject javaThis);
   static jobject getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object);
   static void nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis);
   static void isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis);
-  static void destroyDecodedString(JNIEnv *env, jobject javaThis, jobject object);
+  static void destroyEncodedString(JNIEnv *env, jobject javaThis, jobject object);
   static void persistNullObject(JNIEnv *env, jobject javaThis);
   static void destroyInvalidClass(JNIEnv *env, jobject javaThis);
   static void destroyNullObject(JNIEnv *env, jobject javaThis);
@@ -58,4 +58,4 @@ private:
 } // namespace nativity
 } // namespace operators
 
-#endif // __DecodedStringTest_h__
+#endif // __EncodedStringTest_h__
