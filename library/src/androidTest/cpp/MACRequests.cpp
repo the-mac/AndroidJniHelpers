@@ -3,15 +3,7 @@
 //
 
 #include "MACRequests.h"
-#include "HttpPost.h"
-#include "ByteArrayEntity.h"
 #include <cstring>
-
-
-//MACRequests Instance(JNIEnv * env) {
-//    if(!networkInstance.isInitialized()) networkInstance.initialize(env);
-//    return networkInstance;
-//}
 
 
 MACRequests::MACRequests() : Network() {}
@@ -37,7 +29,7 @@ void MACRequests::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addNativeSignature("getInstance", (void*)&MACRequests::getInstance, "()Lus/the/mac/requests/MACRequests;");
+    addNativeSignature("getInstance", (void*)&MACRequests::getInstance, "()Lus/the/mac/android/jni/helpers/MACRequests;");
     addNativeSignature("getBytes", (void*)&MACRequests::getBytes, "()[B");
     addNativeSignature("getHttpPost", (void*)&MACRequests::getHttpPost, "()Lorg/apache/http/client/methods/HttpPost;");
     addNativeSignature("setRequestType", (void*)&MACRequests::setRequestType, "(I)V");
