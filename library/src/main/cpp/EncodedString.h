@@ -31,11 +31,7 @@ public:
 
     jstring toString(JNIEnv *env);
 
-<<<<<<< HEAD
     jstring decryptNative(JNIEnv *env, jint algorithm);
-=======
-    jstring decodeNative(JNIEnv *env);
->>>>>>> 1ed9d31c8a05ab45a7aff45d28ef2820b22a2583
 
     static jstring decrypt(JNIEnv *env, jobject java_this, jint algorithm);
 

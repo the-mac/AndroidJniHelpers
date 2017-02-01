@@ -57,14 +57,11 @@ jstring EncodedString::toString(JNIEnv *env)
     return (jstring) result;
 }
 
-<<<<<<< HEAD
 jstring EncodedString::decryptNative(JNIEnv *env, jint algorithm)
-=======
-jstring EncodedString::decodeNative(JNIEnv *env)
->>>>>>> 1ed9d31c8a05ab45a7aff45d28ef2820b22a2583
 {
     return EncodedString::decode(env, thisObj);
 }
+
 string rot(string s, int r)
 {
 //    string nonAlphas = "";
