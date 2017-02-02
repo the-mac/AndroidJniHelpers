@@ -25,11 +25,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     EncodedString *object = new EncodedString(env);
     object->encodedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-<<<<<<< HEAD
     JavaString decryptedString(env, object->decryptNative(env, EncodedString::INLINE_STRINGS_ALGORITHM));
-=======
-    JavaString decodedString(env, object->decodeNative(env));
->>>>>>> 1ed9d31c8a05ab45a7aff45d28ef2820b22a2583
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decodedString.get());
 
 ```
