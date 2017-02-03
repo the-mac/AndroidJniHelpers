@@ -5,16 +5,15 @@
 #include "JavaStringTest.h"
 #include "NativeObjectTest.h"
 #include "PersistedObject.h"
-#include "EncodedStringTest.h"
+#include "EncryptedStringTest.h"
 #include "JavaClassTest.h"
 #include "TestObject.h"
-#include <DecodedString.h>
+#include <EncryptedString.h>
 #include <MACRequests.h>
 #include "NetworkTest.h"
 #include "Network.h"
 
 using namespace spotify::jni;
-using namespace operators::nativity::decodedstring;
 using namespace operators::nativity::requests;
 
 ClassRegistry gClasses;
@@ -29,8 +28,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new JavaStringTest(env));
     gClasses.add(env, new NativeObjectTest(env));
     gClasses.add(env, new PersistedObject(env));
-    gClasses.add(env, new EncodedStringTest(env));
-    gClasses.add(env, new DecodedString(env));
+    gClasses.add(env, new EncryptedStringTest(env));
+    gClasses.add(env, new EncryptedString(env));
     gClasses.add(env, new JavaClassTest(env));
     gClasses.add(env, new TestObject(env));
     gClasses.add(env, new NetworkTest(env));

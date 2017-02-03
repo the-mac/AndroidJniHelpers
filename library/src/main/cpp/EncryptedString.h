@@ -8,20 +8,20 @@
 #include "JniHelpers.h"
 using namespace spotify::jni;
 
-class EncodedString : public NativeObject {
+class EncryptedString : public NativeObject {
     jobject thisObj;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
-    * the Jni Helper's relationship to the EncodedString class defined in Java.
+    * the Jni Helper's relationship to the EncryptedString class defined in Java.
     */
     const char *getCanonicalName() const {
-        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", EncodedString);
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", EncryptedString);
     }
 
-    EncodedString();
+    EncryptedString();
 
-    EncodedString(JNIEnv *env);
+    EncryptedString(JNIEnv *env);
 
     void initialize(JNIEnv *env);
 
@@ -36,7 +36,7 @@ public:
     static jstring decrypt(JNIEnv *env, jobject java_this, jint algorithm);
 
 public:
-    JavaString encodedString;
+    JavaString encryptedString;
 
     static const int BASE = 0;
     static const int INCREMENT = 1;

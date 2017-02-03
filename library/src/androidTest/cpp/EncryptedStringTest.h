@@ -19,43 +19,38 @@
  * under the License.
  */
 
-#ifndef __EncodedStringTest_h__
-#define __EncodedStringTest_h__
+#ifndef __EncryptedStringTest_h__
+#define __EncryptedStringTest_h__
 
 #include "JniHelpers.h"
 #include "JniHelpersTest.h"
 
 using namespace spotify::jni;
 
-namespace operators {
-    namespace nativity {
-        namespace decodedstring {
 
-class EncodedStringTest : public JavaClass {
+class EncryptedStringTest : public JavaClass {
 public:
-  EncodedStringTest() : JavaClass() {}
-  EncodedStringTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
-  ~EncodedStringTest() {}
+  EncryptedStringTest() : JavaClass() {}
+  EncryptedStringTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
+  ~EncryptedStringTest() {}
 
   const char* getCanonicalName() const {
-    return MAKE_CANONICAL_NAME(PACKAGE, EncodedStringTest);
+    return MAKE_CANONICAL_NAME(PACKAGE, EncryptedStringTest);
   }
   void initialize(JNIEnv *env);
   void mapFields() {}
 
 private:
-  static jobject createEncodedString(JNIEnv *env, jobject javaThis);
+  static jobject createEncryptedString(JNIEnv *env, jobject javaThis);
+  static jobject createEncryptedResourceString(JNIEnv *env, jobject javaThis);
   static jobject getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object);
   static void nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis);
   static void isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis);
-  static void destroyEncodedString(JNIEnv *env, jobject javaThis, jobject object);
+  static void destroyEncryptedString(JNIEnv *env, jobject javaThis, jobject object);
   static void persistNullObject(JNIEnv *env, jobject javaThis);
   static void destroyInvalidClass(JNIEnv *env, jobject javaThis);
   static void destroyNullObject(JNIEnv *env, jobject javaThis);
 };
 
-} // namespace decodedstring
-} // namespace nativity
-} // namespace operators
 
-#endif // __EncodedStringTest_h__
+#endif // __EncryptedStringTest_h__

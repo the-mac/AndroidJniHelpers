@@ -32,5 +32,5 @@ void ByteArrayEntity::initialize(JNIEnv *env)
 
 void ByteArrayEntity::mapFields()
 {
-    //mapField("encodedString", kTypeString, &encodedString);
+    //mapField("encryptedString", kTypeString, &encryptedString);
 }

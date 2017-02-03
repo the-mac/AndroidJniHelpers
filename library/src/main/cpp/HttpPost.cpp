@@ -38,7 +38,7 @@ void HttpPost::initialize(JNIEnv *env)
 
 void HttpPost::mapFields()
 {
-    //mapField("encodedString", kTypeString, &encodedString);
+    //mapField("encryptedString", kTypeString, &encryptedString);
 }
 
 //jstring HttpPost::getMethod(JNIEnv *env)

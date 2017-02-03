@@ -1,13 +1,13 @@
 
-us.the.mac.android.jni.helpers.EncodedString
+us.the.mac.android.jni.helpers.EncryptedString
 
 ********************************************************************************
 
-us.the.mac.android.jni.helpers.EncodedString.jni was generated as a helper for EncodedString.java using the
+us.the.mac.android.jni.helpers.EncryptedString.jni was generated as a helper for EncodedString.java using the
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: us.the.mac.android.jni.helpers.EncodedString, equals, toString, destroy, decode
+- Java methods: us.the.mac.android.jni.helpers.EncryptedString, equals, toString, destroy, decode
 
 The source code can be copied into the respective EncodedString.h and
 EncodedString.cpp files in a location of your choice. Finally, the last segment

@@ -51,7 +51,7 @@ void JSONObject::initialize(JNIEnv *env)
 
 void JSONObject::mapFields()
 {
-    //mapField("encodedString", kTypeString, &encodedString);
+    //mapField("encryptedString", kTypeString, &encryptedString);
 }
 
 jstring JSONObject::getString(JNIEnv *env, std::string stringKey)
