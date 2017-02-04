@@ -79,13 +79,6 @@ public class EncryptedStringTest {
         // Should only return the decrypted string field, the encryptedString should remain untouched
         assertEquals(TestConstants.TEST_ENCRYPTED, object.encryptedString);
 
-        object.encryptedString = TestConstants.TEST_ENCRYPTED_RESOURCE;
-        decryptedString = object.decrypt(EncryptedString.INLINE_STRINGS_ALGORITHM);//RESOURCE_STRINGS_ALGORITHM);
-        assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
-
-        // Should only return the decrypted string field, the encryptedString should remain untouched
-        assertEquals(TestConstants.TEST_ENCRYPTED_RESOURCE, object.encryptedString);
-
     }
 
     @Test
@@ -94,10 +87,7 @@ public class EncryptedStringTest {
         assertNotEquals(0, object.nPtr);
         assertEquals(TestConstants.TEST_ENCRYPTED_RESOURCE, object.encryptedString);
 
-        String decryptedString = object.decrypt(EncryptedString.INLINE_STRINGS_ALGORITHM);
-        assertEquals(TestConstants.TEST_ROT1_RESOURCE, decryptedString);
-
-        decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
+        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
         assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
 
         // Should only return the decrypted string field, the encryptedString should remain untouched
