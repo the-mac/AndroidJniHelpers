@@ -9,7 +9,7 @@ To harden your app's resources like inline (Java file) strings, resource (res) s
 [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
 from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few examples of our solutions:
 
-## String Deccryption
+## String Decryption
 **Java String Decrypting**
 ```java
 
