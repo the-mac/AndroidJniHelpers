@@ -22,61 +22,67 @@
 #include <cstring>
 #include "JavaString.h"
 #include "JavaExceptionUtils.h"
+#include "ByteArray.h"
 
 namespace spotify {
     namespace jni {
 
         JavaString::JavaString() {
-          _value = "";
+            _value = "";
         }
 
         JavaString::JavaString(const std::string &string) {
-          _value = string;
+            _value = string;
         }
 
         JavaString::JavaString(JNIEnv *env, jstring javaString) {
-          set(env, javaString);
+            set(env, javaString);
+        }
+
+        JavaString::JavaString(JNIEnv *env, jbyteArray javaBytes) {
+            char *data = (char *) env->GetByteArrayElements(javaBytes, JNI_FALSE);
+            set(env, env->NewStringUTF(data));
         }
 
         const std::string& JavaString::get() const {
-          return _value;
+            return _value;
         }
 
         JniLocalRef<jstring> JavaString::toJavaString(JNIEnv *env) const {
-          return env->NewStringUTF(_value.c_str());
+            return env->NewStringUTF(_value.c_str());
         }
 
         JniLocalRef<jbyteArray> JavaString::toByteArray(JNIEnv *env) const {
 
-          const char *content = _value.c_str();
-          jbyteArray array = env->NewByteArray(_value.length());
-          env->SetByteArrayRegion(array, 0, _value.length(), (jbyte *) content);
+            const char *content = _value.c_str();
+            jbyteArray array = env->NewByteArray(_value.length());
+            env->SetByteArrayRegion(array, 0, _value.length(), (jbyte *) content);
 
-          return array;
+            return array;
         }
 
         void JavaString::set(const char *value) {
-          _value = value;
+            _value = value;
         }
 
         void JavaString::set(const std::string &value) {
-          _value = value;
+            _value = value;
         }
 
         void JavaString::set(JNIEnv *env, jstring javaString) {
-          if (javaString == NULL) {
-            return;
-          }
+            if (javaString == NULL) {
+                return;
+            }
 
-          const char *string = env->GetStringUTFChars(javaString, 0);
-          JavaExceptionUtils::checkException(env);
-          if (string == NULL) {
-            return;
-          }
+            const char *string = env->GetStringUTFChars(javaString, 0);
+            JavaExceptionUtils::checkException(env);
+            if (string == NULL) {
+                return;
+            }
 
-          _value = string;
-          env->ReleaseStringUTFChars(javaString, string);
-          JavaExceptionUtils::checkException(env);
+            _value = string;
+            env->ReleaseStringUTFChars(javaString, string);
+            JavaExceptionUtils::checkException(env);
         }
 
 

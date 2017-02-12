@@ -21,12 +21,14 @@
 
 package us.the.mac.android.jni.helpers;
 
+import android.support.test.InstrumentationRegistry;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static us.the.mac.android.jni.helpers.EncryptedString.RESOURCE_STRINGS_ALGORITHM;
-import static us.the.mac.android.jni.helpers.TestConstants.TEST_ROT1_RESOURCE;
+import us.the.mac.android.jni.helpers.EncryptedString;
+import us.the.mac.android.jni.helpers.TestConstants;
 
 public class EncryptedStringTest {
     static {
@@ -78,21 +80,21 @@ public class EncryptedStringTest {
 
         // Should only return the decrypted string field, the encryptedString should remain untouched
         assertEquals(TestConstants.TEST_ENCRYPTED, object.encryptedString);
-
     }
 
     @Test
     public void decryptResourceString() throws Exception {
         EncryptedString object = createEncryptedResourceString();
         assertNotEquals(0, object.nPtr);
-        assertEquals(TestConstants.TEST_ENCRYPTED_RESOURCE, object.encryptedString);
+
+        String encryptedString = InstrumentationRegistry.getTargetContext().getString(R.string.encryptedString);
+        assertEquals(encryptedString, object.encryptedString);
 
         String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
         assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
 
         // Should only return the decrypted string field, the encryptedString should remain untouched
-        assertEquals(TestConstants.TEST_ENCRYPTED_RESOURCE, object.encryptedString);
-
+        assertEquals(encryptedString, object.encryptedString);
     }
 
     @Test

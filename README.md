@@ -9,7 +9,7 @@ To harden your app's resources like inline (Java file) strings, resource (res) s
 [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html)
 from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a few examples of our solutions:
 
-**Java String Decoding**
+**Java String Decrypting**
 ```java
 
     EncryptedString object = EncryptedString.getInstance();
@@ -19,7 +19,7 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     assertEquals("To be or not to be, That is the question", decryptedString);
 
 ```
-**Native String Decoding**
+**Native String Decrypting**
 ```c++
 
     EncryptedString *object = new EncryptedString(env);
@@ -29,7 +29,62 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decryptedString.get());
 
 ```
-**This allows you to encode your inline strings, and hide important details of your app. The decode has a hidden implementation, and can pretty much be any algorithm you choose**
+**This allows you to encrypt your inline strings, and resource strings, and hide important details of your app. The decrypt function is a hidden (Native C++) implementation, and can pretty much be any algorithm you choose**
+
+**Incorporate String Resource Decrypting**
+```java
+
+    import static us.the.mac.android.jni.helpers.AndroidJniApp.decryptString;
+    ...
+
+    String decryptedString = decryptString(R.string.encryptedString);
+    assertEquals("To be or not to be, That is the question", decryptedString);
+
+```
+**Above is an example of decrypting a resource string that replaced an inline string using the bin/encrypt.bash script. This can easily be accomplished using a native method implementation in your Activity or Application class**
+
+**Inserting native method in Activity class**
+```java
+
+public class ExampleActivity extends Activity {
+    ...
+
+    public native String decryptString(int resource);
+}
+
+```
+
+**Inserting native method in Application class**
+```java
+
+public class ExampleApplication extends Application {
+    ...
+
+    public native String decryptString(int resource);
+}
+
+```
+
+This native implmentation exists in AndroidJniApp, but if you write your own it could look as follows:
+```c++
+
+jstring ExampleApplication::decryptString(JNIEnv *env, jobject java_this, jint resourceId) {
+    ExampleApplication *object = gClasses.getNativeInstance<ExampleApplication>(env, java_this);
+
+    if (object != NULL) {
+
+        jobject stringResource = env->CallObjectMethod(java_this, object->getMethod("getString"), resourceId);
+        JavaExceptionUtils::checkException(env);
+
+        EncryptedString es = EncryptedString(env);
+        es.encryptedString = env->GetStringUTFChars((jstring) stringResource, JNI_FALSE);
+
+        return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
+    }
+    return NULL;
+}
+
+```
 
 **Java Secure Network Calls**
 ```java

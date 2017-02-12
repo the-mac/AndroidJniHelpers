@@ -1,0 +1,719 @@
+
+java.util.Scanner
+
+********************************************************************************
+
+java.util.Scanner.jni was generated as a helper for Scanner.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: java.util.Scanner, java.util.Scanner, java.util.Scanner, java.util.Scanner, java.util.Scanner, java.util.Scanner, close, ioException, delimiter, useDelimiter, useDelimiter, locale, useLocale, radix, useRadix, match, toString, hasNext, next, remove, hasNext, next, hasNext, next, hasNextLine, nextLine, findInLine, findInLine, findWithinHorizon, findWithinHorizon, skip, skip, hasNextBoolean, nextBoolean, hasNextByte, hasNextByte, nextByte, nextByte, hasNextShort, hasNextShort, nextShort, nextShort, hasNextInt, hasNextInt, nextInt, nextInt, hasNextLong, hasNextLong, nextLong, nextLong, hasNextFloat, nextFloat, hasNextDouble, nextDouble, hasNextBigInteger, hasNextBigInteger, nextBigInteger, nextBigInteger, hasNextBigDecimal, nextBigDecimal, reset, next
+
+The source code can be copied into the respective Scanner.h and
+Scanner.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class Scanner : public JavaClass {
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the Scanner class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("java/util", Scanner);
+    }
+    Scanner();
+
+    Scanner(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    void close(JNIEnv *env);
+
+    jobject ioException(JNIEnv *env);
+
+    jobject delimiter(JNIEnv *env);
+
+    jobject useDelimiter(JNIEnv *env, jobject jobjectValue1);
+
+    jobject useDelimiter(JNIEnv *env, jobject jobjectValue1);
+
+    jobject locale(JNIEnv *env);
+
+    jobject useLocale(JNIEnv *env, jobject jobjectValue1);
+
+    jint radix(JNIEnv *env);
+
+    jobject useRadix(JNIEnv *env, jint jintValue1);
+
+    jobject match(JNIEnv *env);
+
+    jstring toString(JNIEnv *env);
+
+    jboolean hasNext(JNIEnv *env);
+
+    jstring next(JNIEnv *env);
+
+    void remove(JNIEnv *env);
+
+    jboolean hasNext(JNIEnv *env);
+
+    jstring next(JNIEnv *env);
+
+    jboolean hasNext(JNIEnv *env);
+
+    jstring next(JNIEnv *env);
+
+    jboolean hasNextLine(JNIEnv *env);
+
+    jstring nextLine(JNIEnv *env);
+
+    jstring findInLine(JNIEnv *env, jstring jstringValue1);
+
+    jstring findInLine(JNIEnv *env, jstring jstringValue1);
+
+    jstring findWithinHorizon(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    jstring findWithinHorizon(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    jobject skip(JNIEnv *env, jobject jobjectValue1);
+
+    jobject skip(JNIEnv *env, jobject jobjectValue1);
+
+    jboolean hasNextBoolean(JNIEnv *env);
+
+    jboolean nextBoolean(JNIEnv *env);
+
+    jboolean hasNextByte(JNIEnv *env);
+
+    jboolean hasNextByte(JNIEnv *env);
+
+    // byte nextByte;
+
+    // byte nextByte;
+
+    jboolean hasNextShort(JNIEnv *env);
+
+    jboolean hasNextShort(JNIEnv *env);
+
+    // short nextShort;
+
+    // short nextShort;
+
+    jboolean hasNextInt(JNIEnv *env);
+
+    jboolean hasNextInt(JNIEnv *env);
+
+    jint nextInt(JNIEnv *env);
+
+    jint nextInt(JNIEnv *env);
+
+    jboolean hasNextLong(JNIEnv *env);
+
+    jboolean hasNextLong(JNIEnv *env);
+
+    // long nextLong;
+
+    // long nextLong;
+
+    jboolean hasNextFloat(JNIEnv *env);
+
+    // float nextFloat;
+
+    jboolean hasNextDouble(JNIEnv *env);
+
+    // double nextDouble;
+
+    jboolean hasNextBigInteger(JNIEnv *env);
+
+    jboolean hasNextBigInteger(JNIEnv *env);
+
+    jobject nextBigInteger(JNIEnv *env);
+
+    jobject nextBigInteger(JNIEnv *env);
+
+    jboolean hasNextBigDecimal(JNIEnv *env);
+
+    jobject nextBigDecimal(JNIEnv *env);
+
+    jobject reset(JNIEnv *env);
+
+    jstring next(JNIEnv *env);
+
+};
+
+********************************************************************************
+
+
+Scanner::Scanner() : JavaClass() {}
+
+/**
+* Here you can construct the Scanner object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+Scanner::Scanner(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "Scanner's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void Scanner::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    cacheSignature("close", "()V");
+    cacheSignature("ioException", "()Ljava/io/IOException;");
+    cacheSignature("delimiter", "()Ljava/util/regex/Pattern;");
+    cacheSignature("useDelimiter", "(Ljava/util/regex/Pattern;)Ljava/util/Scanner;");
+    cacheSignature("useDelimiter", "(Ljava/lang/String;)Ljava/util/Scanner;");
+    cacheSignature("locale", "()Ljava/util/Locale;");
+    cacheSignature("useLocale", "(Ljava/util/Locale;)Ljava/util/Scanner;");
+    cacheSignature("radix", "()I");
+    cacheSignature("useRadix", "(I)Ljava/util/Scanner;");
+    cacheSignature("match", "()Ljava/util/regex/MatchResult;");
+    cacheSignature("toString", "()Ljava/lang/String;");
+    cacheSignature("hasNext", "()Z");
+    cacheSignature("next", "()Ljava/lang/String;");
+    cacheSignature("remove", "()V");
+    cacheSignature("hasNext", "(Ljava/lang/String;)Z");
+    cacheSignature("next", "(Ljava/lang/String;)Ljava/lang/String;");
+    cacheSignature("hasNext", "(Ljava/util/regex/Pattern;)Z");
+    cacheSignature("next", "(Ljava/util/regex/Pattern;)Ljava/lang/String;");
+    cacheSignature("hasNextLine", "()Z");
+    cacheSignature("nextLine", "()Ljava/lang/String;");
+    cacheSignature("findInLine", "(Ljava/lang/String;)Ljava/lang/String;");
+    cacheSignature("findInLine", "(Ljava/util/regex/Pattern;)Ljava/lang/String;");
+    cacheSignature("findWithinHorizon", "(Ljava/lang/String;I)Ljava/lang/String;");
+    cacheSignature("findWithinHorizon", "(Ljava/util/regex/Pattern;I)Ljava/lang/String;");
+    cacheSignature("skip", "(Ljava/util/regex/Pattern;)Ljava/util/Scanner;");
+    cacheSignature("skip", "(Ljava/lang/String;)Ljava/util/Scanner;");
+    cacheSignature("hasNextBoolean", "()Z");
+    cacheSignature("nextBoolean", "()Z");
+    cacheSignature("hasNextByte", "()Z");
+    cacheSignature("hasNextByte", "(I)Z");
+    cacheSignature("nextByte", "()B");
+    cacheSignature("nextByte", "(I)B");
+    cacheSignature("hasNextShort", "()Z");
+    cacheSignature("hasNextShort", "(I)Z");
+    cacheSignature("nextShort", "()S");
+    cacheSignature("nextShort", "(I)S");
+    cacheSignature("hasNextInt", "()Z");
+    cacheSignature("hasNextInt", "(I)Z");
+    cacheSignature("nextInt", "()I");
+    cacheSignature("nextInt", "(I)I");
+    cacheSignature("hasNextLong", "()Z");
+    cacheSignature("hasNextLong", "(I)Z");
+    cacheSignature("nextLong", "()J");
+    cacheSignature("nextLong", "(I)J");
+    cacheSignature("hasNextFloat", "()Z");
+    cacheSignature("nextFloat", "()F");
+    cacheSignature("hasNextDouble", "()Z");
+    cacheSignature("nextDouble", "()D");
+    cacheSignature("hasNextBigInteger", "()Z");
+    cacheSignature("hasNextBigInteger", "(I)Z");
+    cacheSignature("nextBigInteger", "()Ljava/math/BigInteger;");
+    cacheSignature("nextBigInteger", "(I)Ljava/math/BigInteger;");
+    cacheSignature("hasNextBigDecimal", "()Z");
+    cacheSignature("nextBigDecimal", "()Ljava/math/BigDecimal;");
+    cacheSignature("reset", "()Ljava/util/Scanner;");
+    cacheSignature("next", "()Ljava/lang/Object;");
+
+    registerNativeMethods(env);
+}
+
+void Scanner::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+void Scanner::close(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+jobject Scanner::ioException(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::delimiter(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::useDelimiter(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::useDelimiter(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::locale(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::useLocale(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint Scanner::radix(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::useRadix(JNIEnv *env, jint jintValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jintValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::match(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::toString(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jboolean Scanner::hasNext(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::next(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+void Scanner::remove(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+jboolean Scanner::hasNext(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::next(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jboolean Scanner::hasNext(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::next(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jboolean Scanner::hasNextLine(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::nextLine(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Scanner::findInLine(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Scanner::findInLine(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Scanner::findWithinHorizon(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Scanner::findWithinHorizon(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jstringValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jobject Scanner::skip(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::skip(JNIEnv *env, jobject jobjectValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextBoolean(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::nextBoolean(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextByte(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextByte(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// byte nextByte
+
+
+// byte nextByte
+
+
+jboolean Scanner::hasNextShort(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextShort(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// short nextShort
+
+
+// short nextShort
+
+
+jboolean Scanner::hasNextInt(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextInt(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint Scanner::nextInt(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jint Scanner::nextInt(JNIEnv *env)
+{
+    jint result = env->CallIntMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextLong(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextLong(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// long nextLong
+
+
+// long nextLong
+
+
+jboolean Scanner::hasNextFloat(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// float nextFloat
+
+
+jboolean Scanner::hasNextDouble(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+// double nextDouble
+
+
+jboolean Scanner::hasNextBigInteger(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextBigInteger(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::nextBigInteger(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::nextBigInteger(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jboolean Scanner::hasNextBigDecimal(JNIEnv *env)
+{
+    jboolean result = env->CallBooleanMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::nextBigDecimal(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject Scanner::reset(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Scanner::next(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+
+********************************************************************************
+
+instance.close(env);
+
+jobject jobjectReturnValue = instance.ioException(env);
+
+jobject jobjectReturnValue = instance.delimiter(env);
+
+jobject jobjectReturnValue = instance.useDelimiter(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.useDelimiter(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.locale(env);
+
+jobject jobjectReturnValue = instance.useLocale(env, jobjectValue1);
+
+jint jintReturnValue = instance.radix(env);
+
+jobject jobjectReturnValue = instance.useRadix(env, jintValue1);
+
+jobject jobjectReturnValue = instance.match(env);
+
+jstring jstringReturnValue = instance.toString(env);
+
+jboolean jbooleanReturnValue = instance.hasNext(env);
+
+jstring jstringReturnValue = instance.next(env);
+
+instance.remove(env);
+
+jboolean jbooleanReturnValue = instance.hasNext(env);
+
+jstring jstringReturnValue = instance.next(env);
+
+jboolean jbooleanReturnValue = instance.hasNext(env);
+
+jstring jstringReturnValue = instance.next(env);
+
+jboolean jbooleanReturnValue = instance.hasNextLine(env);
+
+jstring jstringReturnValue = instance.nextLine(env);
+
+jstring jstringReturnValue = instance.findInLine(env, jstringValue1);
+
+jstring jstringReturnValue = instance.findInLine(env, jstringValue1);
+
+jstring jstringReturnValue = instance.findWithinHorizon(env, jstringValue1, jintValue2);
+
+jstring jstringReturnValue = instance.findWithinHorizon(env, jstringValue1, jintValue2);
+
+jobject jobjectReturnValue = instance.skip(env, jobjectValue1);
+
+jobject jobjectReturnValue = instance.skip(env, jobjectValue1);
+
+jboolean jbooleanReturnValue = instance.hasNextBoolean(env);
+
+jboolean jbooleanReturnValue = instance.nextBoolean(env);
+
+jboolean jbooleanReturnValue = instance.hasNextByte(env);
+
+jboolean jbooleanReturnValue = instance.hasNextByte(env);
+
+jbyte jbyteReturnValue = instance.nextByte(env);
+
+jbyte jbyteReturnValue = instance.nextByte(env);
+
+jboolean jbooleanReturnValue = instance.hasNextShort(env);
+
+jboolean jbooleanReturnValue = instance.hasNextShort(env);
+
+jshort jshortReturnValue = instance.nextShort(env);
+
+jshort jshortReturnValue = instance.nextShort(env);
+
+jboolean jbooleanReturnValue = instance.hasNextInt(env);
+
+jboolean jbooleanReturnValue = instance.hasNextInt(env);
+
+jint jintReturnValue = instance.nextInt(env);
+
+jint jintReturnValue = instance.nextInt(env);
+
+jboolean jbooleanReturnValue = instance.hasNextLong(env);
+
+jboolean jbooleanReturnValue = instance.hasNextLong(env);
+
+jlong jlongReturnValue = instance.nextLong(env);
+
+jlong jlongReturnValue = instance.nextLong(env);
+
+jboolean jbooleanReturnValue = instance.hasNextFloat(env);
+
+jfloat jfloatReturnValue = instance.nextFloat(env);
+
+jboolean jbooleanReturnValue = instance.hasNextDouble(env);
+
+jdouble jdoubleReturnValue = instance.nextDouble(env);
+
+jboolean jbooleanReturnValue = instance.hasNextBigInteger(env);
+
+jboolean jbooleanReturnValue = instance.hasNextBigInteger(env);
+
+jobject jobjectReturnValue = instance.nextBigInteger(env);
+
+jobject jobjectReturnValue = instance.nextBigInteger(env);
+
+jboolean jbooleanReturnValue = instance.hasNextBigDecimal(env);
+
+jobject jobjectReturnValue = instance.nextBigDecimal(env);
+
+jobject jobjectReturnValue = instance.reset(env);
+
+jstring jstringReturnValue = instance.next(env);
+
+

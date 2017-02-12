@@ -39,6 +39,7 @@ template class EXPORT std::basic_string<char, std::char_traits<char>, std::alloc
             JavaString();
             JavaString(const std::string &string);
             JavaString(JNIEnv *env, jstring javaString);
+            JavaString(JNIEnv *env, jbyteArray javaBytes);
             virtual ~JavaString() {}
 
             const std::string& get() const;

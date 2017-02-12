@@ -2,6 +2,8 @@ package us.the.mac.android.jni.helpers;
 
 import com.spotify.jni.NativeObject;
 
+import java.io.File;
+
 /**
  * Created by christopher on 1/14/17.
  */
@@ -32,6 +34,11 @@ public class EncryptedString extends NativeObject {
     public native void destroy();
 
     public native String decrypt(int algorithm);
+
+    public String getFilesDir() {
+        if(AndroidJniApp.Instance() == null) return null;
+        return AndroidJniApp.Instance().getFilesDir().toString();
+    }
 
     public static EncryptedString testingInstance() { return new EncryptedString(); }
 

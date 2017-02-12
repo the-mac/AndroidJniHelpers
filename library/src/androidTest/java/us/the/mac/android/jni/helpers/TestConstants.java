@@ -11,9 +11,9 @@ public class TestConstants {
     public static final String TEST_RESULT = "{ \"args\": {}, \"data\": \"\", \"files\": {}, \"form\": {}, \"headers\": { \"Accept\": \": application/json\", \"Content-Length\": \"0\", \"Content-Type\": \"application/json\", \"Host\": \"httpbin.org\", \"User-Agent\": \"Apache-HttpClient/UNAVAILABLE (java 1.4)\" }, \"json\": null, \"origin\": \"172.58.153.6\", \"url\": \"https://httpbin.org/post\" } ";
     public static final String TEST_HEADERS = "application/json";
     public static final String TEST_ENCRYPTED = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
-    public static final String TEST_ROT1_RESOURCE = "VXAgY2YgcHMgb3B1IHVwIGNmLCBVaWJ1IGp0IHVpZiBydmZ0dWpwbw==";
-    public static final String TEST_ENCRYPTED_RESOURCE = "VXAgY2YgcHMgb3B1IHVwIGNmLCBVaWJ1IGp0IHVpZiBydmZ0dWpwbw==";
+    public static final String TEST_ENCRYPTED_RESOURCE = "dE8gQkUgT1IgTk9UIFRPIEJFLCB0SEFUIElTIFRIRSBRVUVTVElPTg==";
     public static final String TEST_DECRYPT = "To be or not to be, That is the question";
+    public static final String TEST_BASE64_DECRYPT = "tO BE OR NOT TO BE, tHAT IS THE QUESTION";
     public static final String TEST_STRING = "hello, is it me you're looking for?";
     public static final String TEST_NULL_CHAR = "\0";
     public static final String TEST_STRING_WITH_NULL_CHAR = "hello \0 world";

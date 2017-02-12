@@ -3,10 +3,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 public class GenerateJniHelpers {
 	private static boolean DEBUGGING = false;
@@ -108,12 +114,12 @@ public class GenerateJniHelpers {
 			if(isStaticMethod) {
 				String prefix = static_signatures.length() == 0 ? "    " : ",\n    ";
 				static_signatures.append(String.format("%s    { \"%s\", \"%s\" }", prefix, methodName, signature));
-				signatures.append(String.format("    addStaticSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    cacheSignature(\"%s\", \"%s\");\n", methodName, signature));
 			} else if(isNativeMethod) {
 				signatures.append(String.format("    addNativeSignature(\"%s\", (void*)&%s::%s, \"%s\");\n", methodName, className, methodName, signature));
 			}
 			else {
-				signatures.append(String.format("    addJavaSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    cacheSignature(\"%s\", \"%s\");\n", methodName, signature));
 			}
 		}
 
@@ -463,4 +469,32 @@ public class GenerateJniHelpers {
 		if(!DEBUGGING) System.out.println (helloWorld.toString());		
 	}
 
+	/**
+     * Created by christopher on 2/12/17.
+     */
+
+    public static class CryptoHelper {
+        private Key key;
+
+        public CryptoHelper( Key key ) {
+            this.key = key;
+        }
+
+        public CryptoHelper() throws Exception {
+            this( generateSymmetricKey() );
+        }
+
+        public static Key generateSymmetricKey() throws Exception {
+            KeyGenerator generator = KeyGenerator.getInstance( "AES" );
+            SecretKey key = generator.generateKey();
+            return key;
+        }
+
+        public byte [] decrypt( byte [] iv, byte [] ciphertext ) throws Exception {
+            Cipher cipher = Cipher.getInstance( key.getAlgorithm() + "/CBC/PKCS5Padding" );
+            cipher.init( Cipher.DECRYPT_MODE, key, new IvParameterSpec( iv ) );
+            return cipher.doFinal( ciphertext );
+        }
+
+    }
 }

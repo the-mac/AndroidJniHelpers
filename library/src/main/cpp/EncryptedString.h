@@ -6,10 +6,13 @@
 #define ANDROIDJNI_ENCODEDSTRING_H
 
 #include "JniHelpers.h"
+#include "CryptoHelper.h"
+
 using namespace spotify::jni;
 
 class EncryptedString : public NativeObject {
     jobject thisObj;
+    CryptoHelper crypto;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
@@ -33,6 +36,16 @@ public:
 
     jstring decryptNative(JNIEnv *env, jint algorithm);
 
+    jstring getFilesDir(JNIEnv *env);
+
+    virtual std::string getKey(JNIEnv *env, jint algorithm);
+
+    /**
+    * The getBytes method is used to get the decrypt key
+    * @return AES (Advanced Encryption Standard) key bytes for decryption.
+    */
+    static jbyteArray getBytes(JNIEnv *env, jobject java_this);
+
     static jstring decrypt(JNIEnv *env, jobject java_this, jint algorithm);
 
 public:
@@ -40,8 +53,10 @@ public:
 
     static const int BASE = 0;
     static const int INCREMENT = 1;
+
     static const int INLINE_STRINGS_ALGORITHM = BASE + INCREMENT;
     static const int RESOURCE_STRINGS_ALGORITHM = INLINE_STRINGS_ALGORITHM + INCREMENT;
+    static const int NATIVE_STRINGS_ALGORITHM = RESOURCE_STRINGS_ALGORITHM + INCREMENT;
 };
 
 #endif //ANDROIDJNI_ENCODEDSTRING_H

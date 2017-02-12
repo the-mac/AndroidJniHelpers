@@ -1,0 +1,81 @@
+
+us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper
+
+********************************************************************************
+
+us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper.jni was generated as a helper for GenerateJniHelpers.CryptoHelper.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper
+
+The source code can be copied into the respective GenerateJniHelpers.CryptoHelper.h and
+GenerateJniHelpers.CryptoHelper.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class GenerateJniHelpers.CryptoHelper : public JavaClass {
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the GenerateJniHelpers.CryptoHelper class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", GenerateJniHelpers.CryptoHelper);
+    }
+    GenerateJniHelpers.CryptoHelper();
+
+    GenerateJniHelpers.CryptoHelper(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+};
+
+********************************************************************************
+
+
+GenerateJniHelpers.CryptoHelper::GenerateJniHelpers.CryptoHelper() : JavaClass() {}
+
+/**
+* Here you can construct the GenerateJniHelpers.CryptoHelper object how ever you need to,
+* as well as load signatures for the Java instance method calls.
+*/
+GenerateJniHelpers.CryptoHelper::GenerateJniHelpers.CryptoHelper(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "GenerateJniHelpers.CryptoHelper's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void GenerateJniHelpers.CryptoHelper::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+
+    registerNativeMethods(env);
+}
+
+void GenerateJniHelpers.CryptoHelper::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+
+********************************************************************************
+
+

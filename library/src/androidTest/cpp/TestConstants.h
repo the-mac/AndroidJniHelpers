@@ -12,7 +12,7 @@
 #define TEST_RESULT "{ \"args\": {}, \"data\": \"\", \"files\": {}, \"form\": {}, \"headers\": { \"Accept\": \": application/json\", \"Content-Length\": \"0\", \"Content-Type\": \"application/json\", \"Host\": \"httpbin.org\", \"User-Agent\": \"Apache-HttpClient/UNAVAILABLE (java 1.4)\" }, \"json\": null, \"origin\": \"172.58.153.6\", \"url\": \"https://httpbin.org/post\" } "
 #define TEST_HEADERS "application/json"
 #define TEST_ENCRYPTED "Up cf ps opu up cf, Uibu jt uif rvftujpo"
-#define TEST_ENCRYPTED_RESOURCE "VXAgY2YgcHMgb3B1IHVwIGNmLCBVaWJ1IGp0IHVpZiBydmZ0dWpwbw=="
+#define TEST_ENCRYPTED_RESOURCE "dE8gQkUgT1IgTk9UIFRPIEJFLCB0SEFUIElTIFRIRSBRVUVTVElPTg=="
 #define TEST_DECODE "To be or not to be, That is the question"
 #define TEST_STRING "hello, is it me you're looking for?"
 #define TEST_NULL_CHAR "\0"
