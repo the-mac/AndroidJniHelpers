@@ -188,7 +188,7 @@ Using a MACRequests native instance looks as follows:
 ```bash
 cd ../path/to/your/project
 ```
-**Note: Make sure to add C++ support to your project through the Android Studio context menu
+**Note: Make sure to add C++ support to your project through the Android Studio context menu**
 
 * Clone the repo into your project:
 ```bash
