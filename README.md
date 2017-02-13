@@ -18,9 +18,9 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     assertEquals("To be or not to be, That is the question", decryptedString);
 
 ```
-**Above is an example of decrypting a generated resource string. If you would like to implement this, you can create a native decryptString implementation for your Activity class**
+**Above is an example of decrypting a generated resource string. If you would like to implement this, you can create a decryptString implementation for your Activity class**
 
-**Declaring native decryptString method in Activity class**
+**First, declare your native decryptString method in your Activity class**
 ```java
 
 public class ExampleActivity extends Activity {
@@ -31,6 +31,14 @@ public class ExampleActivity extends Activity {
 
 ```
 
+**Next, you will need to register the EncryptedString Java class with the Native Class Registry instance.**
+```c++
+
+ClassRegistry gClasses;
+    ...
+    gClasses.add(env, new EncryptedString(env));
+
+```
 **Lastly, you would implement the native decryptString method similar to the following:**
 ```c++
 
@@ -68,7 +76,7 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decryptedString.get());
 
 ```
-**This allows you to encrypt your inline strings hiding important details of your app. The decrypt function is a hidden (Native C++) implementation, and can pretty much be any decryption algorithm you choose**
+**This API allows you to encrypt your inline strings hiding important details of your app. The decrypt function is a hidden (Native C++) implementation, and can pretty much be any decryption algorithm you choose**
 
 ## Secure Network Calls
 **Java Secure Network Calls**
