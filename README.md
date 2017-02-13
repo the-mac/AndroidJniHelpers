@@ -18,9 +18,9 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
     assertEquals("To be or not to be, That is the question", decryptedString);
 
 ```
-**Above is an example of decrypting a generated resource string. Next, you can create a native decryptString implementation for your Activity class**
+**Above is an example of decrypting a generated resource string. If you would like to implement this, you can create a native decryptString implementation for your Activity class**
 
-**Creating native method in Activity class**
+**Declaring native decryptString method in Activity class**
 ```java
 
 public class ExampleActivity extends Activity {
@@ -31,7 +31,7 @@ public class ExampleActivity extends Activity {
 
 ```
 
-**Finally, the native implementation could look as follows:**
+**Lastly, you would implement the native decryptString method similar to the following:**
 ```c++
 
 extern "C"
@@ -46,9 +46,9 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
 }
 
 ```
-**Coming Soon: The encrypted resource strings can be generated using the bin/encrypt.bash script.**
+**Coming Soon: Encrypted resource strings can be generated using the bin/encrypt.bash script.**
 
-**Java String Decrypting**
+**Java Inline String Decrypting**
 ```java
 
     EncryptedString object = EncryptedString.getInstance();
@@ -58,7 +58,7 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
     assertEquals("To be or not to be, That is the question", decryptedString);
 
 ```
-**Native String Decrypting**
+**Native Inline String Decrypting**
 ```c++
 
     EncryptedString *object = new EncryptedString(env);
