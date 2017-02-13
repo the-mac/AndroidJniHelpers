@@ -76,7 +76,7 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decryptedString.get());
 
 ```
-**This API allows you to encrypt your inline strings hiding important details of your app. The decrypt function is a hidden (Native C++) implementation, and can pretty much be any decryption algorithm you choose**
+**This API allows you to encrypt your inline strings hiding important details of your app. The decrypt function is a hidden (Native C++) implementation, and can pretty much be any (Java, C, C++) decryption algorithm you choose**
 
 ## Secure Network Calls
 **Java Secure Network Calls**
@@ -182,16 +182,23 @@ Using a MACRequests native instance looks as follows:
 
 ```
 
-#Setting up your project
+#Setting up your Android Studio C++ Project
 
-* Open your command line
-* cd into your C++/Android project (you can add C++ support through the Android Studio context menu)
+* Change directories into your C++/Android project:
+```bash
+cd ../path/to/your/project
+```
+**Note: Make sure to add C++ support to your project through the Android Studio context menu
+
 * Clone the repo into your project:
 ```bash
 git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
+
 * Go to File > New > Import Module
+
 * Add AndroidJniHelpers to your project (you could name its module library)
+
 * Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](library/CMakeLists.txt)):
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
