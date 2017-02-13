@@ -185,7 +185,7 @@ jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
         case RESOURCE_STRINGS_ALGORITHM:
             key = object->getKey(env, RESOURCE_STRINGS_ALGORITHM);
             conversion = substitution(key, base64(object->encryptedString.get()));
-            break;
+            break;//return object->encryptedString.toJavaString(env);//
         case NATIVE_STRINGS_ALGORITHM:
             jbyteArray bytes = object->crypto.decrypt(env, object->getBytes(env, java_this), object->encryptedString.toByteArray(env));
             conversion = JavaString(env, bytes).get();

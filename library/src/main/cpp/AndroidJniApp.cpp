@@ -99,13 +99,14 @@ jstring AndroidJniApp::decryptString(JNIEnv *env, jobject java_this, jint resour
 
     if (object != NULL) {
 
-        jobject stringResource = env->CallObjectMethod(java_this, object->getMethod("getString"), resourceId);
-        JavaExceptionUtils::checkException(env);
-
-        EncryptedString es = EncryptedString(env);
-        es.encryptedString = env->GetStringUTFChars((jstring) stringResource, JNI_FALSE);
-
-        return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
+//        jobject stringResource = env->CallObjectMethod(object->thisObj, object->getMethod("getString"), resourceId);
+//        JavaExceptionUtils::checkException(env);
+//
+//        EncryptedString es = EncryptedString(env);
+//        es.encryptedString = env->GetStringUTFChars((jstring) stringResource, JNI_FALSE);
+//        JavaExceptionUtils::checkException(env);
+//
+//        return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
     }
     return NULL;
 }
