@@ -187,7 +187,17 @@ Using a MACRequests native instance looks as follows:
 ```bash
 cd ../path/to/your/project
 ```
-**Note: Make sure to add C++ support to your project through the Android Studio context menu**
+
+
+**Note: If you don't have a C++ prject, make sure to [add C++ support](https://developer.android.com/studio/projects/add-native-code.html#existing-project) to your project**
+* To add C++ support to your project:
+```bash
+* Create new native source files
+
+* Create a CMake build script
+
+* Link Gradle to your native library
+```
 
 * Clone the repo into your project:
 ```bash
