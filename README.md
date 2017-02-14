@@ -189,14 +189,30 @@ cd ../path/to/your/project
 ```
 
 
-**Note: If you don't have a C++ prject, make sure to [add C++ support](https://developer.android.com/studio/projects/add-native-code.html#existing-project) to your project**
+**Note: If you don't have a C++ project, make sure to [add C++ support](https://developer.android.com/studio/projects/add-native-code.html#existing-project) to your project**
 * To add C++ support to your project:
 ```bash
-* Create new native source files
+* Create new native source files (in cpp folder, beside java folder)
 
-* Create a CMake build script
+* Create a CMake build script (See add C++ support link above)
 
-* Link Gradle to your native library
+* Link Gradle to your native library:
+android {
+  ...
+  defaultConfig {...}
+  buildTypes {...}
+
+  // Encapsulates your external native build configurations.
+  externalNativeBuild {
+
+    // Encapsulates your CMake build configurations.
+    cmake {
+
+      // Provides a relative path to your CMake build script.
+      path "CMakeLists.txt"
+    }
+  }
+}
 ```
 
 * Clone the repo into your project:
