@@ -194,7 +194,10 @@ cd ../path/to/your/project
 git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
 
-* Go to File > New > Import Module
+* Import module into your project:
+```bash
+Go to File > New > Import Module
+```
 
 * Add AndroidJniHelpers to your project (you could name its module library)
 
