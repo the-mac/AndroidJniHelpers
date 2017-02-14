@@ -1,0 +1,1 @@
+        Log.d(getClass().getName(), "Called AndroidJniApp.onCreate");

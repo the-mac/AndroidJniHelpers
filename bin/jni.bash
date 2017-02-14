@@ -5,8 +5,8 @@
 
 debug=0
 
-if [[ -z !$debug ]] ; then
-set -x
+if [[ $debug == 1 ]] ; then
+set -xe
 fi
 
 androidVersion=android-24

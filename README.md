@@ -54,7 +54,7 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
 }
 
 ```
-**Coming Soon: Encrypted resource strings can be generated using the bin/encrypt.bash script.**
+**Coming Soon: AES Encrypted resource strings can be generated using the bin/encrypt.bash script.**
 
 **Java Inline String Decrypting**
 ```java
@@ -110,7 +110,6 @@ Using a MACRequests Java instance could look as follows:
     JSONObject jsonObject = new JSONObject(object.resultString);
     String requestUrl = jsonObject.getString("url");
     assertEquals("https://httpbin.org/post", requestUrl);
-
 
 ```
 **Native Secure Network Calls**

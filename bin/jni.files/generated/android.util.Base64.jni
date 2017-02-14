@@ -1,0 +1,197 @@
+
+android.util.Base64
+
+********************************************************************************
+
+android.util.Base64.jni was generated as a helper for Base64.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: android.util.Base64, decode, decode, decode, encodeToString, encodeToString, encode, encode
+
+The source code can be copied into the respective Base64.h and
+Base64.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class Base64 : public JavaClass {
+    static std::map<std::string, std::string> static_signatures;
+    jobject thisObj;
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the Base64 class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("android/util", Base64);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the Base64 class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("android/util", Base64));
+    }
+    /**
+    * The getStaticSignature method is used to get the Jni Helper's
+    * static signature for the Base64 class defined in Java.
+    */
+    static const char *getStaticSignature(const char *functionName) {
+      std::string signature = static_signatures[functionName];
+      return signature.c_str();
+    }
+    void addStaticSignature(const char *functionName, const char *signature) {
+        static_signatures[functionName] = signature;
+    }
+
+    Base64();
+
+    Base64(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    jobject android.util.Base64(JNIEnv *env);
+
+    static jbyteArray decode(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    static jbyteArray decode(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    static jbyteArray decode(JNIEnv *env, jstring jstringValue1, jint jintValue2);
+
+    static jstring encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2);
+
+    static jstring encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2);
+
+    static jbyteArray encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2);
+
+    static jbyteArray encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2);
+
+};
+
+********************************************************************************
+
+
+Base64::Base64() : JavaClass() {}
+
+/**
+* Here you can construct the Base64 object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+Base64::Base64(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "Base64's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void Base64::initialize(JNIEnv *env)
+{
+    setClass(env);
+    cacheConstructor(env);
+
+    addJavaSignature("android/util/Base64", "()V");
+    addStaticSignature("decode", "(Ljava/lang/String;I)[B");
+    addStaticSignature("decode", "([BI)[B");
+    addStaticSignature("decode", "([BIII)[B");
+    addStaticSignature("encodeToString", "([BI)Ljava/lang/String;");
+    addStaticSignature("encodeToString", "([BIII)Ljava/lang/String;");
+    addStaticSignature("encode", "([BI)[B");
+    addStaticSignature("encode", "([BIII)[B");
+
+    registerNativeMethods(env);
+}
+
+void Base64::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject Base64::android.util.Base64(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring Base64::encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring Base64::encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jbyteArray Base64::encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Base64::encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = instance.android.util.Base64(env);
+
+jbyteArray jbyteArrayReturnValue = Base64::decode(env, jstringValue1, jintValue2);
+
+jbyteArray jbyteArrayReturnValue = Base64::decode(env, jstringValue1, jintValue2);
+
+jbyteArray jbyteArrayReturnValue = Base64::decode(env, jstringValue1, jintValue2);
+
+jstring jstringReturnValue = Base64::encodeToString(env, jbyteArrayValue1, jintValue2);
+
+jstring jstringReturnValue = Base64::encodeToString(env, jbyteArrayValue1, jintValue2);
+
+jbyteArray jbyteArrayReturnValue = Base64::encode(env, jbyteArrayValue1, jintValue2);
+
+jbyteArray jbyteArrayReturnValue = Base64::encode(env, jbyteArrayValue1, jintValue2);
+
+

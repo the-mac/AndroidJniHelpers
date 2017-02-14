@@ -3,16 +3,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
 
 public class GenerateJniHelpers {
 	private static boolean DEBUGGING = false;
@@ -31,23 +25,23 @@ public class GenerateJniHelpers {
 	Properties mDataTypes = new Properties();
 	Properties mReturnValues = new Properties();
 
-    
+
 	String public_head  = "  public:";
 	String java_instance  = "    jobject thisObj;";
 	String tail  		= "};";
 	public GenerateJniHelpers(String className) {
 
 		int lastIndex = className.lastIndexOf('.');
-		
+
 		if(lastIndex > -1) {
 			packageName = className.substring(0, lastIndex);
-			this.className = className.substring(lastIndex + 1);	
+			this.className = className.substring(lastIndex + 1);
 		}
 		else {
 			packageName = "";
 			this.className = className;
 		}
-		
+
 //		methodMapping.put("constructor", "// This is a placeholder for the constructor");
 //		methodMapping.put("boolean", "// This is a placeholder for a boolean function");
 
@@ -73,7 +67,7 @@ public class GenerateJniHelpers {
 			}
 		}
 	}
-	
+
 	@Override public boolean equals(Object obj) { return false; }
 	@Override public String toString() {
 		StringBuilder output = new StringBuilder();
@@ -114,12 +108,12 @@ public class GenerateJniHelpers {
 			if(isStaticMethod) {
 				String prefix = static_signatures.length() == 0 ? "    " : ",\n    ";
 				static_signatures.append(String.format("%s    { \"%s\", \"%s\" }", prefix, methodName, signature));
-				signatures.append(String.format("    cacheSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    addStaticSignature(\"%s\", \"%s\");\n", methodName, signature));
 			} else if(isNativeMethod) {
 				signatures.append(String.format("    addNativeSignature(\"%s\", (void*)&%s::%s, \"%s\");\n", methodName, className, methodName, signature));
 			}
 			else {
-				signatures.append(String.format("    cacheSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    addJavaSignature(\"%s\", \"%s\");\n", methodName, signature));
 			}
 		}
 
@@ -131,21 +125,21 @@ public class GenerateJniHelpers {
 		else {
 			header.append("class "+ className +" : public JavaClass {\n");
 		}
-	    if(HAS_STATIC_MEMBERS) {
+		if(HAS_STATIC_MEMBERS) {
 			header.append("    static std::map<std::string, std::string> static_signatures;\n");
 			//header.append("    static std::map<std::string, std::string> static_signatures = {\n");
 			//header.append(static_signatures + "\n");
 			//header.append("    };\n");
-	    }
+		}
 		header.append(java_instance + "\n");
 		header.append(public_head + "\n");
 
 		String classSignatures = signatures.toString();
 
 		String commentary = "    /**\n"+
-			"    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain \n"+
-			"    * the Jni Helper's relationship to the "+className+" class defined in Java.\n"+
-			"    */";
+				"    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain \n"+
+				"    * the Jni Helper's relationship to the "+className+" class defined in Java.\n"+
+				"    */";
 		String getCanonicalName = String.format("%s\n%s", commentary, getMethod("const char *"));
 		getCanonicalName = getCanonicalName.replace("{CLASS_NAME}", className);
 
@@ -153,7 +147,7 @@ public class GenerateJniHelpers {
 		getCanonicalName = getCanonicalName.replace("{PACKAGE_NAME}", canonicalPath);
 		header.append(getCanonicalName + "\n");
 
-	    if(HAS_STATIC_MEMBERS) {
+		if(HAS_STATIC_MEMBERS) {
 			commentary = "    /**\n"+
 					"    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain \n"+
 					"    * the Jni Helper's static relationship to the "+className+" class defined in Java.\n"+
@@ -174,7 +168,7 @@ public class GenerateJniHelpers {
 			header.append(getStaticSignature + "\n");
 
 			header.append(getMethod("addStaticSignature") + "\n\n");
-	    }
+		}
 
 		String defaultConstructorInHeader = String.format("%s", getHelperTemplate("defaultConstructor").replace(" : {NATIVE_CLASS}() {}", ""));
 		defaultConstructorInHeader = defaultConstructorInHeader.replace("{CLASS_NAME}", className);
@@ -299,11 +293,11 @@ public class GenerateJniHelpers {
 			} else if("void".equals(returnType)) {
 				String type = setUpParameterTypes(returnType);
 				examples.append(String.format( "%s%s(env%s);\n\n",
-					isStaticMethod ? variableName : variableName +".", methodName, parameterNames));
+						isStaticMethod ? variableName : variableName +".", methodName, parameterNames));
 			} else {
 				String type = setUpParameterTypes(returnType);
 				examples.append(String.format("%s %sReturnValue = %s%s(env%s);\n\n",
-					type, type, isStaticMethod ? variableName : variableName +".", methodName, parameterNames));
+						type, type, isStaticMethod ? variableName : variableName +".", methodName, parameterNames));
 			}
 		}
 		header.append(tail + "\n");
@@ -321,20 +315,18 @@ public class GenerateJniHelpers {
 
 	/**
 	 * @param parameter
-	 * @param afterName
-	 * @param parametersIndex
 	 * @return
 	 */
 	private String setUpParameterTypes(String parameter) {
 
 		if(parameter.contains("java.lang.String")) {
-			parameter = parameter.replace("java.lang.String", mDataTypes.getProperty("java.lang.String"));			
+			parameter = parameter.replace("java.lang.String", mDataTypes.getProperty("java.lang.String"));
 		}
 		else if(parameter.contains(".")) {
 			parameter = mDataTypes.getProperty("*");
 		}
 		else {
-			
+
 			parameter = parameter.replace("boolean", mDataTypes.getProperty("boolean"));
 			parameter = parameter.replace("byte", mDataTypes.getProperty("byte"));
 			parameter = parameter.replace("int", mDataTypes.getProperty("int"));
@@ -343,15 +335,15 @@ public class GenerateJniHelpers {
 			parameter = parameter.replace("char", mDataTypes.getProperty("char"));
 			parameter = parameter.replace("long", mDataTypes.getProperty("long"));
 			parameter = parameter.replace("short", mDataTypes.getProperty("short"));
-			
+
 		}
-		
-		parameter = parameter.replace("[]", "Array");		
-		
+
+		parameter = parameter.replace("[]", "Array");
+
 		return parameter;
-		
+
 	}
-	
+
 	private String getMethod(String returnType) {
 //		if("".equals(returnType)) returnType = "constructor";
 		if(returnType != null && !"".equals(returnType) && !methodMapping.containsKey(returnType)) {
@@ -404,32 +396,32 @@ public class GenerateJniHelpers {
 	}
 
 	public static void main (String[] args) throws FileNotFoundException {
-		
+
 		String input = args.length == 0 ? "GenerateJniHelpers.jniBlueprint" : args[0];
 		File jniFile = new File(input);
 		boolean isJniFileAvailable = jniFile.exists();
-		
+
 		String contents = isJniFileAvailable ? new Scanner(jniFile).useDelimiter("\\A").next() : "";
 		if(DEBUGGING) System.out.printf("\ncontents: %s\n\n", contents);
 
 		String[] array = contents.split("--\n");
-		
+
 		GenerateJniHelpers helloWorld = new GenerateJniHelpers(input.replace(".jniBlueprint", ""));
-		
+
 		for (String string : array) {
-			
+
 			if(string.contains("private")) continue;
 //			if(DEBUGGING) System.out.printf("\nstring: %s\n\n", string);
-			
+
 			if(string.contains(");")) {
 
 				String[] components = string.split("\n");
 				String method = components[0].trim();
-				
+
 				String methodName = components[0].trim();
 				int afterName = methodName.indexOf('(');
 				int parametersIndex = methodName.indexOf(')');
-				
+
 				String[] nameComponents =  methodName.substring(0, afterName).split(" ");
 				String[] parameterComponents =  methodName.substring(afterName + 1, parametersIndex).split(", ");
 
@@ -444,57 +436,29 @@ public class GenerateJniHelpers {
 					parameters +=  String.format(", %s %s", parameterType, parameterName);
 					parameterNames +=  String.format(", %s", parameterName);
 				}
-				
+
 				int index = nameComponents.length - 2;
 				if(index < 0) index = nameComponents.length - 1;
-				
+
 				methodName = nameComponents[nameComponents.length - 1];
 				String returnType = nameComponents[index].replace("public", "");
-				
+
 				String methodSignature = components[1].replace("descriptor: ", "").trim();
-				
-				helloWorld.methods.add(method);		
+
+				helloWorld.methods.add(method);
 				helloWorld.methodNames.add(methodName);
 				helloWorld.returnTypes.add(returnType);
 				helloWorld.listOfParameters.add(parameters);
 				helloWorld.listOfParameterNames.add(parameterNames);
 				helloWorld.listOfClassSignatures.add(methodSignature);
-				
+
 			}
 			String methods = helloWorld.methods.toString();
 			HAS_STATIC_MEMBERS = methods.contains("static");
 			HAS_NATIVE_MEMBERS = methods.contains("native");
 		}
 
-		if(!DEBUGGING) System.out.println (helloWorld.toString());		
+		if(!DEBUGGING) System.out.println (helloWorld.toString());
 	}
 
-	/**
-     * Created by christopher on 2/12/17.
-     */
-
-    public static class CryptoHelper {
-        private Key key;
-
-        public CryptoHelper( Key key ) {
-            this.key = key;
-        }
-
-        public CryptoHelper() throws Exception {
-            this( generateSymmetricKey() );
-        }
-
-        public static Key generateSymmetricKey() throws Exception {
-            KeyGenerator generator = KeyGenerator.getInstance( "AES" );
-            SecretKey key = generator.generateKey();
-            return key;
-        }
-
-        public byte [] decrypt( byte [] iv, byte [] ciphertext ) throws Exception {
-            Cipher cipher = Cipher.getInstance( key.getAlgorithm() + "/CBC/PKCS5Padding" );
-            cipher.init( Cipher.DECRYPT_MODE, key, new IvParameterSpec( iv ) );
-            return cipher.doFinal( ciphertext );
-        }
-
-    }
 }

@@ -3,14 +3,15 @@
 # className="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash $className $filePath && cat bin/encrypt.files/generated/$className.encrypt
 # className="" && filePath="" && clear && reset && bin/encrypt.bash $className $filePath && cat bin/encrypt.files/generated/$className.encrypt
 
-debug=1
+debug=0
 
-if [[ -z !$debug ]] ; then
+if [[ $debug == 1 ]] ; then
 set -xe
 fi
 
 androidVersion=android-24
 
+currentPath=$PWD
 cp ../local.properties bin/encrypt.files
 sdkPath=$(grep "^sdk.dir=" "bin/encrypt.files/local.properties" | cut -d'=' -f2)
 
@@ -22,7 +23,8 @@ echo ""
 	fi
 
 androidJarFile=$sdkPath/platforms/$androidVersion/android.jar
-apacheJarFile=$sdkPath/platforms/$androidVersion/optional/org.apache.http.legacy.jar
+apacheHttpJarFile=$sdkPath/platforms/$androidVersion/optional/org.apache.http.legacy.jar
+apacheCryptoJarFile=$currentPath/bin/encrypt.files/commons-codec-1.10.jar
 
 	if [ ! -f $androidJarFile ] ; then
 echo "Result: Android version $androidVerison was not found in the android sdk: $androidJarFile"
@@ -40,42 +42,20 @@ if [[ $2 == *.java* ]] ; then
 	packageName=${1//".$className"}. #java.lang
 	filePath=${packageName//.//} #java/lang
 
-	
-elif [[ $1 == *.* ]] ; then
-	rm -rf bin/encrypt.files/build.encrypt
-	mkdir bin/encrypt.files/build.encrypt
-	cd bin/encrypt.files/build.encrypt
-	packageName=${1//".$className"}. #java.lang
-	filePath=${packageName//.//} #java/lang
-
-	if [[ -z $classFilePath ]] ; then
-echo "Result: $1 was not found in the android library or apache legacy"
-echo "" && echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME [OPTIONAL JAVA FILE PATH]"
-echo "Try: bin/encrypt.bash $1 file/path/to/java/file/$className.java"
-echo ""
-	exit;
-	fi
-
-	if [ ! -f $filePath$className.class ] ; then
-echo "Result: $classFilePath was not found in the legacy jar: $apacheJarFile"
-echo ""
-	exit;
-	fi
+	mkdir -p $filePath && cp $2 $filePath$className.java
+	grep -R '"*"' $filePath$className.java > "$1.encryptBlueprint"
 
 else
 echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME [OPTIONAL JAVA FILE PATH]"
 	exit;
 fi
 
-cp  ../../../library/src/test/java/CryptoHelper.java .
-cp ../encryptDataTypes.properties .
-cp ../encryptReturnValues.properties .
-cp -rf ../encryptMethods .
+cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
 
 
-javac CryptoHelper.java
+javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
-java CryptoHelper "$1.encryptBlueprint" > $1.encrypt
+java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1.encryptBlueprint" > $1.encrypt
 cp $1.encrypt ../generated/$1.encrypt
 
 echo "Result: $className.encrypt has been generated and is ready to use."

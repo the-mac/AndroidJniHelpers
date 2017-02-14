@@ -163,8 +163,8 @@ string EncryptedString::getKey(JNIEnv *env, jint algorithm)
     case RESOURCE_STRINGS_ALGORITHM:
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     case NATIVE_STRINGS_ALGORITHM:
-        jstring key = env->NewStringUTF("native_key");
-        Scanner s = Scanner(env, File(env, getFilesDir(env), key));
+        jstring native_key = env->NewStringUTF("native_key");
+        Scanner s = Scanner(env, File(env, getFilesDir(env), native_key));
         s.useDelimiter(env, "\\A");
         return env->GetStringUTFChars(s.next(env), JNI_FALSE);
     }
