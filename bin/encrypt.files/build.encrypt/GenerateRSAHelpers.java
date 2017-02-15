@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.security.Key;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
@@ -30,33 +31,20 @@ public class GenerateRSAHelpers {
 	CryptoHelper cryptoHelper;
 
 	String className, packageName;
-	ArrayList<String> methods = new ArrayList<String>();
-	ArrayList<String> methodNames = new ArrayList<String>();
-	ArrayList<String> returnTypes = new ArrayList<String>();
-	ArrayList<String> listOfParameters = new ArrayList<String>();
-	ArrayList<String> listOfParameterNames = new ArrayList<String>();
-	ArrayList<String> listOfRegisteredMethods = new ArrayList<String>();
-	ArrayList<String> listOfClassSignatures = new ArrayList<String>();
-	HashMap<String,String> methodMapping = new HashMap<String,String>();
-	Properties mDataTypes = new Properties();
-	Properties mReturnValues = new Properties();
 
 
-	String public_head  = "  public:";
-	String java_instance  = "    jobject thisObj;";
-	String tail  		= "};";
-	public GenerateRSAHelpers(File file, String className) {
+	public GenerateRSAHelpers(String className) {
 
-		int lastIndex = className.lastIndexOf('.');
-		
-		if(lastIndex > -1) {
-			packageName = className.substring(0, lastIndex);
-			this.className = className.substring(lastIndex + 1);	
-		}
-		else {
-			packageName = "";
-			this.className = className;
-		}
+//		int lastIndex = className.lastIndexOf('.');
+//
+//		if(lastIndex > -1) {
+//			packageName = className.substring(0, lastIndex);
+//			this.className = className.substring(lastIndex + 1);
+//		}
+//		else {
+//			packageName = "";
+//			this.className = className;
+//		}
 		try {
 			cryptoHelper = new CryptoHelper();
 		} catch (Exception e) {
@@ -532,31 +520,47 @@ public class GenerateRSAHelpers {
 	}
 
 	public static void main (String[] args) throws Exception {
-		
-		String input = args.length == 0 ? "GenerateEncryptHelpers.encryptBlueprint" : args[0];
-		File encryptFile = new File(input);
-		boolean isEncryptFileAvailable = encryptFile.exists();
-		
-		String contents = isEncryptFileAvailable ? new Scanner(encryptFile).useDelimiter("\\A").next() : "";
-		if(DEBUGGING) System.out.printf("\ncontents: %s\n\n", contents);
 
-		String[] array = contents.split("\"");
+		if(args.length == 1 && args[0].equals("--key")) {
+			if(DEBUGGING) System.out.printf("\nargs: %s\n\n", Arrays.toString(args));
 
-		GenerateRSAHelpers helper = new GenerateRSAHelpers(encryptFile, input.replace(".encryptBlueprint", ""));
+			GenerateRSAHelpers helper = new GenerateRSAHelpers(args[0]);
 
-		for (int loopIndex = 1; loopIndex < array.length; loopIndex += 2) {
+			System.out.println (helper.generateKey());
 
-			String extraction = array[loopIndex];
-			String encryptedText = helper.encrypt(extraction);
-			mContent.put(extraction, encryptedText);
+		} else if(args.length == 2) {
 
-		}
+			String inputFile = args.length == 0 ? "GenerateEncryptHelpers.encryptBlueprint" : args[0];
 
-		if(!DEBUGGING) System.out.println (helper.toString());
+			File encryptFile = new File(inputFile);
+			boolean isEncryptFileAvailable = encryptFile.exists();
+
+			String contents = isEncryptFileAvailable ? new Scanner(encryptFile).useDelimiter("\\A").next() : "";
+			if(DEBUGGING) System.out.printf("\ncontents: %s\n\n", contents);
+
+			String[] array = contents.split("\"");
+
+			GenerateRSAHelpers helper = new GenerateRSAHelpers(inputFile.replace(".encryptBlueprint", ""));
+
+			for (int loopIndex = 1; loopIndex < array.length; loopIndex += 2) {
+
+				String extraction = array[loopIndex];
+				String encryptedText = helper.encrypt(extraction);
+				mContent.put(extraction, encryptedText);
+
+			}
+
+			if(!DEBUGGING) System.out.println (helper.toString());
+		} else { System.out.println ("Improper Input: " + Arrays.toString(args)); }
+
 	}
 
 	private String encrypt(String extraction) throws Exception {
 		return cryptoHelper.encrypt(extraction);
+	}
+
+	private String generateKey() throws Exception {
+		return new String( Base64.encodeBase64( cryptoHelper.generateIV() ));
 	}
 
 	/**

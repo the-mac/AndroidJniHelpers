@@ -14,7 +14,7 @@ function display_changed_files {
 	echo ""
 	statusContents=$(git status)
 	if [[ $statusContents == *"nothing to commit"* ]]; then
-		createTimestamp > timestamp
+		createTimestamp > prepare.files/timestamp
 		statusContents=$(git status)
 		echo "$statusContents"
 	else
@@ -26,7 +26,21 @@ function check_diff {
 
 while true; do
 	echo ""
-	
+
+	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to ignore (No/no) > " ignore
+	else
+	     diff="$@"
+		 echo ""
+	     echo "You selected option(s): $diff"
+		 echo ""
+	fi
+	if [[ $ignore != *"no"* && $ignore != *"No"*  && $ignore != *"NO"* ]]; then
+
+		echo "$ignore" >> .gitignore
+		git add $ignore && git commit -m "Adding $ignore to .gitignore"
+		git status
+
+	fi
 	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to diff (No/no) > " diff
 	else
 	     diff="$@"
