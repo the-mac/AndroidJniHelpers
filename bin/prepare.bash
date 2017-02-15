@@ -14,7 +14,7 @@ function display_changed_files {
 	echo ""
 	statusContents=$(git status)
 	if [[ $statusContents == *"nothing to commit"* ]]; then
-		createTimestamp > prepare.files/timestamp
+		createTimestamp > bin/prepare.files/timestamp
 		statusContents=$(git status)
 		echo "$statusContents"
 	else
