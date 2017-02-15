@@ -528,9 +528,9 @@ public class GenerateRSAHelpers {
 
 			System.out.println (helper.generateKey());
 
-		} else if(args.length == 2) {
+		} else if(args.length == 1) {
 
-			String inputFile = args.length == 0 ? "GenerateEncryptHelpers.encryptBlueprint" : args[0];
+			String inputFile = args[0];
 
 			File encryptFile = new File(inputFile);
 			boolean isEncryptFileAvailable = encryptFile.exists();
@@ -637,7 +637,7 @@ public class GenerateRSAHelpers {
 			if(DEBUGGING) System.out.printf("\naccessFile Contents: %s\n", contents);
 			if(DEBUGGING) System.out.printf("\naccessFile Length: %s\n", iv.length);
 
-			byte[] bytes = contents.getBytes();
+			byte [] bytes = Base64.decodeBase64( contents.getBytes() );
 			for (int i = 0; i < bytes.length; i++) {
 				iv[i] = bytes[i];
 			}
