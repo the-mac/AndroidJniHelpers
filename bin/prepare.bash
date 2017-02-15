@@ -29,7 +29,6 @@ while true; do
 
 	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to ignore (No/no) > " ignore
 	else
-#		 ignore="no"
 	     ignore="$@"
 	     diff="$@"
 	fi
@@ -38,6 +37,7 @@ while true; do
 		echo "$ignore" >> .gitignore
 		git add $ignore && git commit -m "Adding $ignore to .gitignore"
 		git status
+        continue;
 
 	fi
 	if [[ -z "$@" || -z $diff ]]; then		read -p "Is there a file you would like to diff (No/no) > " diff
