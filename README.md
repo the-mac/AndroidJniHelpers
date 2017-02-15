@@ -25,7 +25,6 @@ from [proguard obfuscation](https://www.guardsquare.com/en/proguard), here are a
 
 public class ExampleActivity extends Activity {
     ...
-
     public native String decryptString(int resource);
 }
 
@@ -194,7 +193,7 @@ cd ../path/to/your/project
 ```bash
 * Create new native source files (in cpp folder, beside java folder)
 
-* Create a CMake build script (See add C++ support link above)
+* Create a CMakeLists.txt build script (See add C++ support link above)
 
 * Link Gradle to your native library:
 android {
