@@ -13,6 +13,8 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -20,6 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class GenerateRSAHelpers {
 	private static boolean DEBUGGING = false;
@@ -27,65 +30,84 @@ public class GenerateRSAHelpers {
 	private static boolean HAS_NATIVE_MEMBERS = false;
 
 	private static HashMap<String,String> mContent = new HashMap<String, String>();
+	private static HashMap<String,Integer> mNamesMap = new HashMap<String, Integer>();
 	private static String VERSION_DELIMIT = new String(new char[] { 126, 126 });//"~~";
 	CryptoHelper cryptoHelper;
 
 	String className, packageName;
+	private static File accessFile = new File("../../../library/src/main/assets/native_key");
 
+	public GenerateRSAHelpers(String keyPath) {
 
-	public GenerateRSAHelpers(String className) {
+//		InputStream inputStream = null;
+		Scanner scanner = null;
+		try {
+			// load a properties file
+//			inputStream = new FileInputStream(keyPath);
+			accessFile = new File(keyPath);
+			if(DEBUGGING) System.out.printf("\naccessFile: %s\n", accessFile);
+			if(DEBUGGING) System.out.printf("\naccessFile Exists: %s\n\n", accessFile.exists());
+			scanner = new Scanner(accessFile).useDelimiter("\\A");
 
-//		int lastIndex = className.lastIndexOf('.');
-//
-//		if(lastIndex > -1) {
-//			packageName = className.substring(0, lastIndex);
-//			this.className = className.substring(lastIndex + 1);
-//		}
-//		else {
-//			packageName = "";
-//			this.className = className;
-//		}
+			String contents = scanner.next();
+			byte [] iv = new byte [16];
+			if(DEBUGGING) System.out.printf("\naccessFile Contents: %s\n", contents);
+			if(DEBUGGING) System.out.printf("\naccessFile Length: %s\n", iv.length);
+
+			byte [] decodedKey = Base64.decodeBase64( contents.getBytes() );
+//			inputStream.close();
+
+			SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+			cryptoHelper = new CryptoHelper(originalKey);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (scanner != null) {
+				try {
+					scanner.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public GenerateRSAHelpers() {
 		try {
 			cryptoHelper = new CryptoHelper();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		methodMapping.put("constructor", "// This is a placeholder for the constructor");
-//		methodMapping.put("boolean", "// This is a placeholder for a boolean function");
-
-//		InputStream input = null;
-//		try {
-//			// load a properties file
-//			input = new FileInputStream("encryptDataTypes.properties");
-//			mDataTypes.load(input);
-//			input.close();
-//
-//			// load a properties file
-//			input = new FileInputStream("encryptReturnValues.properties");
-//			mReturnValues.load(input);
-//		} catch (IOException ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			if (input != null) {
-//				try {
-//					input.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 
-		String content = mContent.toString();
-		content = content.replace("{","");
-		content = content.replace("}","");
-		content = content.replace(",","\n");
+		StringBuilder content = new StringBuilder();
+		output.append("\n");
+
+		Iterator it = mContent.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry)it.next();
+
+			// <string name="hello">Hello!</string>
+			if(DEBUGGING) System.out.println(pair.getKey() + " = " + pair.getValue());
+			String value = pair.getValue().toString();
+			String resourceName = value.split("~~")[0].substring(1);
+			String resourceValue = value.split("~~")[1];
+			output.append(String.format("\t<string name=\"%s\">%s</string>\n", resourceName, resourceValue));
+
+		}
+//		content = content.replace("{","");
+//		content = content.replace("}","");
+//		content = content.replace(", ","\n");
+//		content = content.replace("~=~","~~");
 		output.append(content);
-		
+
 		return output.toString();
 	}
 
@@ -463,8 +485,8 @@ public class GenerateRSAHelpers {
 
 		String fileName = file.getName();
 
-		String input = new Scanner(file).useDelimiter("\\Z").next();
-		String[] contents = input.split("\"");
+		String inputFile = new Scanner(file).useDelimiter("\\Z").next();
+		String[] contents = inputFile.split("\"");
 		boolean hasStrings = contents.length > 1;
 
 		if(hasStrings) {
@@ -524,29 +546,50 @@ public class GenerateRSAHelpers {
 		if(args.length == 1 && args[0].equals("--key")) {
 			if(DEBUGGING) System.out.printf("\nargs: %s\n\n", Arrays.toString(args));
 
-			GenerateRSAHelpers helper = new GenerateRSAHelpers(args[0]);
+			GenerateRSAHelpers helper = new GenerateRSAHelpers();
 
 			System.out.println (helper.generateKey());
 
-		} else if(args.length == 1) {
+		} else if(args.length == 2) {
 
-			String inputFile = args[0];
+			String blueprintPath = args[0];
+			GenerateRSAHelpers helper = new GenerateRSAHelpers(args[1]);
 
-			File encryptFile = new File(inputFile);
-			boolean isEncryptFileAvailable = encryptFile.exists();
+			File blueprintTextFile = new File(blueprintPath);
+			boolean isEncryptFileAvailable = blueprintTextFile.exists();
 
-			String contents = isEncryptFileAvailable ? new Scanner(encryptFile).useDelimiter("\\A").next() : "";
+			String contents = isEncryptFileAvailable ? new Scanner(blueprintTextFile).useDelimiter("\\A").next() : "";
 			if(DEBUGGING) System.out.printf("\ncontents: %s\n\n", contents);
 
 			String[] array = contents.split("\"");
-
-			GenerateRSAHelpers helper = new GenerateRSAHelpers(inputFile.replace(".encryptBlueprint", ""));
 
 			for (int loopIndex = 1; loopIndex < array.length; loopIndex += 2) {
 
 				String extraction = array[loopIndex];
 				String encryptedText = helper.encrypt(extraction);
-				mContent.put(extraction+"~", "~"+encryptedText);
+
+				String generatedName = array[loopIndex - 1].toLowerCase().trim();
+				generatedName = generatedName.replace(");\n", "");
+				generatedName = generatedName.replace("\\s+", " ");
+				generatedName = generatedName.replaceAll("[^A-Za-z0-9 ]", "_");
+				generatedName = generatedName.replace("__", "_");
+				generatedName = generatedName.replace("__", "_");
+				generatedName = generatedName.trim();
+
+				Integer index = 0;
+
+				if(mNamesMap.containsKey(generatedName)) {
+					index = mNamesMap.get(generatedName);
+					++index;
+					mNamesMap.put(generatedName, index);
+				}
+				else {
+					index = 0;
+					mNamesMap.put(generatedName, index);
+				}
+
+				// Using Format: (Actual String~~Generated Name~~Encrypted String)
+				mContent.put(extraction+"~", "~"+generatedName+index+"~~"+encryptedText);
 
 			}
 
@@ -570,7 +613,6 @@ public class GenerateRSAHelpers {
 	public static class CryptoHelper {
 
 		private Key key;
-		private File accessFile = new File("../../../library/src/main/assets/native_key");
 
 		public CryptoHelper( Key key ) {
 			this.key = key;

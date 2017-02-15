@@ -19,4 +19,16 @@ public class AndroidJniApp extends Application {
         super.onCreate();
         Log.d(getClass().getName(), "Called AndroidJniApp.onCreate");
     }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Log.d(getClass().getName(), "Called AndroidJniApp.onLowMemory");
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        Log.d(getClass().getName(), "Called AndroidJniApp.onTerminate");
+    }
 }

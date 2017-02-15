@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Generates .encrypt file for class that was passed in
 # keyPath="" && clear && printf '\e[3J' && bin/encrypt.bash --key $keyPath && cat $keyPath
-# className="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash $className $filePath && cat bin/encrypt.files/generated/$className.encrypt
-# className="" && filePath="" && clear && reset && bin/encrypt.bash $className $filePath && cat bin/encrypt.files/generated/$className.encrypt
+# keyPath="" && className="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
+# keyPath="" && className="" && filePath="" && clear && reset && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
 
 debug=0
 
@@ -52,7 +52,7 @@ echo ""
 	exit;
 	fi
 
-    cp  ../../../library/src/helpers/java/GenerateRSAHelpers.java .
+    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
 
     javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
@@ -68,23 +68,32 @@ elif [[ $2 == *.java* ]] ; then
 	cd bin/encrypt.files/build.encrypt
 	packageName=${1//".$className"}. #java.lang
 	filePath=${packageName//.//} #java/lang
+	keyPath=$3 #../../../library/src/main/assets/native_key
+
+	if [[ -z $keyPath ]] ; then
+echo "Result: key file was not found in the execution path"
+echo "" && echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME FULLY_QUALIFIED_JAVA_FILE_PATH FULLY_QUALIFIED_KEY_PATH OR"
+echo "Try: bin/encrypt.bash your.class.package.ClassName file/path/to/your/java/class/YourFile.java file/path/to/your_key"
+echo ""
+	exit;
+	fi
 
 	mkdir -p $filePath && cp $2 $filePath$className.java
 	grep -R '"*"' $filePath$className.java > "$1.encryptBlueprint"
 
-    cp  ../../../library/src/helpers/java/GenerateRSAHelpers.java .
+    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
 
     javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
-    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1.encryptBlueprint" > $1.encrypt
+    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1.encryptBlueprint" "$3"  > $1.encrypt
     cp $1.encrypt ../generated/$1.encrypt
 
     echo "Result: $className.encrypt has been generated and is ready to use."
     echo "Path: ${PWD}/$1.encrypt"
 
 else
-    echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME [OPTIONAL JAVA FILE PATH] OR"
-    echo "" && echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH"
+    echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME FULLY_QUALIFIED_JAVA_FILE_PATH FULLY_QUALIFIED_KEY_PATH OR"
+    echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH" && echo ""
 	exit;
 fi
 
