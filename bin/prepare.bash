@@ -29,10 +29,9 @@ while true; do
 
 	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to ignore (No/no) > " ignore
 	else
+#		 ignore="no"
+	     ignore="$@"
 	     diff="$@"
-		 echo ""
-	     echo "You selected option(s): $diff"
-		 echo ""
 	fi
 	if [[ $ignore != *"no"* && $ignore != *"No"*  && $ignore != *"NO"* ]]; then
 
@@ -41,7 +40,7 @@ while true; do
 		git status
 
 	fi
-	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to diff (No/no) > " diff
+	if [[ -z "$@" || -z $diff ]]; then		read -p "Is there a file you would like to diff (No/no) > " diff
 	else
 	     diff="$@"
 		 echo ""
