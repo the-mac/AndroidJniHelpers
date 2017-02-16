@@ -62,4 +62,9 @@ public class StringResourceActivity extends Activity {
     }
 
     public native String decryptString(int encryptedString);
+
+    // Used to load the 'native-lib' library on application startup.
+    static {
+        System.loadLibrary("test-helper-lib");
+    }
 }

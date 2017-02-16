@@ -25,6 +25,9 @@ import android.support.test.InstrumentationRegistry;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import us.the.mac.android.jni.helpers.EncryptedString;

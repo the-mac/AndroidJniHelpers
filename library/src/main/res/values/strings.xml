@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Android Jni Helpers</string>
     <string name="action_settings">Settings</string>
-    <string name="encryptedString">dE8gQkUgT1IgTk9UIFRPIEJFLCB0SEFUIElTIFRIRSBRVUVTVElPTg==</string>
+    <string name="encryptedString">OUI3ZGR6N3RtOHV6V2RwcENpQ1ZGZHZvc3grV2NNOFN4eEFJdDJPR1YwUVJpYStUVDR5R1RQdE8wVHN5dVVSTw==</string>
 
     <string-array name="Planets">
         <item>Mercury</item>

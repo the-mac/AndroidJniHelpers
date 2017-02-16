@@ -1,8 +1,15 @@
 package us.the.mac.android.jni.helpers;
 
+import android.content.res.AssetManager;
+import android.net.Uri;
+
 import com.spotify.jni.NativeObject;
 
 import java.io.File;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import static android.R.attr.path;
 
 /**
  * Created by christopher on 1/14/17.
@@ -35,9 +42,17 @@ public class EncryptedString extends NativeObject {
 
     public native String decrypt(int algorithm);
 
-    public String getFilesDir() {
+    public InputStream getFileStream(String file) {
         if(AndroidJniApp.Instance() == null) return null;
-        return AndroidJniApp.Instance().getFilesDir().toString();
+//        return AndroidJniApp.Instance().getFilesDir().toString();
+//        return "file:///android_asset";
+        try {
+            AssetManager assetManager = AndroidJniApp.Instance().getAssets();
+            return assetManager.open(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static EncryptedString testingInstance() { return new EncryptedString(); }

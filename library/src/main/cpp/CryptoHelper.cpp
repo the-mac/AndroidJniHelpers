@@ -39,6 +39,24 @@ void CryptoHelper::mapFields()
     //mapField("encodedString", kTypeString, &encodedString);
 }
 
+
+jobject CryptoHelper::generateSymmetricKey(JNIEnv *env)
+{
+    jclass _class = env->FindClass("us/the/mac/android/jni/helpers/AndroidJniApp");
+    jmethodID method = env->GetStaticMethodID(_class, __FUNCTION__, "()Lus/the/mac/android/jni/helpers/AndroidJniApp;");
+    jobject result = env->CallStaticObjectMethod(_class, method);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+//public static Key generateSymmetricKey() throws Exception {
+//
+//        byte [] decodedKey = Base64.decodeBase64( getBytes() );
+//        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+//
+//        return originalKey;
+//}
+
 jbyteArray CryptoHelper::decrypt(JNIEnv *env, jbyteArray keyBytes, jbyteArray valueBytes)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), keyBytes, valueBytes);

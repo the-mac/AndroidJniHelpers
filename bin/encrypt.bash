@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Generates .encrypt file for class that was passed in
 # keyPath="" && clear && printf '\e[3J' && bin/encrypt.bash --key $keyPath && cat $keyPath
+# inputString="Input String" && keyPath="" && clear && printf '\e[3J' && bin/encrypt.bash --encrypt "$inputString" $keyPath --silent
 # keyPath="" && className="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
 # keyPath="" && className="" && filePath="" && clear && reset && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
 
@@ -36,7 +37,41 @@ echo ""
 
 className=${1##*.} #String
 
-if [[ $1 == *--key* ]] ; then
+if [[ $1 == *--encrypt* ]] ; then
+	rm -rf bin/encrypt.files/build.encrypt
+	mkdir bin/encrypt.files/build.encrypt
+	cd bin/encrypt.files/build.encrypt
+	packageName=${1//".$className"}. #java.lang
+	filePath=${packageName//.//} #java/lang
+	keyPath=$3 #../../../library/src/main/assets/native_key
+
+	if [[ -z $keyPath ]] ; then
+echo "Result: key file was not found in the execution path"
+echo "" && echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH"
+echo "Try: bin/encrypt.bash --key file/path/to/your/key/file/native_key"
+echo ""
+	exit;
+	fi
+
+    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
+
+    javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
+
+    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1" "$keyPath" "$2" > string_encryption
+    encryption=$(cat string_encryption)
+
+
+	if [[ $@ == *--silent* ]] ; then
+        echo "$encryption"
+	else
+        echo "Your input is encrypted and is ready to use."
+        echo "" && echo "Input:
+        $2"
+        echo "" && echo "Output:
+        $encryption" && echo ""
+	fi
+
+elif [[ $1 == *--key* ]] ; then
 	rm -rf bin/encrypt.files/build.encrypt
 	mkdir bin/encrypt.files/build.encrypt
 	cd bin/encrypt.files/build.encrypt

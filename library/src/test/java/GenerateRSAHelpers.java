@@ -87,7 +87,7 @@ public class GenerateRSAHelpers {
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 
-		StringBuilder content = new StringBuilder();
+//		StringBuilder content = new StringBuilder();
 		output.append("\n");
 
 		Iterator it = mContent.entrySet().iterator();
@@ -106,7 +106,7 @@ public class GenerateRSAHelpers {
 //		content = content.replace("}","");
 //		content = content.replace(", ","\n");
 //		content = content.replace("~=~","~~");
-		output.append(content);
+//		output.append(content);
 
 		return output.toString();
 	}
@@ -549,6 +549,15 @@ public class GenerateRSAHelpers {
 			GenerateRSAHelpers helper = new GenerateRSAHelpers();
 
 			System.out.println (helper.generateKey());
+
+		} else if(args.length == 3 && args[0].equals("--encrypt")) {
+			if(DEBUGGING) System.out.printf("\nargs: %s\n\n", Arrays.toString(args));
+
+			GenerateRSAHelpers helper = new GenerateRSAHelpers(args[1]);
+
+			String extraction = args[2];
+			String encryptedText = helper.encrypt(extraction);
+			System.out.println (encryptedText);
 
 		} else if(args.length == 2) {
 

@@ -5,6 +5,7 @@
 #ifndef APPLICATIONRESOURCES_SCANNER_H
 #define APPLICATIONRESOURCES_SCANNER_H
 
+#include "FileInputStream.h"
 #include "JniHelpers.h"
 #include "File.h"
 
@@ -24,11 +25,11 @@ public:
     * This constructor is the loader for the Java instance used to call all of its methods.
     * You can construct the File object how ever you need to here.
     */
-    Scanner(JNIEnv *env, File file) : JavaClass(env)
+    Scanner(JNIEnv *env, jobject fileInputStream) : JavaClass(env)
     {
         initialize(env);
 
-        thisObj = env->NewObject(_clazz, getMethod("<init>"), file.thisObj); // CALLS DEFAULT CONSTRUCTOR
+        thisObj = env->NewObject(_clazz, getMethod("<init>"), fileInputStream); // CALLS DEFAULT CONSTRUCTOR
 
         if (thisObj == NULL) {
             JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,

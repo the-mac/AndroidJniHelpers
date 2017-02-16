@@ -9,7 +9,7 @@ void File::initialize(JNIEnv *env)
 {
     setClass(env);
 
-    cacheSignature(env, "<init>", "(Ljava/io/File;Ljava/lang/String;)V");
+    cacheSignature(env, "<init>", "(Ljava/lang/String;Ljava/lang/String;)V");
     cacheSignature(env, "getAbsolutePath", "()Ljava/lang/String;");
     cacheSignature(env, "exists", "()Z");
     cacheSignature(env, "delete", "()Z");

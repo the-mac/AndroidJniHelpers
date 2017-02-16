@@ -9,7 +9,7 @@ void Scanner::initialize(JNIEnv *env)
 {
     setClass(env);
 
-    cacheSignature(env, "<init>", "(Ljava/io/File;)V");
+    cacheSignature(env, "<init>", "(Ljava/io/InputStream;)V");
     cacheSignature(env, "useDelimiter", "(Ljava/lang/String;)Ljava/util/Scanner;");
     cacheSignature(env, "next", "()Ljava/lang/String;");
 
@@ -21,9 +21,10 @@ void Scanner::mapFields()
 //    mapField("requestUrl", kTypeString, &requestUrl);
 }
 
-void Scanner::useDelimiter(JNIEnv *env, std::string delimt)
+void Scanner::useDelimiter(JNIEnv *env, std::string delimit)
 {
-    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
+    jstring value = env->NewStringUTF(delimit.c_str());
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), value);
     JavaExceptionUtils::checkException(env);
 }
 

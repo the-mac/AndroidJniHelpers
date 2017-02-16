@@ -43,7 +43,7 @@ void EncryptedString::initialize(JNIEnv *env)
 
     cacheSignature(env, "equals", "(Ljava/lang/Object;)Z");
     cacheSignature(env, "toString", "()Ljava/lang/String;");
-    cacheSignature(env, "getFilesDir", "()Ljava/lang/String;");
+    cacheSignature(env, "getFileStream", "(Ljava/lang/String;)Ljava/io/InputStream;");
     addNativeSignature("decrypt", (void*)&EncryptedString::decrypt, "(I)Ljava/lang/String;");
 
     // addNativeMethod("destroy", (void*)&EncryptedString::nativeDestroy, kTypeVoid, NULL);
@@ -150,11 +150,11 @@ string substitution(string const& k, string const& in)
     return out;
 }
 
-jstring EncryptedString::getFilesDir(JNIEnv *env)
+jobject EncryptedString::getFileStream(JNIEnv *env, jstring fileName)
 {
-    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), fileName);
     JavaExceptionUtils::checkException(env);
-    return (jstring) result;
+    return result;
 }
 
 string EncryptedString::getKey(JNIEnv *env, jint algorithm)
@@ -164,7 +164,7 @@ string EncryptedString::getKey(JNIEnv *env, jint algorithm)
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     case NATIVE_STRINGS_ALGORITHM:
         jstring native_key = env->NewStringUTF("native_key");
-        Scanner s = Scanner(env, File(env, getFilesDir(env), native_key));
+        Scanner s = Scanner(env, getFileStream(env, native_key));
         s.useDelimiter(env, "\\A");
         return env->GetStringUTFChars(s.next(env), JNI_FALSE);
     }
@@ -182,14 +182,21 @@ jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
         case INLINE_STRINGS_ALGORITHM:
             conversion = rot(object->encryptedString.get(), -1);
             break;
+//        case RESOURCE_STRINGS_ALGORITHM:
+//            key = object->getKey(env, RESOURCE_STRINGS_ALGORITHM);
+//            conversion = substitution(key, base64(object->encryptedString.get()));
+//            break;//return object->encryptedString.toJavaString(env);//
+
         case RESOURCE_STRINGS_ALGORITHM:
-            key = object->getKey(env, RESOURCE_STRINGS_ALGORITHM);
-            conversion = substitution(key, base64(object->encryptedString.get()));
-            break;//return object->encryptedString.toJavaString(env);//
-        case NATIVE_STRINGS_ALGORITHM:
+            object->encryptedString = JavaString(base64(object->encryptedString.get()));
             jbyteArray bytes = object->crypto.decrypt(env, object->getBytes(env, java_this), object->encryptedString.toByteArray(env));
             conversion = JavaString(env, bytes).get();
             break;
+
+//        case NATIVE_STRINGS_ALGORITHM:
+//            jbyteArray bytes = object->crypto.decrypt(env, object->getBytes(env, java_this), object->encryptedString.toByteArray(env));
+//            conversion = JavaString(env, bytes).get();
+//            break;
         }
 
         jstring result = env->NewStringUTF(conversion.c_str());

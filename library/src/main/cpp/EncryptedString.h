@@ -36,7 +36,7 @@ public:
 
     jstring decryptNative(JNIEnv *env, jint algorithm);
 
-    jstring getFilesDir(JNIEnv *env);
+    jobject getFileStream(JNIEnv *env, jstring fileName);
 
     virtual std::string getKey(JNIEnv *env, jint algorithm);
 

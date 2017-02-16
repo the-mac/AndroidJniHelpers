@@ -23,6 +23,13 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.TextView;
 
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
+
 
 /*
  * Tests the example application TextView. Uses the instrumentation test class
@@ -107,6 +114,15 @@ public class StringResourceActivityTest extends ActivityInstrumentationTestCase2
 //        assertEquals(mPlanetData.getCount(), ADAPTER_COUNT);
     }
 
+    public void validateAssetResourceAsKey() throws IOException {
+        String fileName = "native_key";
+
+        Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(fileName));
+        String contents = scanner.useDelimiter("\\A").next();
+        scanner.close();
+
+        assertEquals(TestConstants.TEST_ENCRYPTION_KEY, contents);
+    }
     /*
      * Tests the UI of the main activity. Sends key events (keystrokes) to the UI, then checks
      * if the resulting spinner state is consistent with the attempted selection.
@@ -167,12 +183,15 @@ public class StringResourceActivityTest extends ActivityInstrumentationTestCase2
         // Get the String value in the EditText object
 
         String resultText = (String) resultView.getText();
+        assertEquals("To be or not to be, That is the question", resultText);//Application Resources
 
-        /*
-         * Confirm that the EditText contains the same value as the data in the mLocalAdapter
-         */
+        String fileName = "native_key";
 
-        assertEquals("Android Jni Helpers", resultText);//Application Resources
+        Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(fileName));
+        String contents = scanner.useDelimiter("\\A").next();
+        scanner.close();
+
+        assertEquals(TestConstants.TEST_ENCRYPTION_KEY, contents);
     }
 
     /*
