@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class GenerateJniHelpers {
 	private static boolean DEBUGGING = false;
 	private static boolean HAS_STATIC_MEMBERS = false;
+	private static String STATIC_INSTANCE_NAME = null;
 	private static boolean HAS_NATIVE_MEMBERS = false;
 
 	String className, packageName;
@@ -108,12 +109,12 @@ public class GenerateJniHelpers {
 			if(isStaticMethod) {
 				String prefix = static_signatures.length() == 0 ? "    " : ",\n    ";
 				static_signatures.append(String.format("%s    { \"%s\", \"%s\" }", prefix, methodName, signature));
-				signatures.append(String.format("    addStaticSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    cacheStaticSignature(env, \"%s\", \"%s\");\n", methodName, signature));
 			} else if(isNativeMethod) {
 				signatures.append(String.format("    addNativeSignature(\"%s\", (void*)&%s::%s, \"%s\");\n", methodName, className, methodName, signature));
 			}
 			else {
-				signatures.append(String.format("    addJavaSignature(\"%s\", \"%s\");\n", methodName, signature));
+				signatures.append(String.format("    cacheSignature(env, \"%s\", \"%s\");\n", methodName, signature));
 			}
 		}
 
@@ -126,13 +127,18 @@ public class GenerateJniHelpers {
 			header.append("class "+ className +" : public JavaClass {\n");
 		}
 		if(HAS_STATIC_MEMBERS) {
-			header.append("    static std::map<std::string, std::string> static_signatures;\n");
+//			header.append("    static std::map<std::string, std::string> static_signatures;\n");
+
+			if(STATIC_INSTANCE_NAME == null)
+				STATIC_INSTANCE_NAME = className.substring(0,1).toLowerCase() + className.substring(1);
+
+
 			//header.append("    static std::map<std::string, std::string> static_signatures = {\n");
 			//header.append(static_signatures + "\n");
 			//header.append("    };\n");
 		}
-		header.append(java_instance + "\n");
 		header.append(public_head + "\n");
+		header.append(java_instance + "\n");
 
 		String classSignatures = signatures.toString();
 
@@ -159,15 +165,18 @@ public class GenerateJniHelpers {
 			getClass = getClass.replace("{PACKAGE_NAME}", getClassPath);
 			header.append(getClass + "\n");
 
-			commentary = "    /**\n"+
-					"    * The getStaticSignature method is used to get the Jni Helper's\n"+
-					"    * static signature for the "+className+" class defined in Java.\n"+
-					"    */";
-			String getStaticSignature = String.format("%s\n%s", commentary, getMethod("static_signatures"));
-			getStaticSignature = getStaticSignature.replace("{CLASS_NAME}", className);
-			header.append(getStaticSignature + "\n");
+			String instance = String.format("\nstatic %s *%sInstance = NULL;",
+					className, STATIC_INSTANCE_NAME, className);
+			commentary = "/**\n"+
+					"* The getStaticMethod method is used to get the Jni Helper's\n"+
+					"* static method for the "+className+" class defined in Java.\n"+
+					"*/";
+			String getStaticMethod = String.format("%s\n\n%s\n%s", instance, commentary, getMethod("getStaticMethod"));
+			getStaticMethod = getStaticMethod.replace("{CLASS_NAME}", className);
+			getStaticMethod = getStaticMethod.replace("{CLASS_NAME_VAR}", STATIC_INSTANCE_NAME);
+			source.append(getStaticMethod + "\n");
 
-			header.append(getMethod("addStaticSignature") + "\n\n");
+//			header.append(getMethod("addStaticSignature") + "\n\n");
 		}
 
 		String defaultConstructorInHeader = String.format("%s", getHelperTemplate("defaultConstructor").replace(" : {NATIVE_CLASS}() {}", ""));
@@ -235,8 +244,8 @@ public class GenerateJniHelpers {
 			method = method.replace("{METHOD_NAME}", methodName);
 			method = method.replace("{PARAMETERS}", parameters);
 			method = method.replace("{PARAMETER_NAMES}", parameterNames);
-			method = method.replace(", getMethod(", ", getJavaMethod(env, ");
-			method = method.replace("(getMethod(", "(getJavaMethod(env, ");
+//			method = method.replace(", getMethod(", ", getJavaMethod(env, ");
+//			method = method.replace("(getMethod(", "(getJavaMethod(env, ");
 
 			String prefix = "";
 			String variableName = "instance";
@@ -248,7 +257,7 @@ public class GenerateJniHelpers {
 				variableName = className + "::";
 				method = method.replace("thisObj", "getClass(env)");
 				method = method.replace("->Call", "->CallStatic");
-				method = method.replace("getJavaMethod(env, ", "getStaticMethod(env, getClass(env), ");
+				method = method.replace("getMethod(", "getStaticMethod(env, ");
 			} else if(isNativeMethod) {
 				prefix = "static ";
 
@@ -364,8 +373,8 @@ public class GenerateJniHelpers {
 			fileName = "jniMethods/mapFields.jniMethod";
 		} else if("callNative".equals(returnType)) {
 			fileName = "jniMethods/callNative.jniMethod";
-		} else if("static_signatures".equals(returnType)) {
-			fileName = "jniMethods/getStaticSignature.jniMethod";
+		} else if("getStaticMethod".equals(returnType)) {
+			fileName = "jniMethods/getStaticMethod.jniMethod";
 		} else if("addStaticSignature".equals(returnType)) {
 			fileName = "jniMethods/addStaticSignature.jniMethod";
 		} else if("getClass".equals(returnType)) {

@@ -1,0 +1,4 @@
+static jmethodID getStaticMethod(JNIEnv *env, const char *method_name) {
+    if({CLASS_NAME_VAR}Instance = NULL) {CLASS_NAME_VAR}Instance = new {CLASS_NAME}(env);
+    return {CLASS_NAME_VAR}Instance->getMethod(method_name);
+}

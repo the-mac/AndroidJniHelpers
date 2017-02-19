@@ -11,6 +11,10 @@ if [[ $debug == 1 ]] ; then
 set -xe
 fi
 
+if [[ $@ == *--debug* ]] ; then
+debugFlag="--debug"
+fi
+
 androidVersion=android-24
 
 currentPath=$PWD
@@ -37,6 +41,7 @@ echo ""
 
 className=${1##*.} #String
 
+
 if [[ $1 == *--encrypt* ]] ; then
 	rm -rf bin/encrypt.files/build.encrypt
 	mkdir bin/encrypt.files/build.encrypt
@@ -53,11 +58,11 @@ echo ""
 	exit;
 	fi
 
-    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
+    cp  ../../../library/src/helpers/java/GenerateRSAHelpers.java .
 
     javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
-    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1" "$keyPath" "$2" > string_encryption
+    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1" "$2" "$keyPath" "$debugFlag" > string_encryption
     encryption=$(cat string_encryption)
 
 
@@ -87,11 +92,11 @@ echo ""
 	exit;
 	fi
 
-    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
+    cp  ../../../library/src/helpers/java/GenerateRSAHelpers.java .
 
     javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
-    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1" > native_key
+    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1" "$debugFlag"  > native_key
     cp native_key $keyPath
 
     echo "Result: native_key has been generated and is ready to use."
@@ -116,11 +121,11 @@ echo ""
 	mkdir -p $filePath && cp $2 $filePath$className.java
 	grep -R '"*"' $filePath$className.java > "$1.encryptBlueprint"
 
-    cp  ../../../library/src/test/java/GenerateRSAHelpers.java .
+    cp  ../../../library/src/helpers/java/GenerateRSAHelpers.java .
 
     javac GenerateRSAHelpers.java -classpath $apacheCryptoJarFile
 
-    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1.encryptBlueprint" "$3"  > $1.encrypt
+    java -classpath .:$apacheCryptoJarFile GenerateRSAHelpers "$1.encryptBlueprint" "$3" "$debugFlag" > $1.encrypt
     cp $1.encrypt ../generated/$1.encrypt
 
     echo "Result: $className.encrypt has been generated and is ready to use."
@@ -128,6 +133,7 @@ echo ""
 
 else
     echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME FULLY_QUALIFIED_JAVA_FILE_PATH FULLY_QUALIFIED_KEY_PATH OR"
+    echo "Usage: bin/encrypt.bash --encrypt INPUT_STRING_TO_ENCRYPT FULLY_QUALIFIED_KEY_PATH OR"
     echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH" && echo ""
 	exit;
 fi

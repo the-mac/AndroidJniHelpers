@@ -30,6 +30,10 @@ void EncryptedStringTest::initialize(JNIEnv *env) {
   EncryptedString encryptedString;
   const char* encryptedStringName = encryptedString.getCanonicalName();
 
+  CryptoHelper cryptoHelper;
+  const char* cryptoHelperName = cryptoHelper.getCanonicalName();
+
+  addNativeMethod("createCryptoHelper", (void*)&createCryptoHelper, cryptoHelperName, NULL);
   addNativeMethod("createEncryptedString", (void*)&createEncryptedString, encryptedStringName, NULL);
   addNativeMethod("createEncryptedResourceString", (void*)&createEncryptedResourceString, encryptedStringName, NULL);
   addNativeMethod("getPersistedInstance", (void*)&getPersistedInstance, encryptedStringName, encryptedStringName, NULL);
@@ -43,6 +47,13 @@ void EncryptedStringTest::initialize(JNIEnv *env) {
 
   registerNativeMethods(env);
 }
+
+jobject EncryptedStringTest::createCryptoHelper(JNIEnv *env, jobject javaThis) {
+  LOG_INFO("Starting test: createCryptoHelper");
+  CryptoHelper *cryptoHelper = new CryptoHelper(env);
+  return cryptoHelper->toJavaObject(env);
+}
+
 
 jobject EncryptedStringTest::createEncryptedString(JNIEnv *env, jobject javaThis) {
   LOG_INFO("Starting test: createEncryptedString");

@@ -6,7 +6,6 @@
 #define ANDROIDJNI_ENCODEDSTRING_H
 
 #include "JniHelpers.h"
-#include "CryptoHelper.h"
 
 using namespace spotify::jni;
 

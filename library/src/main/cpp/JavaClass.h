@@ -249,6 +249,12 @@ namespace spotify {
              * @return JNI method ID, or NULL if no such method was cached
              */
             virtual jmethodID getMethod(const char *method_name) const;
+            /**
+             * @brief Retreive a method from the cache
+             * @param method_name Method name (without signature)
+             * @return JNI method ID, or NULL if no such method was cached
+             */
+//            virtual jmethodID getStaticMethod(const char *method_name) const;
 
             /**
              * @brief Retreive a field from the cache
@@ -279,7 +285,7 @@ namespace spotify {
              * @brief Return the static method id for the passed in Java function name
              * @return Class methohd id (should not be NULL)
              */
-//            static jmethodID getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName);
+//            jmethodID getStaticMethod(JNIEnv *env, jclass thisClass, const char *functionName);
 
 // Internal helper calls ////////////////////////////////////////////////////////////
         protected:

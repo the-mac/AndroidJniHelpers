@@ -204,6 +204,27 @@ namespace spotify {
             return mapFindIter->second;
         }
 
+//        jmethodID JavaClass::getStaticMethod(const char *method_name) const {
+//            if (!isInitialized()) {
+//                JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
+//                                                         kTypeIllegalStateException,
+//                                                         "Cannot call getMethod without class info (forgot to merge?)");
+//                return NULL;
+//            }
+//
+//            const std::string key(method_name);
+//            MethodMap::const_iterator mapFindIter = _methods->find(key);
+//            if (mapFindIter == _methods->end()) {
+//                JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
+//                                                         kTypeIllegalArgumentException,
+//                                                         "Method '%s' is not cached in class '%s'",
+//                                                         method_name, getCanonicalName());
+//                return NULL;
+//            }
+//
+//            return mapFindIter->second;
+//        }
+
         jfieldID JavaClass::getField(const char *field_name) const {
             if (!isInitialized()) {
                 JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
@@ -411,6 +432,25 @@ namespace spotify {
 
             _jni_methods.push_back(nativeMethod);
         }
+
+//        void JavaClass::addStaticNativeSignature(const char *method_name, void *function,
+//                                        const char *return_type, ...) {
+//            LOG_DEBUG("Adding native method '%s' to class '%s'", method_name, getSimpleName());
+//            JNINativeMethod nativeMethod;
+//            nativeMethod.name = const_cast<char *>(method_name);
+////            nativeMethod.isStatic = JNI_TRUE;
+//            nativeMethod.fnPtr = function;
+//
+//            va_list arguments;
+//            va_start(arguments, return_type);
+//            std::string signature;
+//            JavaClassUtils::makeSignatureWithList(signature, return_type, arguments);
+//            nativeMethod.signature = const_cast<char *>(strdup(signature.c_str()));
+//            LOG_DEBUG("Native signature is '%s'", nativeMethod.signature);
+//            va_end(arguments);
+//
+//            _jni_methods.push_back(nativeMethod);
+//        }
 
         void JavaClass::addNativeSignature(const char *method_name, void *function,
                                         const char *signature) {

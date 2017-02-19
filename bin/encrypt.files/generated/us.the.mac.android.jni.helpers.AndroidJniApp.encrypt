@@ -1,5 +1,38 @@
 
-	<string name="log_d_getclass_getname_1">u1HRDS9OB0R+xBqQ0ZAMYDXXI+nVDfW/Ox92KyZot1gMIr0LIewHT9uOHdZuVbJg</string>
-	<string name="log_d_getclass_getname_2">u1HRDS9OB0R+xBqQ0ZAMYFWGcuoLwGTvWrSmsi16ZdA+cmFu5NFpnHtgw5xt7TQA</string>
-	<string name="log_d_getclass_getname_0">u1HRDS9OB0R+xBqQ0ZAMYAwzRIIvYRe/V622JTT747A=</string>
+us.the.mac.android.jni.helpers.AndroidJniApp
+
+********************************************************************************
+
+us.the.mac.android.jni.helpers.AndroidJniApp.encrypt was generated as a helper for AndroidJniApp.java using the
+bin/encrypt.bash script. The following segments are RSA helper components containing:
+
+- Encryption Mapping: Each input string is mapped to its android resource name and its encryption string.
+- Generated Resources: Each android resource name is used with its related encryption string.
+
+The generated resource code can be copied into the respective values/strings.xml file of your choice. Finally, the last segment
+contains an example of what these resources would look like in your code.
+
+********************************************************************************
+
+	Called AndroidJniApp.onLowMemory ~~ log_d_getclass_getname_1 ~~ WJh0CxrKpJCkJObWxG7+ZQQwUEniFcViLVAZXyOkeCo8yMZQgGXThS3eS4AuMzipkiOblAVZfV2ebzIbAQUMjM
+	Called AndroidJniApp.onTerminate ~~ log_d_getclass_getname_2 ~~ sjGLTzg567qjYHcOjfjCswwPuPPMPD1Xb1TZoQQ4IO345XApJk2lNBth2rXvsL6NUzzoJb6LbBNj9Vs33df/jo
+	Called AndroidJniApp.onCreate ~~ log_d_getclass_getname_0 ~~ pMhrtSSi+SUdCF8f4XvmEgyvCCFFv3HtbfxB8b1TOnY/GM0BzUnIH5UKtPbzV18yA=
+
+********************************************************************************
+
+	<string name="log_d_getclass_getname_1">WJh0CxrKpJCkJObWxG7+ZQQwUEniFcViLVAZXyOkeCo8yMZQgGXThS3eS4AuMzipkiOblAVZfV2ebzIbAQUMjM</string>
+	<string name="log_d_getclass_getname_2">sjGLTzg567qjYHcOjfjCswwPuPPMPD1Xb1TZoQQ4IO345XApJk2lNBth2rXvsL6NUzzoJb6LbBNj9Vs33df/jo</string>
+	<string name="log_d_getclass_getname_0">pMhrtSSi+SUdCF8f4XvmEgyvCCFFv3HtbfxB8b1TOnY/GM0BzUnIH5UKtPbzV18yA=</string>
+
+********************************************************************************
+
+	String log_d_getclass_getname_1 = decryptString(R.string.log_d_getclass_getname_1);
+
+	String log_d_getclass_getname_2 = decryptString(R.string.log_d_getclass_getname_2);
+
+	String log_d_getclass_getname_0 = decryptString(R.string.log_d_getclass_getname_0);
+
+
+********************************************************************************
+
 

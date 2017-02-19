@@ -1,5 +1,7 @@
 package us.the.mac.android.jni.helpers;
 
+import com.spotify.jni.NativeObject;
+
 import org.apache.commons.codec.binary.Base64;
 
 import java.security.Key;
@@ -16,23 +18,16 @@ import javax.crypto.spec.SecretKeySpec;
  * Created by christopher on 2/12/17.
  */
 
-public class CryptoHelper {
-    private Key key;
-
-    public CryptoHelper( Key key ) {
-        this.key = key;
-    }
-
-    public CryptoHelper() throws Exception {
-        this( generateSymmetricKey() );
-    }
-
-    public static native Key generateSymmetricKey();
+public class CryptoHelper extends NativeObject {
+    public native Key generateKey();
 
     public byte [] decrypt( byte [] iv, byte [] ciphertext ) throws Exception {
-        Cipher cipher = Cipher.getInstance( key.getAlgorithm() + "/CBC/PKCS5Padding" );
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(key.getAlgorithm() + "/CBC/PKCS5Padding" );
         cipher.init( Cipher.DECRYPT_MODE, key, new IvParameterSpec( iv ) );
         return cipher.doFinal( ciphertext );
     }
 
+    @Override
+    public native void destroy();
 }

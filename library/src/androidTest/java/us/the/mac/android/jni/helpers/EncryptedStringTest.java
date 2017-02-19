@@ -23,13 +23,23 @@ package us.the.mac.android.jni.helpers;
 
 import android.support.test.InstrumentationRegistry;
 
+import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertEquals;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import static android.R.attr.key;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertNotEquals;
+import static us.the.mac.android.jni.helpers.TestConstants.TEST_ENCRYPTED_RESOURCE;
+
 import us.the.mac.android.jni.helpers.EncryptedString;
 import us.the.mac.android.jni.helpers.TestConstants;
 
@@ -37,6 +47,8 @@ public class EncryptedStringTest {
     static {
         System.loadLibrary("test-helper-lib");
     }
+
+    native public CryptoHelper createCryptoHelper();
 
     native public EncryptedString createEncryptedString();
 
@@ -71,6 +83,59 @@ public class EncryptedStringTest {
 
     @Test(expected = IllegalArgumentException.class)
     native public void persistNullObject() throws Exception;
+
+    @Test
+    public void javaDecryptWithCrytpoHelper() throws Exception {
+
+        String contents = TestConstants.TEST_ENCRYPTION_KEY;
+        byte [] decodedKeyBytes = new byte [16];
+        System.out.printf("\naccessFile Contents: %s\n", contents);
+        System.out.printf("\naccessFile Length: %s\n", decodedKeyBytes.length);
+
+        byte [] bytes = Base64.decodeBase64( contents.getBytes() );
+        for (int i = 0; i < bytes.length; i++) {
+            decodedKeyBytes[i] = bytes[i];
+        }
+
+        byte [] valueBytes = TEST_ENCRYPTED_RESOURCE.getBytes();
+        byte [] decodedValueBytes = Base64.decodeBase64(valueBytes);
+
+        SecretKey originalKey = new SecretKeySpec(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
+        Cipher cipher = Cipher.getInstance(originalKey.getAlgorithm() + "/CBC/PKCS5Padding" );
+        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( decodedKeyBytes ) );
+        byte [] decryptedBytes = cipher.doFinal( decodedValueBytes );
+
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+
+    }
+    @Test
+    public void generateCrytpoHelper() throws Exception {
+
+        CryptoHelper object = createCryptoHelper();
+        assertNotEquals(0, object.nPtr);
+
+        byte [] keyBytes = TestConstants.TEST_ENCRYPTION_KEY.getBytes();
+        byte [] valueBytes = TEST_ENCRYPTED_RESOURCE.getBytes();
+        byte [] decodedKeyBytes = Base64.decodeBase64(keyBytes);
+        byte [] decodedValueBytes = Base64.decodeBase64(valueBytes);
+
+        SecretKey originalKey = new SecretKeySpec(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
+        Cipher cipher = Cipher.getInstance(originalKey.getAlgorithm() + "/CBC/PKCS5Padding" );
+        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( decodedKeyBytes ) );
+        byte [] decryptedBytes = cipher.doFinal( decodedValueBytes );
+
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+        assertEquals(originalKey, object.generateKey());
+
+        // byte [] decrypt( byte [] iv, byte [] ciphertext);
+        decryptedBytes = object.decrypt(decodedKeyBytes, decodedValueBytes);
+
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+
+
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+
+    }
 
     @Test
     public void decryptString() throws Exception {

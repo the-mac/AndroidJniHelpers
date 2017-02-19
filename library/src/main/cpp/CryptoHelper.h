@@ -7,8 +7,10 @@
 
 #include "JniHelpers.h"
 
-class CryptoHelper : public JavaClass {
-    jobject thisObj;
+using namespace spotify::jni;
+
+class CryptoHelper : public NativeObject {
+    ByteArray byteArray;
 
 public:
     /**
@@ -22,12 +24,23 @@ public:
 
     CryptoHelper(JNIEnv *env);
 
+//    CryptoHelper(JNIEnv *env, jbyteArray bArray);
+
     void initialize(JNIEnv *env);
 
     void mapFields();
 
-    jbyteArray decrypt(JNIEnv *env, jbyteArray keyBytes, jbyteArray valueBytes);
+    static jobject generateKey(JNIEnv *env, jobject java_this);
 
+    jbyteArray decryptNative(JNIEnv *env, jbyteArray valueBytes);
+
+    jbyteArray decrypt(JNIEnv *env, jobject java_this, jbyteArray valueBytes);
+
+    void setBytes(JNIEnv *env, jbyteArray bytes);
+
+    static void nativeDestroy(JNIEnv *env, jobject java_this);
+
+    jobject thisObj;
 };
 
 

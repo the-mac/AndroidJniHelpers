@@ -9,6 +9,7 @@
 #include "EncryptedString.h"
 #include "Scanner.h"
 #include "File.h"
+#include "Base64.h"
 
 using namespace std;
 
@@ -29,6 +30,11 @@ EncryptedString::EncryptedString(JNIEnv *env) : NativeObject(env)
 
     thisObj = toJavaObject(env); // THIS IS WHERE YOU INITIALIZE YOUR JAVA OBJECT, YOU MIGHT WANT TO ADD A FEW PARAMETERS BELOW
 //    thisObj = env->NewObject(_clazz, getMethod(getCanonicalName())); // CALLS DEFAULT CONSTRUCTOR
+
+//    ByteArray encodedKey = ByteArray(env, JavaString(getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env));
+//    ByteArray decodedKey = ByteArray(env, Base64::decodeBase64( env, encodedKey.toJavaByteArray(env)));
+//    crypto = CryptoHelper(env, decodedKey.toJavaByteArray(env));
+//    crypto = CryptoHelper(env, EncryptedString::getBytes(env, thisObj));
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -77,7 +83,11 @@ jbyteArray EncryptedString::getBytes(JNIEnv *env, jobject java_this) {
     EncryptedString *object = gClasses.getNativeInstance<EncryptedString>(env, java_this);
 
     if (object != NULL) {
-        return JavaString(object->getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env);
+//        byte [] decodedKey = Base64.decodeBase64( getBytes() );
+//        ByteArray encodedKey = ByteArray(env, JavaString(object->getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env));
+//        ByteArray decodedKey = ByteArray(env, Base64::decodeBase64( env, encodedKey.toJavaByteArray(env) ));
+//
+//        return decodedKey.toJavaByteArray(env);
 
 //        jstring key = env->NewStringUTF("key_file");
 //        Scanner s = Scanner(env, File(env, object->getFilesDir(env), key));
@@ -188,9 +198,14 @@ jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
 //            break;//return object->encryptedString.toJavaString(env);//
 
         case RESOURCE_STRINGS_ALGORITHM:
-            object->encryptedString = JavaString(base64(object->encryptedString.get()));
-            jbyteArray bytes = object->crypto.decrypt(env, object->getBytes(env, java_this), object->encryptedString.toByteArray(env));
-            conversion = JavaString(env, bytes).get();
+//            object->encryptedString = JavaString(base64(object->encryptedString.get()));
+
+//            ByteArray encodedKey = ByteArray(env, JavaString(object->getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env));
+//            object->crypto.setBytes(env, encodedKey.toJavaByteArray(env));
+
+//            jbyteArray bytes = object->crypto.decrypt(env, object->crypto.thisObj, object->encryptedString.toByteArray(env));
+//            conversion = JavaString(env, bytes).get();
+            conversion = object->encryptedString.get();
             break;
 
 //        case NATIVE_STRINGS_ALGORITHM:

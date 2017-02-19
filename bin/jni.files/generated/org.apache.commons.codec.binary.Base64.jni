@@ -18,7 +18,6 @@ contains an example of what these method calls would look like in your code.
 #include "JniHelpers.h"
 
 class Base64 : public JavaClass {
-    static std::map<std::string, std::string> static_signatures;
     jobject thisObj;
   public:
     /**
@@ -35,18 +34,6 @@ class Base64 : public JavaClass {
     static jclass getClass(JNIEnv *env) {
       return env->FindClass(MAKE_CANONICAL_NAME("org/apache/commons/codec/binary", Base64));
     }
-    /**
-    * The getStaticSignature method is used to get the Jni Helper's
-    * static signature for the Base64 class defined in Java.
-    */
-    static const char *getStaticSignature(const char *functionName) {
-      std::string signature = static_signatures[functionName];
-      return signature.c_str();
-    }
-    void addStaticSignature(const char *functionName, const char *signature) {
-        static_signatures[functionName] = signature;
-    }
-
     Base64();
 
     Base64(JNIEnv *env);
@@ -76,6 +63,17 @@ class Base64 : public JavaClass {
 ********************************************************************************
 
 
+static Base64 *base64Instance = NULL;
+
+/**
+* The getStaticMethod method is used to get the Jni Helper's
+* static method for the Base64 class defined in Java.
+*/
+static jmethodID getStaticMethod(JNIEnv *env, const char *method_name) {
+    if(base64Instance = NULL) base64Instance = new Base64(env);
+    return base64Instance->getMethod(method_name);
+}
+
 Base64::Base64() : JavaClass() {}
 
 /**
@@ -102,14 +100,14 @@ void Base64::initialize(JNIEnv *env)
     setClass(env);
     cacheConstructor(env);
 
-    addJavaSignature("android/util/Base64", "()V");
-    addStaticSignature("decode", "(Ljava/lang/String;I)[B");
-    addStaticSignature("decode", "([BI)[B");
-    addStaticSignature("decode", "([BIII)[B");
-    addStaticSignature("encodeToString", "([BI)Ljava/lang/String;");
-    addStaticSignature("encodeToString", "([BIII)Ljava/lang/String;");
-    addStaticSignature("encode", "([BI)[B");
-    addStaticSignature("encode", "([BIII)[B");
+    cacheSignature(env, "android/util/Base64", "()V");
+    cacheStaticSignature(env, "decode", "(Ljava/lang/String;I)[B");
+    cacheStaticSignature(env, "decode", "([BI)[B");
+    cacheStaticSignature(env, "decode", "([BIII)[B");
+    cacheStaticSignature(env, "encodeToString", "([BI)Ljava/lang/String;");
+    cacheStaticSignature(env, "encodeToString", "([BIII)Ljava/lang/String;");
+    cacheStaticSignature(env, "encode", "([BI)[B");
+    cacheStaticSignature(env, "encode", "([BIII)[B");
 
     registerNativeMethods(env);
 }
@@ -121,56 +119,56 @@ void Base64::mapFields()
 
 jobject Base64::android.util.Base64(JNIEnv *env)
 {
-    jobject result = env->CallObjectMethod(thisObj, getJavaMethod(env, __FUNCTION__));
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
 {
-    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jstringValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
 {
-    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jstringValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jbyteArray Base64::decode(JNIEnv *env, jstring jstringValue1, jint jintValue2)
 {
-    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jstringValue1, jintValue2);
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jstringValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jstring Base64::encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jbyteArrayValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
 }
 
 jstring Base64::encodeToString(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
 {
-    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jbyteArrayValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
 }
 
 jbyteArray Base64::encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
 {
-    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jbyteArrayValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return result;
 }
 
 jbyteArray Base64::encode(JNIEnv *env, jbyteArray jbyteArrayValue1, jint jintValue2)
 {
-    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, getClass(env), __FUNCTION__), jbyteArrayValue1, jintValue2);
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(__FUNCTION__), jbyteArrayValue1, jintValue2);
     JavaExceptionUtils::checkException(env);
     return result;
 }
