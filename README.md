@@ -189,13 +189,19 @@ cd ../path/to/your/project
 
 
 **Note: If you don't have a C++ project, make sure to [add C++ support](https://developer.android.com/studio/projects/add-native-code.html#existing-project) to your project**
-* To add C++ support to your project:
+
+* Create new native source files:
 ```bash
-* Create new native source files (in cpp folder, beside java folder)
+In the cpp folder alongside your Java folder create soure files
+```
 
-* Create a CMakeLists.txt build script (See add C++ support link above)
+* Create a CMakeLists.txt build script:
+```bash
+In your app folder create a CMakeLists.txt file. In the add C++ support link above, you will see an example of this file (and below as well)
+```
 
-* Link Gradle to your native library:
+* Link Gradle to your native library (via CMakeLists.txt):
+```bash
 android {
   ...
   defaultConfig {...}
@@ -229,11 +235,11 @@ Click on "+" sign to add new module
 ```bash
 Click "Import Gradle Project" option
 ```
-* Add AndroidJniHelpers to your project (you could name its module library)
+* Paste path to AndroidJniHelpers library project
 ```bash
 Paste "path/to/your/project/AndroidJniHelpers" folder into Source directory
 ```
-* Name New Module:
+* Name New Module (you could name its module library):
 ```bash
 By default the existing name should be library ":library", but can be updated
 ```
