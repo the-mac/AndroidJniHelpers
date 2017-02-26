@@ -197,7 +197,7 @@ In the cpp folder alongside your Java folder create soure files
 
 * Create a CMakeLists.txt build script:
 ```bash
-In your app folder create a CMakeLists.txt file, an example of this file (and below as well)
+In your app folder create a CMakeLists.txt file, an example of this file can be found below
 ```
 
 * Link Gradle to your native library (via CMakeLists.txt):

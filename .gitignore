@@ -43,6 +43,7 @@ captures/
 bin/jni.files/build.jni
 bin/encrypt.files/build.encrypt
 bin/encrypt.files/generated/*
+bin/prepare.files/timestamp
 
 
 
