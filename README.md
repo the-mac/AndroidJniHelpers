@@ -213,18 +213,30 @@ android {
   }
 }
 ```
-
 * Clone the repo into your project:
 ```bash
 git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
-
-* Import module into your project:
+* Edit your project structure:
 ```bash
-Go to File > New > Import Module
+Go to File > Project Structure
 ```
-
+* Add module into your project:
+```bash
+Click on "+" sign to add new module
+```
+* Import Gradle project:
+```bash
+Click "Import Gradle Project" option
+```
 * Add AndroidJniHelpers to your project (you could name its module library)
+```bash
+Paste "path/to/your/project/AndroidJniHelpers" folder into Source directory
+```
+* Name New Module:
+```bash
+By default the existing name should be library ":library", but can be updated
+```
 
 * Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](library/CMakeLists.txt)):
 ```cmake
