@@ -31,6 +31,10 @@ namespace spotify {
             _value = "";
         }
 
+        JavaString::JavaString(const const char* &cstring) {
+            _value = cstring;
+        }
+
         JavaString::JavaString(const std::string &string) {
             _value = string;
         }
@@ -55,10 +59,14 @@ namespace spotify {
         JniLocalRef<jbyteArray> JavaString::toByteArray(JNIEnv *env) const {
 
             const char *content = _value.c_str();
-            jbyteArray array = env->NewByteArray(_value.length());
-            env->SetByteArrayRegion(array, 0, _value.length(), (jbyte *) content);
+            jbyteArray nativeBytes = env->NewByteArray(_value.length());
 
-            return array;
+            int size = std::strlen(content);
+
+            jbyte *data = (jbyte *) content;
+            env->SetByteArrayRegion(nativeBytes, 0, size, data);
+
+            return nativeBytes;
         }
 
         void JavaString::set(const char *value) {
@@ -83,6 +91,14 @@ namespace spotify {
             _value = string;
             env->ReleaseStringUTFChars(javaString, string);
             JavaExceptionUtils::checkException(env);
+        }
+
+        void JavaString::concat(const char *stringValue) {
+            _value += stringValue;
+        }
+
+        int JavaString::length() {
+            return _value.length();
         }
 
 

@@ -72,9 +72,10 @@ jobject JSONObject::getJSONObject(JNIEnv *env, std::string stringKey)
     return result;
 }
 
-jboolean JSONObject::has(JNIEnv *env, jstring jstringValue1)
+jboolean JSONObject::has(JNIEnv *env, std::string  stringKey)
 {
-    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), jstringValue1);
+    jstring key = env->NewStringUTF(stringKey.c_str());
+    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), key);
     JavaExceptionUtils::checkException(env);
     return result;
 }

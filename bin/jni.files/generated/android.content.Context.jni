@@ -19,7 +19,6 @@ contains an example of what these method calls would look like in your code.
 
 class Context : public JavaClass {
     static std::map<std::string, std::string> static_signatures;
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -107,7 +106,6 @@ Context::Context(JNIEnv *env) : JavaClass(env)
 
 void Context::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("javax/net/ssl/SSLContext", "(Ljavax/net/ssl/SSLContextSpi;Ljava/security/Provider;Ljava/lang/String;)V");

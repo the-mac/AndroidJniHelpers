@@ -60,7 +60,6 @@ public:
 
     jboolean deleteNative(JNIEnv *env);
 
-    jobject thisObj;
 };
 
 

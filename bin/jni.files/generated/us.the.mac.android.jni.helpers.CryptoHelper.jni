@@ -1,52 +1,61 @@
 
-us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper
+us.the.mac.android.jni.helpers.CryptoHelper
 
 ********************************************************************************
 
-us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper.jni was generated as a helper for GenerateJniHelpers.CryptoHelper.java using the
+us.the.mac.android.jni.helpers.CryptoHelper.jni was generated as a helper for CryptoHelper.java using the
 bin/jni.bash script. The following code segments are C++ header and source code containing:
 
 - getCanonicalName: The method that enables the relationship between C++ and Java.
-- Java methods: us.the.mac.reel.life.GenerateJniHelpers.CryptoHelper
+- Java methods: us.the.mac.android.jni.helpers.CryptoHelper, generateKey, decrypt, decrypt, destroy
 
-The source code can be copied into the respective GenerateJniHelpers.CryptoHelper.h and
-GenerateJniHelpers.CryptoHelper.cpp files in a location of your choice. Finally, the last segment
+The source code can be copied into the respective CryptoHelper.h and
+CryptoHelper.cpp files in a location of your choice. Finally, the last segment
 contains an example of what these method calls would look like in your code.
 
 ********************************************************************************
 
 #include "JniHelpers.h"
 
-class GenerateJniHelpers.CryptoHelper : public JavaClass {
-    jobject thisObj;
+using spotify::jni::NativeObject
+
+class CryptoHelper : public NativeObject {
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
-    * the Jni Helper's relationship to the GenerateJniHelpers.CryptoHelper class defined in Java.
+    * the Jni Helper's relationship to the CryptoHelper class defined in Java.
     */
     const char *getCanonicalName() const {
-        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", GenerateJniHelpers.CryptoHelper);
+        return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", CryptoHelper);
     }
-    GenerateJniHelpers.CryptoHelper();
+    CryptoHelper();
 
-    GenerateJniHelpers.CryptoHelper(JNIEnv *env);
+    CryptoHelper(JNIEnv *env);
 
     void initialize(JNIEnv *env);
 
     void mapFields();
+
+    jobject generateKeyNative(JNIEnv *env);
+
+    static jobject generateKey(JNIEnv *env, jobject java_this);
+
+    jbyteArray decrypt(JNIEnv *env, jbyteArray jbyteArrayValue1, jbyteArray jbyteArrayValue2);
+
+    jstring decrypt(JNIEnv *env, jstring jstringValue1);
 
 };
 
 ********************************************************************************
 
 
-GenerateJniHelpers.CryptoHelper::GenerateJniHelpers.CryptoHelper() : JavaClass() {}
+CryptoHelper::CryptoHelper() : NativeObject() {}
 
 /**
-* Here you can construct the GenerateJniHelpers.CryptoHelper object how ever you need to,
+* Here you can construct the CryptoHelper object how ever you need to, 
 * as well as load signatures for the Java instance method calls.
 */
-GenerateJniHelpers.CryptoHelper::GenerateJniHelpers.CryptoHelper(JNIEnv *env) : JavaClass(env)
+CryptoHelper::CryptoHelper(JNIEnv *env) : NativeObject(env)
 {
     initialize(env);
 
@@ -57,25 +66,62 @@ GenerateJniHelpers.CryptoHelper::GenerateJniHelpers.CryptoHelper(JNIEnv *env) : 
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
-            "GenerateJniHelpers.CryptoHelper's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+            "CryptoHelper's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
     }
 }
 
-void GenerateJniHelpers.CryptoHelper::initialize(JNIEnv *env)
+void CryptoHelper::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
+    addNativeSignature("generateKey", (void*)&CryptoHelper::generateKey, "()Ljava/security/Key;");
+    cacheSignature(env, "decrypt", "([B[B)[B");
+    cacheSignature(env, "decrypt", "(Ljava/lang/String;)Ljava/lang/String;");
+    addNativeSignature("destroy", (void*)&CryptoHelper::destroy, "()V");
 
     registerNativeMethods(env);
 }
 
-void GenerateJniHelpers.CryptoHelper::mapFields()
+void CryptoHelper::mapFields()
 {
     //mapField("encodedString", kTypeString, &encodedString);
 }
 
+jobject CryptoHelper::generateKeyNative(JNIEnv *env) { return CryptoHelper::generateKey(env, thisObj); }
+
+jobject CryptoHelper::generateKey(JNIEnv *env, jobject java_this) {
+    CryptoHelper *object = gClasses.getNativeInstance<CryptoHelper>(env, java_this);
+    
+    if (object != NULL)
+    {
+	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->callToSomeFunction())
+    }
+
+    return NULL;
+}
+
+
+jbyteArray CryptoHelper::decrypt(JNIEnv *env, jbyteArray jbyteArrayValue1, jbyteArray jbyteArrayValue2)
+{
+    jbyteArray result = (jbyteArray) env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), jbyteArrayValue1, jbyteArrayValue2);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jstring CryptoHelper::decrypt(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
 
 ********************************************************************************
+
+jobject jobjectReturnValue = instance.generateKey(env);
+
+jbyteArray jbyteArrayReturnValue = instance.decrypt(env, jbyteArrayValue1, jbyteArrayValue2);
+
+jstring jstringReturnValue = instance.decrypt(env, jstringValue1);
 
 

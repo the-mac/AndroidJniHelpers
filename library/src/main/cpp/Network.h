@@ -11,7 +11,6 @@ using namespace std;
 class Network : public NativeObject {
 
 protected:
-    jobject thisObj;
     std::string requestUrl;
     std::map<std::string,std::string> mappingObject;
 
@@ -64,7 +63,11 @@ public:
 
     static jobject getHttpPost(JNIEnv *env, jobject java_this);
 
+    void putNative(JNIEnv *env, string jstringValue1, JavaString jstringValue2);
+
     void putNative(JNIEnv *env, jstring jstringValue1, jstring jstringValue2);
+
+    void putNative(string localKey, string localValue);
 
     static void put(JNIEnv *env, jobject java_this, jstring jstringValue1, jstring jstringValue2);
 

@@ -8,7 +8,6 @@
 #include "JniHelpers.h"
 
 class JSONObject : public JavaClass {
-    jobject thisObj;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
@@ -28,7 +27,7 @@ public:
 
     void mapFields();
 
-    jboolean has(JNIEnv *env, jstring jstringValue1);
+    jboolean has(JNIEnv *env, std::string key);
 
     jobject getJSONObject(JNIEnv *env, std::string stringKey);
 

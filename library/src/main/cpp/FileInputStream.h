@@ -28,7 +28,6 @@ public:
 
 //    void close(JNIEnv *env);
 
-    jobject thisObj;
 };
 
 

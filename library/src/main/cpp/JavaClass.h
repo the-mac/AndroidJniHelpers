@@ -80,6 +80,8 @@ namespace spotify {
 
 // Constructors /////////////////////////////////////////////////////////////////////
         public:
+            jobject thisObj;
+
             /**
              * @brief Create a new empty instance.
              *
@@ -227,6 +229,8 @@ namespace spotify {
              * @return Initialized Java object, or NULL if the object could not be created
              */
             virtual jobject toJavaObject(JNIEnv *env);
+
+            jstring toString(JNIEnv *env, jobject javaThis);
 
             /**
             * @brief Set data from this instance to a Java object

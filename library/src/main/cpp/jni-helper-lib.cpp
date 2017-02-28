@@ -4,6 +4,7 @@
 #include <sstream>
 #include <JniHelpers.h>
 #include <EncryptedString.h>
+#include <CryptoHelper.h>
 
 using namespace std;
 using namespace spotify::jni;
@@ -16,6 +17,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
         return -1;
     }
 
+    gClasses.add(env, new CryptoHelper(env));
     gClasses.add(env, new EncryptedString(env));
 
     LOG_INFO("Initialization complete");

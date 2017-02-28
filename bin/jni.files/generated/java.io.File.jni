@@ -19,7 +19,6 @@ contains an example of what these method calls would look like in your code.
 
 class File : public JavaClass {
     static std::map<std::string, std::string> static_signatures;
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -177,7 +176,6 @@ File::File(JNIEnv *env) : JavaClass(env)
 
 void File::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("isInvalid", "()Z");

@@ -37,6 +37,7 @@ template class EXPORT std::basic_string<char, std::char_traits<char>, std::alloc
         class EXPORT JavaString {
         public:
             JavaString();
+            JavaString(const const char* &cstring);
             JavaString(const std::string &string);
             JavaString(JNIEnv *env, jstring javaString);
             JavaString(JNIEnv *env, jbyteArray javaBytes);
@@ -53,9 +54,14 @@ template class EXPORT std::basic_string<char, std::char_traits<char>, std::alloc
             void set(const std::string &value);
             void operator=(const std::string &value) { set(value); }
             void set(JNIEnv *env, jstring javaString);
+            const char* c_str() { return get().c_str(); }
+
+            void concat(const char string[128]);
 
         public:
             std::string _value;
+
+            int length();
         };
 
     } // namespace jni

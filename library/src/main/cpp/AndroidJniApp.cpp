@@ -14,15 +14,15 @@ AndroidJniApp::AndroidJniApp(JNIEnv *env) : JavaClass(env)
 {
     initialize(env);
 
-    thisObj = Instance(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+//    thisObj = Instance(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
 
     // thisObj = env->NewObject(_clazz, getMethod("<init>"));
     // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
 
-    if (thisObj == NULL) {
-        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
-                                                 "AndroidJniApp's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
-    }
+//    if (thisObj == NULL) {
+//        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+//                                                 "AndroidJniApp's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+//    }
 }
 
 /**
@@ -53,6 +53,7 @@ void AndroidJniApp::initialize(JNIEnv *env)
     cacheSignature(env, "getString", "(I)Ljava/lang/String;");
     cacheSignature(env, "getFilesDir", "()Ljava/io/File;");
     cacheSignature(env, "openFileOutput", "(Ljava/lang/String;I)Ljava/io/FileOutputStream;");
+    cacheSignature(env, "openFileInput", "(Ljava/lang/String;)Ljava/io/FileInputStream;");
     addNativeSignature("decryptString", (void *) AndroidJniApp::decryptString, "(I)Ljava/lang/String;");
 
     registerNativeMethods(env);
@@ -86,6 +87,14 @@ jstring AndroidJniApp::getFilesDir(JNIEnv *env)
 jobject AndroidJniApp::openFileOutput(JNIEnv *env, jstring path, jint mode)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), path, mode);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+jobject AndroidJniApp::openFileInput(JNIEnv *env, jstring path)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), path);
     JavaExceptionUtils::checkException(env);
     return result;
 }

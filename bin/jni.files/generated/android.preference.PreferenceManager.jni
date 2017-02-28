@@ -19,7 +19,6 @@ contains an example of what these method calls would look like in your code.
 
 class PreferenceManager : public JavaClass {
     static std::map<std::string, std::string> static_signatures;
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -115,7 +114,6 @@ PreferenceManager::PreferenceManager(JNIEnv *env) : JavaClass(env)
 
 void PreferenceManager::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("android/preference/PreferenceManager", "()V");

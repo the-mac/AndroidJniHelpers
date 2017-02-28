@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class GenerateJniHelpers {
 	private static boolean DEBUGGING = false;
@@ -101,6 +102,7 @@ public class GenerateJniHelpers {
 			String returnType = returnTypes.get(index);
 
 			if("".equals(returnType)) continue;
+			if("destroy".equals(methodName)) continue;
 
 			boolean isStaticMethod = javaMethodSignature.contains("static");
 			boolean isNativeMethod = javaMethodSignature.contains("native");
@@ -121,6 +123,7 @@ public class GenerateJniHelpers {
 		header.append("#include \"JniHelpers.h\"\n\n");
 
 		if(HAS_NATIVE_MEMBERS) {
+			header.append("using spotify::jni::NativeObject\n\n");
 			header.append("class "+ className +" : public NativeObject {\n");
 		}
 		else {
@@ -227,8 +230,17 @@ public class GenerateJniHelpers {
 		header.append(String.format("    %s;\n\n", mapFields
 				.replace(className + "::", "").split("\n")[0]));
 
-		for (String methodName : methodNames) {
-			int index = methodNames.indexOf(methodName);
+//		for (String methodName : methodNames) {
+
+		for (int index = 0; index < listOfClassSignatures.size(); index++) {
+//			String javaMethodSignature = methods.get(index);
+//			String methodName = methodNames.get(index).replace(".", "/");
+//			String returnType = returnTypes.get(index);
+
+			String signature = listOfClassSignatures.get(index);
+			String methodName = methodNames.get(index);
+
+//			int index = methodNames.indexOf(methodName);
 			String returnType = returnTypes.get(index);
 			String parameters = listOfParameters.get(index);
 			String parameterNames = listOfParameterNames.get(index);
@@ -259,6 +271,8 @@ public class GenerateJniHelpers {
 				method = method.replace("->Call", "->CallStatic");
 				method = method.replace("getMethod(", "getStaticMethod(env, ");
 			} else if(isNativeMethod) {
+				if("destroy".equals(methodName)) continue;
+
 				prefix = "static ";
 
 				int firstBrace = method.indexOf("{");
@@ -277,7 +291,10 @@ public class GenerateJniHelpers {
 				method = String.format("%s %s", method.substring(0, firstBrace).trim(), callNative);
 				source.append(method.replace(methodName+"(JNI", methodName+"Native(JNI") + "\n\n");
 
-				String defaultReturnedValue = hasNoReturnValue ? "" : String.format("    return %s;\n", mReturnValues.getProperty(returnType));
+				String returnedValue = mReturnValues.getProperty(returnType);
+				if(returnedValue == null) returnedValue = "NULL";
+
+				String defaultReturnedValue = hasNoReturnValue ? "" : String.format("    return %s;\n", returnedValue);
 				String staticInitializer = "    {CLASS_NAME} *object = gClasses.getNativeInstance<{CLASS_NAME}>(env, java_this);";
 				staticInitializer = staticInitializer.replace("{CLASS_NAME}", className);
 
@@ -406,6 +423,11 @@ public class GenerateJniHelpers {
 
 	public static void main (String[] args) throws FileNotFoundException {
 
+		String arguments = Arrays.toString(args);
+		DEBUGGING = arguments.contains("--debug");
+
+		if(DEBUGGING) System.out.printf("\nargs: %s\n\n", arguments);
+
 		String input = args.length == 0 ? "GenerateJniHelpers.jniBlueprint" : args[0];
 		File jniFile = new File(input);
 		boolean isJniFileAvailable = jniFile.exists();
@@ -422,7 +444,7 @@ public class GenerateJniHelpers {
 			if(string.contains("private")) continue;
 //			if(DEBUGGING) System.out.printf("\nstring: %s\n\n", string);
 
-			if(string.contains(");")) {
+			if(string.contains(");") || string.contains(") throws java.lang.Exception;")) {
 
 				String[] components = string.split("\n");
 				String method = components[0].trim();
@@ -446,13 +468,20 @@ public class GenerateJniHelpers {
 					parameterNames +=  String.format(", %s", parameterName);
 				}
 
+				if(DEBUGGING) System.out.println("Parameters: "+parameters);
+				if(DEBUGGING) System.out.println("Parameter Names: "+parameterNames);
+
 				int index = nameComponents.length - 2;
 				if(index < 0) index = nameComponents.length - 1;
 
 				methodName = nameComponents[nameComponents.length - 1];
+				if(DEBUGGING) System.out.println("Method Name: "+methodName);
+
 				String returnType = nameComponents[index].replace("public", "");
+				if(DEBUGGING) System.out.println("Method Return Type: "+returnType);
 
 				String methodSignature = components[1].replace("descriptor: ", "").trim();
+				if(DEBUGGING) System.out.println("Method Signature: "+methodSignature);
 
 				helloWorld.methods.add(method);
 				helloWorld.methodNames.add(methodName);

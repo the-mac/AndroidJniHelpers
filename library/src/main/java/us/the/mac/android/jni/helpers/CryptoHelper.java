@@ -22,12 +22,21 @@ public class CryptoHelper extends NativeObject {
     public native Key generateKey();
 
     public byte [] decrypt( byte [] iv, byte [] ciphertext ) throws Exception {
-        Key key = generateKey();
-        Cipher cipher = Cipher.getInstance(key.getAlgorithm() + "/CBC/PKCS5Padding" );
-        cipher.init( Cipher.DECRYPT_MODE, key, new IvParameterSpec( iv ) );
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding" );
+        cipher.init( Cipher.DECRYPT_MODE, generateKey(), new IvParameterSpec( iv ) );
         return cipher.doFinal( ciphertext );
+    }
+    public String decrypt( String ciphertext ) throws Exception {
+        String [] parts = ciphertext.split( ":" );
+        byte [] iv = Base64.decodeBase64( parts[0].getBytes() );
+        byte [] encrypted = Base64.decodeBase64( parts[1].getBytes() );
+        byte [] decrypted = decrypt( iv, encrypted );
+        return new String( decrypted );
     }
 
     @Override
     public native void destroy();
+
+    public static CryptoHelper testingDefault() { return new CryptoHelper(); }
+
 }
