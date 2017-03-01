@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidJniHelpers.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidJniHelpers.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidJniHelpers/AndroidJniHelpers-AndroidJniHelpers.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidJniHelpers/AndroidJniHelpers-AndroidJniHelpers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidJniHelpers.iml" filepath="$PROJECT_DIR$/AndroidJniHelpers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>

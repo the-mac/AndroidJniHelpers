@@ -189,13 +189,19 @@ cd ../path/to/your/project
 
 
 **Note: If you don't have a C++ project, make sure to [add C++ support](https://developer.android.com/studio/projects/add-native-code.html#existing-project) to your project**
-* To add C++ support to your project:
+
+* Create new native source files:
 ```bash
-* Create new native source files (in cpp folder, beside java folder)
+In the cpp folder alongside your Java folder create soure files
+```
 
-* Create a CMakeLists.txt build script (See add C++ support link above)
+* Create a CMakeLists.txt build script:
+```bash
+In your app folder create a CMakeLists.txt file, an example of this file can be found below
+```
 
-* Link Gradle to your native library:
+* Link Gradle to your native library (via CMakeLists.txt):
+```bash
 android {
   ...
   defaultConfig {...}
@@ -213,18 +219,30 @@ android {
   }
 }
 ```
-
 * Clone the repo into your project:
 ```bash
 git clone https://github.com/the-mac/AndroidJniHelpers.git
 ```
-
-* Import module into your project:
+* Edit your project structure:
 ```bash
-Go to File > New > Import Module
+Go to File > Project Structure
 ```
-
-* Add AndroidJniHelpers to your project (you could name its module library)
+* Add module into your project:
+```bash
+Click on "+" sign to add new module
+```
+* Import Gradle project:
+```bash
+Click "Import Gradle Project" option
+```
+* Paste path to AndroidJniHelpers library project
+```bash
+Paste "path/to/your/project/AndroidJniHelpers" folder into Source directory
+```
+* Name New Module (you could name its module library):
+```bash
+By default the existing name should be library ":library", but can be updated
+```
 
 * Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](library/CMakeLists.txt)):
 ```cmake
