@@ -9,6 +9,10 @@ if [[ $debug == 1 ]] ; then
 set -xe
 fi
 
+if [[ $@ == *--debug* ]] ; then
+debugFlag="--debug"
+fi
+
 androidVersion=android-24
 
 cp ../local.properties bin/jni.files
@@ -87,7 +91,7 @@ echo "Usage: bin/jni.bash FULLY_QUALIFIED_CLASS_NAME [OPTIONAL JAVA FILE PATH]"
 	exit;
 fi
 
-cp  ../../../library/src/test/java/GenerateJniHelpers.java .
+cp  ../../../library/src/helpers/java/GenerateJniHelpers.java .
 cp ../jniDataTypes.properties .
 cp ../jniReturnValues.properties .
 cp -rf ../jniMethods .
@@ -95,7 +99,7 @@ cp -rf ../jniMethods .
 
 javac GenerateJniHelpers.java
 
-java GenerateJniHelpers "$1.jniBlueprint" > $1.jni
+java GenerateJniHelpers "$1.jniBlueprint" "$debugFlag" > $1.jni
 cp $1.jni ../generated/$1.jni
 
 echo "Result: $className.jni has been generated and is ready to use."

@@ -53,7 +53,8 @@ void AndroidJniApp::initialize(JNIEnv *env)
     cacheSignature(env, "getString", "(I)Ljava/lang/String;");
     cacheSignature(env, "getFilesDir", "()Ljava/io/File;");
     cacheSignature(env, "openFileOutput", "(Ljava/lang/String;I)Ljava/io/FileOutputStream;");
-    addNativeSignature("decryptString", (void *) AndroidJniApp::decryptString, "(I)Ljava/lang/String;");
+    cacheSignature(env, "openFileInput", "(Ljava/lang/String;)Ljava/io/FileInputStream;");
+//    addNativeSignature("decryptString", (void *) AndroidJniApp::decryptString, "(I)Ljava/lang/String;");
 
     registerNativeMethods(env);
 }
@@ -86,6 +87,14 @@ jstring AndroidJniApp::getFilesDir(JNIEnv *env)
 jobject AndroidJniApp::openFileOutput(JNIEnv *env, jstring path, jint mode)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), path, mode);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+jobject AndroidJniApp::openFileInput(JNIEnv *env, jstring path)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), path);
     JavaExceptionUtils::checkException(env);
     return result;
 }

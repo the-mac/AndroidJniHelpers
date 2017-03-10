@@ -19,47 +19,45 @@
  * under the License.
  */
 
-#ifndef __EncryptedStringTest_h__
-#define __EncryptedStringTest_h__
+#ifndef __CryptoTest_h__
+#define __CryptoTest_h__
 
 #include "JniHelpers.h"
 #include "JniHelpersTest.h"
 
 using namespace spotify::jni;
 
+namespace operators {
+    namespace nativity {
+        namespace requests {
 
-class EncryptedStringTest : public JavaClass {
+class CryptoTest : public JavaClass {
 public:
-  EncryptedStringTest() : JavaClass() {}
-  EncryptedStringTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
-  ~EncryptedStringTest() {}
+    CryptoTest() : JavaClass() {}
+    CryptoTest(JNIEnv *env) : JavaClass(env) { initialize(env); }
+    ~CryptoTest() {}
 
   const char* getCanonicalName() const {
-    return MAKE_CANONICAL_NAME(PACKAGE, EncryptedStringTest);
+    return MAKE_CANONICAL_NAME("us/the/mac/android/jni/helpers", CryptoTest);
   }
   void initialize(JNIEnv *env);
   void mapFields() {}
 
 private:
-  static jbyteArray getNativeBytes(JNIEnv *env, jobject javaThis);
-  static jbyteArray nativeBase64EncodeBase64(JNIEnv *env, jobject javaThis, jbyteArray inputBytes);
-  static jbyteArray nativeBase64DecodeBase64(JNIEnv *env, jobject javaThis, jbyteArray inputBytes);
-  static jobject createSecretKeySpecWithParams(JNIEnv *env, jobject javaThis,
-                                               jbyteArray decodedKeyBytes, jint start, jint length,
-                                               jstring algorithm);
-  static jobject createSecretKeySpec(JNIEnv *env, jobject javaThis);
-
   static jobject createCryptoHelper(JNIEnv *env, jobject javaThis);
-  static jobject createEncryptedString(JNIEnv *env, jobject javaThis);
-  static jobject createEncryptedResourceString(JNIEnv *env, jobject javaThis);
   static jobject getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object);
   static void nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis);
   static void isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis);
-  static void destroyEncryptedString(JNIEnv *env, jobject javaThis, jobject object);
+  static void destroyCryptoHelper(JNIEnv *env, jobject javaThis, jobject object);
   static void persistNullObject(JNIEnv *env, jobject javaThis);
+  static void nativeGetPutAndToJSONString(JNIEnv *env, jobject javaThis);
+  static void nativeCryptoHelperRequest(JNIEnv *env, jobject javaThis);
   static void destroyInvalidClass(JNIEnv *env, jobject javaThis);
   static void destroyNullObject(JNIEnv *env, jobject javaThis);
 };
 
+} // namespace decodedstring
+} // namespace nativity
+} // namespace operators
 
-#endif // __EncryptedStringTest_h__
+#endif // __CryptoTest_h__

@@ -16,7 +16,6 @@ contains an example of what these method calls would look like in your code.
 ********************************************************************************
 
 class HttpPost : public JavaClass {
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -63,7 +62,6 @@ HttpPost::HttpPost(JNIEnv *env) : JavaClass(env)
 
 void HttpPost::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("getMethod", "()Ljava/lang/String;");

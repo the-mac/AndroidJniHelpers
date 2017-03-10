@@ -22,17 +22,17 @@ public:
     * This constructor is the loader for the Java instance used to call all of its methods.
     * You can construct the File object how ever you need to here.
     */
-    File(JNIEnv *env, jstring filePath) : JavaClass(env)
-    {
-        initialize(env);
-
-        thisObj = env->NewObject(_clazz, getMethod("<init>"), filePath); // CALLS DEFAULT CONSTRUCTOR
-
-        if (thisObj == NULL) {
-            JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
-                                                     "thisObj variable not intialized, all methods of this class need an the thisObj Java instance.");
-        }
-    }
+//    File(JNIEnv *env, jstring filePath) : JavaClass(env)
+//    {
+//        initialize(env);
+//
+//        thisObj = env->NewObject(_clazz, getMethod("<init>"), filePath); // CALLS DEFAULT CONSTRUCTOR
+//
+//        if (thisObj == NULL) {
+//            JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+//                                                     "thisObj variable not intialized, all methods of this class need an the thisObj Java instance.");
+//        }
+//    }
 
     /**
     * This constructor is the loader for the Java instance used to call all of its methods.
@@ -60,7 +60,6 @@ public:
 
     jboolean deleteNative(JNIEnv *env);
 
-    jobject thisObj;
 };
 
 

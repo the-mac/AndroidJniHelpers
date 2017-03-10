@@ -30,12 +30,12 @@ public class ExampleActivity extends Activity {
 
 ```
 
-**Next, you will need to register the EncryptedString Java class with the Native Class Registry instance.**
+**Next, you will need to register the YourEncryptedString Java class with the Native Class Registry instance.**
 ```c++
 
 ClassRegistry gClasses;
     ...
-    gClasses.add(env, new EncryptedString(env));
+    gClasses.add(env, new YourEncryptedString(env));
 
 ```
 **Lastly, you would implement the native decryptString method similar to the following:**
@@ -46,32 +46,93 @@ jstring
 Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject java_this, jint resourceId) {
     jstring stringResource = getStringNative(env, java_this, resourceId);
 
-    EncryptedString es = EncryptedString(env);
+    YourEncryptedString es = YourEncryptedString(env);
     es.encryptedString = env->GetStringUTFChars(stringResource, JNI_FALSE);
 
-    return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
+    return es.decryptNative(env, YourEncryptedString::RESOURCE_STRINGS_ALGORITHM);
 }
 
 ```
+
+**Also, if you want to access other system resources natively in YourEncryptedString, you may need to do the following:**
+```java
+// CREATE AN APPLICATION SUBCLASS AND SINGLETON
+public class YourApplication extends AndroidJniApp {
+
+    private static YourApplication Instance;
+    public YourApplication() { Instance = this; }
+    public static YourApplication Instance() { return Instance; }
+
+    ...
+}
+
+```
+
+**ADD YOUR APPLICATION CLASS TO AndroidManifest.xml**
+```java
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="your.package.to"
+    android:versionName="17.03.01.0"
+    android:versionCode="22">
+    ...
+
+    <application
+        android:name="your.package.to.YourApplication"
+        ...
+    </application>
+</manifest>
+```
+
+**OR ADD YOUR APPLICATION CLASS TO build.gradle**
+```java
+
+
+ android {
+   ...
+   defaultConfig {
+        applicationName "your.package.to.YourApplication"
+   }
+ }
+
+```
+
+**Finally, you can use application resources natively (in C/C++)**
+```java
+
+jobject YourEncryptedString::getFileStream(JNIEnv *env, jstring fileName)
+{
+    jstring r = env->NewStringUTF(".r");
+    YourApplication context(env, YourApplication::Instance(env));
+
+    JavaExceptionUtils::checkException(env);
+    return context.openFileInput(env, r);
+}
+
+```
+Note: Execute "AndroidJniHelpers/bin/jni.bash" for help on generating YourApplication and YourEncryptedString
+
 **Coming Soon: AES Encrypted resource strings can be generated using the bin/encrypt.bash script.**
 
 **Java Inline String Decrypting**
 ```java
 
-    EncryptedString object = EncryptedString.getInstance();
+    YourEncryptedString object = YourEncryptedString.getInstance();
     object.encryptedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    String decryptedString = object.decrypt(EncryptedString.INLINE_STRINGS_ALGORITHM);
+    String decryptedString = object.decrypt(YourEncryptedString.INLINE_STRINGS_ALGORITHM);
     assertEquals("To be or not to be, That is the question", decryptedString);
 
 ```
 **Native Inline String Decrypting**
 ```c++
 
-    EncryptedString *object = new EncryptedString(env);
+    YourEncryptedString *object = new YourEncryptedString(env);
     object->encryptedString = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
 
-    JavaString decryptedString(env, object->decryptNative(env, EncryptedString::INLINE_STRINGS_ALGORITHM));
+    JavaString decryptedString(env, object->decryptNative(env, YourEncryptedString::INLINE_STRINGS_ALGORITHM));
     JUNIT_ASSERT_EQUALS_STRING("To be or not to be, That is the question", decryptedString.get());
 
 ```

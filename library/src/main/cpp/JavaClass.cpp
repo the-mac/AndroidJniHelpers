@@ -141,6 +141,10 @@ namespace spotify {
             return toJavaObject(env, result.leak());
         }
 
+        jstring JavaClass::toString(JNIEnv *env, jobject java_this) {
+            return (jstring) env->CallObjectMethod(java_this, getMethod(__FUNCTION__));
+        }
+
         jobject JavaClass::toJavaObject(JNIEnv *env, jobject javaThis) {
             for (FieldMap::const_iterator iter = _fields->begin(); iter != _fields->end(); ++iter) {
                 std::string key = iter->first;

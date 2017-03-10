@@ -27,7 +27,6 @@
 using namespace operators::nativity::requests;
 
 void NetworkTest::initialize(JNIEnv *env) {
-    setClass(env);
 
     MACRequests network;
     const char *networkName = network.getCanonicalName();

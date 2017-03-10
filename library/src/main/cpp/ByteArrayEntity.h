@@ -33,7 +33,6 @@ public:
 
     jboolean isStreaming(JNIEnv *env);
 
-    jobject thisObj;
 };
 
 

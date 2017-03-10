@@ -36,7 +36,6 @@ public:
 
     void setHeader(JNIEnv *env, string key, string value);
 
-    jobject thisObj;
 };
 
 #endif //APPLICATIONRESOURCES_HTTPPOST_H

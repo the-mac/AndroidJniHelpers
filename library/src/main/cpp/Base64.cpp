@@ -50,6 +50,8 @@ void Base64::initialize(JNIEnv *env)
     cacheConstructor(env);
 
     cacheStaticSignature(env, "decodeBase64", "([BI)[B");
+    cacheStaticSignature(env, "encodeBase64", "([BI)[B");
+
 //    cacheSignature(env, "android/util/Base64", "()V");
 //    cacheStaticSignature(env, "decode", "(Ljava/lang/String;I)[B");
 //    cacheStaticSignature(env, "decode", "([BIII)[B");
@@ -78,7 +80,15 @@ jbyteArray Base64::decodeBase64(JNIEnv *env, jbyteArray contents)
     jclass _class = env->FindClass("org/apache/commons/codec/binary/Base64");
     jmethodID method = env->GetStaticMethodID(_class, __FUNCTION__, "([B)[B");
     jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(_class, method, contents);
-//    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, __FUNCTION__), contents);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jbyteArray Base64::encodeBase64(JNIEnv *env, jbyteArray contents)
+{
+    jclass _class = env->FindClass("org/apache/commons/codec/binary/Base64");
+    jmethodID method = env->GetStaticMethodID(_class, __FUNCTION__, "([B)[B");
+    jbyteArray result = (jbyteArray) env->CallStaticObjectMethod(_class, method, contents);
     JavaExceptionUtils::checkException(env);
     return result;
 }

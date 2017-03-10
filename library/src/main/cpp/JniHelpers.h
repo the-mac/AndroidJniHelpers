@@ -36,7 +36,6 @@
 #include "NativeObject.h"
 #include "ShortArray.h"
 #include "JavaStringArray.h"
-#include "CryptoHelper.h"
 
 using namespace spotify::jni;
 extern ClassRegistry gClasses;

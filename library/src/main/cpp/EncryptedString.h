@@ -2,16 +2,16 @@
 // Created by Christopher Miller on 1/14/17.
 //
 
-#ifndef ANDROIDJNI_ENCODEDSTRING_H
-#define ANDROIDJNI_ENCODEDSTRING_H
+#ifndef ANDROIDJNI_ENRYPTEDSTRING_H
+#define ANDROIDJNI_ENRYPTEDSTRING_H
 
 #include "JniHelpers.h"
 
 using namespace spotify::jni;
 
+using namespace std;
+
 class EncryptedString : public NativeObject {
-    jobject thisObj;
-    CryptoHelper crypto;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
@@ -37,7 +37,7 @@ public:
 
     jobject getFileStream(JNIEnv *env, jstring fileName);
 
-    virtual std::string getKey(JNIEnv *env, jint algorithm);
+    virtual string getKey(JNIEnv *env, jint algorithm);
 
     /**
     * The getBytes method is used to get the decrypt key

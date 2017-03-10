@@ -108,17 +108,25 @@ jobject Network::getHttpPost(JNIEnv *env, jobject java_this) {
 }
 
 
+void Network::putNative(JNIEnv *env, string stringKey, JavaString javaSstringValue) {
+    jstring key = env->NewStringUTF(stringKey.c_str());
+    Network::put(env, thisObj, key, javaSstringValue.toJavaString(env));
+}
 void Network::putNative(JNIEnv *env, jstring jstringValue1, jstring jstringValue2) { Network::put(env, thisObj, jstringValue1, jstringValue2); }
 
+void Network::putNative(string localKey, string localValue) {
+    mappingObject[localKey] = localValue;
+}
 void Network::put(JNIEnv *env, jobject java_this, jstring key, jstring value) {
     Network *object = gClasses.getNativeInstance<Network>(env, java_this);
 
     if (object != NULL)
     {
-        std::string localKey = env->GetStringUTFChars(key, 0);
-        std::string localValue = env->GetStringUTFChars(value, 0);
-
-        object->mappingObject[localKey] = localValue;
+//        std::string localKey = env->GetStringUTFChars(key, 0);
+//        std::string localValue = env->GetStringUTFChars(value, 0);
+//
+//        object->mappingObject[localKey] = localValue;
+        object->putNative(env->GetStringUTFChars(key, 0), env->GetStringUTFChars(value, 0));
     }
 
 }

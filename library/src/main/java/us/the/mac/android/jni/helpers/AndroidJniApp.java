@@ -12,7 +12,7 @@ public class AndroidJniApp extends Application {
     public AndroidJniApp() { Instance = this; }
     public static AndroidJniApp Instance() { return Instance; }
 
-    public native String decryptString(int resource);
+//    public native String decryptString(int resource);
 
     @Override
     public void onCreate() {

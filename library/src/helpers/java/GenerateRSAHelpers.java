@@ -291,8 +291,9 @@ public class GenerateRSAHelpers {
 
 			StringBuilder ciphertext = new StringBuilder();
 
-			ciphertext.append( Base64.encodeBase64String( iv ).replace("==", Character.toString((char)8)+Character.toString((char)8)) );
-//			ciphertext.append( ":" );
+//			ciphertext.append( Base64.encodeBase64String( iv ).replace("==", Character.toString((char)8)+Character.toString((char)8)) );
+			ciphertext.append( Base64.encodeBase64String( iv ) );
+			ciphertext.append( ":" );
 			ciphertext.append( Base64.encodeBase64String( encrypted ) );
 
 			return ciphertext.toString();
@@ -306,7 +307,8 @@ public class GenerateRSAHelpers {
 		}
 
 		public String decrypt( String ciphertext ) throws Exception {
-			String [] parts = ciphertext.replace(Character.toString((char)8)+Character.toString((char)8), "==:").split( ":" );
+//			String [] parts = ciphertext.replace(Character.toString((char)8)+Character.toString((char)8), "==:").split( ":" );
+			String [] parts = ciphertext.split( ":" );
 			byte [] iv = Base64.decodeBase64( parts[0] );
 			byte [] encrypted = Base64.decodeBase64( parts[1] );
 			byte [] decrypted = decrypt( iv, encrypted );

@@ -4,15 +4,14 @@
 
 #ifndef APPLICATIONRESOURCES_CRYPTOHELPER_H
 #define APPLICATIONRESOURCES_CRYPTOHELPER_H
-
 #include "JniHelpers.h"
 
-using namespace spotify::jni;
+using spotify::jni::NativeObject;
 
 class CryptoHelper : public NativeObject {
-    ByteArray byteArray;
-
 public:
+    jbyteArray keyBytes;
+
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
     * the Jni Helper's relationship to the CryptoHelper class defined in Java.
@@ -24,24 +23,24 @@ public:
 
     CryptoHelper(JNIEnv *env);
 
-//    CryptoHelper(JNIEnv *env, jbyteArray bArray);
-
     void initialize(JNIEnv *env);
 
     void mapFields();
 
+    void setBytes(jbyteArray jbyteArrayValue);
+
+    jobject generateKeyNative(JNIEnv *env);
+
     static jobject generateKey(JNIEnv *env, jobject java_this);
 
-    jbyteArray decryptNative(JNIEnv *env, jbyteArray valueBytes);
+    jbyteArray decrypt(JNIEnv *env, jbyteArray jbyteArrayValue1, jbyteArray jbyteArrayValue2);
 
-    jbyteArray decrypt(JNIEnv *env, jobject java_this, jbyteArray valueBytes);
+    jstring decrypt(JNIEnv *env, jstring jstringValue1);
 
-    void setBytes(JNIEnv *env, jbyteArray bytes);
+    void destroyNative(JNIEnv *env);
 
-    static void nativeDestroy(JNIEnv *env, jobject java_this);
-
-    jobject thisObj;
 };
+
 
 
 #endif //APPLICATIONRESOURCES_CRYPTOHELPER_H

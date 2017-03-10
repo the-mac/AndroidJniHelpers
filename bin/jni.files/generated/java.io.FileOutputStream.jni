@@ -18,7 +18,6 @@ contains an example of what these method calls would look like in your code.
 #include "JniHelpers.h"
 
 class FileOutputStream : public JavaClass {
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -65,7 +64,6 @@ FileOutputStream::FileOutputStream(JNIEnv *env) : JavaClass(env)
 
 void FileOutputStream::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("getChannel", "()Ljava/nio/channels/FileChannel;");

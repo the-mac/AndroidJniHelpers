@@ -24,7 +24,6 @@ public:
 
     void mapFields();
 
-    jobject thisObj;
 };
 
 #endif //APPLICATIONRESOURCES_SECRETKEY_H
