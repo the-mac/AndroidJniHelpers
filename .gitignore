@@ -311,3 +311,4 @@ bin/prepare.files/timestamp
 --wifi
 --wifi
 --wifi
+bin/adb.files/devices
