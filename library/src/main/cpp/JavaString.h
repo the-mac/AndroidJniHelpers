@@ -56,12 +56,11 @@ template class EXPORT std::basic_string<char, std::char_traits<char>, std::alloc
             void set(JNIEnv *env, jstring javaString);
             const char* c_str() { return get().c_str(); }
 
-            void concat(const char string[128]);
-
-        public:
-            std::string _value;
-
+            std::string concat(const char string[128]);
+            std::string trim();
             int length();
+
+            std::string _value;
         };
 
     } // namespace jni

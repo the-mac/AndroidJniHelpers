@@ -168,7 +168,7 @@ public class GenerateJniHelpers {
 			getClass = getClass.replace("{PACKAGE_NAME}", getClassPath);
 			header.append(getClass + "\n");
 
-			String instance = String.format("\nstatic %s *%sInstance = NULL;",
+			String instance = String.format("\nstatic %s *%sInstance == NULL;",
 					className, STATIC_INSTANCE_NAME, className);
 			commentary = "/**\n"+
 					"* The getStaticMethod method is used to get the Jni Helper's\n"+

@@ -19,9 +19,11 @@ public:
 
     JSONObject();
 
-    JSONObject(JNIEnv *env, jobject jsonObject);
-
     JSONObject(JNIEnv *env, std::string json);
+
+    JSONObject(JNIEnv *env, jstring jsonObject);
+
+    JSONObject(JNIEnv *env, jobject jsonObject);
 
     void initialize(JNIEnv *env);
 
@@ -32,6 +34,8 @@ public:
     jobject getJSONObject(JNIEnv *env, std::string stringKey);
 
     jstring getString(JNIEnv *env, std::string stringKey);
+
+    jboolean getBoolean(JNIEnv *env, std::string stringKey);
 
 };
 
