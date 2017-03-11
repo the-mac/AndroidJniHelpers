@@ -18,7 +18,6 @@ contains an example of what these method calls would look like in your code.
 #include "JniHelpers.h"
 
 class Base64 : public JavaClass {
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -97,7 +96,6 @@ Base64::Base64(JNIEnv *env) : JavaClass(env)
 
 void Base64::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     cacheSignature(env, "android/util/Base64", "()V");

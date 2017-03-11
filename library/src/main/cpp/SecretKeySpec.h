@@ -20,7 +20,9 @@ public:
     }
     SecretKeySpec();
 
-    SecretKeySpec(JNIEnv *env, jbyteArray array, jint start, jint end);
+    SecretKeySpec(JNIEnv *env, jbyteArray array, jint start, jint end, jstring algorithm);
+
+    SecretKeySpec(JNIEnv *env, jbyteArray array, jstring algorithm);
 
     void initialize(JNIEnv *env);
 
@@ -37,7 +39,6 @@ public:
     jboolean equals(JNIEnv *env, jobject jobjectValue1);
 
 //    SecretKeySpec(spotify::jni::ByteArray array, int i, int param, const char string[4]);
-    jobject thisObj;
 };
 
 

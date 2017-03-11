@@ -18,7 +18,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+#include <algorithm>
+#include <functional>
+#include <cctype>
+#include <locale>
 #include <cstring>
 #include "JavaString.h"
 #include "JavaExceptionUtils.h"
@@ -29,6 +32,10 @@ namespace spotify {
 
         JavaString::JavaString() {
             _value = "";
+        }
+
+        JavaString::JavaString(const const char* &cstring) {
+            _value = cstring;
         }
 
         JavaString::JavaString(const std::string &string) {
@@ -55,10 +62,14 @@ namespace spotify {
         JniLocalRef<jbyteArray> JavaString::toByteArray(JNIEnv *env) const {
 
             const char *content = _value.c_str();
-            jbyteArray array = env->NewByteArray(_value.length());
-            env->SetByteArrayRegion(array, 0, _value.length(), (jbyte *) content);
+            jbyteArray nativeBytes = env->NewByteArray(_value.length());
 
-            return array;
+            int size = std::strlen(content);
+
+            jbyte *data = (jbyte *) content;
+            env->SetByteArrayRegion(nativeBytes, 0, size, data);
+
+            return nativeBytes;
         }
 
         void JavaString::set(const char *value) {
@@ -85,6 +96,33 @@ namespace spotify {
             JavaExceptionUtils::checkException(env);
         }
 
+        std::string JavaString::concat(const char *stringValue) {
+            _value += stringValue;
+            return _value;
+        }
+
+        int JavaString::length() {
+            return _value.length();
+        }
+
+        // trim from start
+        static inline std::string &ltrim(std::string &s) {
+            s.erase(s.begin(), std::find_if(s.begin(), s.end(),
+                                            std::not1(std::ptr_fun<int, int>(std::isspace))));
+            return s;
+        }
+
+// trim from end
+        static inline std::string &rtrim(std::string &s) {
+            s.erase(std::find_if(s.rbegin(), s.rend(),
+                                 std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+            return s;
+        }
+
+        std::string JavaString::trim() {
+            std::string newValue = _value.c_str();
+            return ltrim(rtrim(newValue));
+        }
 
     } // namespace jni
 } // namespace spotify

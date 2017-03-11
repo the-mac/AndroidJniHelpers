@@ -8,7 +8,6 @@
 #include "JniHelpers.h"
 
 class Base64 : public JavaClass {
-    jobject thisObj;
 public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
@@ -35,6 +34,8 @@ public:
 //    jobject android.util.Base64(JNIEnv *env);
 
     static jbyteArray decodeBase64(JNIEnv *env, jbyteArray contents);
+
+    static jbyteArray encodeBase64(JNIEnv *env, jbyteArray contents);
 
 //    static jbyteArray decode(JNIEnv *env, jstring jstringValue1, jint jintValue2);
 //

@@ -1,0 +1,188 @@
+
+us.the.mac.reel.life.ServiceApplication
+
+********************************************************************************
+
+us.the.mac.reel.life.ServiceApplication.jni was generated as a helper for ServiceApplication.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: us.the.mac.reel.life.ServiceApplication, Instance, getServiceBinder, internalOnServiceMessage, internalOnServiceValues, onCreate, sendServiceCommand, onServiceMessage, onServiceValues
+
+The source code can be copied into the respective ServiceApplication.h and
+ServiceApplication.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class ServiceApplication : public JavaClass {
+  public:
+    jobject thisObj;
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the ServiceApplication class defined in Java.
+    */
+    const char *getCanonicalName() const {
+        return MAKE_CANONICAL_NAME("us/the/mac/reel/life", ServiceApplication);
+    }
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the ServiceApplication class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) {
+      return env->FindClass(MAKE_CANONICAL_NAME("us/the/mac/reel/life", ServiceApplication));
+    }
+    ServiceApplication();
+
+    ServiceApplication(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    static jobject Instance(JNIEnv *env);
+
+    jobject getServiceBinder(JNIEnv *env);
+
+    void internalOnServiceMessage(JNIEnv *env, jobject jobjectValue1);
+
+    void internalOnServiceValues(JNIEnv *env, jobject jobjectValue1);
+
+    void onCreate(JNIEnv *env);
+
+    void sendServiceCommand(JNIEnv *env, jobject jobjectValue1);
+
+    void onServiceMessage(JNIEnv *env, jobject jobjectValue1);
+
+    void onServiceValues(JNIEnv *env, jobject jobjectValue1);
+
+};
+
+********************************************************************************
+
+
+static ServiceApplication *serviceApplicationInstance = NULL;
+
+/**
+* The getStaticMethod method is used to get the Jni Helper's
+* static method for the ServiceApplication class defined in Java.
+*/
+static jmethodID getStaticMethod(JNIEnv *env, const char *method_name) {
+    if(serviceApplicationInstance = NULL) serviceApplicationInstance = new ServiceApplication(env);
+    return serviceApplicationInstance->getMethod(method_name);
+}
+
+ServiceApplication::ServiceApplication() : JavaClass() {}
+
+/**
+* Here you can construct the ServiceApplication object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+ServiceApplication::ServiceApplication(JNIEnv *env) : JavaClass(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "ServiceApplication's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void ServiceApplication::initialize(JNIEnv *env)
+{
+    cacheConstructor(env);
+
+    cacheStaticSignature(env, "Instance", "()Lus/the/mac/reel/life/ServiceApplication;");
+    cacheSignature(env, "getServiceBinder", "()Ljava/lang/Object;");
+    cacheSignature(env, "internalOnServiceMessage", "(Landroid/os/Bundle;)V");
+    cacheSignature(env, "internalOnServiceValues", "(Landroid/content/ContentValues;)V");
+    cacheSignature(env, "onCreate", "()V");
+    cacheSignature(env, "sendServiceCommand", "(Landroid/os/Bundle;)V");
+    cacheSignature(env, "onServiceMessage", "(Landroid/os/Bundle;)V");
+    cacheSignature(env, "onServiceValues", "(Landroid/content/ContentValues;)V");
+
+    registerNativeMethods(env);
+}
+
+void ServiceApplication::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject ServiceApplication::Instance(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(env, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject ServiceApplication::getServiceBinder(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+void ServiceApplication::internalOnServiceMessage(JNIEnv *env, jobject jobjectValue1)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void ServiceApplication::internalOnServiceValues(JNIEnv *env, jobject jobjectValue1)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void ServiceApplication::onCreate(JNIEnv *env)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+}
+
+void ServiceApplication::sendServiceCommand(JNIEnv *env, jobject jobjectValue1)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void ServiceApplication::onServiceMessage(JNIEnv *env, jobject jobjectValue1)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+void ServiceApplication::onServiceValues(JNIEnv *env, jobject jobjectValue1)
+{
+    env->CallVoidMethod(thisObj, getMethod(__FUNCTION__), jobjectValue1);
+    JavaExceptionUtils::checkException(env);
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = ServiceApplication::Instance(env);
+
+jobject jobjectReturnValue = instance.getServiceBinder(env);
+
+instance.internalOnServiceMessage(env, jobjectValue1);
+
+instance.internalOnServiceValues(env, jobjectValue1);
+
+instance.onCreate(env);
+
+instance.sendServiceCommand(env, jobjectValue1);
+
+instance.onServiceMessage(env, jobjectValue1);
+
+instance.onServiceValues(env, jobjectValue1);
+
+

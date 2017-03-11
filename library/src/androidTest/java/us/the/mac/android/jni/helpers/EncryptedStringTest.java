@@ -48,6 +48,16 @@ public class EncryptedStringTest {
         System.loadLibrary("test-helper-lib");
     }
 
+    native public byte[] getNativeBytes();
+
+    native public SecretKeySpec createSecretKeySpec();
+
+    native public SecretKeySpec createSecretKeySpecWithParams(byte[] decodedKeyBytes, int start, int length, String algorithm);
+
+    native public byte [] nativeBase64EncodeBase64(byte [] inputBytes);
+
+    native public byte [] nativeBase64DecodeBase64(byte [] inputBytes);
+
     native public CryptoHelper createCryptoHelper();
 
     native public EncryptedString createEncryptedString();
@@ -85,24 +95,87 @@ public class EncryptedStringTest {
     native public void persistNullObject() throws Exception;
 
     @Test
-    public void javaDecryptWithCrytpoHelper() throws Exception {
+    public void base64Decoding() throws Exception {
 
-        String contents = TestConstants.TEST_ENCRYPTION_KEY;
-        byte [] decodedKeyBytes = new byte [16];
-        System.out.printf("\naccessFile Contents: %s\n", contents);
-        System.out.printf("\naccessFile Length: %s\n", decodedKeyBytes.length);
+        byte[] startingNativeBytes = getNativeBytes();
+        byte[] startingBytes = TestConstants.TEST_DECRYPT.getBytes();
+        assertEquals(TestConstants.TEST_DECRYPT, new String(startingBytes));
+        assertEquals(TestConstants.TEST_DECRYPT, new String(startingNativeBytes));
 
-        byte [] bytes = Base64.decodeBase64( contents.getBytes() );
-        for (int i = 0; i < bytes.length; i++) {
-            decodedKeyBytes[i] = bytes[i];
-        }
+        byte [] encodedBytes = Base64.encodeBase64( startingBytes );
+        byte [] decodedBytes = Base64.decodeBase64( encodedBytes );
 
-        byte [] valueBytes = TEST_ENCRYPTED_RESOURCE.getBytes();
-        byte [] decodedValueBytes = Base64.decodeBase64(valueBytes);
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decodedBytes));
+
+        byte [] nativeEncodedBytes = nativeBase64EncodeBase64( startingBytes );
+        byte [] nativeDecodedBytes = nativeBase64DecodeBase64( nativeEncodedBytes );
+
+        assertEquals(new String(encodedBytes), new String(nativeEncodedBytes));
+        assertEquals(new String(decodedBytes), new String(nativeDecodedBytes));
+        assertEquals(new String(startingNativeBytes), new String(nativeDecodedBytes));
+        assertEquals(TestConstants.TEST_DECRYPT, new String(nativeDecodedBytes));
+
+    }
+
+    @Test
+    public void creatingASecretKeySpec() throws Exception {
+
+        byte[] keyBytes = TestConstants.TEST_ENCRYPTION_KEY.getBytes();
+        assertEquals(TestConstants.TEST_ENCRYPTION_KEY, new String(keyBytes));
+
+        byte [] decodedKeyBytes = Base64.decodeBase64( keyBytes );
+        byte [] encodedKeyBytes = Base64.encodeBase64( decodedKeyBytes );
+
+//        assertEquals(TestConstants.TEST_DECODED_ENCRYPTION_KEY, new String(decodedKeyBytes));
+
+        byte [] nativeDecodedKeyBytes = nativeBase64DecodeBase64( keyBytes );
+        byte [] nativeEncodedKeyBytes = nativeBase64EncodeBase64( nativeDecodedKeyBytes );
+
+        assertEquals(new String(encodedKeyBytes), new String(nativeEncodedKeyBytes));
+        assertEquals(new String(decodedKeyBytes), new String(nativeDecodedKeyBytes));
+//        assertEquals(TestConstants.TEST_DECODED_ENCRYPTION_KEY, new String(nativeDecodedKeyBytes));
+
+
+        SecretKey originalKey = new SecretKeySpec(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
+        assertEquals(TestConstants.TEST_ENCRYPTION_KEY, new String(Base64.encodeBase64(originalKey.getEncoded())).concat("\n"));
+//        assertEquals(TestConstants.TEST_DECODED_ENCRYPTION_KEY, new String(originalKey.getEncoded()).concat("\n"));
+
+        SecretKey nativeKey = createSecretKeySpecWithParams(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
+        assertEquals(originalKey, nativeKey);
+
+    }
+    @Test
+    public void javaDecryptWithSecretKey() throws Exception {
+
+        String contents = TestConstants.TEST_ENCRYPTED_RESOURCE;
+        byte[] keyBytes = TestConstants.TEST_ENCRYPTION_KEY.getBytes();
+        String [] parts = contents.split( ":" );
+
+        byte [] decodedKeyBytes = Base64.decodeBase64( keyBytes );
+        byte [] initVector = Base64.decodeBase64( parts[0].getBytes() );
+        byte [] decodedValueBytes = Base64.decodeBase64(parts[1].getBytes());
 
         SecretKey originalKey = new SecretKeySpec(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
         Cipher cipher = Cipher.getInstance(originalKey.getAlgorithm() + "/CBC/PKCS5Padding" );
-        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( decodedKeyBytes ) );
+        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( initVector ) );
+        byte [] decryptedBytes = cipher.doFinal( decodedValueBytes );
+
+        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+
+    }
+
+    @Test
+    public void nativeDecryptWithSecretKey() throws Exception {
+
+        String contents = TestConstants.TEST_ENCRYPTED_RESOURCE;
+        String [] parts = contents.split( ":" );
+
+        byte [] initVector = Base64.decodeBase64( parts[0].getBytes() );
+        byte [] decodedValueBytes = Base64.decodeBase64(parts[1].getBytes());
+
+        SecretKey originalKey = createSecretKeySpec();
+        Cipher cipher = Cipher.getInstance(originalKey.getAlgorithm() + "/CBC/PKCS5Padding" );
+        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( initVector ) );
         byte [] decryptedBytes = cipher.doFinal( decodedValueBytes );
 
         assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
@@ -114,26 +187,9 @@ public class EncryptedStringTest {
         CryptoHelper object = createCryptoHelper();
         assertNotEquals(0, object.nPtr);
 
-        byte [] keyBytes = TestConstants.TEST_ENCRYPTION_KEY.getBytes();
-        byte [] valueBytes = TEST_ENCRYPTED_RESOURCE.getBytes();
-        byte [] decodedKeyBytes = Base64.decodeBase64(keyBytes);
-        byte [] decodedValueBytes = Base64.decodeBase64(valueBytes);
+        String decryptedString = object.decrypt(TestConstants.TEST_ENCRYPTED_RESOURCE);
 
-        SecretKey originalKey = new SecretKeySpec(decodedKeyBytes, 0, decodedKeyBytes.length, "AES");
-        Cipher cipher = Cipher.getInstance(originalKey.getAlgorithm() + "/CBC/PKCS5Padding" );
-        cipher.init( Cipher.DECRYPT_MODE, originalKey, new IvParameterSpec( decodedKeyBytes ) );
-        byte [] decryptedBytes = cipher.doFinal( decodedValueBytes );
-
-        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
-        assertEquals(originalKey, object.generateKey());
-
-        // byte [] decrypt( byte [] iv, byte [] ciphertext);
-        decryptedBytes = object.decrypt(decodedKeyBytes, decodedValueBytes);
-
-        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
-
-
-        assertEquals(TestConstants.TEST_DECRYPT, new String(decryptedBytes));
+        assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
 
     }
 

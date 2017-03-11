@@ -8,10 +8,13 @@
 #include "EncryptedStringTest.h"
 #include "JavaClassTest.h"
 #include "TestObject.h"
-#include <EncryptedString.h>
-#include <MACRequests.h>
 #include "NetworkTest.h"
 #include "Network.h"
+#include "CryptoTest.h"
+
+#include <EncryptedString.h>
+#include <CryptoHelper.h>
+#include <MACRequests.h>
 
 using namespace spotify::jni;
 using namespace operators::nativity::requests;
@@ -35,6 +38,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new NetworkTest(env));
     gClasses.add(env, new Network(env));
     gClasses.add(env, new MACRequests(env));
+    gClasses.add(env, new CryptoTest(env));
+    gClasses.add(env, new CryptoHelper(env));
 
     LOG_INFO("Initialization complete");
     return JAVA_VERSION;

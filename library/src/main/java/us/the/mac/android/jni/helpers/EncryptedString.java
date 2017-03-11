@@ -43,9 +43,6 @@ public class EncryptedString extends NativeObject {
     public native String decrypt(int algorithm);
 
     public InputStream getFileStream(String file) {
-        if(AndroidJniApp.Instance() == null) return null;
-//        return AndroidJniApp.Instance().getFilesDir().toString();
-//        return "file:///android_asset";
         try {
             AssetManager assetManager = AndroidJniApp.Instance().getAssets();
             return assetManager.open(file);

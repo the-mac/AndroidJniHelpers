@@ -10,12 +10,24 @@ SecretKeySpec::SecretKeySpec() : JavaClass() {}
 * Here you can construct the SecretKeySpec object how ever you need to,
 * as well as load signatures for the Java instance method calls.
 */
-SecretKeySpec::SecretKeySpec(JNIEnv *env, jbyteArray array, jint start, jint end) : JavaClass(env)
+SecretKeySpec::SecretKeySpec(JNIEnv *env, jbyteArray array, jint start, jint end, jstring algorithm) : JavaClass(env)
 {
     initialize(env);
 
-    jstring algorithm = JavaString("AES").toJavaString(env);
+//    jstring algorithm = JavaString("AES").toJavaString(env);
     thisObj = env->NewObject(_clazz, getMethod("<init>"), array, start, end, algorithm);
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                 "SecretKeySpec's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+SecretKeySpec::SecretKeySpec(JNIEnv *env, jbyteArray array, jstring algorithm) : JavaClass(env)
+{
+    initialize(env);
+
+//    jstring algorithm = JavaString("AES").toJavaString(env);
+    thisObj = env->NewObject(_clazz, getMethod("<init>"), array, algorithm);
 
     if (thisObj == NULL) {
         JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
@@ -27,6 +39,7 @@ void SecretKeySpec::initialize(JNIEnv *env)
 {
     setClass(env);
 
+//    cacheSignature(env, "<init>", "([BLjava/lang/String;)V");
     cacheSignature(env, "<init>", "([BIILjava/lang/String;)V");
     cacheSignature(env, "getAlgorithm", "()Ljava/lang/String;");
     cacheSignature(env, "getFormat", "()Ljava/lang/String;");

@@ -16,7 +16,6 @@ contains an example of what these method calls would look like in your code.
 ********************************************************************************
 
 class ByteArrayEntity : public JavaClass {
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -69,7 +68,6 @@ ByteArrayEntity::ByteArrayEntity(JNIEnv *env) : JavaClass(env)
 
 void ByteArrayEntity::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("isRepeatable", "()Z");

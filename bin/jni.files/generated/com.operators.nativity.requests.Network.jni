@@ -123,7 +123,6 @@ Network::Network(JNIEnv *env) : NativeObject(env)
 
 void Network::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("saveToPrefs", "(Ljava/lang/String;Ljava/lang/String;)V");

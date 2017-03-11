@@ -32,13 +32,14 @@ public:
 
     jobject openFileOutput(JNIEnv *env, jstring path, jint mode);
 
+    jobject openFileInput(JNIEnv *env, jstring path);
+
     jstring decryptStringNative(JNIEnv *env, jint resource);
 
     static jstring decryptString(JNIEnv *env, jobject java_this, jint resource);
 
     static JavaClass* getPersistedInstance(JNIEnv *env, jobject javaThis);
 
-    jobject thisObj;
 
     static const int MODE_PRIVATE = 0;
 

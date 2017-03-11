@@ -69,7 +69,6 @@ EncodedString::EncodedString(JNIEnv *env) : NativeObject(env)
 
 void EncodedString::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addJavaSignature("equals", "(Ljava/lang/Object;)Z");

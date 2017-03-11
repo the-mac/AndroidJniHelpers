@@ -24,6 +24,19 @@ JSONObject::JSONObject(JNIEnv *env, std::string json) : JavaClass(env)
     }
 }
 
+JSONObject::JSONObject(JNIEnv *env, jstring jsonContent) : JavaClass(env)
+{
+    initialize(env);
+
+    // WE HAVE ADDED A jstring json PARAMETER TO THE 'JSONObject' constructor
+    thisObj = env->NewObject(_clazz, getMethod("<init>"), jsonContent);
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                 "JSONObject's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
 JSONObject::JSONObject(JNIEnv *env, jobject jsonObj) : JavaClass(env)
 {
     initialize(env);
@@ -39,12 +52,12 @@ JSONObject::JSONObject(JNIEnv *env, jobject jsonObj) : JavaClass(env)
 void JSONObject::initialize(JNIEnv *env)
 {
     setClass(env);
-    cacheConstructor(env);
 
     cacheSignature(env, "<init>", "(Ljava/lang/String;)V");
     cacheSignature(env, "has", "(Ljava/lang/String;)Z");
     cacheSignature(env, "getJSONObject", "(Ljava/lang/String;)Lorg/json/JSONObject;");
     cacheSignature(env, "getString", "(Ljava/lang/String;)Ljava/lang/String;");
+    cacheSignature(env, "getBoolean", "(Ljava/lang/String;)Z");
 
     registerNativeMethods(env);
 }
@@ -56,11 +69,18 @@ void JSONObject::mapFields()
 
 jstring JSONObject::getString(JNIEnv *env, std::string stringKey)
 {
-
     jstring key = env->NewStringUTF(stringKey.c_str());
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), key);
     JavaExceptionUtils::checkException(env);
     return (jstring) result;
+}
+
+jboolean JSONObject::getBoolean(JNIEnv *env, std::string stringKey)
+{
+    jstring key = env->NewStringUTF(stringKey.c_str());
+    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), key);
+    JavaExceptionUtils::checkException(env);
+    return result;
 }
 
 jobject JSONObject::getJSONObject(JNIEnv *env, std::string stringKey)
@@ -72,9 +92,10 @@ jobject JSONObject::getJSONObject(JNIEnv *env, std::string stringKey)
     return result;
 }
 
-jboolean JSONObject::has(JNIEnv *env, jstring jstringValue1)
+jboolean JSONObject::has(JNIEnv *env, std::string  stringKey)
 {
-    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), jstringValue1);
+    jstring key = env->NewStringUTF(stringKey.c_str());
+    jboolean result = env->CallBooleanMethod(thisObj, getMethod(__FUNCTION__), key);
     JavaExceptionUtils::checkException(env);
     return result;
 }

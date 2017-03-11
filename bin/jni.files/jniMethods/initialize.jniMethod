@@ -1,6 +1,5 @@
 void {CLASS_NAME}::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
 {CLASS_SIGNATURES}

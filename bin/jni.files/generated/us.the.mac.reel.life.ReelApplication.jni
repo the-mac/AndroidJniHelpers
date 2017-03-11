@@ -19,7 +19,6 @@ contains an example of what these method calls would look like in your code.
 
 class ReelApplication : public NativeObject {
     static std::map<std::string, std::string> static_signatures;
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
@@ -89,7 +88,6 @@ ReelApplication::ReelApplication(JNIEnv *env) : NativeObject(env)
 
 void ReelApplication::initialize(JNIEnv *env)
 {
-    setClass(env);
     cacheConstructor(env);
 
     addStaticSignature("Instance", "()Lus/the/mac/reel/life/ReelApplication;");

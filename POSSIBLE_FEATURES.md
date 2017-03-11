@@ -88,7 +88,6 @@ contains an example of what these method calls would look like in your code.
 #include "JniHelpers.h"
 
 class JSONObject : public JavaClass {
-    jobject thisObj;
   public:
     /**
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain

@@ -10,6 +10,7 @@
 #include "Scanner.h"
 #include "File.h"
 #include "Base64.h"
+#include "CryptoHelper.h"
 
 using namespace std;
 
@@ -104,61 +105,61 @@ jbyteArray EncryptedString::getBytes(JNIEnv *env, jobject java_this) {
     }
     return NULL;
 }
-string rot(string s, int r)
-{
-    stringstream ss;
-    for (int i = 0; i < s.length(); i++)
-    {
-        char c = s[i];
-        if (c >= 'a' && c <= 'z') ss << (char)((c - 'a' + r) % 26 + 'a');
-        else if (c >= 'A' && c <= 'Z') ss << (char)((c - 'A' + r) % 26 + 'A');
-        else ss << c;
-    }
-    return ss.str();
-}
+//string rot(string s, int r)
+//{
+//    stringstream ss;
+//    for (int i = 0; i < s.length(); i++)
+//    {
+//        char c = s[i];
+//        if (c >= 'a' && c <= 'z') ss << (char)((c - 'a' + r) % 26 + 'a');
+//        else if (c >= 'A' && c <= 'Z') ss << (char)((c - 'A' + r) % 26 + 'A');
+//        else ss << c;
+//    }
+//    return ss.str();
+//}
 
-string base64(string const& in)
-{
-    std::string out;
+//string base64(string const& in)
+//{
+//    std::string out;
+//
+//    std::vector<int> T(256,-1);
+//    for (int i=0; i<64; i++) T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] = i;
+//
+//    int val=0, valb=-8;
+//    for (char c : in) {
+//        if (T[c] == -1) break;
+//        val = (val<<6) + T[c];
+//        valb += 6;
+//        if (valb>=0) {
+//            out.push_back(char((val>>valb)&0xFF));
+//            valb-=8;
+//        }
+//    }
+//    return out;
+//}
 
-    std::vector<int> T(256,-1);
-    for (int i=0; i<64; i++) T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] = i;
+//char key_map(string const& k, char const& in) {
+//    int position = k.length() / 2;
+//    std::size_t index = k.find(in);
+//    return (char) k[position + index];
+//}
 
-    int val=0, valb=-8;
-    for (char c : in) {
-        if (T[c] == -1) break;
-        val = (val<<6) + T[c];
-        valb += 6;
-        if (valb>=0) {
-            out.push_back(char((val>>valb)&0xFF));
-            valb-=8;
-        }
-    }
-    return out;
-}
-
-char key_map(string const& k, char const& in) {
-    int position = k.length() / 2;
-    std::size_t index = k.find(in);
-    return (char) k[position + index];
-}
-
-string substitution(string const& k, string const& in)
-{
-    std::string out;
-    int length = in.length();
-    for (int i = 0; i < length; i++)
-    {
-        char o = in[i];
-        char r = o;
-
-        if (o >= 'a' && o <= 'z' || o >= 'A' && o <= 'Z')
-            r = key_map(k, o);
-
-        out.push_back(r);
-    }
-    return out;
-}
+//string substitution(string const& k, string const& in)
+//{
+//    std::string out;
+//    int length = in.length();
+//    for (int i = 0; i < length; i++)
+//    {
+//        char o = in[i];
+//        char r = o;
+//
+//        if (o >= 'a' && o <= 'z' || o >= 'A' && o <= 'Z')
+//            r = key_map(k, o);
+//
+//        out.push_back(r);
+//    }
+//    return out;
+//}
 
 jobject EncryptedString::getFileStream(JNIEnv *env, jstring fileName)
 {
@@ -182,41 +183,63 @@ string EncryptedString::getKey(JNIEnv *env, jint algorithm)
 
 jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
 {
-    EncryptedString *object = gClasses.getNativeInstance<EncryptedString>(env, java_this);
-    if (object != NULL) {
-
-        std::string key;
-        std::string conversion;
-
-        switch(algorithm) {
-        case INLINE_STRINGS_ALGORITHM:
-            conversion = rot(object->encryptedString.get(), -1);
-            break;
-//        case RESOURCE_STRINGS_ALGORITHM:
-//            key = object->getKey(env, RESOURCE_STRINGS_ALGORITHM);
-//            conversion = substitution(key, base64(object->encryptedString.get()));
-//            break;//return object->encryptedString.toJavaString(env);//
-
-        case RESOURCE_STRINGS_ALGORITHM:
-//            object->encryptedString = JavaString(base64(object->encryptedString.get()));
-
-//            ByteArray encodedKey = ByteArray(env, JavaString(object->getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env));
-//            object->crypto.setBytes(env, encodedKey.toJavaByteArray(env));
-
-//            jbyteArray bytes = object->crypto.decrypt(env, object->crypto.thisObj, object->encryptedString.toByteArray(env));
-//            conversion = JavaString(env, bytes).get();
-            conversion = object->encryptedString.get();
-            break;
-
-//        case NATIVE_STRINGS_ALGORITHM:
-//            jbyteArray bytes = object->crypto.decrypt(env, object->getBytes(env, java_this), object->encryptedString.toByteArray(env));
-//            conversion = JavaString(env, bytes).get();
+//    EncryptedString *object = gClasses.getNativeInstance<EncryptedString>(env, java_this);
+//    if (object != NULL) {
+//
+//        std::string key;
+//        std::string conversion;
+//
+//        switch(algorithm) {
+//        case INLINE_STRINGS_ALGORITHM:
+//            conversion = rot(object->encryptedString.get(), -1);
 //            break;
-        }
-
-        jstring result = env->NewStringUTF(conversion.c_str());
-        JavaExceptionUtils::checkException(env);
-        return result;
-    }
+////        case RESOURCE_STRINGS_ALGORITHM:
+////            key = object->getKey(env, RESOURCE_STRINGS_ALGORITHM);
+////            conversion = substitution(key, base64(object->encryptedString.get()));
+////            break;//return object->encryptedString.toJavaString(env);//
+//
+////        case RESOURCE_STRINGS_ALGORITHM:
+//////            object->encryptedString = JavaString(base64(object->encryptedString.get()));
+////
+////
+////            conversion = object->getKey(env, NATIVE_STRINGS_ALGORITHM);
+////            ByteArray encodedKey = ByteArray(env, JavaString(conversion).toByteArray(env));
+////
+//////            ByteArray encodedKey = ByteArray(env, JavaString(object->getKey(env, NATIVE_STRINGS_ALGORITHM)).toByteArray(env));
+//////            object->crypto.setBytes(env, encodedKey);
+////
+//////            jbyteArray bytes = object->crypto.decryptNative(env, object->encryptedString.toByteArray(env));
+//////            conversion = JavaString(env, bytes).get();
+////
+//////            conversion = object->encryptedString.get();
+////            break;
+//
+//        case RESOURCE_STRINGS_ALGORITHM:
+//
+//            CryptoHelper cryptoHelper(env);
+//            return cryptoHelper.decrypt(env, object->encryptedString.toJavaString(env));
+//
+////            const char* bytes = object->getKey(env, NATIVE_STRINGS_ALGORITHM).c_str();
+////            int size = std::strlen(bytes);
+////
+////            jbyte *data = (jbyte *) bytes;
+////            jbyteArray keyBytes = env->NewByteArray(size);
+////            env->SetByteArrayRegion(keyBytes, 0, size, data);
+////
+////            bytes = object->encryptedString.get().c_str();
+////            size = std::strlen(bytes);
+////
+////            data = (jbyte *) bytes;
+////            jbyteArray valueBytes = env->NewByteArray(size);
+////            env->SetByteArrayRegion(valueBytes, 0, size, data);
+//
+////            jbyteArray decodedKeyBytes = Base64::decodeBase64( env, keyBytes );
+//
+//        }
+//
+//        jstring result = env->NewStringUTF(conversion.c_str());
+//        JavaExceptionUtils::checkException(env);
+//        return result;
+//    }
     return NULL;
 }
