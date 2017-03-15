@@ -38,6 +38,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManagerFactory;
 
+import static android.R.attr.data;
+
 public class Network extends NativeObject {
 
     private static final int BASE = 0;
@@ -53,7 +55,7 @@ public class Network extends NativeObject {
     public String resultString;
 
     public static native Network getInstance();
-    public Network() {}
+    protected Network() {}
 
 //
 //    /**
@@ -158,11 +160,14 @@ public class Network extends NativeObject {
 
     private DefaultHttpClient getSSLClient() {
         DefaultHttpClient client = new DefaultHttpClient();
+        CertificateFactory cf = null;
+        InputStream caInput = null;
+        Certificate ca = null;
         try {
 
-            CertificateFactory cf = CertificateFactory.getInstance(X_509);
-            InputStream caInput = new ByteArrayInputStream(getBytes());
-            Certificate ca = null;
+            cf = CertificateFactory.getInstance(X_509);
+            caInput = new ByteArrayInputStream(getBytes());
+
             try { ca = cf.generateCertificate(caInput); }
             catch (Exception e) { e.printStackTrace(); }
 
@@ -193,7 +198,9 @@ public class Network extends NativeObject {
             sr.register(new Scheme(HTTPS, ssf, 443));
 
             return new DefaultHttpClient(ccm, client.getParams());
-        } catch (Exception ex) {
+        }
+        catch(Exception e) {
+            new Exception(String.format("cf: %s, caInput: %s, ca: %s", cf, caInput, ca), e).printStackTrace();
             return null;
         }
     }

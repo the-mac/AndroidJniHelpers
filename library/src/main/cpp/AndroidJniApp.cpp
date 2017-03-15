@@ -52,6 +52,7 @@ void AndroidJniApp::initialize(JNIEnv *env)
     cacheStaticSignature(env, "Instance", "()Lus/the/mac/android/jni/helpers/AndroidJniApp;");
     cacheSignature(env, "getString", "(I)Ljava/lang/String;");
     cacheSignature(env, "getFilesDir", "()Ljava/io/File;");
+    cacheSignature(env, "getFilesDirectory", "()Ljava/lang/String;");
     cacheSignature(env, "openFileOutput", "(Ljava/lang/String;I)Ljava/io/FileOutputStream;");
     cacheSignature(env, "openFileInput", "(Ljava/lang/String;)Ljava/io/FileInputStream;");
 //    addNativeSignature("decryptString", (void *) AndroidJniApp::decryptString, "(I)Ljava/lang/String;");
@@ -78,6 +79,13 @@ jobject AndroidJniApp::Instance(JNIEnv *env)
 }
 
 jstring AndroidJniApp::getFilesDir(JNIEnv *env)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return (jstring) result;
+}
+
+jstring AndroidJniApp::getFilesDirectory(JNIEnv *env)
 {
     jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__));
     JavaExceptionUtils::checkException(env);

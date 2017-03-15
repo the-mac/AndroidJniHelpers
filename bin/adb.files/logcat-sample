@@ -1,0 +1,103 @@
+D/DefContainer( 9458): Copying /data/local/tmp/us.the.mac.reel.life to base.apk
+D/PackageManager(  967): Renaming /data/app/vmdl763908944.tmp to /data/app/us.the.mac.reel.life-1, and oldCodePath : null
+V/BackupManagerService(  967): restoreAtInstall pkg=us.the.mac.reel.life token=1 restoreSet=0
+D/BackupManagerService(  967): Received broadcast Intent { act=android.intent.action.PACKAGE_ADDED dat=package:us.the.mac.reel.life flg=0x4000010 (has extras) }
+W/BackupManagerService(  967): Removing schedule queue dupe of us.the.mac.reel.life
+I/ActivityManager(  967): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=us.the.mac.reel.life/.activities.SplashScreen (has extras)} from uid 2000 on display 0
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{289741 #32 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{289741 #32 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=9636 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+I/DEBUG   (  318): pid: 9636, tid: 9636, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 9636) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=9696 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+I/DEBUG   (  318): pid: 9696, tid: 9696, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 9696) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=9780 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+I/DEBUG   (  318): pid: 9780, tid: 9780, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 9780) has died
+W/ActivityManager(  967): Force removing ActivityRecord{2ca464e6 u0 us.the.mac.reel.life/.activities.SplashScreen t32}: app died, no saved state
+I/ActivityManager(  967): Force stopping us.the.mac.reel.life appid=10176 user=0: from pid 10677
+I/ActivityManager(  967): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=us.the.mac.reel.life/.activities.SplashScreen (has extras)} from uid 2000 on display 0
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{303571b8 #33 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{303571b8 #33 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+D/ContextHelper(  967): convertTheme. context->name=us.the.mac.reel.life themeResourceId=16973831
+D/SplitWindow(  967): check instance of lgWin Window{7abf164 u0 Starting us.the.mac.reel.life}
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=10739 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+I/SystemUI[Framework](  967): PhoneWindowManager.updateSystemUiVisibilityLw() :visibility=0x0, pkg=us.the.mac.reel.life
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:21 22 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 10739, tid: 10739, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 10739) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=10787 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:21 22 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 10787, tid: 10787, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 10787) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=10836 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:21 22 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 10836, tid: 10836, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 10836) has died
+W/ActivityManager(  967): Force removing ActivityRecord{3bb7ab91 u0 us.the.mac.reel.life/.activities.SplashScreen t33}: app died, no saved state
+I/ActivityManager(  967): Force stopping us.the.mac.reel.life appid=10176 user=0: from pid 10937
+I/ActivityManager(  967): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=us.the.mac.reel.life/.activities.SplashScreen (has extras)} from uid 2000 on display 0
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{2b343819 #34 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+D/ActivityManager(  967): setTaskToReturnTo : TaskRecord{2b343819 #34 A=us.the.mac.reel.life U=0 sz=0} / mTaskToReturnTo = 1
+D/ContextHelper(  967): convertTheme. context->name=us.the.mac.reel.life themeResourceId=16973831
+D/SplitWindow(  967): check instance of lgWin Window{2b473cd5 u0 Starting us.the.mac.reel.life}
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=10976 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+I/SystemUI[Framework](  967): PhoneWindowManager.updateSystemUiVisibilityLw() :visibility=0x0, pkg=us.the.mac.reel.life
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:22 12 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 10976, tid: 10976, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 10976) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=11000 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:22 21 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 11000, tid: 11000, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 11000) has died
+I/ActivityManager(  967): Start proc us.the.mac.reel.life for activity us.the.mac.reel.life/.activities.SplashScreen: pid=11023 uid=10176 gids={50176, 9997, 3003} abi=armeabi-v7a
+D/DEBUG   (  318): lr-x------ u0_a176  u0_a176           2017-03-10 17:22 22 -> /data/app/us.the.mac.reel.life-1/base.apk
+I/DEBUG   (  318): pid: 11023, tid: 11023, name: e.mac.reel.life  >>> us.the.mac.reel.life <<<
+I/DEBUG   (  318):     #00 pc 000414a4  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so
+I/DEBUG   (  318):     #01 pc 00041407  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ServiceApplication::Instance(_JNIEnv*)+30)
+I/DEBUG   (  318):     #02 pc 0003f8e9  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (ReelNetwork::hasToken(_JNIEnv*)+40)
+I/DEBUG   (  318):     #03 pc 0002d249  /data/app/us.the.mac.reel.life-1/lib/arm/libnative-lib.so (Java_us_the_mac_reel_life_activities_SplashScreen_loadResources+68)
+I/DEBUG   (  318):     #04 pc 00203271  /data/dalvik-cache/arm/data@app@us.the.mac.reel.life-1@base.apk@classes.dex
+I/ActivityManager(  967): Process us.the.mac.reel.life (pid 11023) has died
+W/ActivityManager(  967): Force removing ActivityRecord{aa9b0de u0 us.the.mac.reel.life/.activities.SplashScreen t34}: app died, no saved state

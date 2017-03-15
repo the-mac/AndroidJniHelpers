@@ -30,6 +30,8 @@ public:
 
     jstring getFilesDir(JNIEnv *env);
 
+    jstring getFilesDirectory(JNIEnv *env);
+
     jobject openFileOutput(JNIEnv *env, jstring path, jint mode);
 
     jobject openFileInput(JNIEnv *env, jstring path);

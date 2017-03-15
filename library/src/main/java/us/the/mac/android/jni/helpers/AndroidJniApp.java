@@ -31,4 +31,5 @@ public class AndroidJniApp extends Application {
         super.onTerminate();
         Log.d(getClass().getName(), "Called AndroidJniApp.onTerminate");
     }
+    public String getFilesDirectory() { return Instance().getFilesDir().toString(); }
 }

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# TO CHANGE DIRECTORY QUICKLY: cd the-mac/AndroidJni/AndroidJniHelpers
+# TO CHANGE DIRECTORY QUICKLY: cd the-mac/AndroidJni/AndroidJniHelpers# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --setup LGLS99021ecc9f2
 # TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --wifi
+# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --reset us.the.mac.reel.life --reboot
+# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --logs us.the.mac.reel.life
 
 debug=0
 
@@ -11,7 +13,25 @@ fi
 if [[ $@ == *--debug* ]] ; then
 debugFlag="--debug"
 fi
+function showLogs() {
 
+    if [[ $2 == *--export* ]] ; then
+        pid=$(adb shell 'ps' 2>&1 | grep $1 | awk '{print $2}')
+
+        if [[ -z $pid ]] ; then
+            echo "No process matching $1" && exit 1
+        fi
+
+        logFileName="logcat-$(date +%Y%m%d-%H%M).log"
+        adb logcat -v threadtime | grep " $pid " > "bin/adb.files/$logFileName"
+        echo -n "Exporting logs to: $logFileName" && sleep 2
+
+    else
+        adb logcat "$1" | bin/adb.files/coloredlogcat.py
+#        adb logcat | grep "$1"
+#        cat bin/adb.files/logcat-sample | bin/adb.files/coloredlogcat.py
+    fi
+}
 function checkDevices() {
   devices=$(adb devices)
   echo "$devices" > bin/adb.files/devices
@@ -51,7 +71,7 @@ function resetApp {
 	echo -n "Uninstalling app: " && adb uninstall $1 && sleep 2
 
 if [[ $2 == *--reboot* ]] ; then
-    echo -n "Rebooting device: " && adb reboot && sleep 2
+    echo -n "Rebooting device." && sleep 2
 fi
 }
 function connectToWifi() {
@@ -78,6 +98,8 @@ function execute_commands {
 
     if [[ $1 == *--devices* ]] ; then
 		checkDevices
+	elif [[ $1 == *--logs* ]] ; then
+		showLogs $2 $3 $4
 	elif [[ $1 == *--properties* ]] ; then
 		checkProperties $2
 	elif [[ $1 == *--property* ]] ; then
@@ -92,11 +114,12 @@ function execute_commands {
 		resetApp $2 $3
     else
         echo "Usage: bin/adb.bash --devices OR"
+        echo "Usage: bin/adb.bash --logs APP_PACKAGE_NAME [--export] OR"
         echo "Usage: bin/adb.bash --setup DEVICE_SERIAL_NAME OR"
         echo "Usage: bin/adb.bash --propties DEVICE_SERIAL_NAME OR"
         echo "Usage: bin/adb.bash --property DEVICE_SERIAL_NAME DEVICE_PROPERTY_NAME OR"
         echo "Usage: bin/adb.bash --disconnect OR"
-        echo "Usage: bin/adb.bash --reset [--reboot] OR"
+        echo "Usage: bin/adb.bash --reset APP_PACKAGE_NAME [--reboot] OR"
         echo "Usage: bin/adb.bash --wifi" && echo ""
         exit;
     fi
