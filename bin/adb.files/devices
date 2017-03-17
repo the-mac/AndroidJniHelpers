@@ -1,2 +1,4 @@
 List of devices attached
-10.0.0.3:5555	device
+adb server version (32) doesn't match this client (36); killing...
+* daemon started successfully *
+771e3fdc	device
