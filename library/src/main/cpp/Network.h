@@ -53,7 +53,7 @@ public:
     void setRequestTypeNative(JNIEnv *env, jint jintValue1);
 
 
-    static jobject getInstance(JNIEnv *env, jobject java_this);
+//    static jobject getInstance(JNIEnv *env, jobject java_this);
 
     jstring getResultString(JNIEnv *env);
 

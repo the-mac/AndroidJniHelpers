@@ -61,9 +61,6 @@ public class NativeObjectTest {
         destroyPersistedObject(object);
     }
 
-    @Test
-    native public void persistInvalidClass() throws Exception;
-
     @Test(expected = IllegalArgumentException.class)
     native public void persistNullObject() throws Exception;
 
@@ -92,7 +89,7 @@ public class NativeObjectTest {
     @Test(expected = IllegalArgumentException.class)
     native public void destroyNullObject() throws Exception;
 
-    @Test
+    @Test(expected = IllegalStateException.class)
     public void destroyFromJava() throws Exception {
         PersistedObject object = createPersistedObject();
         Assert.assertNotEquals(0, object.nPtr);

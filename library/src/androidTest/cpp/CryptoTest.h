@@ -27,10 +27,6 @@
 
 using namespace spotify::jni;
 
-namespace operators {
-    namespace nativity {
-        namespace requests {
-
 class CryptoTest : public JavaClass {
 public:
     CryptoTest() : JavaClass() {}
@@ -55,9 +51,5 @@ private:
   static void destroyInvalidClass(JNIEnv *env, jobject javaThis);
   static void destroyNullObject(JNIEnv *env, jobject javaThis);
 };
-
-} // namespace decodedstring
-} // namespace nativity
-} // namespace operators
 
 #endif // __CryptoTest_h__

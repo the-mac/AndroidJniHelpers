@@ -187,10 +187,6 @@ public class EncryptedStringTest {
         CryptoHelper object = createCryptoHelper();
         assertNotEquals(0, object.nPtr);
 
-        String decryptedString = object.decrypt(TestConstants.TEST_ENCRYPTED_RESOURCE);
-
-        assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
-
     }
 
     @Test
@@ -246,7 +242,7 @@ public class EncryptedStringTest {
     @Test(expected = IllegalArgumentException.class)
     native public void destroyNullObject() throws Exception;
 
-    @Test
+    @Test(expected = java.lang.UnsatisfiedLinkError.class)
     public void destroyFromJava() throws Exception {
         EncryptedString object = createEncryptedString();
         assertNotEquals(0, object.nPtr);

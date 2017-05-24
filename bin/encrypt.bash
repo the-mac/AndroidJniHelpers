@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 # Generates .encrypt file for class that was passed in
 # keyPath="" && clear && printf '\e[3J' && bin/encrypt.bash --key $keyPath && cat $keyPath
+# clear && printf '\e[3J' && bin/encrypt.bash --httpbin && cat bin/encrypt.files/generated/httpbin_root_certificate
+# hostName="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash --certficate $hostName $filePath && cat bin/encrypt.files/generated/$hostName.cert
 # inputString="Input String" && keyPath="" && clear && printf '\e[3J' && bin/encrypt.bash --encrypt "$inputString" $keyPath --silent
 # keyPath="" && className="" && filePath="" && clear && printf '\e[3J' && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
 # keyPath="" && className="" && filePath="" && clear && reset && bin/encrypt.bash $className $filePath $keyPath && cat bin/encrypt.files/generated/$className.encrypt
 
-debug=0
+debug=1
 
 if [[ $debug == 1 ]] ; then
 set -xe
+debugFlag="--debug"
 fi
 
 if [[ $@ == *--debug* ]] ; then
@@ -41,8 +44,21 @@ echo ""
 
 className=${1##*.} #String
 
+if [[ $1 == *--httpbin* ]] ; then
 
-if [[ $1 == *--encrypt* ]] ; then
+    host="httpbin.org"
+    filePath="../../../library/src/main/cpp"
+    echo -n | openssl s_client -connect $host:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > httpbin_root_certificate
+    cp httpbin_root_certificate ../generated/httpbin_root_certificate
+    cp httpbin_root_certificate $filePath/httpbin_root_certificate
+
+elif [[ $1 == *--certificate* ]] ; then
+
+    host="$2"
+    echo -n | openssl s_client -connect $host:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $1.cert
+    cp $1.cert ../generated/$1.cert
+
+elif [[ $1 == *--encrypt* ]] ; then
 	rm -rf bin/encrypt.files/build.encrypt
 	mkdir bin/encrypt.files/build.encrypt
 	cd bin/encrypt.files/build.encrypt
@@ -134,7 +150,9 @@ echo ""
 else
     echo "Usage: bin/encrypt.bash FULLY_QUALIFIED_CLASS_NAME FULLY_QUALIFIED_JAVA_FILE_PATH FULLY_QUALIFIED_KEY_PATH OR"
     echo "Usage: bin/encrypt.bash --encrypt INPUT_STRING_TO_ENCRYPT FULLY_QUALIFIED_KEY_PATH OR"
-    echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH" && echo ""
+    echo "Usage: bin/encrypt.bash --key FULLY_QUALIFIED_KEY_PATH OR"
+    echo "Usage: bin/encrypt.bash --certificate HOST_SERVER FULLY_QUALIFIED_PATH_FOR_OUTPUT OR"
+    echo "Usage: bin/encrypt.bash --httpbin" && echo ""
 	exit;
 fi
 

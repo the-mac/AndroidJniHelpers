@@ -24,8 +24,6 @@
 #include "CryptoHelper.h"
 #include "JSONObject.h"
 
-using namespace operators::nativity::requests;
-
 void CryptoTest::initialize(JNIEnv *env) {
 
     CryptoHelper helper;

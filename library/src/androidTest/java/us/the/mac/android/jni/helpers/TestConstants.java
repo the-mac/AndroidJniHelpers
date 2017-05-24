@@ -10,11 +10,15 @@ public class TestConstants {
     public static final String TEST_PARAMETER = "parameterValue";
     public static final String TEST_RESULT = "{ \"args\": {}, \"data\": \"\", \"files\": {}, \"form\": {}, \"headers\": { \"Accept\": \": application/json\", \"Content-Length\": \"0\", \"Content-Type\": \"application/json\", \"Host\": \"httpbin.org\", \"User-Agent\": \"Apache-HttpClient/UNAVAILABLE (java 1.4)\" }, \"json\": null, \"origin\": \"172.58.153.6\", \"url\": \"https://httpbin.org/post\" } ";
     public static final String TEST_HEADERS = "application/json";
-    public static final String TEST_ENCRYPTED = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
-    public static final String TEST_ENCRYPTION_KEY = "FHppc7om5dCkJGzhHYc5ug==\n";
+
     public static final String TEST_DECODED_ENCRYPTION_KEY = "\u0014zis&Ф$l\u001D9\n";
+    public static final String TEST_ENCRYPTION_KEY = "FHppc7om5dCkJGzhHYc5ug==\n";
+
+
+    public static final String TEST_ENCRYPTED = "Up cf ps opu up cf, Uibu jt uif rvftujpo";
     public static final String TEST_ENCRYPTED_RESOURCE = "HiYJ+OroGm0hwPv5hz9V0g==:Vm7lfkeQgs0p4G//PFjq7C9eePpwq3PU4mnIDLY2yQWmFITN2JeE7UfuQUb2sdqZ";
     public static final String TEST_DECRYPT = "To be or not to be, That is the question";
+
     public static final String TEST_BASE64_DECRYPT = "tO BE OR NOT TO BE, tHAT IS THE QUESTION";
     public static final String TEST_STRING = "hello, is it me you're looking for?";
     public static final String TEST_NULL_CHAR = "\0";

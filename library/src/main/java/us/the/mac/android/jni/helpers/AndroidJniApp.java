@@ -1,7 +1,10 @@
 package us.the.mac.android.jni.helpers;
 
 import android.app.Application;
+import android.content.res.AssetManager;
 import android.util.Log;
+
+import java.io.InputStream;
 
 /**
  * Created by christopher on 2/6/17.
@@ -32,4 +35,14 @@ public class AndroidJniApp extends Application {
         Log.d(getClass().getName(), "Called AndroidJniApp.onTerminate");
     }
     public String getFilesDirectory() { return Instance().getFilesDir().toString(); }
+
+    public InputStream openAssetFileInput(String file) {
+        try {
+            AssetManager assetManager = AndroidJniApp.Instance().getAssets();
+            return assetManager.open(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

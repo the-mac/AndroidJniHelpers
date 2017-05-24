@@ -43,7 +43,7 @@ void Network::initialize(JNIEnv *env)
     cacheSignature(env, "getResultString", "()Ljava/lang/String;");
     addNativeMethod("destroy", (void*)&Network::nativeDestroy, kTypeVoid, NULL);
     cacheSignature(env, "setResultString", "(Ljava/lang/String;)V");
-    addNativeSignature("getInstance", (void*)&Network::getInstance, "()Lus/the/mac/android/jni/helpers/Network;");
+//    addNativeSignature("getInstance", (void*)&Network::getInstance, "()Lus/the/mac/android/jni/helpers/Network;");
     addNativeSignature("getBytes", (void*)&Network::getBytes, "()[B");
     addNativeSignature("getHttpPost", (void*)&Network::getHttpPost, "()Lorg/apache/http/client/methods/HttpPost;");
     addNativeSignature("put", (void*)&Network::put, "(Ljava/lang/String;Ljava/lang/String;)V");
@@ -60,11 +60,11 @@ void Network::mapFields()
 //    mapField("requestUrl", kTypeString, &requestUrl);
 }
 
-jobject Network::getInstance(JNIEnv *env, jobject java_this)
-{
-    Network *network = new Network(env);
-    return network->thisObj;
-}
+//jobject Network::getInstance(JNIEnv *env, jobject java_this)
+//{
+//    Network *network = new Network(env);
+//    return network->thisObj;
+//}
 
 jstring Network::getResultString(JNIEnv *env)
 {

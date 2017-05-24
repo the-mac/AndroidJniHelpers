@@ -36,6 +36,8 @@ public:
 
     jobject openFileInput(JNIEnv *env, jstring path);
 
+    jobject openAssetFileInput(JNIEnv *env, jstring path);
+
     jstring decryptStringNative(JNIEnv *env, jint resource);
 
     static jstring decryptString(JNIEnv *env, jobject java_this, jint resource);

@@ -16,6 +16,7 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,12 +29,14 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManagerFactory;
@@ -54,7 +57,7 @@ public class Network extends NativeObject {
     private int retryCount = 3;
     public String resultString;
 
-    public static native Network getInstance();
+//    public static native Network getInstance();
     protected Network() {}
 
 //
@@ -130,15 +133,16 @@ public class Network extends NativeObject {
         setRequestType(requestType);
 
         String data = null;
-        try { data = getResult(); }
+        try { data = getResult(); }//new JSONObject(getResult()).toString(); }
+        catch(SSLHandshakeException e) { new Exception(String.format("Please check for your certificate in getBytes"), e).printStackTrace(); }
         catch(Exception e) { new Exception(String.format("retryCount: %d, requestJsonObject: %s, data: %s", retryCount, toJSONString(), data), e).printStackTrace(); }
 
         if(data == null && retryCount-- > 0) { return request(requestType); }
-        Log.e(getClass().getName(), String.format("retryCount: %d, requestJsonObject: %s,\n response length: %d, jsonObject: %s", retryCount, toJSONString(), data == null ? 0 : data.length(), data));
+        Log.e(getClass().getName(), String.format("retryCount: %d, requestJsonObject: %s,\n response length: %d, jsonObject: %s\n\n", retryCount, toJSONString(), data == null ? 0 : data.length(), data));
 
         return data;
     }
-    public String getResult() throws InterruptedException, ExecutionException {
+    public String getResult() throws Exception {
         return new AsyncTask<Void,Void,String>() {
             @Override protected String doInBackground(Void... params) {
                 try {
@@ -146,9 +150,8 @@ public class Network extends NativeObject {
                     InputStream in = response.getEntity().getContent();
                     return new java.util.Scanner(in).useDelimiter(A).next();
                 }
-                catch (ClientProtocolException e) { e.printStackTrace(); }
-                catch (IOException e) { e.printStackTrace(); }
-                return null;
+                catch (ClientProtocolException e) { e.printStackTrace(); return e.getMessage(); }
+                catch (Exception e) { e.printStackTrace(); return e.getMessage(); }
             }
 
             @Override protected void onPostExecute(String s) {
@@ -169,7 +172,10 @@ public class Network extends NativeObject {
             caInput = new ByteArrayInputStream(getBytes());
 
             try { ca = cf.generateCertificate(caInput); }
-            catch (Exception e) { e.printStackTrace(); }
+            catch (Exception e) {
+                e.printStackTrace();
+                return client;
+            }
 
             // Create a KeyStore containing our trusted CAs
             String keyStoreType = KeyStore.getDefaultType();

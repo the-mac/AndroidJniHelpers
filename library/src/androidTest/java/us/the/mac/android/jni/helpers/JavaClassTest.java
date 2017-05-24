@@ -71,17 +71,11 @@ public class JavaClassTest {
         }
     }
 
-    @Test
-    native public void getCachedMethod() throws Exception;
-
     @Test(expected = IllegalArgumentException.class)
     native public void getInvalidCachedMethod() throws Exception;
 
     @Test(expected = IllegalStateException.class)
     native public void getCachedMethodOnUninitialized() throws Exception;
-
-    @Test
-    native public void getCachedField() throws Exception;
 
     @Test(expected = IllegalArgumentException.class)
     native public void getInvalidCachedField() throws Exception;
@@ -94,4 +88,10 @@ public class JavaClassTest {
 
     @Test(expected = java.lang.NoSuchMethodError.class)
     native public void cacheInvalidMethod() throws Exception;
+
+    @Test
+    native public void getCachedField() throws Exception;
+
+    @Test
+    native public void getCachedMethod() throws Exception;
 }

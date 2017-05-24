@@ -35,7 +35,6 @@ void NativeObjectTest::initialize(JNIEnv *env) {
   addNativeMethod("nativeIsPersistenceEnabled", (void*)nativeIsPersistenceEnabled, kTypeVoid, NULL);
   addNativeMethod("isPersistenceEnabledWithoutInit", (void*)isPersistenceEnabledWithoutInit, kTypeVoid, NULL);
   addNativeMethod("destroyPersistedObject", (void*)&destroyPersistedObject, kTypeVoid, persistedObjectName, NULL);
-  addNativeMethod("persistInvalidClass", (void*)&persistInvalidClass, kTypeVoid, NULL);
   addNativeMethod("persistNullObject", (void*)&persistNullObject, kTypeVoid, NULL);
   addNativeMethod("destroyInvalidClass", (void*)&destroyInvalidClass, kTypeVoid, NULL);
   addNativeMethod("destroyNullObject", (void*)&destroyNullObject, kTypeVoid, NULL);
@@ -83,13 +82,6 @@ void NativeObjectTest::destroyPersistedObject(JNIEnv *env, jobject javaThis, job
   registry.add(env, new PersistedObject(env));
   PersistedObject *persistedObject = registry.getNativeInstance<PersistedObject>(env, object);
   persistedObject->destroy(env, object);
-}
-
-void NativeObjectTest::persistInvalidClass(JNIEnv *env, jobject javaThis) {
-  LOG_INFO("Starting test: persistInvalidClass");
-  PersistedObject persistedObject(env);
-  persistedObject.mapFields();
-  persistedObject.persist(env, javaThis);
 }
 
 void NativeObjectTest::persistNullObject(JNIEnv *env, jobject javaThis) {

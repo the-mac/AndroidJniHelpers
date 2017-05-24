@@ -125,7 +125,6 @@ public class NetworkTest {
 
     @Test
     public void networkRequest() throws Exception {
-//        MACRequests object = createMACRequests();
         MACRequests object = MACRequests.getInstance();
         assertNotEquals(0, object.nPtr);
 

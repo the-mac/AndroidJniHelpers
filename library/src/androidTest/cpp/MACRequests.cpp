@@ -26,6 +26,7 @@ MACRequests::MACRequests(JNIEnv *env) : Network(env)
 
 void MACRequests::initialize(JNIEnv *env)
 {
+    setClass(env);
     cacheConstructor(env);
 
     addNativeSignature("getInstance", (void*)&MACRequests::getInstance, "()Lus/the/mac/android/jni/helpers/MACRequests;");
