@@ -35,9 +35,9 @@ public:
 
     jstring decryptNative(JNIEnv *env, jint algorithm);
 
-    jobject getFileStream(JNIEnv *env, jstring fileName);
-
     virtual string getKey(JNIEnv *env, jint algorithm);
+
+//    virtual string getCache(JNIEnv *env); // USE FOR LOCAL FILE
 
     /**
     * The getBytes method is used to get the decrypt key
@@ -45,7 +45,11 @@ public:
     */
     static jbyteArray getBytes(JNIEnv *env, jobject java_this);
 
+    static jobject getFileStream(JNIEnv *env, jstring fileName);
+
     static jstring decrypt(JNIEnv *env, jobject java_this, jint algorithm);
+
+    static jstring getS(JNIEnv *env, jint index);
 
 public:
     JavaString encryptedString;

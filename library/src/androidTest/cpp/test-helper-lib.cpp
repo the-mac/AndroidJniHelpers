@@ -7,6 +7,7 @@
 #include "EncryptedStringTest.h"
 #include "JavaClassTest.h"
 #include "NetworkTest.h"
+#include "ByteArrayTest.h"
 
 #include <EncryptedString.h>
 #include <CryptoHelper.h>
@@ -24,6 +25,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     }
 
     // BASIC JAVA TESTS
+    gClasses.add(env, new ByteArrayTest(env));
     gClasses.add(env, new JavaClassTest(env));
     gClasses.add(env, new NativeObjectTest(env));
 
@@ -40,4 +42,19 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
 
     LOG_INFO("Initialization complete");
     return JAVA_VERSION;
+}
+extern "C"
+jstring
+Java_us_the_mac_android_jni_helpers_AndroidJniApp_getEncrypted(JNIEnv* env, jclass _class, jint content) {
+    return EncryptedString::getS(env, content);
+}
+extern "C"
+jstring
+Java_us_the_mac_android_jni_helpers_AndroidJniApp_getS(JNIEnv* env, jclass _class, jint content) {
+
+    EncryptedString es = EncryptedString(env);
+    jstring stringResource = EncryptedString::getS(env, content);
+    es.encryptedString = env->GetStringUTFChars(stringResource, JNI_FALSE);
+
+    return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
 }

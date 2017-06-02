@@ -6,7 +6,9 @@ import android.net.Uri;
 import com.spotify.jni.NativeObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.util.Scanner;
 
 import static android.R.attr.path;
@@ -50,6 +52,17 @@ public class EncryptedString extends NativeObject {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String readFromFile(String filePath, int position, int size)
+            throws IOException {
+        RandomAccessFile file = new RandomAccessFile(filePath, "r");
+        file.seek(position);
+        byte[] bytes = new byte[size];
+        file.read(bytes);
+        file.close();
+        return new String(bytes);
+
     }
 
     public static EncryptedString testingInstance() { return new EncryptedString(); }

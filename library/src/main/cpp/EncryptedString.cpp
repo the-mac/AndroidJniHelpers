@@ -12,6 +12,7 @@
 #include "Base64.h"
 #include "CryptoHelper.h"
 #include "AndroidJniApp.h"
+#include "FileOutputStream.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ static const std::string base64_chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 "abcdefghijklmnopqrstuvwxyz"
                 "0123456789+/";
+
+static vector<int> *elems = new vector<int>();
 
 EncryptedString::EncryptedString() : NativeObject() {}
 
@@ -253,4 +256,39 @@ jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
         return result;
     }
     return NULL;
+}
+
+jstring EncryptedString::getS(JNIEnv *env, jint index) {
+
+    jstring strings = env->NewStringUTF(".strings");
+    AndroidJniApp context(env, AndroidJniApp::Instance(env));
+    File dFile(env, context.getFilesDirectory(env), strings);
+
+    if(elems->size() == 0) {
+        const int content[] = {
+#include ".ints"
+        };
+        elems = new vector<int>(content, content + sizeof content / sizeof content[0]);
+
+        if(!dFile.exists(env)) {
+            jstring native_strings = env->NewStringUTF("native_strings");
+            Scanner s = Scanner(env, getFileStream(env, native_strings));
+            s.useDelimiter(env, "\\A");
+
+            FileOutputStream dOut(env, env->GetStringUTFChars(dFile.toString(env, dFile.thisObj), JNI_FALSE));
+            dOut.write(env, env->GetStringUTFChars(s.next(env), JNI_FALSE));
+            dOut.close(env);
+        }
+    }
+
+    jint size = elems->at(index);
+    jint position = (accumulate(elems->begin(), elems->begin() + index, 0));
+    jclass _class = env->FindClass("us/the/mac/android/jni/helpers/EncryptedString");
+    jmethodID method = env->GetStaticMethodID(_class, "readFromFile", "(Ljava/lang/String;II)Ljava/lang/String;");
+
+    jstring fileName = dFile.toString(env, dFile.thisObj);
+
+    jstring result = (jstring) env->CallStaticObjectMethod(_class, method, fileName, position, size);
+    JavaExceptionUtils::checkException(env);
+    return result;
 }

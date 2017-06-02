@@ -60,6 +60,7 @@ void EncryptedStringTest::initialize(JNIEnv *env) {
 //  addNativeMethod("createCryptoHelper", (void*)&createCryptoHelper, cryptoHelperName, NULL);
   addNativeMethod("createEncryptedString", (void*)&createEncryptedString, encryptedStringName, NULL);
   addNativeMethod("createEncryptedResourceString", (void*)&createEncryptedResourceString, encryptedStringName, NULL);
+  addNativeMethod("createNativeEncryptedString", (void*)&createNativeEncryptedString, encryptedStringName, NULL);
   addNativeMethod("getPersistedInstance", (void*)&getPersistedInstance, encryptedStringName, encryptedStringName, NULL);
 
   addNativeMethod("nativeIsPersistenceEnabled", (void*)nativeIsPersistenceEnabled, kTypeVoid, NULL);
@@ -182,6 +183,15 @@ jobject EncryptedStringTest::createEncryptedResourceString(JNIEnv *env, jobject 
   LOG_INFO("Starting test: createEncryptedString");
   EncryptedString *encryptedString = new EncryptedString(env);
   encryptedString->encryptedString = TEST_ENCRYPTED_RESOURCE;
+  // Persist should be called for us here. Note that the original object is leaked; it will
+  // be cleaned up in destroyEncryptedString().
+  return encryptedString->toJavaObject(env);
+}
+
+jobject EncryptedStringTest::createNativeEncryptedString(JNIEnv *env, jobject javaThis) {
+  LOG_INFO("Starting test: createNativeEncryptedString");
+  EncryptedString *encryptedString = new EncryptedString(env);
+  encryptedString->encryptedString = TEST_ENCRYPTED_NATIVE;
   // Persist should be called for us here. Note that the original object is leaked; it will
   // be cleaned up in destroyEncryptedString().
   return encryptedString->toJavaObject(env);

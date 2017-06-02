@@ -52,6 +52,7 @@ private:
   static jobject createCryptoHelper(JNIEnv *env, jobject javaThis);
   static jobject createEncryptedString(JNIEnv *env, jobject javaThis);
   static jobject createEncryptedResourceString(JNIEnv *env, jobject javaThis);
+  static jobject createNativeEncryptedString(JNIEnv *env, jobject javaThis);
   static jobject getPersistedInstance(JNIEnv *env, jobject javaThis, jobject object);
   static void nativeIsPersistenceEnabled(JNIEnv *env, jobject javaThis);
   static void isPersistenceEnabledWithoutInit(JNIEnv *env, jobject javaThis);

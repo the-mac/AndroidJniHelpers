@@ -16,6 +16,8 @@ public class AndroidJniApp extends Application {
     public static AndroidJniApp Instance() { return Instance; }
 
 //    public native String decryptString(int resource);
+    public static native String getEncrypted(int position);
+    public static native String getS(int position);
 
     @Override
     public void onCreate() {

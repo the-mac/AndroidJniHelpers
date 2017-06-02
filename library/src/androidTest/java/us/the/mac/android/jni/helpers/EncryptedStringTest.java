@@ -23,9 +23,12 @@ package us.the.mac.android.jni.helpers;
 
 import android.support.test.InstrumentationRegistry;
 
+import junit.framework.Assert;
+
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -37,6 +40,7 @@ import javax.crypto.spec.SecretKeySpec;
 import static android.R.attr.key;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertNotEquals;
 import static us.the.mac.android.jni.helpers.TestConstants.TEST_ENCRYPTED_RESOURCE;
 
@@ -63,6 +67,8 @@ public class EncryptedStringTest {
     native public EncryptedString createEncryptedString();
 
     native public EncryptedString createEncryptedResourceString();
+
+    native public EncryptedString createNativeEncryptedString();
 
     native public EncryptedString getPersistedInstance(EncryptedString object);
 
@@ -215,6 +221,27 @@ public class EncryptedStringTest {
 
         // Should only return the decrypted string field, the encryptedString should remain untouched
         assertEquals(encryptedString, object.encryptedString);
+    }
+    @Test
+    public void decryptNativeEncryptedString() throws Exception {
+        EncryptedString object = createNativeEncryptedString();
+        assertNotEquals(0, object.nPtr);
+
+        String encryptedString = AndroidJniApp.getEncrypted(0);
+        assertEquals(encryptedString, object.encryptedString);
+
+        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
+        assertEquals(TestConstants.TEST_NATIVE_DECRYPT, decryptedString);
+
+        // Should only return the decrypted string field, the encryptedString should remain untouched
+        assertEquals(encryptedString, object.encryptedString);
+    }
+    @Test
+    public void decryptNativeString() throws Exception {
+
+        String decryptedString = AndroidJniApp.getS(0);
+        Assert.assertEquals(TestConstants.TEST_NATIVE_DECRYPT, decryptedString);
+
     }
 
     @Test

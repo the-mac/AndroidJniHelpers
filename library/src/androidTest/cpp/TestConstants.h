@@ -14,6 +14,8 @@
 #define TEST_ENCRYPTED "Up cf ps opu up cf, Uibu jt uif rvftujpo"
 #define TEST_ENCRYPTION_KEY "FHppc7om5dCkJGzhHYc5ug==\n"
 #define TEST_ENCRYPTED_RESOURCE "HiYJ+OroGm0hwPv5hz9V0g==:Vm7lfkeQgs0p4G//PFjq7C9eePpwq3PU4mnIDLY2yQWmFITN2JeE7UfuQUb2sdqZ"
+#define TEST_ENCRYPTED_NATIVE "U6DBcoin5K3fgbnVBpOPVg==:C1XylZZ6EePvFkNcR1xkx2CBFCzuO6tPoxZBlInkKsX/SrqNKaBKoUm8IoOSb6Yj"
+
 #define TEST_DECRYPT "To be or not to be, That is the question"
 #define TEST_STRING "hello, is it me you're looking for?"
 #define TEST_NULL_CHAR "\0"
