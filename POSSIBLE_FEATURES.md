@@ -1,4 +1,88 @@
 #Possible Features:
+##Cache Static Methods
+Will making the jclass property static make static methods easier?
+
+Try testing whether JavaClassTest passes with jclass _clazz and isInitialized declared static!
+
+If the test passes create getClass method to be used, and test for TestObject & JavaClassTest
+- http://en.cppreference.com/w/cpp/language/static
+- https://stackoverflow.com/questions/34222703/how-to-override-static-method-of-template-class-in-derived-class
+
+What getStaticMethod usage would look like:
+```c++
+
+    const char* AndroidJniApp::getSignature(const char* functionName)
+    {
+        return "us/the/mac/android/jni/helpers/AndroidJniApp." functionName;
+    }
+
+    jobject AndroidJniApp::Instance(JNIEnv *env)
+    {
+        jmethodID method = JavaClass::getStaticMethod(AndroidJniApp::getSignature(__FUNCTION__))
+        jobject result = env->CallStaticObjectMethod(_class, method);
+        JavaExceptionUtils::checkException(env);
+        return result;
+    }
+
+```
+
+What getStaticMethod implmentation/usage would look like:
+```c++
+
+        jmethodID JavaClass::getStaticMethod(const char *method_name) const {
+            if (!isInitialized()) {
+                JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
+                                                         kTypeIllegalStateException,
+                                                         "Cannot call getMethod without class info (forgot to merge?)");
+                return NULL;
+            }
+
+            const std::string key(method_name);
+            MethodMap::const_iterator mapFindIter = _static_methods->find(key);
+            if (mapFindIter == _static_methods->end()) {
+                JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
+                                                         kTypeIllegalArgumentException,
+                                                         "Static method '%s' is not cached in class '%s'",
+                                                         method_name, getCanonicalName());
+                return NULL;
+            }
+
+            return mapFindIter->second;
+        }
+
+```
+
+What cacheStaticSignature implmentation/usage would look like:
+```c++
+
+    cacheStaticSignature(env, "staticMethod", "()V");
+
+    void JavaClass::cacheStaticSignature(JNIEnv *env, const char *method_name, const char *signature) {
+        LOG_DEBUG("Caching static method '%s' in class '%s'", method_name, getSimpleName());
+        if (!isInitialized()) {
+            JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+                                                     "Attempt to call cacheMethod without having set class info");
+            return;
+        }
+
+        jmethodID method = env->GetStaticMethodID(_clazz_global.get(), method_name, signature);
+        JavaExceptionUtils::checkException(env);
+        if (method != NULL) {
+            _static_methods_global[getCanonicalName() "." method_name] = method;
+        } else {
+            JavaExceptionUtils::throwExceptionOfType(env, kTypeJavaClass(NoSuchMethodError),
+                                                     "Method '%s' (signature: %s) not found on class '%s'",
+                                                     method_name, signature,
+                                                     getCanonicalName());
+        }
+    }
+
+    ...
+
+    jobject response = AndroidJniApp::Instance(env);
+
+```
+
 
 ##Header Obfuscation (Inserted into main c/cpp file)
 

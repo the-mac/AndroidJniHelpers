@@ -31,7 +31,7 @@ namespace spotify {
                 _clazz_global(NULL), _clazz(NULL),
                 _methods(NULL), _fields(NULL),
                 _default_constructor(NULL) {
-            LOG_DEBUG("Creating new empty instance of class");
+//            LOG_DEBUG("Initializing empty instance of %s", getCanonicalName());
         }
 
         JavaClass::JavaClass(JNIEnv *env) :
@@ -42,13 +42,13 @@ namespace spotify {
             // However this won't work because initialize() is pure virtual, and such methods
             // cannot be called here because the object is in an incomplete state. So instead,
             // one needs to make sure that initialize(env) is called in the subclass' ctor.
-            LOG_DEBUG("Initializing new instance of class");
             _methods = &_methods_global;
             _fields = &_fields_global;
+//            LOG_DEBUG("Initializing new instance of %s", getCanonicalName());
         }
 
         JavaClass::~JavaClass() {
-            LOG_DEBUG("Destroying instance of class");
+            LOG_DEBUG("Destroying instance of %s", getCanonicalName());
         }
 
         bool JavaClass::isInitialized() const {
@@ -207,7 +207,7 @@ namespace spotify {
 
             return mapFindIter->second;
         }
-
+//
 //        jmethodID JavaClass::getStaticMethod(const char *method_name) const {
 //            if (!isInitialized()) {
 //                JavaExceptionUtils::throwExceptionOfType(JavaThreadUtils::getEnvForCurrentThread(),
@@ -373,7 +373,7 @@ namespace spotify {
             jmethodID method = env->GetStaticMethodID(_clazz_global.get(), method_name, signature);
             JavaExceptionUtils::checkException(env);
             if (method != NULL) {
-                _methods_global[method_name] = method;
+//                _static_methods_global[method_name] = method;
             } else {
                 JavaExceptionUtils::throwExceptionOfType(env, kTypeJavaClass(NoSuchMethodError),
                                                          "Method '%s' (signature: %s) not found on class '%s'",

@@ -70,18 +70,18 @@
 
 // Determines whether logging messages will be printed by JniHelpers
 #ifndef ENABLE_LOGGING
-#define ENABLE_LOGGING 0
+#define ENABLE_LOGGING 1
 #endif
 
 // Determines whether debug/info logging messages will be printed by JniHelpers
 #ifndef ENABLE_LOGGING_DEBUG
-#define ENABLE_LOGGING_DEBUG DEBUG
+#define ENABLE_LOGGING_DEBUG 0
 #endif
 
 #if ENABLE_LOGGING
 #if ANDROID
 #include <android/log.h>
-#define LOGGING_TAG "JniHelpers"
+#define LOGGING_TAG "us.the.mac.android.jni.helpers.JniHelpers"
 #if ENABLE_LOGGING_DEBUG
 #define LOG_DEBUG(...) __android_log_print(ANDROID_LOG_INFO, LOGGING_TAG, __VA_ARGS__)
 #define LOG_INFO(...) __android_log_print(ANDROID_LOG_INFO, LOGGING_TAG, __VA_ARGS__)
