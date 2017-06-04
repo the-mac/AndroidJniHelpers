@@ -18,7 +18,8 @@ using namespace spotify::jni;
 ClassRegistry gClasses;
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
-    LOG_INFO("Initializing JNI");
+    bool debug = ENABLE_LOGGING_DEBUG;
+    if(debug) LOG_WARN("Called JNI_OnLoad in test-helper-lib");
     JNIEnv *env = jniHelpersInitialize(jvm);
     if (env == NULL) {
         return -1;
@@ -40,7 +41,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     gClasses.add(env, new Network(env));
     gClasses.add(env, new MACRequests(env));
 
-    LOG_INFO("Initialization complete");
+    if(debug) LOG_WARN("Initialization complete");
     return JAVA_VERSION;
 }
 extern "C"
@@ -51,7 +52,6 @@ Java_us_the_mac_android_jni_helpers_AndroidJniApp_getEncrypted(JNIEnv* env, jcla
 extern "C"
 jstring
 Java_us_the_mac_android_jni_helpers_AndroidJniApp_getS(JNIEnv* env, jclass _class, jint content) {
-
     EncryptedString es = EncryptedString(env);
     jstring stringResource = EncryptedString::getS(env, content);
     es.encryptedString = env->GetStringUTFChars(stringResource, JNI_FALSE);

@@ -1,11 +1,20 @@
 package us.the.mac.android.jni.helpers;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by christopher on 2/6/17.
@@ -17,14 +26,23 @@ public class AndroidJniApp extends Application {
 
     public AndroidJniApp() { Instance = this; }
     public static AndroidJniApp Instance() { return Instance; }
+
+    public static String getProcessName(Context context) {
+        final File cmdline = new File("/proc/" + android.os.Process.myPid() + "/cmdline");
+        try (BufferedReader reader = new BufferedReader(new FileReader(cmdline))) {
+            return reader.readLine();
+        } catch (IOException e) { return null; }
+    }
     public static boolean isJUnitTest() {
         try {
-            boolean isJUnitTest = mTestingBundle.hasExtra("isJUnitTest");
-            Log.d(AndroidJniApp.class.getName(), "isJUnitTest = "+isJUnitTest);
+            String processName = getProcessName(Instance());
+            boolean isJUnitTest = processName.contains(".test");
+            Log.d(AndroidJniApp.class.getName(), "Called isJUnitTest = "+isJUnitTest);
+
             return isJUnitTest;
         }
         catch (final Exception e) {
-            Log.d(AndroidJniApp.class.getName(), "Defaulting isJUnitTest = "+false);
+            Log.d(AndroidJniApp.class.getName(), "Called isJUnitTest defaulting isJUnitTest = "+false);
             return false;
         }
     }
@@ -62,7 +80,4 @@ public class AndroidJniApp extends Application {
         return null;
     }
 
-//    static {
-//        System.loadLibrary(isJUnitTest() ? "test-helper-lib" : "jni-helper-lib");
-//    }
 }
