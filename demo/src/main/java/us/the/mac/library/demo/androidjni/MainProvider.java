@@ -9,6 +9,11 @@ import android.util.Log;
 import us.the.mac.android.jni.helpers.AndroidJniApp;
 
 public class MainProvider extends ContentProvider {
+	static {
+		Log.d(MainProvider.class.getName(), "Called static {...} successfully");
+		// SET AUTHORITY: us.the.mac.demo.library.androidjni.provider
+		loadAPIKey();
+	}
 	public static final String WELCOME_MESSAGE = AndroidJniApp.getS(0);
 
 	@Override
@@ -36,9 +41,5 @@ public class MainProvider extends ContentProvider {
 	@Override public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
 		return 0;
 	}
-
-	static {
-		Log.d(MainProvider.class.getName(), "Called static {...} successfully");
-		// SET AUTHORITY: us.the.mac.demo.library.androidjni.provider
-	}
+	static native void loadAPIKey();
 }

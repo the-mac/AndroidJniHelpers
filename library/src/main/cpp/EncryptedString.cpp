@@ -6,10 +6,9 @@
 #include <sstream>
 #include <algorithm>
 #include <cstring>
+#include "SharedPreferences.h"
 #include "EncryptedString.h"
 #include "Scanner.h"
-#include "File.h"
-#include "Base64.h"
 #include "CryptoHelper.h"
 #include "AndroidJniApp.h"
 #include "FileOutputStream.h"
@@ -187,10 +186,16 @@ string EncryptedString::getKey(JNIEnv *env, jint algorithm)
     case RESOURCE_STRINGS_ALGORITHM:
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     case NATIVE_STRINGS_ALGORITHM:
-        jstring native_key = env->NewStringUTF("native_key");
-        Scanner s = Scanner(env, getFileStream(env, native_key));
-        s.useDelimiter(env, "\\A");
-        return env->GetStringUTFChars(s.next(env), JNI_FALSE);
+//        jstring native_key = env->NewStringUTF("native_key");
+//        Scanner s = Scanner(env, getFileStream(env, native_key));
+//        s.useDelimiter(env, "\\A");
+//        return env->GetStringUTFChars(s.next(env), JNI_FALSE);
+
+        AndroidJniApp context(env, AndroidJniApp::Instance(env));
+        SharedPreferences prefs(env, context.thisObj);
+
+        jstring tokenKey = env->NewStringUTF("apiKey");
+        return env->GetStringUTFChars(prefs.getString(env, tokenKey, NULL), JNI_FALSE);
     }
 }
 

@@ -78,13 +78,14 @@ public class Network extends NativeObject {
     public String request(int requestType) {
 
         setRequestType(requestType);
+        --retryCountRemaining;
 
         String data = null;
         try { data = getResult(); }//new JSONObject(getResult()).toString(); }
         catch(SSLHandshakeException e) { new Exception(String.format("Please check for your certificate in getBytes"), e).printStackTrace(); }
         catch(Exception e) { new Exception(String.format("retryCountRemaining: %d, requestJsonObject: %s, data: %s", retryCountRemaining, toJSONString(), data), e).printStackTrace(); }
 
-        if(data == null && retryCountRemaining-- > 0) { return request(requestType); }
+        if(data == null && retryCountRemaining > 0) { return request(requestType); }
         Log.e(getClass().getName(), String.format("Called request retryCountRemaining: %d, requestJsonObject: %s,\n response length: %d, jsonObject: %s\n\n", retryCountRemaining, toJSONString(), data == null ? 0 : data.length(), data));
 
         return data;

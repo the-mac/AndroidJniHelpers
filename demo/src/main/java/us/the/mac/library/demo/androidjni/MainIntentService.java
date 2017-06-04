@@ -12,6 +12,10 @@ import android.widget.Toast;
 import us.the.mac.android.jni.helpers.AndroidJniApp;
 
 public class MainIntentService extends IntentService {
+    static {
+        Log.d(MainIntentService.class.getName(), "Called static {...} successfully");
+        // SET AUTHORITY: us.the.mac.demo.library.androidjni.provider
+    }
     public static final String PARAM_IN_MSG = "imsg";
     public static final String WELCOME_MESSAGE = AndroidJniApp.getS(0);
  
@@ -36,8 +40,4 @@ public class MainIntentService extends IntentService {
         });
     }
 
-    static {
-        Log.d(MainIntentService.class.getName(), "Called static {...} successfully");
-        // SET AUTHORITY: us.the.mac.demo.library.androidjni.provider
-    }
 }

@@ -52,7 +52,6 @@ Java_us_the_mac_android_jni_helpers_AndroidJniApp_getEncrypted(JNIEnv* env, jcla
 extern "C"
 jstring
 Java_us_the_mac_android_jni_helpers_AndroidJniApp_getS(JNIEnv* env, jclass _class, jint content) {
-
     EncryptedString es = EncryptedString(env);
     jstring stringResource = EncryptedString::getS(env, content);
     es.encryptedString = env->GetStringUTFChars(stringResource, JNI_FALSE);
