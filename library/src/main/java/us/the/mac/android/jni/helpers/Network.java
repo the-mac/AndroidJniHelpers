@@ -1,8 +1,6 @@
 package us.the.mac.android.jni.helpers;
 
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.spotify.jni.NativeObject;
@@ -16,7 +14,6 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -29,10 +26,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
@@ -40,8 +35,6 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManagerFactory;
-
-import static android.R.attr.data;
 
 public class Network extends NativeObject {
 
@@ -54,56 +47,10 @@ public class Network extends NativeObject {
     private static final String TLS = "TLS";
     private static final String HTTPS = "https";
 
-    private int retryCount = 3;
+    private int retryCountRemaining = 3;
     public String resultString;
 
-//    public static native Network getInstance();
     protected Network() {}
-
-//
-//    /**
-//     * Called to save supplied value in shared preferences against given key.
-//     * @param context Context of caller activity
-//     * @param key Key of value to save against
-//     * @param value Value to save
-//     */
-//    public void saveToPrefs(String key, String value) {
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ReelApplication.Instance());
-//        final SharedPreferences.Editor editor = prefs.edit();
-//        editor.putString(key,value);
-//        editor.commit();
-//    }
-//
-//    /**
-//     * Called to retrieve required value from shared preferences, identified by given key.
-//     * Default value will be returned of no value found or error occurred.
-//     * @param context Context of caller activity
-//     * @param key Key to find value against
-//     * @param defaultValue Value to return if no data found against given key
-//     * @return Return the value found against given key, default if not found or any error occurs
-//     */
-//    public String getFromPrefs(String key, String defaultValue) {
-//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ReelApplication.Instance());
-//        try {
-//            return sharedPrefs.getString(key, defaultValue);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return defaultValue;
-//        }
-//    }
-//
-//    /**
-//     *
-//     * @param context Context of caller activity
-//     * @param key Key to delete from SharedPreferences
-//     */
-//    public void removeFromPrefs(String key) {
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ReelApplication.Instance());
-//        final SharedPreferences.Editor editor = prefs.edit();
-//        editor.remove(key);
-//        editor.commit();
-//    }
-
 
     @SuppressWarnings("UnusedDeclaration")
     @UsedByNativeCode
@@ -135,10 +82,10 @@ public class Network extends NativeObject {
         String data = null;
         try { data = getResult(); }//new JSONObject(getResult()).toString(); }
         catch(SSLHandshakeException e) { new Exception(String.format("Please check for your certificate in getBytes"), e).printStackTrace(); }
-        catch(Exception e) { new Exception(String.format("retryCount: %d, requestJsonObject: %s, data: %s", retryCount, toJSONString(), data), e).printStackTrace(); }
+        catch(Exception e) { new Exception(String.format("retryCountRemaining: %d, requestJsonObject: %s, data: %s", retryCountRemaining, toJSONString(), data), e).printStackTrace(); }
 
-        if(data == null && retryCount-- > 0) { return request(requestType); }
-        Log.e(getClass().getName(), String.format("retryCount: %d, requestJsonObject: %s,\n response length: %d, jsonObject: %s\n\n", retryCount, toJSONString(), data == null ? 0 : data.length(), data));
+        if(data == null && retryCountRemaining-- > 0) { return request(requestType); }
+        Log.e(getClass().getName(), String.format("Called request retryCountRemaining: %d, requestJsonObject: %s,\n response length: %d, jsonObject: %s\n\n", retryCountRemaining, toJSONString(), data == null ? 0 : data.length(), data));
 
         return data;
     }

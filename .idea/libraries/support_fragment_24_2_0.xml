@@ -2,6 +2,7 @@
   <library name="support-fragment-24.2.0">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/library/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/demo/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/library/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar!/" />
@@ -10,6 +11,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-fragment/24.2.0/support-fragment-24.2.0-sources.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-fragment/24.2.0/support-fragment-24.2.0-sources.jar!/" />
     </SOURCES>
   </library>
