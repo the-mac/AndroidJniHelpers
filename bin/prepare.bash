@@ -3,6 +3,7 @@
 set -e
 # TO CHANGE DIRECTORY QUICKLY: cd the-mac/AndroidJni/AndroidJniHelpers/bin/prepare.bash
 # TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/prepare.bash no
+# TO MAKE DEFAULT PREPARATION: filePath="" && clear && printf '\e[3J' && bin/prepare.bash --diff $filePath
 
 # Define a timestamp function
 createTimestamp() {
@@ -22,6 +23,7 @@ function display_changed_files {
 	fi
 	
 }
+
 function check_diff {
 
 while true; do
@@ -48,16 +50,31 @@ while true; do
 		 echo ""
 	fi
 	if [[ $diff == *"no"* || $diff == *"No"*  || $diff == *"NO"* ]]; then
-	
-	
-		break;
+	    break;
 	else
-		git diff -m "$diff"
-		git status
-
+		diff_individual_file $diff
 	fi
 done
 }
+
+function diff_individual_file {
+
+    if [[ -z "$@" ]]; then
+        display_changed_files
+        echo "" && read -p "What is the file you would like to diff > " fileToDiff
+    else
+        fileToDiff=$1
+    fi
+
+	if [[ -z "$fileToDiff" ]] || [ ! -f "$fileToDiff" ]; then
+        echo "Usage: bin/prepare.bash --diff FILE_PATH"
+	    exit
+	else
+        echo "Diffing file: $fileToDiff" && gitk --max-count=3 --all -- $fileToDiff
+	fi
+
+}
+
 function accept_commit_message {
 	echo ""
 
