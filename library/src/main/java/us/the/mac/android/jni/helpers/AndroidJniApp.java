@@ -33,16 +33,16 @@ public class AndroidJniApp extends Application {
             return reader.readLine();
         } catch (IOException e) { return null; }
     }
-    public static boolean isJUnitTest() {
+    public static boolean isServiceTest() {
         try {
             String processName = getProcessName(Instance());
-            boolean isJUnitTest = processName.contains(".test");
-            Log.d(AndroidJniApp.class.getName(), "Called isJUnitTest = "+isJUnitTest);
+            boolean isServiceTest = processName.contains("services.test");
 
-            return isJUnitTest;
+            Log.d(AndroidJniApp.class.getName(), "Called isServiceTest = "+isServiceTest);
+            return isServiceTest;
         }
         catch (final Exception e) {
-            Log.d(AndroidJniApp.class.getName(), "Called isJUnitTest defaulting isJUnitTest = "+false);
+            Log.d(AndroidJniApp.class.getName(), "Called isServiceTest defaulting isServiceTest = "+false);
             return false;
         }
     }

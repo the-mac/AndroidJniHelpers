@@ -1,3 +1,7 @@
+#ifndef TESTING_DEMO
+#define TESTING_DEMO 1
+#endif
+
 #include <jni.h>
 #include <string>
 #include <EncryptedString.h>
@@ -5,6 +9,7 @@
 #include <JSONObject.h>
 #include <Scanner.h>
 #include "MainRequests.h"
+
 
 using namespace spotify::jni;
 ClassRegistry gClasses;
