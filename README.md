@@ -241,7 +241,7 @@ Using a MACRequests native instance looks as follows:
 
 ```
 
-#Setting up your Android Studio C++ Project
+# Setting up your Android Studio C++ Project
 
 * Change directories into your C++/Android project:
 ```bash
@@ -370,9 +370,9 @@ ANDROID_TESTING flag is passed in from the
 build.gradle script, check out an example of
 that [here](library/build.gradle)**
 
-# Contributing
+# Contributing #
 
-## Installing locally
+## Installing locally ##
 
 You can download AndroidJniHelpers and install it locally by cloning this
 repository and running:
