@@ -104,11 +104,10 @@ public class YourApplication extends AndroidJniApp {
 
 jobject YourEncryptedString::getFileStream(JNIEnv *env, jstring fileName)
 {
-    jstring r = env->NewStringUTF(".r");
     YourApplication context(env, YourApplication::Instance(env));
 
     JavaExceptionUtils::checkException(env);
-    return context.openFileInput(env, r);
+    return context.openFileInput(env, fileName);
 }
 
 ```
