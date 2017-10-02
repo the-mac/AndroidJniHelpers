@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # TO CHANGE DIRECTORY QUICKLY: cd the-mac/AndroidJni/AndroidJniHelpers# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --setup LGLS99021ecc9f2
 # TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --wifi
-# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --reset us.the.mac.reel.life --reboot
-# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --logs us.the.mac.reel.life
+# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --reset us.the.mac.library.demo.androidjni --reboot
+# TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/adb.bash --logs us.the.mac.library.demo.androidjni
 
 debug=0
 
