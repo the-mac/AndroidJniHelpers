@@ -7,6 +7,8 @@
 #include <cstring>
 #include <AndroidJniApp.h>
 
+const char * const MainRequests::CANONICAL_CLASS_NAME = "us/the/mac/library/demo/androidjni/MainRequests";
+char * MainRequests::API_KEY = "apiDonKey";
 
 MainRequests::MainRequests() : Network() {}
 
@@ -14,8 +16,7 @@ MainRequests::MainRequests() : Network() {}
 * Here you can construct the MainRequests object how ever you need to,
 * as well as load signatures for the Java instance method calls.
 */
-MainRequests::MainRequests(JNIEnv *env) : Network(env)
-{
+MainRequests::MainRequests(JNIEnv *env) : Network(env) {
     initialize(env);
 
     thisObj = toJavaObject(env);
@@ -26,8 +27,7 @@ MainRequests::MainRequests(JNIEnv *env) : Network(env)
     }
 }
 
-void MainRequests::initialize(JNIEnv *env)
-{
+void MainRequests::initialize(JNIEnv *env) {
     setClass(env);
     cacheConstructor(env);
 
@@ -39,13 +39,11 @@ void MainRequests::initialize(JNIEnv *env)
     registerNativeMethods(env);
 }
 
-void MainRequests::mapFields()
-{
-//    mapField("requestUrl", kTypeString, &requestUrl);
+void MainRequests::mapFields() {
+    mapField("API_KEY", kTypeString, &MainRequests::API_KEY);
 }
 
-jobject MainRequests::getInstance(JNIEnv *env, jobject java_this)
-{
+jobject MainRequests::getInstance(JNIEnv *env, jobject java_this) {
     MainRequests *network = new MainRequests(env);
     return network->thisObj;
 }

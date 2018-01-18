@@ -121,25 +121,25 @@ string rotCharacters(string s, int r)
     return ss.str();
 }
 
-//string base64(string const& in)
-//{
-//    std::string out;
-//
-//    std::vector<int> T(256,-1);
-//    for (int i=0; i<64; i++) T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] = i;
-//
-//    int val=0, valb=-8;
-//    for (char c : in) {
-//        if (T[c] == -1) break;
-//        val = (val<<6) + T[c];
-//        valb += 6;
-//        if (valb>=0) {
-//            out.push_back(char((val>>valb)&0xFF));
-//            valb-=8;
-//        }
-//    }
-//    return out;
-//}
+string base_64_encode(string const &in)
+{
+    std::string out;
+
+    std::vector<int> T(256,-1);
+    for (int i=0; i<64; i++) T["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[i]] = i;
+
+    int val=0, valb=-8;
+    for (char c : in) {
+        if (T[c] == -1) break;
+        val = (val<<6) + T[c];
+        valb += 6;
+        if (valb>=0) {
+            out.push_back(char((val>>valb)&0xFF));
+            valb-=8;
+        }
+    }
+    return out;
+}
 
 //char key_map(string const& k, char const& in) {
 //    int position = k.length() / 2;
@@ -212,7 +212,12 @@ jstring EncryptedString::decrypt(JNIEnv *env, jobject java_this, jint algorithm)
         case INLINE_STRINGS_ALGORITHM:
             conversion = rotCharacters(object->encryptedString.get(), -1);
             break;
+
         case RESOURCE_STRINGS_ALGORITHM:
+            conversion = base_64_encode(base_64_encode(object->encryptedString.get()));
+            break;
+
+        case NATIVE_STRINGS_ALGORITHM:
 
             CryptoHelper cryptoHelper(env);
             cryptoHelper.setBytes(object->getBytes(env, java_this));

@@ -1,5 +1,9 @@
 void {CLASS_NAME}::initialize(JNIEnv *env)
 {
+    bool debug = ENABLE_LOGGING_DEBUG;
+    if(debug) LOG_INFO("Called %s.initialize", getCanonicalName());
+
+    setClass(env);
     cacheConstructor(env);
 
 {CLASS_SIGNATURES}

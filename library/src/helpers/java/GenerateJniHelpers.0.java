@@ -29,8 +29,7 @@ public class GenerateJniHelpers {
 
 
 	String public_head  = "  public:";
-	//constexpr static const char CANNONICAL_CLASS_NAME[] = {'o','r','g','/','a','p','a','c','h','e','/','c','o','m','m','o','n','s','/','c','o','d','e','c','/','b','i','n','a','r','y','/','B','a','s','e','6','4'};
-
+	String java_instance  = "    jobject thisObj;";
 	String tail  		= "};";
 	public GenerateJniHelpers(String className) {
 
@@ -105,20 +104,18 @@ public class GenerateJniHelpers {
 			if("".equals(returnType)) continue;
 			if("destroy".equals(methodName)) continue;
 
-			boolean isConstructor = javaMethodSignature.contains(className) && signature.equals("()V");
 			boolean isStaticMethod = javaMethodSignature.contains("static");
 			boolean isNativeMethod = javaMethodSignature.contains("native");
-			boolean isStaticNativeMethod = isStaticMethod && isNativeMethod;
 
 
-			if(isConstructor) { /* DO NOTHING HERE */ }
-			else if(isNativeMethod) {
-				signatures.append(String.format("    addNativeSignature(\"%s\", (void*)&%s::%s, \"%s\");\n", methodName, className, methodName, signature));
-			} else if(isStaticMethod) {
+			if(isStaticMethod) {
 				String prefix = static_signatures.length() == 0 ? "    " : ",\n    ";
 				static_signatures.append(String.format("%s    { \"%s\", \"%s\" }", prefix, methodName, signature));
 				signatures.append(String.format("    cacheStaticSignature(env, \"%s\", \"%s\");\n", methodName, signature));
-			} else {
+			} else if(isNativeMethod) {
+				signatures.append(String.format("    addNativeSignature(\"%s\", (void*)&%s::%s, \"%s\");\n", methodName, className, methodName, signature));
+			}
+			else {
 				signatures.append(String.format("    cacheSignature(env, \"%s\", \"%s\");\n", methodName, signature));
 			}
 		}
@@ -126,7 +123,7 @@ public class GenerateJniHelpers {
 		header.append("#include \"JniHelpers.h\"\n\n");
 
 		if(HAS_NATIVE_MEMBERS) {
-//			header.append("using spotify::jni::NativeObject;\n\n");
+			header.append("using spotify::jni::NativeObject\n\n");
 			header.append("class "+ className +" : public NativeObject {\n");
 		}
 		else {
@@ -144,7 +141,7 @@ public class GenerateJniHelpers {
 			//header.append("    };\n");
 		}
 		header.append(public_head + "\n");
-//		header.append(java_instance + "\n");
+		header.append(java_instance + "\n");
 
 		String classSignatures = signatures.toString();
 
@@ -171,16 +168,16 @@ public class GenerateJniHelpers {
 			getClass = getClass.replace("{PACKAGE_NAME}", getClassPath);
 			header.append(getClass + "\n");
 
-//			String instance = String.format("\nstatic %s *%sInstance = NULL;",
-//					className, STATIC_INSTANCE_NAME, className);
-//			commentary = "/**\n"+
-//					"* The getStaticMethod method is used to get the Jni Helper's\n"+
-//					"* static method for the "+className+" class defined in Java.\n"+
-//					"*/";
-//			String getStaticMethod = String.format("%s\n\n%s\n%s", instance, commentary, getMethod("getStaticMethod"));
-//			getStaticMethod = getStaticMethod.replace("{CLASS_NAME}", className);
-//			getStaticMethod = getStaticMethod.replace("{CLASS_NAME_VAR}", STATIC_INSTANCE_NAME);
-//			source.append(getStaticMethod + "\n");
+			String instance = String.format("\nstatic %s *%sInstance == NULL;",
+					className, STATIC_INSTANCE_NAME, className);
+			commentary = "/**\n"+
+					"* The getStaticMethod method is used to get the Jni Helper's\n"+
+					"* static method for the "+className+" class defined in Java.\n"+
+					"*/";
+			String getStaticMethod = String.format("%s\n\n%s\n%s", instance, commentary, getMethod("getStaticMethod"));
+			getStaticMethod = getStaticMethod.replace("{CLASS_NAME}", className);
+			getStaticMethod = getStaticMethod.replace("{CLASS_NAME_VAR}", STATIC_INSTANCE_NAME);
+			source.append(getStaticMethod + "\n");
 
 //			header.append(getMethod("addStaticSignature") + "\n\n");
 		}
@@ -192,15 +189,12 @@ public class GenerateJniHelpers {
 		header.append(String.format("    %s;\n\n", defaultConstructorInHeader
 				.replace(className + "::", "").split("\n")[0]));
 
-
-		String cannonical_static_assignment_format  = "const char * const %s::CANONICAL_CLASS_NAME = \"%s/%s\";";
-		source.append(String.format(cannonical_static_assignment_format, className, canonicalPath.replace('"', ' ').trim(), className) + "\n");
-
 		commentary = "";
 		String defaultConstructor = String.format("%s\n%s", commentary, getHelperTemplate("defaultConstructor"));
 		defaultConstructor = defaultConstructor.replace("{CLASS_NAME}", className);
 		defaultConstructor = defaultConstructor.replace("{CLASS_SIGNATURES}", classSignatures);
 		defaultConstructor = defaultConstructor.replace("{NATIVE_CLASS}", HAS_NATIVE_MEMBERS ? "NativeObject" : "JavaClass");
+
 		source.append(defaultConstructor + "\n\n");
 
 
@@ -219,6 +213,7 @@ public class GenerateJniHelpers {
 		constructor = constructor.replace("{CLASS_NAME}", className);
 		constructor = constructor.replace("{CLASS_SIGNATURES}", classSignatures);
 		constructor = constructor.replace("{NATIVE_CLASS}", HAS_NATIVE_MEMBERS ? "NativeObject" : "JavaClass");
+
 		source.append(constructor + "\n\n");
 
 		String initialize = String.format("%s", getHelperTemplate("initialize"));
@@ -268,52 +263,13 @@ public class GenerateJniHelpers {
 			String variableName = "instance";
 			boolean isStaticMethod = javaMethodSignature.contains("static");
 			boolean isNativeMethod = javaMethodSignature.contains("native");
-			boolean isStaticNativeMethod = isStaticMethod && isNativeMethod;
 
 			if(isStaticMethod) {
 				prefix = "static ";
 				variableName = className + "::";
 				method = method.replace("thisObj", "getClass(env)");
 				method = method.replace("->Call", "->CallStatic");
-				method = method.replace("getMethod(", "getStaticMethod(CANONICAL_CLASS_NAME, ");
-			} else if(isStaticNativeMethod) {
-				if("destroy".equals(methodName)) continue;
-
-				prefix = "static ";
-
-				int firstBrace = method.indexOf("{");
-				int lastBrace = method.indexOf("}");
-
-				boolean hasNoReturnValue = "".equals(returnType) || "void".equals(returnType);
-				String returnPrefix = hasNoReturnValue ? "" : "return ";
-
-				String callNative = getHelperTemplate("callNative");
-				callNative = callNative.replace("{CLASS_NAME}", returnPrefix+className);
-				callNative = callNative.replace("{METHOD_NAME}", methodName);
-				callNative = callNative.replace("{PARAMETERS}", parameters);
-				callNative = callNative.replace("{PARAMETER_NAMES}", parameterNames);
-
-//				method = method.replace(methodName+"(JNI", methodName+"Native");
-				method = String.format("%s %s", method.substring(0, firstBrace).trim(), callNative);
-				source.append(method.replace(methodName+"(JNI", methodName+"Native(JNI") + "\n\n");
-
-				String returnedValue = mReturnValues.getProperty(returnType);
-				if(returnedValue == null) returnedValue = "NULL";
-
-				String defaultReturnedValue = hasNoReturnValue ? "" : String.format("    return %s;\n", returnedValue);
-				String staticInitializer = "    {CLASS_NAME} *object = gClasses.getNativeInstance<{CLASS_NAME}>(env, java_this);";
-				staticInitializer = staticInitializer.replace("{CLASS_NAME}", className);
-
-
-				String embed = "\n    if (object != NULL)\n    {\n	// TODO: ADD YOUR NATIVE IMPLMENTATION HERE (i.e. object->callToSomeFunction())\n    }\n";// + method.substring(firstBrace, lastBrace + 1).replace("\n", "\n    ");
-
-
-//				method = String.format("%s{\n%s\n    %s\n%s}\n", method.substring(0, firstBrace).replace("env, ", "env, jobject java_this, ").replace("env)", "env, jobject java_this)"), staticInitializer, embed, defaultReturnedValue);
-//				method = method.replace("getMethod(", "object->getMethod(");
-//				method = method.replace("thisObj", "java_this");
-//
-//				String prototype = String.format("    %s%s;\n\n", prefix, method.replace(className + "::", "").replace(" {\n", "\n").split("\n")[0]);
-//				header.append(prototype.replace("static ", "").replace(", jobject java_this", "").replace(methodName+"(JNI", methodName+"Native(JNI"));
+				method = method.replace("getMethod(", "getStaticMethod(env, ");
 			} else if(isNativeMethod) {
 				if("destroy".equals(methodName)) continue;
 
@@ -370,22 +326,8 @@ public class GenerateJniHelpers {
 						type, type, isStaticMethod ? variableName : variableName +".", methodName, parameterNames));
 			}
 		}
-
-		//constexpr static const char CANNONICAL_CLASS_NAME[] = {'o','r','g','/','a','p','a','c','h','e','/','c','o','m','m','o','n','s','/','c','o','d','e','c','/','b','i','n','a','r','y','/','B','a','s','e','6','4'};
-
-//		String embed = "','";
-//		StringBuilder classPathCharacters = new StringBuilder();
-//		char[] fullClassName = (canonicalPath +"/"+ className).toCharArray();
-//
-//		classPathCharacters.append(fullClassName[1]);
-//		for(int index = 2; index < fullClassName.length - 1; index++) {
-//			classPathCharacters.append(embed+fullClassName[index]);
-//		}
-
-
-		String cannonical_static_instance_format  = "    static const char * const CANONICAL_CLASS_NAME;";
-		header.append(String.format(cannonical_static_instance_format, canonicalPath, className) + "\n");
 		header.append(tail + "\n");
+
 
 
 		output.append(dividingLine);
@@ -394,7 +336,6 @@ public class GenerateJniHelpers {
 		output.append(source.toString());
 		output.append(dividingLine);
 		output.append(examples.toString());
-		output.append(dividingLine);
 		return output.toString();
 	}
 

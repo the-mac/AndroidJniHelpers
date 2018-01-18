@@ -25,7 +25,6 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void*) {
     if(debug) LOG_WARN("Called JNI_OnLoad Completely in jni-helper-lib");
     return JAVA_VERSION;
 }
-
 extern "C"
 jstring
 Java_us_the_mac_android_jni_helpers_MainActivity_stringFromJNI(
@@ -49,5 +48,5 @@ Java_us_the_mac_android_jni_helpers_AndroidJniApp_getS(JNIEnv* env, jclass _clas
     jstring stringResource = EncryptedString::getS(env, content);
     es.encryptedString = env->GetStringUTFChars(stringResource, JNI_FALSE);
 
-    return es.decryptNative(env, EncryptedString::RESOURCE_STRINGS_ALGORITHM);
+    return es.decryptNative(env, EncryptedString::NATIVE_STRINGS_ALGORITHM);
 }

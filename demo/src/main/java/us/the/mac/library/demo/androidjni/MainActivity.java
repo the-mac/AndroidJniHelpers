@@ -1,10 +1,14 @@
 package us.the.mac.library.demo.androidjni;
 
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import us.the.mac.android.jni.helpers.AndroidJniApp;
 
@@ -36,4 +40,15 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
+    public void sendRequest(View view) {
+        Log.d(getClass().getName(), "Called sendRequest with view: "+ view);
+
+        String result = MainRequests.getInstance().setKey("testKeyData").request(MainRequests.HTTP_BIN);
+
+        Log.d(getClass().getName(), "Called sendRequest successfully with result: "+ result);
+
+        SystemClock.sleep(3000); // 3 seconds
+        Toast.makeText(this, result + " " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()), Toast.LENGTH_LONG).show();
+    }
 }

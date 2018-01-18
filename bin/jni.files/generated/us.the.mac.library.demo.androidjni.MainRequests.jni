@@ -1,0 +1,113 @@
+
+us.the.mac.library.demo.androidjni.MainRequests
+
+********************************************************************************
+
+us.the.mac.library.demo.androidjni.MainRequests.jni was generated as a helper for MainRequests.java using the
+bin/jni.bash script. The following code segments are C++ header and source code containing:
+
+- getCanonicalName: The method that enables the relationship between C++ and Java.
+- Java methods: us.the.mac.library.demo.androidjni.MainRequests, getInstance, setKey
+
+The source code can be copied into the respective MainRequests.h and
+MainRequests.cpp files in a location of your choice. Finally, the last segment
+contains an example of what these method calls would look like in your code.
+
+********************************************************************************
+
+#include "JniHelpers.h"
+
+class MainRequests : public NativeObject {
+  public:
+    /**
+    * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain 
+    * the Jni Helper's relationship to the MainRequests class defined in Java.
+    */
+    const char *getCanonicalName() const { return CANONICAL_CLASS_NAME; }
+
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain 
+    * the Jni Helper's static relationship to the MainRequests class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) { return env->FindClass(CANONICAL_CLASS_NAME); }
+
+    MainRequests();
+
+    MainRequests(JNIEnv *env);
+
+    void initialize(JNIEnv *env);
+
+    void mapFields();
+
+    static jobject getInstance(JNIEnv *env);
+
+    jobject setKey(JNIEnv *env, jstring jstringValue1);
+
+    static const char * const CANONICAL_CLASS_NAME;
+};
+
+********************************************************************************
+
+const char * const MainRequests::CANONICAL_CLASS_NAME = "us/the/mac/library/demo/androidjni/MainRequests";
+
+MainRequests::MainRequests() : NativeObject() {}
+
+/**
+* Here you can construct the MainRequests object how ever you need to, 
+* as well as load signatures for the Java instance method calls.
+*/
+MainRequests::MainRequests(JNIEnv *env) : NativeObject(env)
+{
+    initialize(env);
+
+    thisObj = toJavaObject(env); // THIS IS WHERE WE INITIALIZE YOUR JAVA OBJECT
+
+    // thisObj = env->NewObject(_clazz, getMethod("<init>"));
+    // YOU MAY WANT TO ADD A FEW PARAMETERS TO THE 'NewObject' EXAMPLE INSTEAD
+
+    if (thisObj == NULL) {
+        JavaExceptionUtils::throwExceptionOfType(env, kTypeIllegalStateException,
+            "MainRequests's thisObj variable not intialized, methods of this class use the thisObj Java instance.");
+    }
+}
+
+void MainRequests::initialize(JNIEnv *env)
+{
+    cacheConstructor(env);
+
+    addNativeSignature("getInstance", (void*)&MainRequests::getInstance, "()Lus/the/mac/library/demo/androidjni/MainRequests;");
+    cacheSignature(env, "setKey", "(Ljava/lang/String;)Lus/the/mac/library/demo/androidjni/MainRequests;");
+
+    registerNativeMethods(env);
+}
+
+void MainRequests::mapFields()
+{
+    //mapField("encodedString", kTypeString, &encodedString);
+}
+
+jobject MainRequests::getInstance(JNIEnv *env)
+{
+    jobject result = env->CallStaticObjectMethod(getClass(env), getStaticMethod(CANONICAL_CLASS_NAME, __FUNCTION__));
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+jobject MainRequests::setKey(JNIEnv *env, jstring jstringValue1)
+{
+    jobject result = env->CallObjectMethod(thisObj, getMethod(__FUNCTION__), jstringValue1);
+    JavaExceptionUtils::checkException(env);
+    return result;
+}
+
+
+********************************************************************************
+
+jobject jobjectReturnValue = MainRequests::getInstance(env);
+
+jobject jobjectReturnValue = instance.setKey(env, jstringValue1);
+
+
+********************************************************************************
+
+

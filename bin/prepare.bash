@@ -29,8 +29,23 @@ function check_diff {
 while true; do
 	echo ""
 
+        if [[ -z "$@" ]]; then          read -p "Is there a file you would like to reset (No/no) > " fileToReset
+        else
+             fileToReset="$@"
+	     ignore="$@"
+             diff="$@"
+        fi
+        if [[ $fileToReset != *"no"* && $fileToReset != *"No"*  && $fileToReset != *"NO"* ]]; then
+
+                git checkout -- $fileToReset
+                git status
+        continue;
+
+        fi
+
 	if [[ -z "$@" ]]; then		read -p "Is there a file you would like to ignore (No/no) > " ignore
 	else
+             fileToReset="$@"
 	     ignore="$@"
 	     diff="$@"
 	fi

@@ -216,7 +216,7 @@ public class EncryptedStringTest {
         String encryptedString = InstrumentationRegistry.getTargetContext().getString(R.string.encryptedString);
         assertEquals(encryptedString, object.encryptedString);
 
-        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
+        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM+1);
         assertEquals(TestConstants.TEST_DECRYPT, decryptedString);
 
         // Should only return the decrypted string field, the encryptedString should remain untouched
@@ -230,7 +230,7 @@ public class EncryptedStringTest {
         String encryptedString = AndroidJniApp.getEncrypted(0);
         assertEquals(encryptedString, object.encryptedString);
 
-        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM);
+        String decryptedString = object.decrypt(EncryptedString.RESOURCE_STRINGS_ALGORITHM+1);
         assertEquals(TestConstants.TEST_NATIVE_DECRYPT, decryptedString);
 
         // Should only return the decrypted string field, the encryptedString should remain untouched

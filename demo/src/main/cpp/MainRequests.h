@@ -20,9 +20,13 @@ public:
     * This facsimile of the Java method java.lang.Class.getCanonicalName() is used to maintain
     * the Jni Helper's relationship to the MainRequests class defined in Java.
     */
-    const char *getCanonicalName() const {
-        return MAKE_CANONICAL_NAME("us/the/mac/library/demo/androidjni", MainRequests);
-    }
+    const char *getCanonicalName() const { return CANONICAL_CLASS_NAME; }
+
+    /**
+    * This facsimile of the Java method java.lang.Object.getClass() is used to maintain
+    * the Jni Helper's static relationship to the MainRequests class defined in Java.
+    */
+    static jclass getClass(JNIEnv *env) { return env->FindClass(CANONICAL_CLASS_NAME); }
 
     MainRequests();
 
@@ -69,6 +73,9 @@ public:
     static const int INCREMENT = 1;
     static const int HTTP_BIN = BASE + INCREMENT;
     static const int JSON_TEST = HTTP_BIN + INCREMENT;
+
+    static const char * const CANONICAL_CLASS_NAME;
+    static char * API_KEY;
 };
 
 #endif //APPLICATIONRESOURCES_NETWORK_H

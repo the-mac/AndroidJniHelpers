@@ -17,7 +17,6 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Created by christopher on 2/12/17.
  */
-
 public class CryptoHelper extends NativeObject {
     public native Key generateKey();
 
