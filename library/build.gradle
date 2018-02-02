@@ -6,7 +6,6 @@ def currentlyRunningTest = paramsString.contains('assembleDebugAndroidTest')
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
@@ -49,3 +48,5 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     testCompile 'junit:junit:4.12'
 }
+
+//apply from: 'publish.gradle'
