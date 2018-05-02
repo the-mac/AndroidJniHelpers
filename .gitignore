@@ -40,8 +40,14 @@ captures/
 
 # Native Build Artifacts
 */.externalNativeBuild
+
+# bash scripts / files
+bin/adb.files/devices
 bin/jni.files/build.jni
 bin/encrypt.files/build.encrypt
 bin/encrypt.files/generated/*
 bin/prepare.files/timestamp
-bin/adb.files/devices
+bin/prepare.files/version
+bin/prepare.files/uploaded
+bin/prepare.files/.bintrayKey
+bin/prepare.files/.bintrayUser

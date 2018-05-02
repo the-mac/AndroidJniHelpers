@@ -1,54 +1,43 @@
 # Android JNI Helpers #
 
-Tools for writing secure Android/JNI code, based upon Spotify's [Jni Helpers Library](https://github.com/spotify/JniHelpers.git).
-
-## String Decryption ##
-
-![Android JNI Encryption Preview](screenshots/android-jni-encryption-preview.png)
-
-Prepare your strings before runtime and decrypt them as you need them.
-
-## Secure Network Calls ##
-
-![Android JNI Network Preview](screenshots/android-jni-network-preview.png)
-
-Connect to any secure server with its designated ssl certificate (in C++).
-
-## How it works ##
-
 You may already know, but in Android development we need to hide important details of our apps from basic apk decompilation. Here is a [demonstration](https://www.youtube.com/watch?v=TfLq9nsLWOc)  of how easy apk decompilation truly is, using the online decompiler [javadecompilers](http://www.javadecompilers.com/apk).
 
-This library allows you to secure your apps with less effort and is fully customizable. It protects your app's resources like inline (Java file) strings, resource (res) strings and network requests beyond
+
+[![Decompile APK in Single Click](https://img.youtube.com/vi/TfLq9nsLWOc/0.jpg)](https://www.youtube.com/watch?v=TfLq9nsLWOc)
+
+
+This library allows you to secure your apps with less effort and is fully customizable. With this version of the JNI Helpers library you can prepare your strings before runtime and decrypt them as you need them, and connect to any secure server with its designated ssl certificate (in C++). It protects your app's resources like inline (Java file) strings, resource (res) strings and network requests beyond
 [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html) from [proguard obfuscation](https://www.guardsquare.com/en/proguard).
 
-
-## Setup ##
+## Setting up your project ##
 ### Add C++ Support, but if your project already has it skip this section ###
 - If you are just creating your project, you can simply check the "Add C++ Support" box upon project creation
 - If your project already exists, you can right click your app module and select "Link C++ project with gradle"
-- Finally, see our [FAQ](FAQ.md) for how to [set up your CMakeLists.txt](FAQ.md#set-up-your-cmakelists)
+- Finally, see our [FAQ](FAQ.md) for how to [set up your C++ project and view example CMakeLists.txt file](FAQ.md#setting-up-your-android-studio-c-project)
 
-### Import the library ###
-Add Jitpack.io repo
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-Import (demo, decryption & network) modules
+## Import (demo, library) and use modules ##
+
+Gradle 3.0.1+
 ```bash
 dependencies {
-    compile 'com.github.the-mac:AndroidJniHelpers:1.1.0'
+    ...
+    implmentation 'us.the.mac:AndroidJniHelpers:1.1.5'
 }
-compile 'com.github.the-mac:AndroidJniHelpers:1.1.0'
 ```
 
-## Usage ##
-### String Decryption ###
-Incorporate String Resource Encryption
+Older Gradle Versions
+```bash
+dependencies {
+    ...
+    compile 'us.the.mac:AndroidJniHelpers:1.1.5'
+}
+```
+
+## Using String Decryption ##
+
+![Android JNI Encryption Preview](screenshots/android-jni-encryption-preview.png)
+
+To get started, you would add string resource encryption (to your strings.xml)
 ```xml
 <resources>
     <string name="app_name">Android Jni Helpers</string>
@@ -58,16 +47,7 @@ Incorporate String Resource Encryption
 </resources>
 ```
 
-Here we are requesting the decrypted string in an Activity's onCreate method:
-```Java
-    @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        String decryptedString = decryptString(R.string.encryptedString);
-    }
-```
-
-To allow the decryptString method to work, you must declare the JNI method (in Java) then implement it (in C/C++)
+Next, you must declare the JNI method (in Java) then implement it (in C/C++)
 ```Java
 package us.the.mac.example.app;
 ...
@@ -77,7 +57,7 @@ public class ExampleActivity extends Activity {
 }
 ```
 
-Finally,  set up the decryptString native method implementation in C/C++
+Next, to allow the decryptString Java method to work the C++ implmentation should look like the following:
 ```C++
 extern "C"
 jstring
@@ -94,12 +74,36 @@ Java_us_the_mac_example_app_ExampleActivity_decryptString(JNIEnv* env, jobject j
 }
 ```
 
-### Secure Network Calls ###
-Create a custom Network subclass
+Finally, request the decrypted string in the example Activity:
+```Java
+    @Override
+    public void onCreate(Bundle bundle) {
+
+        super.onCreate(bundle);
+        setContentView(R.layout.string_resource_main);
+
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(decryptString(R.string.encryptedString));
+
+    }
+```
+
+Similar files to the examples above can be found in the [demo](demo) project's [Activity](demo/src/main/java/us/the/mac/library/demo/androidjni/MainActivity.java) and [C++ code](demo/src/main/cpp/native-lib.cpp)
+
+### Using Secure Network Calls ###
+
+![Android JNI Network Preview](screenshots/android-jni-network-preview.png)
+
+Create a custom Network Java subclass
 ```Java
 public class MainRequests extends Network {
-    ...    
-    public static final int HTTP_BIN = ...;
+
+    private static final int BASE = 0;
+    private static final int INCREMENT = 1;
+
+    public static final int HTTP_BIN = BASE + INCREMENT;
+    public static final int JSON_TEST = HTTP_BIN + INCREMENT;
+
     private static final String API_KEY = "apiKey";
     public static native MainRequests getInstance();
 
@@ -109,138 +113,40 @@ public class MainRequests extends Network {
     }
 }
 ```
-Using a MainRequests Java instance could look as follows:
+
+Create a custom Network C++ subclass
+```C++
+
+class MainRequests : public Network {
+
+protected:
+    std::string requestSession;
+
+public:
+
+    MainRequests(JNIEnv *env);
+    static jobject getInstance(JNIEnv *env, jobject java_this);
+
+    static const int BASE = 0;
+    static const int INCREMENT = 1;
+    static const int HTTP_BIN = BASE + INCREMENT;
+    static const int JSON_TEST = HTTP_BIN + INCREMENT;
+
+    static const char * const CANONICAL_CLASS_NAME;
+};
+```
+
+Finally, using a MainRequests Java instance could look as follows:
 ```Java
     MainRequests object = MainRequests.getInstance().setKey("1234");
     object.request(MainRequests.HTTP_BIN);
 
     JSONObject jsonObject = new JSONObject(object.resultString);
 ```
-## Demo Project ##
-[the-mac/AndroidJNIHelpers/demo](https://github.com/the-mac/AndroidJniHelpers/tree/master/demo)
+Similar files to the examples above can be found in the [demo](demo) project's MainRequests [java file](demo/src/main/java/us/the/mac/library/demo/androidjni/MainRequests.java) and [header file](demo/src/main/cpp/MainRequests.h).
 
 ## ProGuard
 Nothing to include
 
-# Contributing #
-## Contribution Process
-
-1. Submit an issue describing your proposed change to the repo in question.
-1. The repo owner will respond to your issue promptly.
-1. If your proposed change is accepted, and you haven't already done so, sign a
-   Contributor License Agreement (see details below).
-1. Fork the desired repo, develop and test your code changes.
-1. Ensure that your code adheres to the existing style of the library to which
-   you are contributing.
-1. Ensure that your code has an appropriate set of unit tests which all pass.
-1. Submit a pull request and cc the repo owner @cdm2012
-
-## Contributor License Agreements ##
-
-We'd love to accept your sample apps and patches! Before we can take them, we have to jump a couple of legal hurdles.
-
-Please fill out either the individual or corporate Contributor License Agreement
-(CLA).
-
-  * If you are an individual writing original source code and you're sure you
-    own the intellectual property, then you'll need to sign an
-    [individual CLA](https://developers.google.com/open-source/cla/individual).
-  * If you work for a company that wants to allow you to contribute your work,
-    then you'll need to sign a
-    [corporate CLA](https://developers.google.com/open-source/cla/corporate).
-
-Follow either of the two links above to access the appropriate CLA and
-instructions for how to sign and return it. Once we receive it, we'll be able to
-accept your pull requests.
-
-## Installing locally ##
-
-* Clone the repo into your project:
-```bash
-git clone https://github.com/the-mac/AndroidJniHelpers.git
-```
-* Edit your project structure:
-```bash
-Go to File > Project Structure
-```
-* Add module into your project:
-```bash
-Click on "+" sign to add new module
-```
-* Import Gradle project:
-```bash
-Click "Import Gradle Project" option
-```
-* Paste path to AndroidJniHelpers library project
-```bash
-Paste "path/to/your/project/AndroidJniHelpers" folder into Source directory
-```
-* Name New Module (you could name its module library):
-```bash
-By default the existing name should be library ":library", but can be updated
-```
-
-* Rewrite the app/CMakeLists.txt similar to the following (you can find an example [here](library/CMakeLists.txt)):
-```cmake
-cmake_minimum_required(VERSION 3.4.1)
-
-set(local_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp)
-set(library_JniHelpers_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/main/cpp)
-set(library_JniHelpersTest_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../AndroidJniHelpers/library/src/androidTest/cpp)
-
-file(GLOB libLocal_SOURCES ${local_DIR}/*.cpp)
-file(GLOB libLocal_HEADERS ${local_DIR}/*.h)
-
-file(GLOB libJniHelpers_SOURCES ${library_JniHelpers_DIR}/*.cpp)
-file(GLOB libJniHelpers_HEADERS ${library_JniHelpers_DIR}/*.h)
-
-file(GLOB libJniHelpersTest_SOURCES ${library_JniHelpersTest_DIR}/*.cpp)
-file(GLOB libJniHelpersTest_HEADERS ${library_JniHelpersTest_DIR}/*.h)
-
-link_directories(${JNI_LIBRARIES})
-add_library(JniHelpers STATIC ${libLocal_SOURCES} ${libJniHelpers_SOURCES})
-add_library(JniHelpersTest STATIC ${libLocal_SOURCES} ${libJniHelpers_SOURCES} ${libJniHelpersTest_SOURCES})
-include_directories(${local_DIR} ${library_JniHelpers_DIR} ${library_JniHelpersTest_DIR})
-
-
-if(${ANDROID_TESTING})
-    set(library_NAME "test-lib")
-    set(library_Entry_Point "src/androidTest/cpp")
-else()
-    set(library_NAME "native-lib")
-    set(library_Entry_Point "src/main/cpp")
-endif()
-
-add_library( # Sets the name of the library.
-             ${library_NAME}
-
-             # Sets the library as a shared library.
-             SHARED
-
-             # The following toggles between the native-lib and test-libs
-             # files, based upon whehther a test is currently running.
-             ${library_Entry_Point}/${library_NAME}.cpp )
-
-
-find_library( # Sets the name of the path variable.
-              log-lib
-
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
-
-
-# Only adding JniHelpersTest library if testing
-if(${ANDROID_TESTING})
-    target_link_libraries(${library_NAME} JniHelpers JniHelpersTest ${log-lib} )
-else()
-    target_link_libraries(${library_NAME} JniHelpers ${log-lib} )
-endif()
-```
-**Note: If you're creating JNI helper tests,
-you should run them on an Android device and
-using the test-lib reference above (inside your
-androidTest/cpp folder). Also the
-ANDROID_TESTING flag is passed in from the
-build.gradle script, check out an example of
-that [here](library/build.gradle)**
+## Contributing
+Want to contribute? Great! First, read the [CONTRIBUTING](CONTRIBUTING.md) page (including the small print at the end).

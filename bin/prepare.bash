@@ -5,6 +5,9 @@ set -e
 # TO MAKE DEFAULT PREPARATION: clear && printf '\e[3J' && bin/prepare.bash no
 # TO MAKE DEFAULT PREPARATION: filePath="" && clear && printf '\e[3J' && bin/prepare.bash --diff $filePath
 
+export version=$(cat bin/prepare.files/version)
+export uploadedVersion=$(cat bin/prepare.files/uploaded)
+
 # Define a timestamp function
 createTimestamp() {
   date +"%T"
@@ -127,6 +130,95 @@ function accept_commit_message {
 	fi
 }
 
+function publish_version {
+
+
+    if [[ $uploadedVersion == *"$version"* ]]; then
+        echo "Please update current version, because the versions are the same"
+        echo ""
+        exit 1
+    fi
+
+
+    currentPath=$PWD
+    fromPath="$currentPath/library/build/outputs"
+    apkPath="$fromPath/apk/androidTest/debug/"
+
+    statusPath=$currentPath/bin/prepare.files/build.test
+
+
+    bin/adb.bash --findDevice
+    specificDevice=$(cat bin/adb.files/specificDevice)
+    if [[ -z "$specificDevice" ]]; then
+        sleep 2 && echo "No device is connected, please connect device or try (bin/adb.bash --startEmulator) in new terminal window" && exit 1
+    fi
+
+    rm -rf $statusPath
+    mkdir -p $statusPath
+
+    # CLEAR STATUS FOR TEST
+    cd $statusPath
+    echo "" > status_android
+
+    cp $apkPath/library-debug-androidTest.apk $statusPath
+    cd $currentPath
+
+	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
+	if [[ $deviceReady == *"/"* ]]; then
+#		set -xe
+
+		appPackage="us.the.mac.android.jni.helpers"
+		basePackage="$appPackage"
+		testPackage="$appPackage.test"
+		testClass="$appPackage.NetworkTest"
+        bintrayUser=$(cat bin/prepare.files/.bintrayUser)
+        bintrayKey=$(cat bin/prepare.files/.bintrayKey)
+
+#    adb push /Users/christopher/git/the-mac/AndroidJniHelpers/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
+#    adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"#
+#    adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner
+
+		# SAVE STATUS FOR ARCHIVE
+#        bin/adb.bash --test $statusPath/library-debug-androidTest.apk $statusPath/app-debug-androidTest.apk $basePackage $testPackage $testClass $debugFlag | tee -a $statusPath/status_android
+
+
+        adb push $statusPath//library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
+        adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"
+
+
+        adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner | tee -a $statusPath/status_android
+		testResult=$(cat $statusPath/status_android)
+
+
+        if [[ $testResult != *"OK (13 tests)"* ]]; then
+            echo ""
+            echo "'Test Execution Failed'"
+            echo ""
+            exit 1
+        fi
+
+        statusCheck=$(git status)
+        if [[ $statusCheck != *"nothing to commit"* ]]; then
+
+		    DATE=`date +%Y-%m-%d`
+            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" && git tag -d $version && git tag -a $version -m "Release $version"
+
+
+            sleep 2 && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
+
+            echo "$version" > bin/prepare.files/uploaded
+        fi
+
+
+		set -e
+    else
+        echo ""
+        echo "'Your specific device is not ready: $specificDevice'"
+        echo ""
+        exit 1
+    fi
+
+}
 function prepare_push {
 	
 	echo "Showing Changed files: "
@@ -137,4 +229,25 @@ function prepare_push {
 	accept_commit_message $@
 }
 
-prepare_push $@
+
+function execute_commands {
+
+    echo "=================================="
+    echo "Current Version: $version"
+    echo "Uploaded Version: $uploadedVersion"
+
+    echo "=================================="
+    echo ""
+
+    if [[ $1 == *--push* ]] ; then
+		prepare_push $@
+	elif [[ $1 == *--publish* ]] ; then
+		publish_version $@
+    else
+        echo "Usage: bin/prepare.bash --push [no] OR"
+        echo "Usage: bin/prepare.bash --publish" && echo ""# []
+        exit;
+    fi
+}
+
+execute_commands $@

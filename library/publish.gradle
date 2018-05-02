@@ -2,8 +2,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group 'the-mac'
-version '1.1.0'
-description = 'Initial bintray release'
+version '1.1.5'
+description = 'Small update to bintray release'
 
 publishing {
     publications {
