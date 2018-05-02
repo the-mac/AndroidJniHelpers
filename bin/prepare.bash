@@ -164,7 +164,7 @@ function publish_version {
 
 	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
 	if [[ $deviceReady == *"/"* ]]; then
-		set -xe
+#		set -xe
 
 		appPackage="us.the.mac.android.jni.helpers"
 		basePackage="$appPackage"
@@ -200,7 +200,7 @@ function publish_version {
         if [[ $statusCheck != *"nothing to commit"* ]]; then
 
 		    DATE=`date +%Y-%m-%d`
-            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" && git tag -d $version
+            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" || git tag -d $version
             sleep 2 && git tag -a $version -m "Release $version" && git pull origin $branchName
 
             sleep 2 && git push origin $branchName && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
