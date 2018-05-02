@@ -142,12 +142,11 @@ function publish_version {
 
     currentPath=$PWD
     fromPath="$currentPath/library/build/outputs"
-    apkPath="$fromPath/apk/androidTest/debug/"
-
+    apkPath="$fromPath/apk/androidTest/debug"
     statusPath=$currentPath/bin/prepare.files/build.test
 
 
-    bin/adb.bash --findDevice
+#    bin/adb.bash --findDevice
     specificDevice=$(cat bin/adb.files/specificDevice)
     if [[ -z "$specificDevice" ]]; then
         sleep 2 && echo "No device is connected, please connect device or try (bin/adb.bash --startEmulator) in new terminal window" && exit 1
@@ -157,15 +156,15 @@ function publish_version {
     mkdir -p $statusPath
 
     # CLEAR STATUS FOR TEST
-    cd $statusPath
-    echo "" > status_android
+    echo "" > $statusPath/status_android
 
+    ./gradlew assembleDebug library:packageDebugAndroidTest --info #app:connectedAndroidTest
     cp $apkPath/library-debug-androidTest.apk $statusPath
-    cd $currentPath
+
 
 	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
 	if [[ $deviceReady == *"/"* ]]; then
-#		set -xe
+		set -xe
 
 		appPackage="us.the.mac.android.jni.helpers"
 		basePackage="$appPackage"
@@ -182,7 +181,7 @@ function publish_version {
 #        bin/adb.bash --test $statusPath/library-debug-androidTest.apk $statusPath/app-debug-androidTest.apk $basePackage $testPackage $testClass $debugFlag | tee -a $statusPath/status_android
 
 
-        adb push $statusPath//library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
+        adb push $statusPath/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
         adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"
 
 
@@ -201,10 +200,10 @@ function publish_version {
         if [[ $statusCheck != *"nothing to commit"* ]]; then
 
 		    DATE=`date +%Y-%m-%d`
-            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" && git tag -d $version && git tag -a $version -m "Release $version"
+            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" && git tag -d $version
+            sleep 2 && git tag -a $version -m "Release $version" && git pull origin $branchName
 
-
-            sleep 2 && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
+            sleep 2 && git push origin $branchName && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
 
             echo "$version" > bin/prepare.files/uploaded
         fi
