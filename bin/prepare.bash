@@ -185,12 +185,12 @@ function publish_version {
 	if [[ $deviceReady == *"/"* ]]; then
 		set -xe
 
-        adb push $statusPath/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
-        adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"
+        sleep 2 && adb push $statusPath/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
+        sleep 2 && adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"
 
 
 		# SAVE STATUS FOR ARCHIVE
-        adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner | tee -a $statusPath/status_android
+        sleep 2 && adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner | tee -a $statusPath/status_android
 		testResult=$(cat $statusPath/status_android)
 
 
@@ -213,7 +213,7 @@ function publish_version {
             sleep 2 && git tag -a $version -m "Release $version" && git pull origin $branchName
 
 
-            sleep 2 && git push origin $version && ./gradlew clean build && mv library/build/intermediates/cmake/debug/obj/* library/src/main/jniLibs
+            sleep 2 && git push origin $version # && ./gradlew clean build && mv library/build/intermediates/cmake/debug/obj/* library/src/main/jniLibs
 
             sleep 2 && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
 

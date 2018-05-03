@@ -15,12 +15,18 @@ add_library(JniHelpersTest STATIC ${libJniHelpers_SOURCES} ${libJniHelpersTest_S
 include_directories(${library_JniHelpers_DIR} ${library_JniHelpersTest_DIR})
 
 
-if(${ANDROID_TESTING})
-    set(library_NAME "test-helper-lib")
-    set(library_Entry_Point "src/androidTest/cpp")
-else()
+if(${ANDROID_RELEASE})
     set(library_NAME "jni-helper-lib")
     set(library_Entry_Point "src/main/cpp")
+else()
+
+    if(${ANDROID_TESTING})
+        set(library_NAME "test-helper-lib")
+        set(library_Entry_Point "src/androidTest/cpp")
+    else()
+        set(library_NAME "jni-helper-lib")
+        set(library_Entry_Point "src/main/cpp")
+    endif()
 endif()
 
 add_library( # Sets the name of the library.
@@ -43,8 +49,12 @@ find_library( # Sets the name of the path variable.
 
 
 # Only adding JniHelpersTest library if testing
-if(${ANDROID_TESTING})
-    target_link_libraries(${library_NAME} JniHelpers JniHelpersTest ${log-lib} )
-else()
+if(${ANDROID_RELEASE})
     target_link_libraries(${library_NAME} JniHelpers ${log-lib} )
+else()
+    if(${ANDROID_TESTING})
+        target_link_libraries(${library_NAME} JniHelpers JniHelpersTest ${log-lib} )
+    else()
+        target_link_libraries(${library_NAME} JniHelpers ${log-lib} )
+    endif()
 endif()

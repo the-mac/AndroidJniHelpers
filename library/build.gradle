@@ -3,6 +3,7 @@ apply plugin: 'com.novoda.bintray-release' // must be applied after your artifac
 
 
 def paramsString = project.gradle.startParameter.taskNames.toString()
+def currentlyBuildingRelease = paramsString.contains('Release')
 def currentlyRunningTest = paramsString.contains('assembleDebugAndroidTest')
 def libraryVersion = rootProject.file('bin/prepare.files/version').text//'1.1.5'
 
@@ -22,7 +23,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                if (currentlyRunningTest) {
+                if (currentlyBuildingRelease) {
+                    arguments '-DANDROID_RELEASE=true'
+                } else if (currentlyRunningTest) {
                     arguments '-DANDROID_TESTING=true'
                 } else {
                     arguments '-DANDROID_TESTING=false'
