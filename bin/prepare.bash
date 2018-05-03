@@ -141,9 +141,18 @@ function publish_version {
 
 
     currentPath=$PWD
+    branchName="master"
+
     fromPath="$currentPath/library/build/outputs"
     apkPath="$fromPath/apk/androidTest/debug"
     statusPath=$currentPath/bin/prepare.files/build.test
+
+    appPackage="us.the.mac.android.jni.helpers"
+    basePackage="$appPackage"
+    testPackage="$appPackage.test"
+    testClass="$appPackage.NetworkTest"
+    bintrayUser=$(cat bin/prepare.files/.bintrayUser)
+    bintrayKey=$(cat bin/prepare.files/.bintrayKey)
 
 
 #    bin/adb.bash --findDevice
@@ -152,39 +161,35 @@ function publish_version {
         sleep 2 && echo "No device is connected, please connect device or try (bin/adb.bash --startEmulator) in new terminal window" && exit 1
     fi
 
-    rm -rf $statusPath
-    mkdir -p $statusPath
 
     # CLEAR STATUS FOR TEST
+    rm -rf $statusPath
+    mkdir -p $statusPath
     echo "" > $statusPath/status_android
 
-    ./gradlew assembleDebug library:packageDebugAndroidTest --info #app:connectedAndroidTest
+
+    ./gradlew assembleDebug library:packageDebugAndroidTest --info
     cp $apkPath/library-debug-androidTest.apk $statusPath
+
+    zip -r demo.zip demo/CMakeLists.txt
+    zip -r demo.zip demo/build.gradle
+    zip -r demo.zip demo/demo.iml
+    zip -r demo.zip demo/src
+    zip -r demo.zip demo/proguard-rules.pro
+
+    mv demo.zip $statusPath
+
 
 
 	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
 	if [[ $deviceReady == *"/"* ]]; then
-#		set -xe
-
-		appPackage="us.the.mac.android.jni.helpers"
-		basePackage="$appPackage"
-		testPackage="$appPackage.test"
-		testClass="$appPackage.NetworkTest"
-        bintrayUser=$(cat bin/prepare.files/.bintrayUser)
-        bintrayKey=$(cat bin/prepare.files/.bintrayKey)
-
-#    adb push /Users/christopher/git/the-mac/AndroidJniHelpers/library/build/outputs/apk/androidTest/debug/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
-#    adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"#
-#    adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner
-
-		# SAVE STATUS FOR ARCHIVE
-#        bin/adb.bash --test $statusPath/library-debug-androidTest.apk $statusPath/app-debug-androidTest.apk $basePackage $testPackage $testClass $debugFlag | tee -a $statusPath/status_android
-
+		set -xe
 
         adb push $statusPath/library-debug-androidTest.apk /data/local/tmp/us.the.mac.android.jni.helpers.test
         adb shell pm install -t -r "/data/local/tmp/us.the.mac.android.jni.helpers.test"
 
 
+		# SAVE STATUS FOR ARCHIVE
         adb shell am instrument -w -r   -e debug false -e class us.the.mac.android.jni.helpers.NetworkTest us.the.mac.android.jni.helpers.test/android.support.test.runner.AndroidJUnitRunner | tee -a $statusPath/status_android
 		testResult=$(cat $statusPath/status_android)
 
@@ -200,10 +205,17 @@ function publish_version {
         if [[ $statusCheck != *"nothing to commit"* ]]; then
 
 		    DATE=`date +%Y-%m-%d`
-            sleep 2 && git add -A && git commit -m "Passed Network Test - $DATE" || git tag -d $version
+
+            cp bin/prepare.files/README_BASE.md README.md
+            sed -i -e "s/LIBRARY_VERSION/${version}/g" README.md
+
+            sleep 2 && git add -A && git commit -m "Passed Network Test for version: $version - $DATE" || git tag -d $version
             sleep 2 && git tag -a $version -m "Release $version" && git pull origin $branchName
 
-            sleep 2 && git push origin $branchName && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
+
+            sleep 2 && git push origin $version && ./gradlew clean build && mv library/build/intermediates/cmake/debug/obj/* library/src/main/jniLibs
+
+            sleep 2 && ./gradlew clean build bintrayUpload -PbintrayUser=$bintrayUser -PbintrayKey=$bintrayKey -PdryRun=false
 
             echo "$version" > bin/prepare.files/uploaded
         fi

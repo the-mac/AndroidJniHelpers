@@ -21,7 +21,7 @@ Gradle 3.0.1+
 ```bash
 dependencies {
     ...
-    implmentation 'us.the.mac:AndroidJniHelpers:1.1.5'
+    implmentation 'us.the.mac:AndroidJniHelpers:1.1.7'
 }
 ```
 
@@ -29,7 +29,7 @@ Older Gradle Versions
 ```bash
 dependencies {
     ...
-    compile 'us.the.mac:AndroidJniHelpers:1.1.5'
+    compile 'us.the.mac:AndroidJniHelpers:1.1.7'
 }
 ```
 

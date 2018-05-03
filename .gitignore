@@ -42,6 +42,7 @@ captures/
 */.externalNativeBuild
 
 # bash scripts / files
+demo.zip
 bin/adb.files/devices
 bin/jni.files/build.jni
 bin/encrypt.files/build.encrypt
