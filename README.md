@@ -6,19 +6,19 @@ You may already know, but in Android development we need to hide important detai
 [![Decompile APK in Single Click](https://img.youtube.com/vi/TfLq9nsLWOc/0.jpg)](https://www.youtube.com/watch?v=TfLq9nsLWOc)
 
 
-This library allows you to secure your apps with less effort and is fully customizable. With this version of the JNI Helpers library you can prepare your strings before runtime and decrypt them as you need them, and connect to any secure server with its designated ssl certificate (in C++). It protects your app's resources like inline (Java file) strings, resource (res) strings and network requests beyond
+The Android JNI Helpers library allows you to secure your apps with less effort and is fully customizable. With this version of the JNI Helpers library you can prepare your strings before runtime and decrypt them as you need them, and connect to any secure server with its designated ssl certificate (in C++). It protects your app's resources like inline (Java file) strings, resource (res) strings and network requests beyond
 [basic code shrinking](https://developer.android.com/studio/build/shrink-code.html) from [proguard obfuscation](https://www.guardsquare.com/en/proguard).
 
-## Setting up your project ##
+## Setting Up Your Project ##
 ### Add C++ Support, but if your project already has it skip this section ###
 - If you are just creating your project, you can simply check the "Add C++ Support" box upon project creation
 - If your project already exists, you can right click your app module and select "Link C++ project with gradle"
 - Finally, see our [FAQ](FAQ.md) for how to [set up your C++ project and view example CMakeLists.txt file](FAQ.md#setting-up-your-android-studio-c-project)
 
 
-## Import library and use modules ##
+### Import Android JNI Helpers library ###
 
-Gradle 3.0.1+
+Using Gradle 3.0.1+ add library to your module's build.gradle file
 ```bash
 dependencies {
     ...
@@ -34,10 +34,10 @@ dependencies {
 }
 ```
 
-Build the project with new dependecy included
+Build the project with the new dependency included (after this step, it downloads an aar file into ~/.gradle caches directory)
 
 
-## Add (or prepend) project gradle properties ##
+### Add (or prepend) project gradle properties ###
 ```
 
 ext {
@@ -70,22 +70,24 @@ dependencies {
 ```
 
 
-## Add extract SO files gradle task to project gradle file ##
+### Add gradle task (extract SO files) to project gradle file ###
 ```
 task extractSOFiles(type: Copy) {
-    from zipTree(aarPath)
+    from zipTree(aarFile)
     into libraryObjectsPath
     include "jni/**/libjni-helper-lib.so"
 }
 ```
 
-Next run the extractSOFiles, and this will temporarily store SO files for compilation
+Next run the extractSOFiles task, and this will temporarily store SO files for compilation into shared objects jni path
 ```
 ./gradlew extractSOFiles
 ```
 
+Next download and extract [include folder](https://github.com/the-mac/AndroidJniHelpers/releases/download/1.1.7/include.zip) into shared objects jni path
 
-## Add imported library references to CMakeLists.txt file ##
+
+### Import shared object references to CMakeLists.txt file ###
 ```
 add_library( imported-lib
              SHARED
@@ -116,7 +118,7 @@ target_link_libraries( # Specifies the target library.
                        ${log-lib} )
 ```
 
-Finally, build the project with new native dependecies included
+Finally, build the project with the new native dependecies included; after the build completes, you're ready to hide/encrypt strings and make native nework requests.
 
 ## Using String Decryption ##
 
@@ -175,7 +177,7 @@ Finally, request the decrypted string in the example Activity:
 
 Similar files to the examples above can be found in the [demo](demo) project's [Activity](demo/src/main/java/us/the/mac/library/demo/androidjni/MainActivity.java) and [C++ code](demo/src/main/cpp/native-lib.cpp)
 
-### Using Secure Network Calls ###
+## Using Secure Network Calls ##
 
 ![Android JNI Network Preview](screenshots/android-jni-network-preview.png)
 

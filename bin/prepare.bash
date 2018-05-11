@@ -136,6 +136,30 @@ function update_readme {
     sed -i -e "s/LIBRARY_VERSION/${version}/g" README.md
 
 }
+
+function archive_zipfiles {
+
+    currentPath=$PWD
+    statusPath=$currentPath/bin/prepare.files/build.test
+    mkdir -p $statusPath/include
+
+
+    zip -r demo.zip demo/CMakeLists.txt
+    zip -r demo.zip demo/build.gradle
+    zip -r demo.zip demo/demo.iml
+    zip -r demo.zip demo/src
+    zip -r demo.zip demo/proguard-rules.pro
+
+    mv demo.zip $statusPath
+
+
+    cp library/src/main/cpp/*.h $statusPath/include
+    cd $statusPath
+    zip -r include.zip include
+
+    cd $currentPath
+
+}
 function publish_version {
 
 
@@ -170,27 +194,14 @@ function publish_version {
 
     # CLEAR STATUS FOR TEST
     rm -rf $statusPath
-    mkdir -p $statusPath/include
+    mkdir -p $statusPath
     echo "" > $statusPath/status_android
 
 
     ./gradlew assembleDebug library:packageDebugAndroidTest --info
     cp $apkPath/library-debug-androidTest.apk $statusPath
 
-    zip -r demo.zip demo/CMakeLists.txt
-    zip -r demo.zip demo/build.gradle
-    zip -r demo.zip demo/demo.iml
-    zip -r demo.zip demo/src
-    zip -r demo.zip demo/proguard-rules.pro
-
-    mv demo.zip $statusPath
-
-
-    cp library/src/main/cpp/*.h $statusPath/include
-    zip -r include.zip $statusPath/include
-
-    mv include.zip $statusPath
-
+    archive_zipfiles
 
 	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
 	if [[ $deviceReady == *"/"* ]]; then
@@ -262,12 +273,15 @@ function execute_commands {
 
     if [[ $1 == *--readme* ]] ; then
 		update_readme $@
+	elif [[ $1 == *--archive* ]] ; then
+		archive_zipfiles $@
 	elif [[ $1 == *--push* ]] ; then
 		prepare_push $@
 	elif [[ $1 == *--publish* ]] ; then
 		publish_version $@
     else
         echo "Usage: bin/prepare.bash --readme OR"
+        echo "Usage: bin/prepare.bash --archive OR"
         echo "Usage: bin/prepare.bash --push [no] OR"
         echo "Usage: bin/prepare.bash --publish" && echo ""
         exit;
