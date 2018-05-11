@@ -130,6 +130,12 @@ function accept_commit_message {
 	fi
 }
 
+function update_readme {
+
+    cp bin/prepare.files/README_BASE.md README.md
+    sed -i -e "s/LIBRARY_VERSION/${version}/g" README.md
+
+}
 function publish_version {
 
 
@@ -164,7 +170,7 @@ function publish_version {
 
     # CLEAR STATUS FOR TEST
     rm -rf $statusPath
-    mkdir -p $statusPath
+    mkdir -p $statusPath/include
     echo "" > $statusPath/status_android
 
 
@@ -179,6 +185,11 @@ function publish_version {
 
     mv demo.zip $statusPath
 
+
+    cp library/src/main/cpp/*.h $statusPath/include
+    zip -r include.zip $statusPath/include
+
+    mv include.zip $statusPath
 
 
 	sleep 2 && deviceReady=$(adb -s $specificDevice shell 'pwd')
@@ -206,10 +217,9 @@ function publish_version {
 
 		    DATE=`date +%Y-%m-%d`
 
-            cp bin/prepare.files/README_BASE.md README.md
-            sed -i -e "s/LIBRARY_VERSION/${version}/g" README.md
+            update_readme
 
-            sleep 2 && git add -A && git commit -m "Passed Network Test for version: $version - $DATE" || git tag -d $version
+            sleep 2 && git add -A && git commit -m "Passed Network Test for version: $version - $DATE" && git push origin $branchName || git tag -d $version
             sleep 2 && git tag -a $version -m "Release $version" && git pull origin $branchName
 
 
@@ -250,13 +260,16 @@ function execute_commands {
     echo "=================================="
     echo ""
 
-    if [[ $1 == *--push* ]] ; then
+    if [[ $1 == *--readme* ]] ; then
+		update_readme $@
+	elif [[ $1 == *--push* ]] ; then
 		prepare_push $@
 	elif [[ $1 == *--publish* ]] ; then
 		publish_version $@
     else
+        echo "Usage: bin/prepare.bash --readme OR"
         echo "Usage: bin/prepare.bash --push [no] OR"
-        echo "Usage: bin/prepare.bash --publish" && echo ""# []
+        echo "Usage: bin/prepare.bash --publish" && echo ""
         exit;
     fi
 }
